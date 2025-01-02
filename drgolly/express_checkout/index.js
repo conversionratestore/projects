@@ -1781,10 +1781,6 @@ tr.coupon_item td {
       });
     }
     async events() {
-      document.addEventListener("click", (e) => {
-        const t = e.target;
-        t.closest(".wc-ppcp-payment-method__container") && u("exp__01__exp_checkout__paypal", "PayPal", "click", "Complete your order in under 2 minutes"), t.closest("#wc-stripe-payment-request-wrapper") && u("exp__01__exp_checkout__applepay", "Apple Pay", "click", "Complete your order in under 2 minutess");
-      });
     }
     initStyles() {
       const e = document.createElement("style");
@@ -2196,7 +2192,7 @@ tr.coupon_item td {
   transform: rotate(180deg);
 }
 `;
-  class Y {
+  class B {
     constructor({ element: e, position: t = "beforeend" }) {
       this.container = e, this.position = t, this.currentSlide = 0, this.totalSlides = 0, this.reviewPopup = new j(), this.init();
     }
@@ -2226,19 +2222,24 @@ tr.coupon_item td {
             <div class="crs-rating__right">
               <div>Based on ${o.review_count} reviews</div>
               <div class="crs-rating__reviewio">
-                <span>Excellent on</span
-                > <a href="https://www.reviews.io/company-reviews/store/www.drgolly.com" target="__self"><img
-                  src="https://assets.reviews.io/img/all-global-assets/logo/reviewsio-logo.svg"
-                  alt="reviewsio logo"
-                  width="78"
-                  height="12"
+                <span>Excellent on</span>
+                <a href="https://www.reviews.io/company-reviews/store/www.drgolly.com" target="__self"
+                  ><img
+                    src="https://assets.reviews.io/img/all-global-assets/logo/reviewsio-logo.svg"
+                    alt="reviewsio logo"
+                    width="78"
+                    height="12"
                 /></a>
               </div>
             </div>
           </div>
 
           <div class="crs-reviews__photo">
-          <img src="https://conversionratestore.github.io/projects/drgolly/express_checkout/img/children.webp" alt="children"></div>
+            <img
+              src="https://conversionratestore.github.io/projects/drgolly/express_checkout/img/children.webp"
+              alt="children"
+            />
+          </div>
 
           <div class="crs-reviews__comments crs-comments">
             <div class="crs-comments__wrap">
@@ -2276,7 +2277,12 @@ tr.coupon_item td {
         this.container.insertAdjacentHTML(this.position, r), this.initSlider(), g(".crs-reviews", "exp__01__exp_checkout__reviews__view", "Section", "Let customer speak for us");
         const c = document.querySelectorAll(".crs-comment"), a = document.querySelector(".crs-rating__reviewio a");
         a && a.addEventListener("click", () => {
-          u("exp__01__exp_checkout__reviews__link", "Excellent on Reviews.io", "click", "Let customer speak for us");
+          u(
+            "exp__01__exp_checkout__reviews__link",
+            "Excellent on Reviews.io",
+            "click",
+            "Let customer speak for us"
+          );
         }), c.forEach((i) => {
           i.addEventListener("click", () => {
             var _, p, l, x;
@@ -2325,12 +2331,32 @@ tr.coupon_item td {
         if (!a || !i)
           return;
         const l = a - i;
-        l > 50 ? this.currentSlide++ : l < -50 && this.currentSlide--, y(), a = null, i = null;
+        l > 50 ? (this.currentSlide++, u(
+          "exp__01__exp_checkout__reviews__nav",
+          "Buttons for next/previous review",
+          "click",
+          "Let customer speak for us"
+        )) : l < -50 && (this.currentSlide--, u(
+          "exp__01__exp_checkout__reviews__nav",
+          "Buttons for next/previous review",
+          "click",
+          "Let customer speak for us"
+        )), y(), a = null, i = null;
       };
       e.addEventListener("touchstart", d), e.addEventListener("touchmove", _), e.addEventListener("touchend", p), t.addEventListener("click", () => {
-        this.currentSlide--, y(), u("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
+        this.currentSlide--, y(), u(
+          "exp__01__exp_checkout__reviews__nav",
+          "Buttons for next/previous review",
+          "click",
+          "Let customer speak for us"
+        );
       }), o.addEventListener("click", () => {
-        this.currentSlide++, y(), u("exp__01__exp_checkout__reviews__nav", "Buttons for next/previous review", "click", "Let customer speak for us");
+        this.currentSlide++, y(), u(
+          "exp__01__exp_checkout__reviews__nav",
+          "Buttons for next/previous review",
+          "click",
+          "Let customer speak for us"
+        );
       }), this.currentSlide = 0, e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`;
     }
     initStyles() {
@@ -2339,13 +2365,13 @@ tr.coupon_item td {
     }
   }
   C({ name: "Express Checkout", dev: "OS" }), S("exp__01__express_checkout");
-  class $ {
+  class Y {
     constructor() {
       this.device = window.screen.width < 981 ? "mobile" : "desktop", this.init();
     }
     init() {
-      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new D(), new Y({ element: document.querySelector("footer"), position: "beforebegin" }));
+      !location.pathname.includes("/checkout") || this.device !== "mobile" || (new D(), new B({ element: document.querySelector("footer"), position: "beforebegin" }));
     }
   }
-  new $();
+  new Y();
 })();
