@@ -1306,7 +1306,7 @@ body:has(.crs-popup[open]) {
         document.querySelectorAll(".crs-popup__content .et_pb_toggle h3").forEach((i) => {
           i == null || i.addEventListener("click", (c) => {
             const o = c.currentTarget;
-            m("exp__01__exp_checkout__pop_cont__open", `Open question. ${o.textContent}`, "click", "Contact us popup");
+            o.closest(".et_pb_toggle_open") || m("exp__01__exp_checkout__pop_cont__open", `Open question. ${o.textContent}`, "click", "Contact us popup");
           });
         }), new S();
       }), g(".crs-popup", "exp__01__exp_checkout__pop_cont__view", "Section", "Contact us popup")));
