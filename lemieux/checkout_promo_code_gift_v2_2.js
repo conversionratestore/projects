@@ -1,25 +1,25 @@
 (function() {
   "use strict";
-  const s = (c, n, t, r = "") => {
+  const m = (a, n, t, c = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: c,
+      event_name: a,
       event_desc: n,
       event_type: t,
-      event_loc: r
-    }), console.log(`Event: ${c} | ${n} | ${t} | ${r}`);
-  }, L = ({ name: c, dev: n }) => {
+      event_loc: c
+    }), console.log(`Event: ${a} | ${n} | ${t} | ${c}`);
+  }, L = ({ name: a, dev: n }) => {
     console.log(
-      `%c EXP: ${c} (DEV: ${n})`,
+      `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, o = (c) => document.querySelector(c);
-  function i(c) {
+  }, o = (a) => document.querySelector(a);
+  function i(a) {
     return new Promise((n) => {
-      if (document.querySelector(c))
-        return n(document.querySelector(c));
+      if (document.querySelector(a))
+        return n(document.querySelector(a));
       const t = new MutationObserver(() => {
-        document.querySelector(c) && (n(document.querySelector(c)), t.disconnect());
+        document.querySelector(a) && (n(document.querySelector(a)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -276,10 +276,10 @@ checkout-account social-login .button__body i {
   margin: 0 !important;
 }
 `;
-  (function(c, n, t, r, m, a) {
-    c.hj = c.hj || function() {
-      (c.hj.q = c.hj.q || []).push(arguments);
-    }, c._hjSettings = { hjid: 2667925, hjsv: 6 }, m = n.getElementsByTagName("head")[0], a = n.createElement("script"), a.async = !0, a.src = t + c._hjSettings.hjid + r + c._hjSettings.hjsv, m && m.appendChild(a);
+  (function(a, n, t, c, s, r) {
+    a.hj = a.hj || function() {
+      (a.hj.q = a.hj.q || []).push(arguments);
+    }, a._hjSettings = { hjid: 2667925, hjsv: 6 }, s = n.getElementsByTagName("head")[0], r = n.createElement("script"), r.async = !0, r.src = t + a._hjSettings.hjid + c + a._hjSettings.hjsv, s && s.appendChild(r);
   })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "exp_cart_page_step");
   class F {
     constructor() {
@@ -295,7 +295,7 @@ checkout-account social-login .button__body i {
       this.checkPage() === "checkout" && (setTimeout(() => {
         o('[zippyname="basketTab"] #mmWrapper > div') || i("#mmWrapper > div").then((n) => {
           i('[zippyname="basketTab"]').then((t) => {
-            i("mention-me-wrapper").then((r) => {
+            i("mention-me-wrapper").then((c) => {
               console.log("mmWrapper>>>>"), this.toggleElementBetweenContainers(
                 "#mmWrapper",
                 "mention-me-wrapper",
@@ -318,7 +318,7 @@ checkout-account social-login .button__body i {
         });
       }), o('[zippyname="basketTab"] coupon-form') || i("coupon-form").then((n) => {
         i('[zippyname="basketTab"]').then((t) => {
-          i("mention-me-wrapper").then((r) => {
+          i("mention-me-wrapper").then((c) => {
             console.log("coupon>>>>"), this.toggleElementBetweenContainers("coupon-form", "mention-me-wrapper", "basket-view-totals");
           });
         });
@@ -340,6 +340,11 @@ checkout-account social-login .button__body i {
       }), i('[zippyclass="ng-hide"]').then((n) => {
         const t = n;
         t.innerHTML = "Show bag summary";
+        const c = t.closest("button");
+        console.log(c);
+        const s = setTimeout(() => {
+          c == null || c.click(), t.classList.contains("ng-hide") && clearTimeout(s);
+        }, 1e3);
       }), i("checkout-account ng-form h1 > span").then((n) => {
         const t = n;
         t.innerHTML = "Contact";
@@ -348,11 +353,11 @@ checkout-account social-login .button__body i {
         t.innerHTML = "Contact";
       });
     }
-    toggleElementBetweenContainers(n, t, r, m = "beforebegin") {
+    toggleElementBetweenContainers(n, t, c, s = "beforebegin") {
       var B;
-      const a = o(n), d = o(t), u = o(r), f = o('[zippyname="basketTab"] h4'), l = (B = o("#checkout-step-payment .bg-col-w.p-a-6")) == null ? void 0 : B.nextElementSibling;
-      if (!a || !d || !u) {
-        console.log(a, d, u);
+      const r = o(n), d = o(t), u = o(c), f = o('[zippyname="basketTab"] h4'), l = (B = o("#checkout-step-payment .bg-col-w.p-a-6")) == null ? void 0 : B.nextElementSibling;
+      if (!r || !d || !u) {
+        console.log(r, d, u);
         return;
       }
       function j() {
@@ -383,31 +388,31 @@ checkout-account social-login .button__body i {
         });
       }
       function b(e) {
-        s("exp_cart_page_cart_link_referred", "Been referred by a friend?", "click", "Bag summary");
+        m("exp_cart_page_cart_link_referred", "Been referred by a friend?", "click", "Bag summary");
       }
       function v(e) {
-        e.currentTarget.classList.contains("is-open") ? s("exp_cart_page_cart_promocode_open", "Have you got a promo code", "click", "Bag summary") : s("exp_cart_page_cart_promocode_close", "Have you got a promo code", "click", "Bag summary");
+        e.currentTarget.classList.contains("is-open") ? m("exp_cart_page_cart_promocode_open", "Have you got a promo code", "click", "Bag summary") : m("exp_cart_page_cart_promocode_close", "Have you got a promo code", "click", "Bag summary");
       }
       function k(e) {
-        s("exp_cart_page_cart_promocode_input", "Enter offer code", "input", "Bag summary");
+        m("exp_cart_page_cart_promocode_input", "Enter offer code", "input", "Bag summary");
       }
       function y(e) {
-        s("exp_cart_page_cart_promocode_apply", "Apply", "click", "Bag summary");
+        m("exp_cart_page_cart_promocode_apply", "Apply", "click", "Bag summary");
       }
       function w(e) {
-        s("exp_cart_page_cart_promocode_close", "Cancel", "click", "Bag summary");
+        m("exp_cart_page_cart_promocode_close", "Cancel", "click", "Bag summary");
       }
       function z(e) {
-        e.currentTarget.classList.contains("is-open") ? s("exp_cart_page_cart_giftcode_open", "Have you got a gift card", "click", "Bag summary") : s("exp_cart_page_cart_giftcode_close", "Have you got a gift card", "click", "Bag summary");
+        e.currentTarget.classList.contains("is-open") ? m("exp_cart_page_cart_giftcode_open", "Have you got a gift card", "click", "Bag summary") : m("exp_cart_page_cart_giftcode_close", "Have you got a gift card", "click", "Bag summary");
       }
       function _(e) {
-        s("exp_cart_page_cart_giftcode_input", "Enter a gift card", "input", "Bag summary");
+        m("exp_cart_page_cart_giftcode_input", "Enter a gift card", "input", "Bag summary");
       }
       function x(e) {
-        s("exp_cart_page_cart_giftcode_apply", "Apply", "click", "Bag summary");
+        m("exp_cart_page_cart_giftcode_apply", "Apply", "click", "Bag summary");
       }
       function C(e) {
-        s("exp_cart_page_cart_giftcode_check", "Check balance", "click", "Bag summary");
+        m("exp_cart_page_cart_giftcode_check", "Check balance", "click", "Bag summary");
       }
       function P() {
         o("#mmWrapper").removeEventListener("click", b);
@@ -427,20 +432,20 @@ checkout-account social-login .button__body i {
       function I() {
         o("giftcards-form [zippyclass='is-open']").removeEventListener("click", z), o("giftcards-form input").removeEventListener("change", _), o("giftcards-form action.button").removeEventListener("click", x), o("giftcards-form action.button-1").removeEventListener("click", C);
       }
-      function E(e) {
-        e.contains(a) || (e.insertAdjacentElement(m, a), e === u ? (n === "#mmWrapper" && j(), n === "coupon-form" && M(), n === "giftcards-form" && W()) : (n === "#mmWrapper" && P(), n === "coupon-form" && A(), n === "giftcards-form" && I()));
+      function T(e) {
+        e.contains(r) || (e.insertAdjacentElement(s, r), e === u ? (n === "#mmWrapper" && j(), n === "coupon-form" && M(), n === "giftcards-form" && W()) : (n === "#mmWrapper" && P(), n === "coupon-form" && A(), n === "giftcards-form" && I()));
       }
       console.log("toggleElementBetweenContainers", n);
-      const T = new IntersectionObserver((e) => {
+      const E = new IntersectionObserver((e) => {
         e.forEach((p) => {
-          p.isIntersecting && (p.target === l ? (console.log("container1"), E(d)) : p.target === f && (console.log("container3"), E(u)));
+          p.isIntersecting && (p.target === l ? (console.log("container1"), T(d)) : p.target === f && (console.log("container3"), T(u)));
         });
       });
-      T.observe(l), T.observe(f);
+      E.observe(l), E.observe(f);
     }
     observePageChange() {
       this.observerNew = new MutationObserver((t) => {
-        t.forEach((r) => {
+        t.forEach((c) => {
           window.location.pathname !== this.lastPath && (this.device === "mobile" ? setTimeout(() => {
             this.initAllFunc();
           }, 2800) : this.initAllFunc(), this.lastPath = window.location.pathname);
@@ -470,8 +475,8 @@ checkout-account social-login .button__body i {
     constructor() {
       var n, t;
       this.observer = null, this.countryCode = (t = (n = window == null ? void 0 : window.autoInitData) == null ? void 0 : n.website) == null ? void 0 : t.websiteCode, this.basketButtonHandler = () => {
-        const r = () => {
-          this.country !== "other" && this.device === "desktop" && !location.href.includes("basket") && !location.href.includes("checkout") && this.waitForElementCustom('minibasket a[href*="/basket"]', (m) => {
+        const c = () => {
+          this.country !== "other" && this.device === "desktop" && !location.href.includes("basket") && !location.href.includes("checkout") && this.waitForElementCustom('minibasket a[href*="/basket"]', (s) => {
             var u;
             const d = (
               /* HTML */
@@ -479,13 +484,13 @@ checkout-account social-login .button__body i {
             ><span class="p1 col-w">Checkout securely</span></a
           >`
             );
-            m.outerHTML = d, (u = o('minibasket a[href*="/checkout"]')) == null || u.addEventListener("click", (f) => {
+            s.outerHTML = d, (u = o('minibasket a[href*="/checkout"]')) == null || u.addEventListener("click", (f) => {
               const l = document.querySelector('minibasket [aria-label="Close"]');
               localStorage.setItem("lastPdpHref", location.href), l && l.click();
             });
           });
         };
-        r(), this.pageChangeHandler(r);
+        c(), this.pageChangeHandler(c);
       }, this.country = this.countryCode === "base" ? "uk" : this.countryCode === "us" ? "us" : "other", this.device = window.innerWidth > 1100 ? "desktop" : "mobile", this.init();
     }
     init() {
@@ -499,17 +504,17 @@ checkout-account social-login .button__body i {
     }
     checkBasketPage() {
       function n() {
-        const r = setInterval(function() {
-          document.querySelectorAll("button").forEach((a) => {
+        const c = setInterval(function() {
+          document.querySelectorAll("button").forEach((r) => {
             var d;
-            if (a && ((d = a.textContent) != null && d.includes("Continue shopping"))) {
+            if (r && ((d = r.textContent) != null && d.includes("Continue shopping"))) {
               const u = localStorage.getItem("lastPdpHref"), f = (
                 /* HTML */
                 ` <a class="w-12 button-1 m-b m-t-2" href="${u}"
               ><span class="button__body">Continue shopping</span></a
             >`
               );
-              u && (a.outerHTML = f), clearInterval(r);
+              u && (r.outerHTML = f), clearInterval(c);
             }
           });
         }, 100);
@@ -521,20 +526,20 @@ checkout-account social-login .button__body i {
     }
     pageChangeHandler(n) {
       (function(t) {
-        const r = t.pushState, m = t.replaceState;
-        t.pushState = function(a) {
-          r.apply(t, arguments), n();
-        }, t.replaceState = function(a) {
-          m.apply(t, arguments), n();
-        }, window.addEventListener("popstate", function(a) {
+        const c = t.pushState, s = t.replaceState;
+        t.pushState = function(r) {
+          c.apply(t, arguments), n();
+        }, t.replaceState = function(r) {
+          s.apply(t, arguments), n();
+        }, window.addEventListener("popstate", function(r) {
           n();
         });
       })(window.history);
     }
     waitForElementCustom(n, t) {
-      this.observer && this.observer.disconnect(), this.observer = new MutationObserver((r, m) => {
-        const a = document.querySelector(n);
-        a && t(a);
+      this.observer && this.observer.disconnect(), this.observer = new MutationObserver((c, s) => {
+        const r = document.querySelector(n);
+        r && t(r);
       }), this.observer.observe(document.body, {
         childList: !0,
         subtree: !0,
