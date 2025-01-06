@@ -1880,7 +1880,7 @@ tr.coupon_item td {
     }
     render() {
       var t;
-      if ((t = this.container) == null || t.insertAdjacentHTML(
+      (t = this.container) == null || t.insertAdjacentHTML(
         this.position,
         /* HTML */
         `<tr class="coupon_item">
@@ -1918,10 +1918,7 @@ tr.coupon_item td {
         </details>
       </td>
     </tr>`
-      ), this.device === "desktop") {
-        const n = document.querySelector(".crs-coupon-container");
-        n && n.setAttribute("open", "true");
-      }
+      );
     }
     initStyles() {
       const e = document.createElement("style");
