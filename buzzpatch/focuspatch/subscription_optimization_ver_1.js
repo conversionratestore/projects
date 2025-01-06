@@ -548,7 +548,7 @@
 }
 .focuspatch_packs .focuspatch_packs_list .focuspatch_packs_item .focuspatch_packs_prices .focuspatch_packs_info .focuspatch_packs_reg_final_prices {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-start;
   gap: 4px;
 }
@@ -1292,7 +1292,7 @@
       u(".pricing_block_attr").then((n) => {
         p(".pricing_block_attr").forEach((e) => {
           const C = e.closest(".card-body"), s = e.getAttribute("data-subscription-discount"), o = e.getAttribute("data-subscription-old-price"), c = e.getAttribute("data-subscription-final-price"), a = e.getAttribute("data-subscription-price-per-pack"), r = e.getAttribute("data_no-subscription-discount"), h = e.getAttribute("data-no-subscription-old-price"), f = e.getAttribute("data-no-subscription-final-price"), g = e.getAttribute("data-no-subscription-price-per-pack");
-          u(".focuspatch_packs_item").then((k) => {
+          u('.focuspatch_packs_item[data-id="1"]').then((k) => {
             p(".focuspatch_packs_item").forEach((d) => {
               const l = d.querySelector(".save_banner_percent"), b = d.querySelector(".price_per_pack_txt"), m = d.querySelector(".reg_price_txt"), H = d.querySelector(".final_price_txt");
               C && C.getAttribute("data-pack") === d.getAttribute("data-id") && (d.getAttribute("data-id") === "1" || _('[value="oneTime"]:checked') ? (l.textContent = r, m.textContent = h, H.textContent = f, b.textContent = g) : (l.textContent = s, m.textContent = o, H.textContent = c, b.textContent = a));
@@ -1579,7 +1579,7 @@
       });
     }
   }
-  u(".lp-fp--package-cards li").then((i) => {
+  u(".lp-fp--package-cards li .pricing_block_attr").then((i) => {
     new X(Y);
   });
 })();
