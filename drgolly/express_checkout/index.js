@@ -1382,7 +1382,7 @@ body:has(.crs-popup[open]) {
     </clipPath>
   </defs>
 </svg>`
-  ), D = `
+  ), W = `
 .crs-refund {
   display: flex;
   align-items: center;
@@ -1427,7 +1427,7 @@ body:has(.crs-popup[open]) {
     width: 100% !important;
   }
 }`;
-  class W {
+  class D {
     constructor({ selector: e, position: t }) {
       this.container = typeof e == "string" ? document.querySelector(e) : e, this.position = t, this.popup = new b(), this.init();
     }
@@ -1466,7 +1466,7 @@ body:has(.crs-popup[open]) {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = D, document.head.appendChild(e);
+      e.innerHTML = W, document.head.appendChild(e);
     }
   }
   const j = `header {
@@ -2557,7 +2557,7 @@ tr.coupon_item td {
   }
   class Z {
     constructor() {
-      this.device = window.screen.width < 981 ? "mobile" : "desktop", this.init();
+      this.device = window.innerWidth < 981 ? "mobile" : "desktop", this.init();
     }
     init() {
       this.initStyles(), this.coupon(), this.details(), this.header(), this.footer(), this.refundBadge(), this.reviews();
@@ -2598,7 +2598,7 @@ tr.coupon_item td {
     }
     async refundBadge() {
       const e = await u(".woocommerce-checkout #payment");
-      new W({ selector: e, position: "afterend" });
+      new D({ selector: e, position: "afterend" });
     }
     async reviews() {
       const e = await u(".crs-refund");
