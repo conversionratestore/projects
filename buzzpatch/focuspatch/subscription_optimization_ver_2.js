@@ -1386,7 +1386,7 @@
       });
     }
     changeActivePackHandler() {
-      _(".focuspatch_packs").then((t) => {
+      _(".crs_slide_in .focuspatch_packs").then((t) => {
         const n = l(".focuspatch_packs_item");
         n.forEach((e) => {
           e.addEventListener("click", () => {
