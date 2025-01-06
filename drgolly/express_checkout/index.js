@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const p = (s, e, t, n = "") => {
+  const d = (s, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: s,
@@ -18,7 +18,7 @@
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", s, "variant_1"));
     }, 1e3);
   };
-  function m(s) {
+  function u(s) {
     return new Promise((e) => {
       if (document.querySelector(s))
         return e(document.querySelector(s));
@@ -32,7 +32,7 @@
       });
     });
   }
-  const g = (s, e, t, n) => {
+  const y = (s, e, t, n) => {
     let o = [];
     if (typeof s == "string")
       o = document.querySelectorAll(s);
@@ -55,7 +55,7 @@
       }
     ), c = new IntersectionObserver((a) => {
       a.forEach((i) => {
-        i.isIntersecting ? (p(e || `view_element_${i.target.id}`, t || "Element visibility", "view", n || i.target.id), r.unobserve(i.target)) : r.observe(i.target), c.unobserve(i.target);
+        i.isIntersecting ? (d(e || `view_element_${i.target.id}`, t || "Element visibility", "view", n || i.target.id), r.unobserve(i.target)) : r.observe(i.target), c.unobserve(i.target);
       });
     });
     o.forEach((a) => {
@@ -76,7 +76,7 @@
     }
     async events() {
       try {
-        const e = await m("#crs-contact-form form");
+        const e = await u("#crs-contact-form form");
         e.addEventListener("submit", async (t) => {
           t.preventDefault();
           const n = new FormData(e), o = await fetch("https://drgolly.com/wp-json/contact-form-7/v1/contact-forms/1671/feedback", {
@@ -1073,6 +1073,7 @@ body:has(.crs-popup[open]) {
   border: none;
   background: none;
   z-index: 9999;
+  cursor: pointer;
 }
 
 .crs-popup__header {
@@ -1305,14 +1306,14 @@ body:has(.crs-popup[open]) {
     }
     open(e) {
       var t;
-      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", N[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? g(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (m(".crs-popup__content .et_pb_toggle").then((n) => {
+      this.popup && (this.popup.querySelector(".crs-popup__content").innerHTML = "", this.popup.querySelector(".crs-popup__content").insertAdjacentHTML("beforeend", N[e]), (t = this.popup) == null || t.showModal(), e !== "contact" ? y(".crs-popup", "exp__01__exp_checkout__pop_serv__view", "Section", "Service page popup") : (u(".crs-popup__content .et_pb_toggle").then((n) => {
         document.querySelectorAll(".crs-popup__content .et_pb_toggle h3").forEach((r) => {
           r == null || r.addEventListener("click", (c) => {
             const a = c.currentTarget;
-            a.closest(".et_pb_toggle_open") || p("exp__01__exp_checkout__pop_cont__open", `Open question. ${a.textContent}`, "click", "Contact us popup");
+            a.closest(".et_pb_toggle_open") || d("exp__01__exp_checkout__pop_cont__open", `Open question. ${a.textContent}`, "click", "Contact us popup");
           });
         }), new E();
-      }), g(".crs-popup", "exp__01__exp_checkout__pop_cont__view", "Section", "Contact us popup")));
+      }), y(".crs-popup", "exp__01__exp_checkout__pop_cont__view", "Section", "Contact us popup")));
     }
     close() {
       var e;
@@ -1386,7 +1387,6 @@ body:has(.crs-popup[open]) {
   display: flex;
   align-items: center;
   gap: 10px;
-  border-bottom: 1px solid rgba(139, 195, 195, 0.1);
   background: linear-gradient(90deg, #FFF 2.96%, #EAF5F4 50.99%, #FFF 100%);
   padding: 12px 25px;
   margin-left: -2.08rem !important;
@@ -1413,6 +1413,7 @@ body:has(.crs-popup[open]) {
   width: 15px;
   height: 15px;
   margin-left: 6px;
+  cursor: pointer;
 }
 .crs-refund__tooltip svg {
   position: absolute;
@@ -1446,7 +1447,7 @@ body:has(.crs-popup[open]) {
       </div>
     </div>`
       );
-      (t = this.container) == null || t.insertAdjacentHTML(this.position, e), g(
+      (t = this.container) == null || t.insertAdjacentHTML(this.position, e), y(
         ".crs-refund",
         "exp__01__exp_checkout__refund__view",
         "Section",
@@ -1455,7 +1456,7 @@ body:has(.crs-popup[open]) {
     }
     eventListeners() {
       document.querySelector(".crs-refund__tooltip").addEventListener("click", () => {
-        p(
+        d(
           "exp__01__exp_checkout__refund__click",
           "30 days refund banner",
           "click",
@@ -1607,7 +1608,8 @@ header .et_pb_column_3_tb_header {
     width: max-content;
   }
   .crs-top::after {
-    right: -95px;
+    top: 12px;
+    right: -65px;
   }
   header .crs-top br {
     display: none;
@@ -1709,6 +1711,7 @@ header .et_pb_column_3_tb_header {
     font-size: 12px;
     line-height: 15px;
     letter-spacing: 0.36px;
+    cursor: pointer;
   }
 }
 
@@ -1754,7 +1757,7 @@ header .et_pb_column_3_tb_header {
         </div>
       </div>
     </div>`
-      ), this.footer = document.querySelector(".crs-footer"), g(".crs-footer", "exp__01__exp_checkout__footer__view", "Section", "Footer");
+      ), this.footer = document.querySelector(".crs-footer"), y(".crs-footer", "exp__01__exp_checkout__footer__view", "Section", "Footer");
     }
     eventListeners() {
       if (!this.footer)
@@ -1762,7 +1765,7 @@ header .et_pb_column_3_tb_header {
       this.footer.querySelectorAll("li[data-popup]").forEach((t) => {
         t.addEventListener("click", () => {
           const n = t.getAttribute("data-popup"), o = t.textContent;
-          n && (this.popup.open(n), p("exp__01__exp_checkout__footer__click", `Text: ${o}`, "click", "Footer"));
+          n && (this.popup.open(n), d("exp__01__exp_checkout__footer__click", `Text: ${o}`, "click", "Footer"));
         });
       });
     }
@@ -1847,6 +1850,10 @@ tr.coupon_item td {
 }
 
 @media (min-width: 982px) {
+  .crs-coupon-container .coupon-heading img.toggle {
+    display: block;
+    cursor: pointer;
+  }
   td:has(.coupon-container) {
     padding: 0 !important;
     display: none;
@@ -1921,62 +1928,6 @@ tr.coupon_item td {
       e.innerHTML = F, document.head.appendChild(e);
     }
   }
-  class Y {
-    constructor() {
-      this.device = window.screen.width < 981 ? "mobile" : "desktop", this.init();
-    }
-    init() {
-      this.initStyles(), this.coupon(), this.details(), this.header(), this.footer(), this.refundBadge(), this.events();
-    }
-    async coupon() {
-      const e = await m("#order_review"), n = (await m("table.shop_table")).querySelector("tbody");
-      n && new w({ selector: n, position: "beforeend" }), new MutationObserver((r, c) => {
-        for (const a of r)
-          if (a.type === "childList") {
-            if (!document.querySelector(".crs-coupon-container")) {
-              const l = document.querySelector("table.shop_table").querySelector("tbody");
-              if (l && new w({ selector: l, position: "beforeend" }), document.querySelector(".discount-amount")) {
-                const h = document.querySelector(".crs-coupon-container"), y = h == null ? void 0 : h.querySelector(".coupon-heading span");
-                y.textContent = "Coupon applied";
-              }
-            }
-            const d = document.querySelectorAll(".cart_item");
-            if (d && d.length === 0) {
-              const u = document.querySelector(".crs-refund"), l = document.querySelector(".crs-reviews"), f = document.querySelector(".crs-footer"), h = document.querySelector("footer");
-              h.querySelector("div").style.display = "", f == null || f.remove(), u == null || u.remove(), l == null || l.remove(), c.disconnect();
-            }
-          }
-      }).observe(e, { childList: !0, subtree: !0 });
-    }
-    async details() {
-      if (this.device === "desktop")
-        return;
-      const e = await m(".mandatory-fields"), t = await m("#order_review"), n = e.previousElementSibling;
-      n && n.tagName === "H3" && (t == null || t.insertAdjacentElement("beforebegin", n)), t == null || t.insertAdjacentElement("beforebegin", e);
-    }
-    async header() {
-      const t = (await m("header")).querySelector(".et_pb_column_3_tb_header");
-      t && (t.innerHTML = /* HTML */
-      `<div class="crs-top">
-      You're one step closer to<br />
-      <span>better sleep</span> for your baby!
-    </div>`);
-    }
-    async refundBadge() {
-      const e = await m(".checkout .col2-set .col-1");
-      new W({ selector: e, position: "beforeend" });
-    }
-    async footer() {
-      const e = await m("footer");
-      new B({ selector: e, position: "beforeend" }), e.querySelector("div").style.display = "none";
-    }
-    async events() {
-    }
-    initStyles() {
-      const e = document.createElement("style");
-      e.innerHTML = j, document.head.appendChild(e);
-    }
-  }
   const x = (
     /* HTML */
     `<svg
@@ -2005,7 +1956,7 @@ tr.coupon_item td {
     fill="#0E1311"
   />
 </svg>`
-  ), $ = `.crs-review-popup {
+  ), Y = `.crs-review-popup {
   border: none;
   top: 0;
   margin-top: 0;
@@ -2079,7 +2030,7 @@ tr.coupon_item td {
   font-weight: 600;
 }
 `;
-  class z {
+  class $ {
     constructor() {
       this.init();
     }
@@ -2146,10 +2097,10 @@ tr.coupon_item td {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.textContent = $, document.head.insertAdjacentElement("beforeend", e);
+      e.textContent = Y, document.head.insertAdjacentElement("beforeend", e);
     }
   }
-  const G = `.crs-reviews {
+  const z = `.crs-reviews {
   margin-top: 24px;
 }
 
@@ -2283,7 +2234,7 @@ tr.coupon_item td {
 .crs-comment {
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
+  border-radius: 12px;
   padding: 26px 25px;
   background: #f8f8f8;
   box-shadow: 0px 1.25px 5px -4px rgba(0, 0, 0, 0.05);
@@ -2431,9 +2382,9 @@ tr.coupon_item td {
   }
 }
 `;
-  class Z {
+  class G {
     constructor({ element: e, position: t = "beforeend" }) {
-      this.container = e, this.position = t, this.currentSlide = 0, this.totalSlides = 0, this.reviewPopup = new z(), this.init();
+      this.container = e, this.position = t, this.currentSlide = 0, this.totalSlides = 0, this.reviewPopup = new $(), this.init();
     }
     init() {
       if (!this.container) {
@@ -2483,10 +2434,10 @@ tr.coupon_item td {
           <div class="crs-reviews__comments crs-comments">
             <div class="crs-comments__wrap">
               <div class="crs-comments__list">
-                ${o.map(({ _source: i }, d) => (
+                ${o.map(({ _source: i }, h) => (
             /* HTML */
             `
-                      <div class="crs-comments__item crs-comment ${d === 0 ? "active" : ""}" data-index="${d}">
+                      <div class="crs-comments__item crs-comment ${h === 0 ? "active" : ""}" data-index="${h}">
                         <div class="crs-comment__header">
                           <span class="crs-comment__author">${i.author}</span>
                           <span class="crs-comment__rating" data-rating="${i.rating}"
@@ -2513,10 +2464,10 @@ tr.coupon_item td {
         );
         if (!this.container)
           return;
-        this.container.insertAdjacentHTML(this.position, r), this.initSlider(), g(".crs-reviews", "exp__01__exp_checkout__reviews__view", "Section", "Let customer speak for us");
+        this.container.insertAdjacentHTML(this.position, r), this.initSlider(), y(".crs-reviews", "exp__01__exp_checkout__reviews__view", "Section", "Let customer speak for us");
         const c = document.querySelectorAll(".crs-comment"), a = document.querySelector(".crs-rating__reviewio a");
         a && a.addEventListener("click", () => {
-          p(
+          d(
             "exp__01__exp_checkout__reviews__link",
             "Excellent on Reviews.io",
             "click",
@@ -2524,9 +2475,9 @@ tr.coupon_item td {
           );
         }), c.forEach((i) => {
           i.addEventListener("click", () => {
-            var h, y, _, S;
-            const d = (h = i.querySelector(".crs-comment__author")) == null ? void 0 : h.textContent, u = (y = i.querySelector(".crs-comment__rating")) == null ? void 0 : y.getAttribute("data-rating"), l = (_ = i.querySelector(".crs-comment__text")) == null ? void 0 : _.textContent, f = (S = i.querySelector(".crs-comment__date")) == null ? void 0 : S.textContent;
-            this.reviewPopup.open({ author: d, rating: u, text: l, date: f }), p("exp__01__exp_checkout__reviews__card", "Open review card", "click", "Let customer speak for us");
+            var m, g, _, S;
+            const h = (m = i.querySelector(".crs-comment__author")) == null ? void 0 : m.textContent, l = (g = i.querySelector(".crs-comment__rating")) == null ? void 0 : g.getAttribute("data-rating"), p = (_ = i.querySelector(".crs-comment__text")) == null ? void 0 : _.textContent, f = (S = i.querySelector(".crs-comment__date")) == null ? void 0 : S.textContent;
+            this.reviewPopup.open({ author: h, rating: l, text: p, date: f }), d("exp__01__exp_checkout__reviews__card", "Open review card", "click", "Let customer speak for us");
           });
         });
       } catch (e) {
@@ -2557,40 +2508,40 @@ tr.coupon_item td {
         return;
       const o = e.querySelectorAll(".crs-comments__item"), r = o[0].cloneNode(!0), c = o[o.length - 1].cloneNode(!0);
       e.appendChild(r), e.insertBefore(c, e.firstChild);
-      let a = null, i = null, d = !1;
-      const u = () => {
-        d || (e.style.transition = "transform 0.5s ease-in-out", e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`, e.addEventListener("transitionend", l));
-      }, l = () => {
-        d = !1, e.removeEventListener("transitionend", l), this.currentSlide <= -1 ? (e.style.transition = "none", this.currentSlide = o.length - 1, e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`) : this.currentSlide >= o.length && (e.style.transition = "none", this.currentSlide = 0, e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`);
+      let a = null, i = null, h = !1;
+      const l = () => {
+        h || (e.style.transition = "transform 0.5s ease-in-out", e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`, e.addEventListener("transitionend", p));
+      }, p = () => {
+        h = !1, e.removeEventListener("transitionend", p), this.currentSlide <= -1 ? (e.style.transition = "none", this.currentSlide = o.length - 1, e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`) : this.currentSlide >= o.length && (e.style.transition = "none", this.currentSlide = 0, e.style.transform = `translateX(-${(this.currentSlide + 1) * 100}%)`);
       }, f = (_) => {
         a = _.touches[0].clientX;
-      }, h = (_) => {
+      }, m = (_) => {
         a && (i = _.touches[0].clientX);
-      }, y = () => {
+      }, g = () => {
         if (!a || !i)
           return;
         const _ = a - i;
-        _ > 50 ? (this.currentSlide++, p(
+        _ > 50 ? (this.currentSlide++, d(
           "exp__01__exp_checkout__reviews__nav",
           "Buttons for next/previous review",
           "click",
           "Let customer speak for us"
-        )) : _ < -50 && (this.currentSlide--, p(
+        )) : _ < -50 && (this.currentSlide--, d(
           "exp__01__exp_checkout__reviews__nav",
           "Buttons for next/previous review",
           "click",
           "Let customer speak for us"
-        )), u(), a = null, i = null;
+        )), l(), a = null, i = null;
       };
-      e.addEventListener("touchstart", f), e.addEventListener("touchmove", h), e.addEventListener("touchend", y), t.addEventListener("click", () => {
-        this.currentSlide--, u(), p(
+      e.addEventListener("touchstart", f), e.addEventListener("touchmove", m), e.addEventListener("touchend", g), t.addEventListener("click", () => {
+        this.currentSlide--, l(), d(
           "exp__01__exp_checkout__reviews__nav",
           "Buttons for next/previous review",
           "click",
           "Let customer speak for us"
         );
       }), n.addEventListener("click", () => {
-        this.currentSlide++, u(), p(
+        this.currentSlide++, l(), d(
           "exp__01__exp_checkout__reviews__nav",
           "Buttons for next/previous review",
           "click",
@@ -2600,7 +2551,65 @@ tr.coupon_item td {
     }
     initStyles() {
       const e = document.createElement("style");
-      e.innerHTML = G, document.head.appendChild(e);
+      e.innerHTML = z, document.head.appendChild(e);
+    }
+  }
+  class Z {
+    constructor() {
+      this.device = window.screen.width < 981 ? "mobile" : "desktop", this.init();
+    }
+    init() {
+      this.initStyles(), this.coupon(), this.details(), this.header(), this.footer(), this.refundBadge(), this.reviews();
+    }
+    async coupon() {
+      const e = await u("#order_review"), n = (await u("table.shop_table")).querySelector("tbody");
+      n && new w({ selector: n, position: "beforeend" }), new MutationObserver((r, c) => {
+        for (const a of r)
+          if (a.type === "childList") {
+            if (!document.querySelector(".crs-coupon-container")) {
+              const l = document.querySelector("table.shop_table"), p = l == null ? void 0 : l.querySelector("tbody");
+              if (p && new w({ selector: p, position: "beforeend" }), document.querySelector(".discount-amount")) {
+                const m = document.querySelector(".crs-coupon-container"), g = m == null ? void 0 : m.querySelector(".coupon-heading span");
+                g.textContent = "Coupon applied";
+              }
+            }
+            const h = document.querySelectorAll(".cart_item");
+            if (h && h.length === 0) {
+              const l = document.querySelector(".crs-refund"), p = document.querySelector(".crs-reviews"), f = document.querySelector(".crs-footer"), m = document.querySelector("footer");
+              m.querySelector("div").style.display = "", f == null || f.remove(), l == null || l.remove(), p == null || p.remove(), c.disconnect();
+            }
+          }
+      }).observe(e, { childList: !0, subtree: !0 });
+    }
+    async details() {
+      if (this.device === "desktop")
+        return;
+      const e = await u(".mandatory-fields"), t = await u("#order_review"), n = e.previousElementSibling;
+      n && n.tagName === "H3" && (t == null || t.insertAdjacentElement("beforebegin", n)), t == null || t.insertAdjacentElement("beforebegin", e);
+    }
+    async header() {
+      const e = await u("header .et_pb_column_3_tb_header");
+      e && (e.innerHTML = /* HTML */
+      `<div class="crs-top">
+      You're one step closer to<br />
+      <span>better sleep</span> for your baby!
+    </div>`);
+    }
+    async refundBadge() {
+      const e = await u(".woocommerce-checkout #payment");
+      new W({ selector: e, position: "afterend" });
+    }
+    async reviews() {
+      const e = await u(".crs-refund");
+      new G({ element: e, position: "afterend" });
+    }
+    async footer() {
+      const e = await u("footer");
+      new B({ selector: e, position: "beforeend" }), e.querySelector("div").style.display = "none";
+    }
+    initStyles() {
+      const e = document.createElement("style");
+      e.innerHTML = j, document.head.appendChild(e);
     }
   }
   T({ name: "Express Checkout", dev: "OS" }), k("exp__01__express_checkout");
@@ -2609,7 +2618,7 @@ tr.coupon_item td {
       this.init();
     }
     init() {
-      location.pathname.includes("/checkout") && (new Y(), new Z({ element: document.querySelector(".checkout .col2-set .col-1"), position: "beforeend" }));
+      location.pathname.includes("/checkout") && new Z();
     }
   }
   new V();
