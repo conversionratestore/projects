@@ -600,7 +600,7 @@
 }
 .focuspatch_packs .focuspatch_packs_list .focuspatch_packs_item .focuspatch_packs_prices .focuspatch_packs_info .focuspatch_packs_reg_final_prices {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-start;
   gap: 4px;
 }
