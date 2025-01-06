@@ -1869,6 +1869,10 @@ tr.coupon_item td {
   .crs-coupon-container .coupon-input-wrapper {
     margin-bottom: 12px;
   }
+
+  .cart-subtotal td {
+    border-top: none !important;
+  }
 }
 `;
   class w {
