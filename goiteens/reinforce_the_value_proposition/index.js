@@ -1,23 +1,23 @@
 (function() {
   "use strict";
-  const E = (g, i, r, p = "") => {
+  const E = (g, i, r, l = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: g,
       event_desc: i,
       event_type: r,
-      event_loc: p
-    }), console.log(`Event: ${g} | ${i} | ${r} | ${p}`);
-  }, G = ({ name: g, dev: i }) => {
+      event_loc: l
+    }), console.log(`Event: ${g} | ${i} | ${r} | ${l}`);
+  }, H = ({ name: g, dev: i }) => {
     console.log(
       `%c EXP: ${g} (DEV: ${i})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, H = (g) => {
+  }, G = (g) => {
     let i = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", g, "variant_1"));
     }, 1e3);
-  }, z = (g, i, r, p) => {
+  }, z = (g, i, r, l) => {
     let h = [];
     if (typeof g == "string")
       h = document.querySelectorAll(g);
@@ -27,26 +27,26 @@
       console.error("Invalid target type:", g);
       return;
     }
-    let b = new IntersectionObserver(
-      (x) => {
-        x.forEach((m) => {
-          m.isIntersecting && (b.unobserve(m.target), setTimeout(function() {
-            _.observe(m.target);
+    let C = new IntersectionObserver(
+      (v) => {
+        v.forEach((m) => {
+          m.isIntersecting && (C.unobserve(m.target), setTimeout(function() {
+            f.observe(m.target);
           }, 1e3));
         });
       },
       {
         threshold: 0.2
       }
-    ), _ = new IntersectionObserver((x) => {
-      x.forEach((m) => {
-        m.isIntersecting ? (E(i || `view_element_${m.target.id}`, r || "Element visibility", "view", p || m.target.id), b.unobserve(m.target)) : b.observe(m.target), _.unobserve(m.target);
+    ), f = new IntersectionObserver((v) => {
+      v.forEach((m) => {
+        m.isIntersecting ? (E(i || `view_element_${m.target.id}`, r || "Element visibility", "view", l || m.target.id), C.unobserve(m.target)) : C.observe(m.target), f.unobserve(m.target);
       });
     });
-    h.forEach((x) => {
-      b.observe(x);
+    h.forEach((v) => {
+      C.observe(v);
     });
-  }, f = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition", R = `.crs-badges {
+  }, _ = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition", V = `.crs-badges {
   position: absolute;
   left: 50%;
   bottom: -184px;
@@ -244,7 +244,7 @@
   }
 }
 `;
-  class V {
+  class R {
     constructor({ container: i, position: r }) {
       this.container = i, this.position = r || "beforeend", this.init();
     }
@@ -313,7 +313,7 @@
             <li class="crs-badges__item item-4">
               <img
                 class="crs-badges__img-mob"
-                src="${f}/img/forbes_award_small.webp"
+                src="${_}/img/forbes_award_small.webp"
                 alt=""
                 loading="lazy"
                 width="138"
@@ -321,7 +321,7 @@
               />
               <img
                 class="crs-badges__img-desk"
-                src="${f}/img/forbes_award_large.webp"
+                src="${_}/img/forbes_award_large.webp"
                 alt=""
                 loading="lazy"
                 width="220"
@@ -337,10 +337,10 @@
     }
     initStyles() {
       const i = document.createElement("style");
-      i.innerHTML = R, document.head.appendChild(i);
+      i.innerHTML = V, document.head.appendChild(i);
     }
   }
-  const K = `@media (min-width: 1280px) {
+  const Z = `@media (min-width: 1280px) {
   header.header {
     position: relative;
     margin-bottom: 206px;
@@ -395,7 +395,7 @@
   }
 }
 `;
-  class Z {
+  class K {
     constructor() {
       this.init();
     }
@@ -404,7 +404,7 @@
     }
     initStyles() {
       const i = document.createElement("style");
-      i.innerHTML = K, document.head.appendChild(i);
+      i.innerHTML = Z, document.head.appendChild(i);
     }
   }
   const W = (
@@ -425,6 +425,20 @@
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
+  width="235"
+  height="408"
+  viewBox="0 0 235 408"
+  fill="none"
+>
+  <path
+    d="M120.933 247.242C80.7472 287.008 39.8911 326.179 0.736056 366.928C-1.53215 369.283 1.94766 372.75 4.31935 370.525C41.6437 335.416 77.7058 298.91 114.051 262.766C93.925 309.199 72.339 354.982 49.3255 400.045C40.3851 392.331 31.0129 385.136 21.2547 378.493C36.8497 362.22 52.4704 345.946 68.0654 329.698C61.8013 345.506 54.6871 360.9 46.7477 375.958C46.2321 375.518 45.6911 375.078 45.175 374.613C42.1598 372.077 37.7775 376.424 40.8189 378.985C42.3916 380.33 43.9643 381.65 45.5619 382.995C47.0057 384.211 49.4027 384.237 50.4083 382.374C61.6343 361.47 71.3095 339.765 79.3553 317.434C80.4124 314.485 76.2623 312.286 74.2002 314.433L14.3724 376.812C12.9285 378.312 13.3411 380.563 14.9911 381.676C26.6679 389.412 37.6744 397.846 48.1654 407.134C49.5573 408.376 52.032 408.376 52.9856 406.513C79.0985 355.569 103.387 303.705 125.805 251.02C127.094 247.993 123.665 244.629 120.985 247.294L120.933 247.242ZM223.834 221.965C214.916 219.119 206.486 215.549 198.264 211.099C196.923 210.374 194.784 210.633 194.062 212.211C188.082 225.303 183.623 238.704 180.709 252.831C180.143 255.522 183.803 258.497 185.865 255.832C191.948 247.915 198.522 240.671 205.79 233.814C208.678 231.072 204.321 226.726 201.434 229.442C197.361 233.297 193.521 237.281 189.835 241.421C192.079 233.421 194.878 225.589 198.212 217.981C204.656 221.292 211.203 224.087 218.008 226.467C204.656 243.957 188.752 258.937 172.512 273.632C176.25 251.641 180.993 229.83 184.447 207.813C184.756 205.821 182.024 204.967 181.405 206.959C173.75 230.917 169.394 256.065 165.218 280.825C164.702 283.826 167.899 285.896 170.296 283.8C190.299 266.155 209.837 248.07 225.69 226.493C226.928 224.811 225.561 222.508 223.86 221.965H223.834ZM198.109 124.744C158.284 106.944 122.299 82.391 91.1866 51.7321C89.924 50.4904 87.1917 50.4904 86.3927 52.3531C78.3245 71.1624 69.4058 89.9458 62.9356 109.402C62.2139 111.601 65.5649 113.024 66.673 110.98C75.5921 94.344 82.6548 76.5697 90.0785 59.1835C118.175 86.2978 150.112 108.574 185.195 125.521C168.337 126.348 151.17 123.269 134.543 121.484L81.3917 115.766C86.9529 107.289 91.9723 98.4658 96.4195 89.3506C103.791 95.1231 111.303 100.713 118.948 106.116C113.999 105.909 109.05 105.676 104.101 105.495C100.183 105.34 100.209 111.42 104.101 111.601C112.556 112.041 121.036 112.377 129.491 112.765C132.739 112.921 133.435 108.6 131.038 106.996C119.541 99.2341 108.38 91.0841 97.5023 82.4427C96.0846 81.3302 93.6099 81.0713 92.6563 83.0637C87.1455 94.7823 80.7064 106.038 73.4008 116.724C71.9573 118.845 73.9422 121.148 76.0558 121.381C97.167 123.657 118.278 125.935 139.415 128.211C158.696 130.281 178.054 133.567 197.387 130.436C199.913 130.022 200.48 125.831 198.135 124.796L198.109 124.744ZM234.093 73.6462C216.952 55.147 200.403 36.1569 184.319 16.7529C183.03 15.2002 180.503 15.8213 179.576 17.3735C172.641 28.8093 165.373 40.012 158.361 51.4215C157.304 53.1292 159.882 55.225 161.197 53.6206C168.852 44.1514 175.786 34.1645 182.462 23.9708C195.763 40.1671 209.528 55.9494 223.654 71.3954C208.445 68.9116 193.237 66.4019 178.029 63.9181C179.809 59.4682 181.691 55.0601 183.674 50.6971C187.798 54.1625 191.73 57.8505 195.454 61.7448C198.212 64.6167 202.569 60.2443 199.81 57.3724C195.1 52.4377 190.053 47.8385 184.705 43.6083C183.287 42.4958 180.787 42.237 179.859 44.2294C176.559 51.2148 173.57 58.3036 170.786 65.522C170.219 66.9709 171.404 69.0666 172.925 69.3255C192.309 72.5079 211.719 75.6898 231.103 78.8722C234.068 79.3641 236.336 76.1042 234.093 73.6979V73.6462ZM54.4033 7.20566C48.2684 3.45387 39.0148 2.80696 32.0548 1.17723C30.0446 0.711658 28.3947 2.10883 28.2401 4.10123C27.7502 10.3618 28.1886 16.261 29.6063 22.3669C30.0184 24.1522 31.4881 24.6699 32.8285 24.3589C33.4467 24.6953 34.3749 24.5402 34.7876 23.9191C35.8184 22.3411 36.6178 20.6592 37.726 19.1329C38.9118 17.5285 40.484 16.7007 40.7159 14.5791C40.8447 13.2341 39.3497 12.3805 38.2158 12.6647C36.3598 13.1044 35.4058 15.1743 34.581 16.8558C34.1995 13.8359 34.0357 10.7923 34.0911 7.74875C39.1179 8.62822 44.9947 9.43062 49.4027 11.3709C47.5725 16.9333 43.0876 23.0655 40.4583 27.7226C38.0093 32.0692 35.4058 36.3382 32.6992 40.5293C26.7194 27.7226 21.6669 14.6566 16.8729 1.33272C16.0477 -0.970209 12.5679 -0.0644489 13.1865 2.34139C17.2077 18.0204 23.1361 33.1558 29.8128 47.8769C30.7663 49.9985 33.6532 49.4554 34.7356 47.8769C39.1694 41.435 43.2164 34.8118 47.0315 27.981C49.9699 22.7033 54.6098 16.5715 55.7437 10.5948C56.0017 9.24928 55.5634 7.95592 54.3775 7.23104L54.4033 7.20566ZM132.455 167.408C121.217 159.983 110.004 152.531 98.7139 145.184C96.9609 144.045 94.1255 145.52 94.3316 147.719C95.4401 159.595 96.9609 171.677 100.157 183.19C100.698 185.131 104.075 184.846 103.817 182.699C102.632 172.919 101.317 163.243 100.569 153.463C108.527 158.791 116.501 164.094 124.491 169.374C120.856 170.952 117.325 172.763 113.896 174.782C113.02 172.583 112.143 170.383 111.344 168.158C110.055 164.588 104.359 166.089 105.622 169.737C106.834 173.204 108.096 176.644 109.488 180.034C110.184 181.741 112.117 183.035 113.948 181.845C119.593 178.171 125.47 175.221 131.785 172.919C134.26 172.013 134.75 168.857 132.507 167.382L132.455 167.408Z"
+    fill="currentColor"
+  />
+</svg>`
+  ), J = (
+    /* HTML */
+    `<svg
+  xmlns="http://www.w3.org/2000/svg"
   width="319"
   height="487"
   viewBox="0 0 319 487"
@@ -435,7 +449,21 @@
     fill="currentColor"
   />
 </svg>`
-  ), J = {
+  ), Q = (
+    /* HTML */
+    `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="126"
+  height="408"
+  viewBox="0 0 126 408"
+  fill="none"
+>
+  <path
+    d="M120.933 247.242C80.7472 287.008 39.8911 326.179 0.736056 366.928C-1.53215 369.283 1.94766 372.75 4.31935 370.525C41.6437 335.416 77.7058 298.91 114.051 262.766C93.925 309.199 72.339 354.982 49.3255 400.045C40.3851 392.331 31.0129 385.136 21.2547 378.493C36.8497 362.22 52.4704 345.946 68.0654 329.698C61.8013 345.506 54.6871 360.9 46.7477 375.958C46.2321 375.518 45.6911 375.078 45.175 374.613C42.1598 372.077 37.7775 376.424 40.8189 378.985C42.3916 380.33 43.9643 381.65 45.5619 382.995C47.0057 384.211 49.4027 384.237 50.4083 382.374C61.6343 361.47 71.3095 339.765 79.3553 317.434C80.4124 314.485 76.2623 312.286 74.2002 314.433L14.3724 376.812C12.9285 378.312 13.3411 380.563 14.9911 381.676C26.6679 389.412 37.6744 397.846 48.1654 407.134C49.5573 408.376 52.032 408.376 52.9856 406.513C79.0985 355.569 103.387 303.705 125.805 251.02C127.094 247.993 123.665 244.629 120.985 247.294L120.933 247.242ZM223.834 221.965C214.916 219.119 206.486 215.549 198.264 211.099C196.923 210.374 194.784 210.633 194.062 212.211C188.082 225.303 183.623 238.704 180.709 252.831C180.143 255.522 183.803 258.497 185.865 255.832C191.948 247.915 198.522 240.671 205.79 233.814C208.678 231.072 204.321 226.726 201.434 229.442C197.361 233.297 193.521 237.281 189.835 241.421C192.079 233.421 194.878 225.589 198.212 217.981C204.656 221.292 211.203 224.087 218.008 226.467C204.656 243.957 188.752 258.937 172.512 273.632C176.25 251.641 180.993 229.83 184.447 207.813C184.756 205.821 182.024 204.967 181.405 206.959C173.75 230.917 169.394 256.065 165.218 280.825C164.702 283.826 167.899 285.896 170.296 283.8C190.299 266.155 209.837 248.07 225.69 226.493C226.928 224.811 225.561 222.508 223.86 221.965H223.834ZM198.109 124.744C158.284 106.944 122.299 82.391 91.1866 51.7321C89.924 50.4904 87.1917 50.4904 86.3927 52.3531C78.3245 71.1624 69.4058 89.9458 62.9356 109.402C62.2139 111.601 65.5649 113.024 66.673 110.98C75.5921 94.344 82.6548 76.5697 90.0785 59.1835C118.175 86.2978 150.112 108.574 185.195 125.521C168.337 126.348 151.17 123.269 134.543 121.484L81.3917 115.766C86.9529 107.289 91.9723 98.4658 96.4195 89.3506C103.791 95.1231 111.303 100.713 118.948 106.116C113.999 105.909 109.05 105.676 104.101 105.495C100.183 105.34 100.209 111.42 104.101 111.601C112.556 112.041 121.036 112.377 129.491 112.765C132.739 112.921 133.435 108.6 131.038 106.996C119.541 99.2341 108.38 91.0841 97.5023 82.4427C96.0846 81.3302 93.6099 81.0713 92.6563 83.0637C87.1455 94.7823 80.7064 106.038 73.4008 116.724C71.9573 118.845 73.9422 121.148 76.0558 121.381C97.167 123.657 118.278 125.935 139.415 128.211C158.696 130.281 178.054 133.567 197.387 130.436C199.913 130.022 200.48 125.831 198.135 124.796L198.109 124.744ZM234.093 73.6462C216.952 55.147 200.403 36.1569 184.319 16.7529C183.03 15.2002 180.503 15.8213 179.576 17.3735C172.641 28.8093 165.373 40.012 158.361 51.4215C157.304 53.1292 159.882 55.225 161.197 53.6206C168.852 44.1514 175.786 34.1645 182.462 23.9708C195.763 40.1671 209.528 55.9494 223.654 71.3954C208.445 68.9116 193.237 66.4019 178.029 63.9181C179.809 59.4682 181.691 55.0601 183.674 50.6971C187.798 54.1625 191.73 57.8505 195.454 61.7448C198.212 64.6167 202.569 60.2443 199.81 57.3724C195.1 52.4377 190.053 47.8385 184.705 43.6083C183.287 42.4958 180.787 42.237 179.859 44.2294C176.559 51.2148 173.57 58.3036 170.786 65.522C170.219 66.9709 171.404 69.0666 172.925 69.3255C192.309 72.5079 211.719 75.6898 231.103 78.8722C234.068 79.3641 236.336 76.1042 234.093 73.6979V73.6462ZM54.4033 7.20566C48.2684 3.45387 39.0148 2.80696 32.0548 1.17723C30.0446 0.711658 28.3947 2.10883 28.2401 4.10123C27.7502 10.3618 28.1886 16.261 29.6063 22.3669C30.0184 24.1522 31.4881 24.6699 32.8285 24.3589C33.4467 24.6953 34.3749 24.5402 34.7876 23.9191C35.8184 22.3411 36.6178 20.6592 37.726 19.1329C38.9118 17.5285 40.484 16.7007 40.7159 14.5791C40.8447 13.2341 39.3497 12.3805 38.2158 12.6647C36.3598 13.1044 35.4058 15.1743 34.581 16.8558C34.1995 13.8359 34.0357 10.7923 34.0911 7.74875C39.1179 8.62822 44.9947 9.43062 49.4027 11.3709C47.5725 16.9333 43.0876 23.0655 40.4583 27.7226C38.0093 32.0692 35.4058 36.3382 32.6992 40.5293C26.7194 27.7226 21.6669 14.6566 16.8729 1.33272C16.0477 -0.970209 12.5679 -0.0644489 13.1865 2.34139C17.2077 18.0204 23.1361 33.1558 29.8128 47.8769C30.7663 49.9985 33.6532 49.4554 34.7356 47.8769C39.1694 41.435 43.2164 34.8118 47.0315 27.981C49.9699 22.7033 54.6098 16.5715 55.7437 10.5948C56.0017 9.24928 55.5634 7.95592 54.3775 7.23104L54.4033 7.20566ZM132.455 167.408C121.217 159.983 110.004 152.531 98.7139 145.184C96.9609 144.045 94.1255 145.52 94.3316 147.719C95.4401 159.595 96.9609 171.677 100.157 183.19C100.698 185.131 104.075 184.846 103.817 182.699C102.632 172.919 101.317 163.243 100.569 153.463C108.527 158.791 116.501 164.094 124.491 169.374C120.856 170.952 117.325 172.763 113.896 174.782C113.02 172.583 112.143 170.383 111.344 168.158C110.055 164.588 104.359 166.089 105.622 169.737C106.834 173.204 108.096 176.644 109.488 180.034C110.184 181.741 112.117 183.035 113.948 181.845C119.593 178.171 125.47 175.221 131.785 172.919C134.26 172.013 134.75 168.857 132.507 167.382L132.455 167.408Z"
+    fill="currentColor"
+  />
+</svg>`
+  ), X = {
     1: {
       title: (
         /* HTML */
@@ -489,7 +517,7 @@
       theme: "lavender"
     }
   };
-  function Q(g) {
+  function tt(g) {
     return g && g.__esModule && Object.prototype.hasOwnProperty.call(g, "default") ? g.default : g;
   }
   var j = { exports: {} };
@@ -498,9 +526,9 @@
       g.exports ? g.exports = i() : window.intlTelInput = i();
     })(function(i) {
       return function() {
-        for (var r = [["Afghanistan", "af", "93"], ["Albania", "al", "355"], ["Algeria", "dz", "213"], ["American Samoa", "as", "1", 5, ["684"]], ["Andorra", "ad", "376"], ["Angola", "ao", "244"], ["Anguilla", "ai", "1", 6, ["264"]], ["Antigua & Barbuda", "ag", "1", 7, ["268"]], ["Argentina", "ar", "54"], ["Armenia", "am", "374"], ["Aruba", "aw", "297"], ["Ascension Island", "ac", "247"], ["Australia", "au", "61", 0], ["Austria", "at", "43"], ["Azerbaijan", "az", "994"], ["Bahamas", "bs", "1", 8, ["242"]], ["Bahrain", "bh", "973"], ["Bangladesh", "bd", "880"], ["Barbados", "bb", "1", 9, ["246"]], ["Belarus", "by", "375"], ["Belgium", "be", "32"], ["Belize", "bz", "501"], ["Benin", "bj", "229"], ["Bermuda", "bm", "1", 10, ["441"]], ["Bhutan", "bt", "975"], ["Bolivia", "bo", "591"], ["Bosnia & Herzegovina", "ba", "387"], ["Botswana", "bw", "267"], ["Brazil", "br", "55"], ["British Indian Ocean Territory", "io", "246"], ["British Virgin Islands", "vg", "1", 11, ["284"]], ["Brunei", "bn", "673"], ["Bulgaria", "bg", "359"], ["Burkina Faso", "bf", "226"], ["Burundi", "bi", "257"], ["Cambodia", "kh", "855"], ["Cameroon", "cm", "237"], ["Canada", "ca", "1", 1, ["204", "226", "236", "249", "250", "263", "289", "306", "343", "354", "365", "367", "368", "382", "387", "403", "416", "418", "428", "431", "437", "438", "450", "584", "468", "474", "506", "514", "519", "548", "579", "581", "584", "587", "604", "613", "639", "647", "672", "683", "705", "709", "742", "753", "778", "780", "782", "807", "819", "825", "867", "873", "902", "905"]], ["Cape Verde", "cv", "238"], ["Caribbean Netherlands", "bq", "599", 1, ["3", "4", "7"]], ["Cayman Islands", "ky", "1", 12, ["345"]], ["Central African Republic", "cf", "236"], ["Chad", "td", "235"], ["Chile", "cl", "56"], ["China", "cn", "86"], ["Christmas Island", "cx", "61", 2, ["89164"]], ["Cocos (Keeling) Islands", "cc", "61", 1, ["89162"]], ["Colombia", "co", "57"], ["Comoros", "km", "269"], ["Congo - Brazzaville", "cg", "242"], ["Congo - Kinshasa", "cd", "243"], ["Cook Islands", "ck", "682"], ["Costa Rica", "cr", "506"], ["Côte d’Ivoire", "ci", "225"], ["Croatia", "hr", "385"], ["Cuba", "cu", "53"], ["Curaçao", "cw", "599", 0], ["Cyprus", "cy", "357"], ["Czech Republic", "cz", "420"], ["Denmark", "dk", "45"], ["Djibouti", "dj", "253"], ["Dominica", "dm", "1", 13, ["767"]], ["Dominican Republic", "do", "1", 2, ["809", "829", "849"]], ["Ecuador", "ec", "593"], ["Egypt", "eg", "20"], ["El Salvador", "sv", "503"], ["Equatorial Guinea", "gq", "240"], ["Eritrea", "er", "291"], ["Estonia", "ee", "372"], ["Eswatini", "sz", "268"], ["Ethiopia", "et", "251"], ["Falkland Islands", "fk", "500"], ["Faroe Islands", "fo", "298"], ["Fiji", "fj", "679"], ["Finland", "fi", "358", 0], ["France", "fr", "33"], ["French Guiana", "gf", "594"], ["French Polynesia", "pf", "689"], ["Gabon", "ga", "241"], ["Gambia", "gm", "220"], ["Georgia", "ge", "995"], ["Germany", "de", "49"], ["Ghana", "gh", "233"], ["Gibraltar", "gi", "350"], ["Greece", "gr", "30"], ["Greenland", "gl", "299"], ["Grenada", "gd", "1", 14, ["473"]], ["Guadeloupe", "gp", "590", 0], ["Guam", "gu", "1", 15, ["671"]], ["Guatemala", "gt", "502"], ["Guernsey", "gg", "44", 1, ["1481", "7781", "7839", "7911"]], ["Guinea", "gn", "224"], ["Guinea-Bissau", "gw", "245"], ["Guyana", "gy", "592"], ["Haiti", "ht", "509"], ["Honduras", "hn", "504"], ["Hong Kong", "hk", "852"], ["Hungary", "hu", "36"], ["Iceland", "is", "354"], ["India", "in", "91"], ["Indonesia", "id", "62"], ["Iran", "ir", "98"], ["Iraq", "iq", "964"], ["Ireland", "ie", "353"], ["Isle of Man", "im", "44", 2, ["1624", "74576", "7524", "7924", "7624"]], ["Israel", "il", "972"], ["Italy", "it", "39", 0], ["Jamaica", "jm", "1", 4, ["876", "658"]], ["Japan", "jp", "81"], ["Jersey", "je", "44", 3, ["1534", "7509", "7700", "7797", "7829", "7937"]], ["Jordan", "jo", "962"], ["Kazakhstan", "kz", "7", 1, ["33", "7"]], ["Kenya", "ke", "254"], ["Kiribati", "ki", "686"], ["Kosovo", "xk", "383"], ["Kuwait", "kw", "965"], ["Kyrgyzstan", "kg", "996"], ["Laos", "la", "856"], ["Latvia", "lv", "371"], ["Lebanon", "lb", "961"], ["Lesotho", "ls", "266"], ["Liberia", "lr", "231"], ["Libya", "ly", "218"], ["Liechtenstein", "li", "423"], ["Lithuania", "lt", "370"], ["Luxembourg", "lu", "352"], ["Macau", "mo", "853"], ["Madagascar", "mg", "261"], ["Malawi", "mw", "265"], ["Malaysia", "my", "60"], ["Maldives", "mv", "960"], ["Mali", "ml", "223"], ["Malta", "mt", "356"], ["Marshall Islands", "mh", "692"], ["Martinique", "mq", "596"], ["Mauritania", "mr", "222"], ["Mauritius", "mu", "230"], ["Mayotte", "yt", "262", 1, ["269", "639"]], ["Mexico", "mx", "52"], ["Micronesia", "fm", "691"], ["Moldova", "md", "373"], ["Monaco", "mc", "377"], ["Mongolia", "mn", "976"], ["Montenegro", "me", "382"], ["Montserrat", "ms", "1", 16, ["664"]], ["Morocco", "ma", "212", 0], ["Mozambique", "mz", "258"], ["Myanmar (Burma)", "mm", "95"], ["Namibia", "na", "264"], ["Nauru", "nr", "674"], ["Nepal", "np", "977"], ["Netherlands", "nl", "31"], ["New Caledonia", "nc", "687"], ["New Zealand", "nz", "64"], ["Nicaragua", "ni", "505"], ["Niger", "ne", "227"], ["Nigeria", "ng", "234"], ["Niue", "nu", "683"], ["Norfolk Island", "nf", "672"], ["North Korea", "kp", "850"], ["North Macedonia", "mk", "389"], ["Northern Mariana Islands", "mp", "1", 17, ["670"]], ["Norway", "no", "47", 0], ["Oman", "om", "968"], ["Pakistan", "pk", "92"], ["Palau", "pw", "680"], ["Palestine", "ps", "970"], ["Panama", "pa", "507"], ["Papua New Guinea", "pg", "675"], ["Paraguay", "py", "595"], ["Peru", "pe", "51"], ["Philippines", "ph", "63"], ["Poland", "pl", "48"], ["Portugal", "pt", "351"], ["Puerto Rico", "pr", "1", 3, ["787", "939"]], ["Qatar", "qa", "974"], ["Réunion", "re", "262", 0], ["Romania", "ro", "40"], ["Russia", "ru", "7", 0], ["Rwanda", "rw", "250"], ["Samoa", "ws", "685"], ["San Marino", "sm", "378"], ["São Tomé & Príncipe", "st", "239"], ["Saudi Arabia", "sa", "966"], ["Senegal", "sn", "221"], ["Serbia", "rs", "381"], ["Seychelles", "sc", "248"], ["Sierra Leone", "sl", "232"], ["Singapore", "sg", "65"], ["Sint Maarten", "sx", "1", 21, ["721"]], ["Slovakia", "sk", "421"], ["Slovenia", "si", "386"], ["Solomon Islands", "sb", "677"], ["Somalia", "so", "252"], ["South Africa", "za", "27"], ["South Korea", "kr", "82"], ["South Sudan", "ss", "211"], ["Spain", "es", "34"], ["Sri Lanka", "lk", "94"], ["St Barthélemy", "bl", "590", 1], ["St Helena", "sh", "290"], ["St Kitts & Nevis", "kn", "1", 18, ["869"]], ["St Lucia", "lc", "1", 19, ["758"]], ["St Martin", "mf", "590", 2], ["St Pierre & Miquelon", "pm", "508"], ["St Vincent & Grenadines", "vc", "1", 20, ["784"]], ["Sudan", "sd", "249"], ["Suriname", "sr", "597"], ["Svalbard & Jan Mayen", "sj", "47", 1, ["79"]], ["Sweden", "se", "46"], ["Switzerland", "ch", "41"], ["Syria", "sy", "963"], ["Taiwan", "tw", "886"], ["Tajikistan", "tj", "992"], ["Tanzania", "tz", "255"], ["Thailand", "th", "66"], ["Timor-Leste", "tl", "670"], ["Togo", "tg", "228"], ["Tokelau", "tk", "690"], ["Tonga", "to", "676"], ["Trinidad & Tobago", "tt", "1", 22, ["868"]], ["Tunisia", "tn", "216"], ["Turkey", "tr", "90"], ["Turkmenistan", "tm", "993"], ["Turks & Caicos Islands", "tc", "1", 23, ["649"]], ["Tuvalu", "tv", "688"], ["Uganda", "ug", "256"], ["Ukraine", "ua", "380"], ["United Arab Emirates", "ae", "971"], ["United Kingdom", "gb", "44", 0], ["United States", "us", "1", 0], ["Uruguay", "uy", "598"], ["US Virgin Islands", "vi", "1", 24, ["340"]], ["Uzbekistan", "uz", "998"], ["Vanuatu", "vu", "678"], ["Vatican City", "va", "39", 1, ["06698"]], ["Venezuela", "ve", "58"], ["Vietnam", "vn", "84"], ["Wallis & Futuna", "wf", "681"], ["Western Sahara", "eh", "212", 1, ["5288", "5289"]], ["Yemen", "ye", "967"], ["Zambia", "zm", "260"], ["Zimbabwe", "zw", "263"], ["Åland Islands", "ax", "358", 1, ["18"]]], p = 0; p < r.length; p++) {
-          var h = r[p];
-          r[p] = {
+        for (var r = [["Afghanistan", "af", "93"], ["Albania", "al", "355"], ["Algeria", "dz", "213"], ["American Samoa", "as", "1", 5, ["684"]], ["Andorra", "ad", "376"], ["Angola", "ao", "244"], ["Anguilla", "ai", "1", 6, ["264"]], ["Antigua & Barbuda", "ag", "1", 7, ["268"]], ["Argentina", "ar", "54"], ["Armenia", "am", "374"], ["Aruba", "aw", "297"], ["Ascension Island", "ac", "247"], ["Australia", "au", "61", 0], ["Austria", "at", "43"], ["Azerbaijan", "az", "994"], ["Bahamas", "bs", "1", 8, ["242"]], ["Bahrain", "bh", "973"], ["Bangladesh", "bd", "880"], ["Barbados", "bb", "1", 9, ["246"]], ["Belarus", "by", "375"], ["Belgium", "be", "32"], ["Belize", "bz", "501"], ["Benin", "bj", "229"], ["Bermuda", "bm", "1", 10, ["441"]], ["Bhutan", "bt", "975"], ["Bolivia", "bo", "591"], ["Bosnia & Herzegovina", "ba", "387"], ["Botswana", "bw", "267"], ["Brazil", "br", "55"], ["British Indian Ocean Territory", "io", "246"], ["British Virgin Islands", "vg", "1", 11, ["284"]], ["Brunei", "bn", "673"], ["Bulgaria", "bg", "359"], ["Burkina Faso", "bf", "226"], ["Burundi", "bi", "257"], ["Cambodia", "kh", "855"], ["Cameroon", "cm", "237"], ["Canada", "ca", "1", 1, ["204", "226", "236", "249", "250", "263", "289", "306", "343", "354", "365", "367", "368", "382", "387", "403", "416", "418", "428", "431", "437", "438", "450", "584", "468", "474", "506", "514", "519", "548", "579", "581", "584", "587", "604", "613", "639", "647", "672", "683", "705", "709", "742", "753", "778", "780", "782", "807", "819", "825", "867", "873", "902", "905"]], ["Cape Verde", "cv", "238"], ["Caribbean Netherlands", "bq", "599", 1, ["3", "4", "7"]], ["Cayman Islands", "ky", "1", 12, ["345"]], ["Central African Republic", "cf", "236"], ["Chad", "td", "235"], ["Chile", "cl", "56"], ["China", "cn", "86"], ["Christmas Island", "cx", "61", 2, ["89164"]], ["Cocos (Keeling) Islands", "cc", "61", 1, ["89162"]], ["Colombia", "co", "57"], ["Comoros", "km", "269"], ["Congo - Brazzaville", "cg", "242"], ["Congo - Kinshasa", "cd", "243"], ["Cook Islands", "ck", "682"], ["Costa Rica", "cr", "506"], ["Côte d’Ivoire", "ci", "225"], ["Croatia", "hr", "385"], ["Cuba", "cu", "53"], ["Curaçao", "cw", "599", 0], ["Cyprus", "cy", "357"], ["Czech Republic", "cz", "420"], ["Denmark", "dk", "45"], ["Djibouti", "dj", "253"], ["Dominica", "dm", "1", 13, ["767"]], ["Dominican Republic", "do", "1", 2, ["809", "829", "849"]], ["Ecuador", "ec", "593"], ["Egypt", "eg", "20"], ["El Salvador", "sv", "503"], ["Equatorial Guinea", "gq", "240"], ["Eritrea", "er", "291"], ["Estonia", "ee", "372"], ["Eswatini", "sz", "268"], ["Ethiopia", "et", "251"], ["Falkland Islands", "fk", "500"], ["Faroe Islands", "fo", "298"], ["Fiji", "fj", "679"], ["Finland", "fi", "358", 0], ["France", "fr", "33"], ["French Guiana", "gf", "594"], ["French Polynesia", "pf", "689"], ["Gabon", "ga", "241"], ["Gambia", "gm", "220"], ["Georgia", "ge", "995"], ["Germany", "de", "49"], ["Ghana", "gh", "233"], ["Gibraltar", "gi", "350"], ["Greece", "gr", "30"], ["Greenland", "gl", "299"], ["Grenada", "gd", "1", 14, ["473"]], ["Guadeloupe", "gp", "590", 0], ["Guam", "gu", "1", 15, ["671"]], ["Guatemala", "gt", "502"], ["Guernsey", "gg", "44", 1, ["1481", "7781", "7839", "7911"]], ["Guinea", "gn", "224"], ["Guinea-Bissau", "gw", "245"], ["Guyana", "gy", "592"], ["Haiti", "ht", "509"], ["Honduras", "hn", "504"], ["Hong Kong", "hk", "852"], ["Hungary", "hu", "36"], ["Iceland", "is", "354"], ["India", "in", "91"], ["Indonesia", "id", "62"], ["Iran", "ir", "98"], ["Iraq", "iq", "964"], ["Ireland", "ie", "353"], ["Isle of Man", "im", "44", 2, ["1624", "74576", "7524", "7924", "7624"]], ["Israel", "il", "972"], ["Italy", "it", "39", 0], ["Jamaica", "jm", "1", 4, ["876", "658"]], ["Japan", "jp", "81"], ["Jersey", "je", "44", 3, ["1534", "7509", "7700", "7797", "7829", "7937"]], ["Jordan", "jo", "962"], ["Kazakhstan", "kz", "7", 1, ["33", "7"]], ["Kenya", "ke", "254"], ["Kiribati", "ki", "686"], ["Kosovo", "xk", "383"], ["Kuwait", "kw", "965"], ["Kyrgyzstan", "kg", "996"], ["Laos", "la", "856"], ["Latvia", "lv", "371"], ["Lebanon", "lb", "961"], ["Lesotho", "ls", "266"], ["Liberia", "lr", "231"], ["Libya", "ly", "218"], ["Liechtenstein", "li", "423"], ["Lithuania", "lt", "370"], ["Luxembourg", "lu", "352"], ["Macau", "mo", "853"], ["Madagascar", "mg", "261"], ["Malawi", "mw", "265"], ["Malaysia", "my", "60"], ["Maldives", "mv", "960"], ["Mali", "ml", "223"], ["Malta", "mt", "356"], ["Marshall Islands", "mh", "692"], ["Martinique", "mq", "596"], ["Mauritania", "mr", "222"], ["Mauritius", "mu", "230"], ["Mayotte", "yt", "262", 1, ["269", "639"]], ["Mexico", "mx", "52"], ["Micronesia", "fm", "691"], ["Moldova", "md", "373"], ["Monaco", "mc", "377"], ["Mongolia", "mn", "976"], ["Montenegro", "me", "382"], ["Montserrat", "ms", "1", 16, ["664"]], ["Morocco", "ma", "212", 0], ["Mozambique", "mz", "258"], ["Myanmar (Burma)", "mm", "95"], ["Namibia", "na", "264"], ["Nauru", "nr", "674"], ["Nepal", "np", "977"], ["Netherlands", "nl", "31"], ["New Caledonia", "nc", "687"], ["New Zealand", "nz", "64"], ["Nicaragua", "ni", "505"], ["Niger", "ne", "227"], ["Nigeria", "ng", "234"], ["Niue", "nu", "683"], ["Norfolk Island", "nf", "672"], ["North Korea", "kp", "850"], ["North Macedonia", "mk", "389"], ["Northern Mariana Islands", "mp", "1", 17, ["670"]], ["Norway", "no", "47", 0], ["Oman", "om", "968"], ["Pakistan", "pk", "92"], ["Palau", "pw", "680"], ["Palestine", "ps", "970"], ["Panama", "pa", "507"], ["Papua New Guinea", "pg", "675"], ["Paraguay", "py", "595"], ["Peru", "pe", "51"], ["Philippines", "ph", "63"], ["Poland", "pl", "48"], ["Portugal", "pt", "351"], ["Puerto Rico", "pr", "1", 3, ["787", "939"]], ["Qatar", "qa", "974"], ["Réunion", "re", "262", 0], ["Romania", "ro", "40"], ["Russia", "ru", "7", 0], ["Rwanda", "rw", "250"], ["Samoa", "ws", "685"], ["San Marino", "sm", "378"], ["São Tomé & Príncipe", "st", "239"], ["Saudi Arabia", "sa", "966"], ["Senegal", "sn", "221"], ["Serbia", "rs", "381"], ["Seychelles", "sc", "248"], ["Sierra Leone", "sl", "232"], ["Singapore", "sg", "65"], ["Sint Maarten", "sx", "1", 21, ["721"]], ["Slovakia", "sk", "421"], ["Slovenia", "si", "386"], ["Solomon Islands", "sb", "677"], ["Somalia", "so", "252"], ["South Africa", "za", "27"], ["South Korea", "kr", "82"], ["South Sudan", "ss", "211"], ["Spain", "es", "34"], ["Sri Lanka", "lk", "94"], ["St Barthélemy", "bl", "590", 1], ["St Helena", "sh", "290"], ["St Kitts & Nevis", "kn", "1", 18, ["869"]], ["St Lucia", "lc", "1", 19, ["758"]], ["St Martin", "mf", "590", 2], ["St Pierre & Miquelon", "pm", "508"], ["St Vincent & Grenadines", "vc", "1", 20, ["784"]], ["Sudan", "sd", "249"], ["Suriname", "sr", "597"], ["Svalbard & Jan Mayen", "sj", "47", 1, ["79"]], ["Sweden", "se", "46"], ["Switzerland", "ch", "41"], ["Syria", "sy", "963"], ["Taiwan", "tw", "886"], ["Tajikistan", "tj", "992"], ["Tanzania", "tz", "255"], ["Thailand", "th", "66"], ["Timor-Leste", "tl", "670"], ["Togo", "tg", "228"], ["Tokelau", "tk", "690"], ["Tonga", "to", "676"], ["Trinidad & Tobago", "tt", "1", 22, ["868"]], ["Tunisia", "tn", "216"], ["Turkey", "tr", "90"], ["Turkmenistan", "tm", "993"], ["Turks & Caicos Islands", "tc", "1", 23, ["649"]], ["Tuvalu", "tv", "688"], ["Uganda", "ug", "256"], ["Ukraine", "ua", "380"], ["United Arab Emirates", "ae", "971"], ["United Kingdom", "gb", "44", 0], ["United States", "us", "1", 0], ["Uruguay", "uy", "598"], ["US Virgin Islands", "vi", "1", 24, ["340"]], ["Uzbekistan", "uz", "998"], ["Vanuatu", "vu", "678"], ["Vatican City", "va", "39", 1, ["06698"]], ["Venezuela", "ve", "58"], ["Vietnam", "vn", "84"], ["Wallis & Futuna", "wf", "681"], ["Western Sahara", "eh", "212", 1, ["5288", "5289"]], ["Yemen", "ye", "967"], ["Zambia", "zm", "260"], ["Zimbabwe", "zw", "263"], ["Åland Islands", "ax", "358", 1, ["18"]]], l = 0; l < r.length; l++) {
+          var h = r[l];
+          r[l] = {
             name: h[0],
             iso2: h[1],
             dialCode: h[2],
@@ -508,18 +536,18 @@
             areaCodes: h[4] || null
           };
         }
-        function b(d) {
+        function C(d) {
           for (var o = 1; o < arguments.length; o++) {
             var t = arguments[o] != null ? Object(arguments[o]) : {}, n = Object.keys(t);
             typeof Object.getOwnPropertySymbols == "function" && n.push.apply(n, Object.getOwnPropertySymbols(t).filter(function(e) {
               return Object.getOwnPropertyDescriptor(t, e).enumerable;
             })), n.forEach(function(e) {
-              _(d, e, t[e]);
+              f(d, e, t[e]);
             });
           }
           return d;
         }
-        function _(d, o, t) {
+        function f(d, o, t) {
           return o = L(o), o in d ? Object.defineProperty(d, o, {
             value: t,
             enumerable: !0,
@@ -527,7 +555,7 @@
             writable: !0
           }) : d[o] = t, d;
         }
-        function x(d, o) {
+        function v(d, o) {
           if (!(d instanceof o))
             throw new TypeError("Cannot call a class as a function");
         }
@@ -537,7 +565,7 @@
             n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(d, L(n.key), n);
           }
         }
-        function I(d, o, t) {
+        function y(d, o, t) {
           return o && m(d.prototype, o), t && m(d, t), Object.defineProperty(d, "prototype", {
             writable: !1
           }), d;
@@ -558,7 +586,7 @@
           }
           return (o === "string" ? String : Number)(d);
         }
-        var C = {
+        var x = {
           getInstance: function(o) {
             var t = o.getAttribute("data-intl-tel-input-id");
             return window.intlTelInputGlobals.instances[t];
@@ -569,8 +597,8 @@
             return document.readyState === "complete";
           }
         };
-        typeof window == "object" && (window.intlTelInputGlobals = C);
-        var P = 0, A = {
+        typeof window == "object" && (window.intlTelInputGlobals = x);
+        var M = 0, A = {
           // whether or not to allow the dropdown
           allowDropdown: !0,
           // auto insert dial code (A) on init, (B) on user selecting a country, (C) on calling setCountry
@@ -621,23 +649,23 @@
           ) : !1,
           // specify the path to the libphonenumber script to enable validation/formatting
           utilsScript: ""
-        }, M = ["800", "822", "833", "844", "855", "866", "877", "880", "881", "882", "883", "884", "885", "886", "887", "888", "889"], N = function(o, t) {
+        }, P = ["800", "822", "833", "844", "855", "866", "877", "880", "881", "882", "883", "884", "885", "886", "887", "888", "889"], N = function(o, t) {
           for (var n = Object.keys(o), e = 0; e < n.length; e++)
             t(n[e], o[n[e]]);
         }, T = function(o) {
           N(window.intlTelInputGlobals.instances, function(t) {
             window.intlTelInputGlobals.instances[t][o]();
           });
-        }, dt = /* @__PURE__ */ function() {
+        }, ht = /* @__PURE__ */ function() {
           function d(o, t) {
             var n = this;
-            x(this, d), this.id = P++, this.telInput = o, this.activeItem = null, this.highlightedItem = null;
+            v(this, d), this.id = M++, this.telInput = o, this.activeItem = null, this.highlightedItem = null;
             var e = t || {};
             this.options = {}, N(A, function(s, a) {
               n.options[s] = e.hasOwnProperty(s) ? e[s] : a;
             }), this.hadInitialPlaceholder = !!o.getAttribute("placeholder");
           }
-          return I(d, [{
+          return y(d, [{
             key: "_init",
             value: function() {
               var t = this;
@@ -716,11 +744,11 @@
                 var s = this.countries[e];
                 if (s.areaCodes)
                   for (var a = this.countryCodes[s.dialCode][0], c = 0; c < s.areaCodes.length; c++) {
-                    for (var l = s.areaCodes[c], u = 1; u < l.length; u++) {
-                      var v = s.dialCode + l.substr(0, u);
-                      this._addCountryCode(a, v), this._addCountryCode(s.iso2, v);
+                    for (var p = s.areaCodes[c], u = 1; u < p.length; u++) {
+                      var b = s.dialCode + p.substr(0, u);
+                      this._addCountryCode(a, b), this._addCountryCode(s.iso2, b);
                     }
-                    this._addCountryCode(s.iso2, s.dialCode + l);
+                    this._addCountryCode(s.iso2, s.dialCode + p);
                   }
               }
             }
@@ -745,16 +773,16 @@
             key: "_generateMarkup",
             value: function() {
               this.telInput.classList.add("iti__tel-input"), !this.telInput.hasAttribute("autocomplete") && !(this.telInput.form && this.telInput.form.hasAttribute("autocomplete")) && this.telInput.setAttribute("autocomplete", "off");
-              var t = this.options, n = t.allowDropdown, e = t.separateDialCode, s = t.showFlags, a = t.customContainer, c = t.hiddenInput, l = t.dropdownContainer, u = t.fixDropdownWidth, v = t.useFullscreenPopup, y = t.countrySearch, w = "iti";
-              n && (w += " iti--allow-dropdown"), e && (w += " iti--separate-dial-code"), s && (w += " iti--show-flags"), a && (w += " ".concat(a));
-              var k = this._createEl("div", {
-                class: w
+              var t = this.options, n = t.allowDropdown, e = t.separateDialCode, s = t.showFlags, a = t.customContainer, c = t.hiddenInput, p = t.dropdownContainer, u = t.fixDropdownWidth, b = t.useFullscreenPopup, w = t.countrySearch, k = "iti";
+              n && (k += " iti--allow-dropdown"), e && (k += " iti--separate-dial-code"), s && (k += " iti--show-flags"), a && (k += " ".concat(a));
+              var I = this._createEl("div", {
+                class: k
               });
-              this.telInput.parentNode.insertBefore(k, this.telInput);
+              this.telInput.parentNode.insertBefore(I, this.telInput);
               var D = n || s || e;
               if (D && (this.flagsContainer = this._createEl("div", {
                 class: "iti__flag-container"
-              }, k)), k.appendChild(this.telInput), D && (this.selectedFlag = this._createEl("div", b({
+              }, I)), I.appendChild(this.telInput), D && (this.selectedFlag = this._createEl("div", C({
                 class: "iti__selected-flag"
               }, n && {
                 role: "combobox",
@@ -770,10 +798,10 @@
                 this.telInput.disabled || this.selectedFlag.setAttribute("tabindex", "0"), this.dropdownArrow = this._createEl("div", {
                   class: "iti__arrow"
                 }, this.selectedFlag);
-                var ut = u ? "" : "iti--flexible-dropdown-width";
+                var _t = u ? "" : "iti--flexible-dropdown-width";
                 if (this.dropdownContent = this._createEl("div", {
-                  class: "iti__dropdown-content iti__hide ".concat(ut)
-                }), y && (this.searchInput = this._createEl("input", {
+                  class: "iti__dropdown-content iti__hide ".concat(_t)
+                }), w && (this.searchInput = this._createEl("input", {
                   type: "text",
                   class: "iti__search-input",
                   placeholder: "Search"
@@ -782,12 +810,12 @@
                   id: "iti-".concat(this.id, "__country-listbox"),
                   role: "listbox",
                   "aria-label": "List of countries"
-                }, this.dropdownContent), this.preferredCountries.length && !y && (this._appendListItems(this.preferredCountries, "iti__preferred", !0), this._createEl("li", {
+                }, this.dropdownContent), this.preferredCountries.length && !w && (this._appendListItems(this.preferredCountries, "iti__preferred", !0), this._createEl("li", {
                   class: "iti__divider",
                   "aria-hidden": "true"
-                }, this.countryList)), this._appendListItems(this.countries, "iti__standard"), l) {
+                }, this.countryList)), this._appendListItems(this.countries, "iti__standard"), p) {
                   var F = "iti iti--container";
-                  v && (F += " iti--fullscreen-popup"), y && (F += " iti--country-search"), this.dropdown = this._createEl("div", {
+                  b && (F += " iti--fullscreen-popup"), w && (F += " iti--country-search"), this.dropdown = this._createEl("div", {
                     class: F
                   }), this.dropdown.appendChild(this.dropdownContent);
                 } else
@@ -802,14 +830,14 @@
                 this.hiddenInput = this._createEl("input", {
                   type: "hidden",
                   name: B
-                }), k.appendChild(this.hiddenInput);
+                }), I.appendChild(this.hiddenInput);
               }
             }
           }, {
             key: "_appendListItems",
             value: function(t, n, e) {
               for (var s = 0; s < t.length; s++) {
-                var a = t[s], c = e ? "-preferred" : "", l = this._createEl("li", {
+                var a = t[s], c = e ? "-preferred" : "", p = this._createEl("li", {
                   id: "iti-".concat(this.id, "__item-").concat(a.iso2).concat(c),
                   class: "iti__country ".concat(n),
                   tabindex: "-1",
@@ -818,20 +846,20 @@
                   "data-country-code": a.iso2,
                   "aria-selected": "false"
                 }, this.countryList);
-                a.node = l;
+                a.node = p;
                 var u = "";
-                this.options.showFlags && (u += "<div class='iti__flag-box'><div class='iti__flag iti__".concat(a.iso2, "'></div></div>")), u += "<span class='iti__country-name'>".concat(a.name, "</span>"), u += "<span class='iti__dial-code'>+".concat(a.dialCode, "</span>"), l.insertAdjacentHTML("beforeend", u);
+                this.options.showFlags && (u += "<div class='iti__flag-box'><div class='iti__flag iti__".concat(a.iso2, "'></div></div>")), u += "<span class='iti__country-name'>".concat(a.name, "</span>"), u += "<span class='iti__dial-code'>+".concat(a.dialCode, "</span>"), p.insertAdjacentHTML("beforeend", u);
               }
             }
           }, {
             key: "_setInitialState",
             value: function() {
-              var t = this.telInput.getAttribute("value"), n = this.telInput.value, e = t && t.charAt(0) === "+" && (!n || n.charAt(0) !== "+"), s = e ? t : n, a = this._getDialCode(s), c = this._isRegionlessNanp(s), l = this.options, u = l.initialCountry, v = l.autoInsertDialCode;
+              var t = this.telInput.getAttribute("value"), n = this.telInput.value, e = t && t.charAt(0) === "+" && (!n || n.charAt(0) !== "+"), s = e ? t : n, a = this._getDialCode(s), c = this._isRegionlessNanp(s), p = this.options, u = p.initialCountry, b = p.autoInsertDialCode;
               if (a && !c)
                 this._updateFlagFromNumber(s);
               else if (u !== "auto") {
-                var y = u && this._getCountryData(u, !1, !0);
-                y ? this._setFlag(u.toLowerCase()) : a && c ? this._setFlag("us") : (this.defaultCountry = this.preferredCountries.length ? this.preferredCountries[0].iso2 : this.countries[0].iso2, s || this._setFlag(this.defaultCountry)), !s && v && (this.telInput.value = "+".concat(this.selectedCountryData.dialCode));
+                var w = u && this._getCountryData(u, !1, !0);
+                w ? this._setFlag(u.toLowerCase()) : a && c ? this._setFlag("us") : (this.defaultCountry = this.preferredCountries.length ? this.preferredCountries[0].iso2 : this.countries[0].iso2, s || this._setFlag(this.defaultCountry)), !s && b && (this.telInput.value = "+".concat(this.selectedCountryData.dialCode));
               }
               s && this._updateValFromNumber(s);
             }
@@ -947,10 +975,10 @@
             value: function() {
               var t = this;
               if (this.options.dropdownContainer && this.options.dropdownContainer.appendChild(this.dropdown), !this.options.useFullscreenPopup) {
-                var n = this.telInput.getBoundingClientRect(), e = window.pageYOffset || document.documentElement.scrollTop, s = n.top + e, a = this.dropdownContent.offsetHeight, c = s + this.telInput.offsetHeight + a < e + window.innerHeight, l = s - a > e, u = !this.options.countrySearch && !c && l;
+                var n = this.telInput.getBoundingClientRect(), e = window.pageYOffset || document.documentElement.scrollTop, s = n.top + e, a = this.dropdownContent.offsetHeight, c = s + this.telInput.offsetHeight + a < e + window.innerHeight, p = s - a > e, u = !this.options.countrySearch && !c && p;
                 if (this._toggleClass(this.dropdownContent, "iti__dropdown-content--dropup", u), this.options.dropdownContainer) {
-                  var v = u ? 0 : this.telInput.offsetHeight;
-                  this.dropdown.style.top = "".concat(s + v, "px"), this.dropdown.style.left = "".concat(n.left + document.body.scrollLeft, "px"), this._handleWindowScroll = function() {
+                  var b = u ? 0 : this.telInput.offsetHeight;
+                  this.dropdown.style.top = "".concat(s + b, "px"), this.dropdown.style.left = "".concat(n.left + document.body.scrollLeft, "px"), this._handleWindowScroll = function() {
                     return t._closeDropdown();
                   }, window.addEventListener("scroll", this._handleWindowScroll);
                 }
@@ -967,11 +995,11 @@
             key: "_bindDropdownListeners",
             value: function() {
               var t = this;
-              this._handleMouseoverCountryList = function(l) {
-                var u = t._getClosestListItem(l.target);
+              this._handleMouseoverCountryList = function(p) {
+                var u = t._getClosestListItem(p.target);
                 u && t._highlightListItem(u, !1);
-              }, this.countryList.addEventListener("mouseover", this._handleMouseoverCountryList), this._handleClickCountryList = function(l) {
-                var u = t._getClosestListItem(l.target);
+              }, this.countryList.addEventListener("mouseover", this._handleMouseoverCountryList), this._handleClickCountryList = function(p) {
+                var u = t._getClosestListItem(p.target);
                 u && t._selectListItem(u);
               }, this.countryList.addEventListener("click", this._handleClickCountryList);
               var n = !0;
@@ -979,8 +1007,8 @@
                 n || t._closeDropdown(), n = !1;
               }, document.documentElement.addEventListener("click", this._handleClickOffToClose);
               var e = "", s = null;
-              if (this._handleKeydownOnDropdown = function(l) {
-                ["ArrowUp", "ArrowDown", "Enter", "Escape"].includes(l.key) && (l.preventDefault(), l.stopPropagation(), l.key === "ArrowUp" || l.key === "ArrowDown" ? t._handleUpDownKey(l.key) : l.key === "Enter" ? t._handleEnterKey() : l.key === "Escape" && t._closeDropdown()), !t.options.countrySearch && /^[a-zA-ZÀ-ÿа-яА-Я ]$/.test(l.key) && (l.stopPropagation(), s && clearTimeout(s), e += l.key.toLowerCase(), t._searchForCountry(e), s = setTimeout(function() {
+              if (this._handleKeydownOnDropdown = function(p) {
+                ["ArrowUp", "ArrowDown", "Enter", "Escape"].includes(p.key) && (p.preventDefault(), p.stopPropagation(), p.key === "ArrowUp" || p.key === "ArrowDown" ? t._handleUpDownKey(p.key) : p.key === "Enter" ? t._handleEnterKey() : p.key === "Escape" && t._closeDropdown()), !t.options.countrySearch && /^[a-zA-ZÀ-ÿа-яА-Я ]$/.test(p.key) && (p.stopPropagation(), s && clearTimeout(s), e += p.key.toLowerCase(), t._searchForCountry(e), s = setTimeout(function() {
                   e = "";
                 }, 1e3));
               }, document.addEventListener("keydown", this._handleKeydownOnDropdown), this.options.countrySearch) {
@@ -992,8 +1020,8 @@
                   c && clearTimeout(c), c = setTimeout(function() {
                     a(), c = null;
                   }, 100);
-                }, this.searchInput.addEventListener("input", this._handleSearchChange), this.searchInput.addEventListener("click", function(l) {
-                  return l.stopPropagation();
+                }, this.searchInput.addEventListener("input", this._handleSearchChange), this.searchInput.addEventListener("click", function(p) {
+                  return p.stopPropagation();
                 });
               }
             }
@@ -1003,8 +1031,8 @@
               var n = arguments.length > 1 && arguments[1] !== i ? arguments[1] : !1, e = !0;
               this.countryList.innerHTML = "";
               for (var s = 0; s < this.countries.length; s++) {
-                var a = this.countries[s], c = a.name.toLowerCase(), l = "+".concat(a.dialCode);
-                (n || c.includes(t) || l.includes(t)) && (this.countryList.appendChild(a.node), e && (this._highlightListItem(a.node, !1), e = !1));
+                var a = this.countries[s], c = a.name.toLowerCase(), p = "+".concat(a.dialCode);
+                (n || c.includes(t) || p.includes(t)) && (this.countryList.appendChild(a.node), e && (this._highlightListItem(a.node, !1), e = !1));
               }
             }
           }, {
@@ -1041,8 +1069,8 @@
             value: function(t) {
               var n = t;
               if (this.options.formatOnDisplay && window.intlTelInputUtils && this.selectedCountryData) {
-                var e = this.options.nationalMode || n.charAt(0) !== "+" && !this.options.separateDialCode, s = intlTelInputUtils.numberFormat, a = s.NATIONAL, c = s.INTERNATIONAL, l = e ? a : c;
-                n = intlTelInputUtils.formatNumber(n, this.selectedCountryData.iso2, l);
+                var e = this.options.nationalMode || n.charAt(0) !== "+" && !this.options.separateDialCode, s = intlTelInputUtils.numberFormat, a = s.NATIONAL, c = s.INTERNATIONAL, p = e ? a : c;
+                n = intlTelInputUtils.formatNumber(n, this.selectedCountryData.iso2, p);
               }
               n = this._beforeSetNumber(n), this.telInput.value = n;
             }
@@ -1051,18 +1079,18 @@
             value: function(t) {
               var n = t.indexOf("+"), e = n ? t.substring(n) : t, s = this.selectedCountryData.dialCode, a = s === "1";
               e && a && e.charAt(0) !== "+" && (e.charAt(0) !== "1" && (e = "1".concat(e)), e = "+".concat(e)), this.options.separateDialCode && s && e.charAt(0) !== "+" && (e = "+".concat(s).concat(e));
-              var c = this._getDialCode(e, !0), l = this._getNumeric(e), u = null;
+              var c = this._getDialCode(e, !0), p = this._getNumeric(e), u = null;
               if (c) {
-                var v = this.countryCodes[this._getNumeric(c)], y = v.indexOf(this.selectedCountryData.iso2) !== -1 && l.length <= c.length - 1, w = s === "1" && this._isRegionlessNanp(l);
-                if (!w && !y) {
-                  for (var k = 0; k < v.length; k++)
-                    if (v[k]) {
-                      u = v[k];
+                var b = this.countryCodes[this._getNumeric(c)], w = b.indexOf(this.selectedCountryData.iso2) !== -1 && p.length <= c.length - 1, k = s === "1" && this._isRegionlessNanp(p);
+                if (!k && !w) {
+                  for (var I = 0; I < b.length; I++)
+                    if (b[I]) {
+                      u = b[I];
                       break;
                     }
                 }
               } else
-                e.charAt(0) === "+" && l.length ? u = "" : (!e || e === "+") && (u = this.defaultCountry);
+                e.charAt(0) === "+" && p.length ? u = "" : (!e || e === "+") && (u = this.defaultCountry);
               return u !== null ? this._setFlag(u) : !1;
             }
           }, {
@@ -1071,7 +1099,7 @@
               var n = this._getNumeric(t);
               if (n.charAt(0) === "1") {
                 var e = n.substr(1, 3);
-                return M.indexOf(e) !== -1;
+                return P.indexOf(e) !== -1;
               }
               return !1;
             }
@@ -1096,16 +1124,16 @@
             value: function(t) {
               var n = this.options, e = n.allowDropdown, s = n.separateDialCode, a = n.showFlags, c = this.selectedCountryData.iso2 ? this.selectedCountryData : {};
               if (this.selectedCountryData = t ? this._getCountryData(t, !1, !1) : {}, this.selectedCountryData.iso2 && (this.defaultCountry = this.selectedCountryData.iso2), a && this.selectedFlagInner.setAttribute("class", "iti__flag iti__".concat(t)), this._setSelectedCountryFlagTitleAttribute(t, s), s) {
-                var l = this.selectedCountryData.dialCode ? "+".concat(this.selectedCountryData.dialCode) : "";
-                this.selectedDialCode.innerHTML = l;
+                var p = this.selectedCountryData.dialCode ? "+".concat(this.selectedCountryData.dialCode) : "";
+                this.selectedDialCode.innerHTML = p;
                 var u = this.selectedFlag.offsetWidth || this._getHiddenSelectedFlagWidth();
                 this.isRTL ? this.telInput.style.paddingRight = "".concat(u + 6, "px") : this.telInput.style.paddingLeft = "".concat(u + 6, "px");
               }
               if (this._updatePlaceholder(), e) {
-                var v = this.activeItem;
-                if (v && (v.classList.remove("iti__active"), v.setAttribute("aria-selected", "false")), t) {
-                  var y = this.countryList.querySelector("#iti-".concat(this.id, "__item-").concat(t, "-preferred")) || this.countryList.querySelector("#iti-".concat(this.id, "__item-").concat(t));
-                  y.setAttribute("aria-selected", "true"), y.classList.add("iti__active"), this.activeItem = y;
+                var b = this.activeItem;
+                if (b && (b.classList.remove("iti__active"), b.setAttribute("aria-selected", "false")), t) {
+                  var w = this.countryList.querySelector("#iti-".concat(this.id, "__item-").concat(t, "-preferred")) || this.countryList.querySelector("#iti-".concat(this.id, "__item-").concat(t));
+                  w.setAttribute("aria-selected", "true"), w.classList.add("iti__active"), this.activeItem = w;
                 }
               }
               return c.iso2 !== t;
@@ -1155,13 +1183,13 @@
           }, {
             key: "_scrollTo",
             value: function(t, n) {
-              var e = this.dropdownContent, s = window.pageYOffset || document.documentElement.scrollTop, a = e.offsetHeight, c = e.getBoundingClientRect().top + s, l = c + a, u = t.offsetHeight, v = t.getBoundingClientRect().top + s, y = v + u, w = v - c + e.scrollTop, k = a / 2 - u / 2;
-              if (v < c)
-                n && (w -= k), e.scrollTop = w;
-              else if (y > l) {
-                n && (w += k);
+              var e = this.dropdownContent, s = window.pageYOffset || document.documentElement.scrollTop, a = e.offsetHeight, c = e.getBoundingClientRect().top + s, p = c + a, u = t.offsetHeight, b = t.getBoundingClientRect().top + s, w = b + u, k = b - c + e.scrollTop, I = a / 2 - u / 2;
+              if (b < c)
+                n && (k -= I), e.scrollTop = k;
+              else if (w > p) {
+                n && (k += I);
                 var D = a - u;
-                e.scrollTop = w - D;
+                e.scrollTop = k - D;
               }
             }
           }, {
@@ -1306,7 +1334,7 @@
             }
           }]), d;
         }();
-        C.getCountryData = function() {
+        x.getCountryData = function() {
           return r;
         };
         var O = function(o, t, n) {
@@ -1317,7 +1345,7 @@
             T("rejectUtilsScriptPromise"), n && n();
           }, e.className = "iti-load-utils", e.async = !0, e.src = o, document.body.appendChild(e);
         };
-        return C.loadUtils = function(d) {
+        return x.loadUtils = function(d) {
           if (!window.intlTelInputUtils && !window.intlTelInputGlobals.startedLoadingUtilsScript) {
             if (window.intlTelInputGlobals.startedLoadingUtilsScript = !0, typeof Promise < "u")
               return new Promise(function(o, t) {
@@ -1326,16 +1354,16 @@
             O(d);
           }
           return null;
-        }, C.defaults = A, C.version = "18.5.3", function(d, o) {
-          var t = new dt(d, o);
+        }, x.defaults = A, x.version = "18.5.3", function(d, o) {
+          var t = new ht(d, o);
           return t._init(), d.setAttribute("data-intl-tel-input-id", t.id), window.intlTelInputGlobals.instances[t.id] = t, t;
         };
       }();
     });
   })(j);
-  var X = j.exports, tt = X;
-  const nt = /* @__PURE__ */ Q(tt);
-  class et {
+  var nt = j.exports, et = nt;
+  const it = /* @__PURE__ */ tt(et);
+  class ot {
     constructor({ container: i, position: r }) {
       this.container = i, this.position = r || "beforeend", this.init();
     }
@@ -1343,8 +1371,8 @@
       this.render();
     }
     render() {
-      var p;
-      (p = this.container) == null || p.insertAdjacentHTML(
+      var l;
+      (l = this.container) == null || l.insertAdjacentHTML(
         this.position,
         /* HTML */
         `<form class="crs-popup-form" action="">
@@ -1370,7 +1398,7 @@
       ), this.submitForm();
       const r = document.querySelector("#popup_input_phone");
       if (r) {
-        const h = nt(r, {
+        const h = it(r, {
           initialCountry: "ua",
           // @ts-ignore
           countryOrder: ["ua"],
@@ -1378,20 +1406,20 @@
           nationalMode: !0,
           showFlags: !0,
           useFullscreenPopup: !1
-        }), b = () => {
+        }), C = () => {
           if (r.value) {
-            const { add: I, remove: L } = this.errorToInput(r);
-            h.isValidNumber() || I("Номер телефону невірний!"), h.isValidNumber() && (r.dataset.value = h.getNumber(), L());
+            const { add: y, remove: L } = this.errorToInput(r);
+            h.isValidNumber() || y("Номер телефону невірний!"), h.isValidNumber() && (r.dataset.value = h.getNumber(), L());
           }
-        }, _ = document.querySelector("#popup_input_name"), x = (I) => {
-          const L = I.target.value;
+        }, f = document.querySelector("#popup_input_name"), v = (y) => {
+          const L = y.target.value;
           if (L) {
-            const { add: S, remove: C } = this.errorToInput(_);
-            C(), /\d/.test(L) ? S("Ім’я невірне") : L.trim() === "" ? S("Ім’я обов’язкове") : L.length < 2 ? S("Поле повинно містити мінімум 2 символи") : C();
+            const { add: S, remove: x } = this.errorToInput(f);
+            x(), /\d/.test(L) ? S("Ім’я невірне") : L.trim() === "" ? S("Ім’я обов’язкове") : L.length < 2 ? S("Поле повинно містити мінімум 2 символи") : x();
           }
         };
-        r.addEventListener("input", b), r.addEventListener("change", () => {
-        }), _ == null || _.addEventListener("input", x), _.addEventListener("change", () => {
+        r.addEventListener("input", C), r.addEventListener("change", () => {
+        }), f == null || f.addEventListener("input", v), f.addEventListener("change", () => {
         });
         const m = document.querySelector('.crs-popup-form button[type="submit"]');
         m && m.addEventListener("click", () => {
@@ -1401,9 +1429,9 @@
     errorToInput(i) {
       const r = document.createElement("div");
       return {
-        add: (p) => {
+        add: (l) => {
           var h;
-          this.removeErrors(i), i.classList.add("is-invalid"), r.style.color = "rgb(202, 56, 31)", r.classList.add("is-label-invalid", "just-validate-error-label"), r.textContent = p, (h = i.parentElement) == null || h.appendChild(r);
+          this.removeErrors(i), i.classList.add("is-invalid"), r.style.color = "rgb(202, 56, 31)", r.classList.add("is-label-invalid", "just-validate-error-label"), r.textContent = l, (h = i.parentElement) == null || h.appendChild(r);
         },
         remove: () => {
           i.classList.remove("is-invalid"), this.removeErrors(i);
@@ -1411,29 +1439,29 @@
       };
     }
     removeErrors(i) {
-      var p;
-      const r = (p = i.parentElement) == null ? void 0 : p.querySelectorAll(".just-validate-error-label");
+      var l;
+      const r = (l = i.parentElement) == null ? void 0 : l.querySelectorAll(".just-validate-error-label");
       r == null || r.forEach((h) => h.remove());
     }
     submitForm() {
       const i = document.querySelector(".crs-contact_popup__form form");
       i == null || i.addEventListener("submit", async (r) => {
         r.preventDefault();
-        const p = i.querySelector("#popup_input_name"), h = i.querySelector("#popup_input_phone");
-        if (!p || !h)
+        const l = i.querySelector("#popup_input_name"), h = i.querySelector("#popup_input_phone");
+        if (!l || !h)
           return;
-        const b = p == null ? void 0 : p.value, _ = h == null ? void 0 : h.dataset.value, { add: x, remove: m } = this.errorToInput(p), { add: I, remove: L } = this.errorToInput(h);
+        const C = l == null ? void 0 : l.value, f = h == null ? void 0 : h.dataset.value, { add: v, remove: m } = this.errorToInput(l), { add: y, remove: L } = this.errorToInput(h);
         let S = !0;
-        if ((!b || b.trim() === "") && (x("Ім’я обов’язкове"), S = !1), (!_ || _.trim() === "") && (h == null || h.classList.add("is-invalid"), I("Номер телефону невірний!"), S = !1), !S)
+        if ((!C || C.trim() === "") && (v("Ім’я обов’язкове"), S = !1), (!f || f.trim() === "") && (h == null || h.classList.add("is-invalid"), y("Номер телефону невірний!"), S = !1), !S)
           return;
-        const C = i.querySelector('button[type="submit"]');
-        C == null || C.setAttribute("disabled", "true");
+        const x = i.querySelector('button[type="submit"]');
+        x == null || x.setAttribute("disabled", "true");
         try {
           if ((await (await fetch("https://courses-all.goiteens.com/v-gl-v3/crm/lead.php", {
             method: "POST",
             body: JSON.stringify({
-              name: b,
-              phone: _,
+              name: C,
+              phone: f,
               SiteURL: "https://courses-all.goiteens.com/v-gl-v3/",
               product_name: "GoITeens_Courses_All_GL_v3"
             }),
@@ -1441,17 +1469,17 @@
               "Content-type": "application/json; charset=UTF-8"
             }
           })).json()).Deal_ID) {
-            C == null || C.removeAttribute("disabled"), i.reset();
-            const M = i.closest("dialog");
-            M && M.close(), location.href = "https://courses-all.goiteens.com/v-gl/success/";
+            x == null || x.removeAttribute("disabled"), i.reset();
+            const P = i.closest("dialog");
+            P && P.close(), location.href = "https://courses-all.goiteens.com/v-gl/success/";
           }
-        } catch (P) {
-          console.log("error", P);
+        } catch (M) {
+          console.log("error", M);
         }
       });
     }
   }
-  const it = `.crs-contact_popup {
+  const st = `.crs-contact_popup {
   --primary-color: #5f3ed1;
   --secondary-color: #3c1ea6;
   --popup-bg: #fff;
@@ -1518,6 +1546,10 @@ body:has(.crs-contact_popup[open]) {
   color: var(--form-bg);
   z-index: -2;
 }
+
+.crs-contact_popup__bg--mob {
+  display: none;
+}
 .crs-contact_popup__title {
   position: relative;
   margin-top: 58px;
@@ -1529,7 +1561,6 @@ body:has(.crs-contact_popup[open]) {
   line-height: 40px;
   color: #474747;
 }
-
 
 .crs-contact_popup__title::after {
   content: '';
@@ -1555,7 +1586,6 @@ body:has(.crs-contact_popup[open]) {
   font-weight: 400;
   line-height: 24px;
   color: #474747;
-
 }
 
 .crs-contact_popup__content {
@@ -1563,7 +1593,6 @@ body:has(.crs-contact_popup[open]) {
   grid-row: 3 / 4;
   margin-top: 24px;
   color: #474747;
-
 }
 
 .crs-contact_popup__content-title {
@@ -1744,7 +1773,16 @@ body:has(.crs-contact_popup[open]) {
     column-gap: 0;
     padding: 24px 16px;
   }
-
+  .crs-contact_popup__bg {
+    display: none;
+    margin-top: 196px;
+    width: 235px;
+    height: 438px;
+  }
+  
+  .crs-contact_popup__bg--mob {
+    display: block;
+  }
   .crs-contact_popup__title {
     margin-top: 0;
     font-size: 22px;
@@ -1844,28 +1882,29 @@ body:has(.crs-contact_popup[open]) {
       <button type="button" class="crs-contact_popup__close"></button>
       <div class="crs-contact_popup__wrap"></div>
       <div class="crs-contact_popup__bg">${W}</div>
+      <div class="crs-contact_popup__bg crs-contact_popup__bg--mob">${Y}</div>
     </dialog>`
       );
       document.body.insertAdjacentHTML("beforeend", r), this.popup = document.querySelector('.crs-contact_popup[data-id="' + i + '"]');
     }
     eventListeners() {
-      var r, p;
+      var r, l;
       console.log("eventListeners");
       const i = (r = this.popup) == null ? void 0 : r.querySelector(".crs-contact_popup__close");
       i == null || i.addEventListener("click", () => {
         console.log("close"), this.close();
-      }), (p = this.popup) == null || p.addEventListener("click", (h) => {
+      }), (l = this.popup) == null || l.addEventListener("click", (h) => {
         h.target === this.popup && this.close();
       });
     }
     open(i) {
-      var p;
-      const r = J[i];
+      var l;
+      const r = X[i];
       if (!r) {
         console.log("Index is not found");
         return;
       }
-      sessionStorage.setItem("contact-popup-title", r.title.replace(/<[^>]*>?/gm, "")), this.popup && (this.updatePopupContent(r), (p = this.popup) == null || p.setAttribute("data-index", i.toString()), E(
+      sessionStorage.setItem("contact-popup-title", r.title.replace(/<[^>]*>?/gm, "")), this.popup && (this.updatePopupContent(r), (l = this.popup) == null || l.setAttribute("data-index", i.toString()), E(
         "exp_hyp_1__popup_2__view",
         "Секція на екрані",
         "view",
@@ -1881,7 +1920,7 @@ body:has(.crs-contact_popup[open]) {
       }
     }
     updatePopupContent(i) {
-      var h, b;
+      var h, C;
       if (!i) {
         console.log("Data is not found");
         return;
@@ -1893,7 +1932,7 @@ body:has(.crs-contact_popup[open]) {
       <div class="crs-contact_popup__content">
         <h4 class="crs-contact_popup__content-title">Як проходить урок:</h4>
         <ol class="crs-contact_popup__content-list">
-          ${i.content.map((_) => `<li>${_}</li>`).join("")}
+          ${i.content.map((f) => `<li>${f}</li>`).join("")}
         </ol>
       </div>
 
@@ -1917,18 +1956,18 @@ body:has(.crs-contact_popup[open]) {
           </div>
         </div>
       </div>`
-      ), p = (h = this.popup) == null ? void 0 : h.querySelector(".crs-contact_popup__wrap");
-      p && ((b = this.popup) == null || b.setAttribute("data-theme", i.theme), p.innerHTML = r, new et({ container: document.querySelector(".crs-form__container") }));
+      ), l = (h = this.popup) == null ? void 0 : h.querySelector(".crs-contact_popup__wrap");
+      l && ((C = this.popup) == null || C.setAttribute("data-theme", i.theme), l.innerHTML = r, new ot({ container: document.querySelector(".crs-form__container") }));
     }
     initStyles() {
       const i = document.createElement("style");
-      i.textContent = it, document.head.insertAdjacentElement("beforeend", i);
+      i.textContent = st, document.head.insertAdjacentElement("beforeend", i);
     }
   }
-  const ot = {
+  const rt = {
     1: {
       id: 1,
-      topIcon: `${f}/img/info_popup/1/top-image.webp`,
+      topIcon: `${_}/img/info_popup/1/top-image.webp`,
       title: (
         /* HTML */
         "Підготуйте дитину до високооплачуваної професії в IT "
@@ -1936,17 +1975,17 @@ body:has(.crs-contact_popup[open]) {
       description: "Хочете дати своїй дитині інструменти для успіху в стрімко змінюваному світі? Ми допоможемо їй здобути необхідні навички для високооплачуваної кар’єри в IT!",
       list: [
         {
-          icon: `${f}/img/info_popup/1/content_icons/icon-1.webp`,
+          icon: `${_}/img/info_popup/1/content_icons/icon-1.webp`,
           title: "Допоможемо обрати правильний напрямок",
           description: "Ваша дитина познайомиться із сучасними IT-професіями та здобуде основні технічні знання, що відкриють перед нею безмежні можливості в технологічному світі."
         },
         {
-          icon: `${f}/img/info_popup/1/content_icons/icon-2.webp`,
+          icon: `${_}/img/info_popup/1/content_icons/icon-2.webp`,
           title: "Практичне навчання через реальні проєкти",
           description: "Створюючи ігри, застосунки чи вебсайти, дитина набуде практичних навичок, які стануть основою для її професійного розвитку."
         },
         {
-          icon: `${f}/img/info_popup/1/content_icons/icon-3.webp`,
+          icon: `${_}/img/info_popup/1/content_icons/icon-3.webp`,
           title: "Перші кроки до кар'єри",
           description: "Ваша дитина розпочне шлях від початківця до junior-спеціаліста в обраному напрямку, створюючи власне портфоліо проектів і впевнено рухаючись до успішної кар'єри в IT."
         }
@@ -1959,14 +1998,14 @@ body:has(.crs-contact_popup[open]) {
         ),
         authorName: "Микита",
         authorYear: "12 років",
-        authorPhoto: `${f}/img/info_popup/1/ava.webp`,
-        quoteIcon: `${f}/img/info_popup/1/quote.webp`
+        authorPhoto: `${_}/img/info_popup/1/ava.webp`,
+        quoteIcon: `${_}/img/info_popup/1/quote.webp`
       },
       theme: "green"
     },
     2: {
       id: 2,
-      topIcon: `${f}/img/info_popup/2/top-image.webp`,
+      topIcon: `${_}/img/info_popup/2/top-image.webp`,
       title: (
         /* HTML */
         "Навчайся, спілкуйся, знаходь друзів!"
@@ -1974,17 +2013,17 @@ body:has(.crs-contact_popup[open]) {
       description: "У GoITeens діти знаходять однодумців, розвивають комунікацію та будують дружні стосунки через спільні проєкти й активне спілкування в спільноті.",
       list: [
         {
-          icon: `${f}/img/info_popup/2/content_icons/icon-1.webp`,
+          icon: `${_}/img/info_popup/2/content_icons/icon-1.webp`,
           title: "Розвиток через спілкування",
           description: "Наші учні працюють у командах над спільними проєктами, допомагають одне одному та діляться досвідом. Досвідчені викладачі створюють комфортну атмосферу для кожної дитини."
         },
         {
-          icon: `${f}/img/info_popup/2/content_icons/icon-2.webp`,
+          icon: `${_}/img/info_popup/2/content_icons/icon-2.webp`,
           title: "Освітні марафони: навчання з однодумцями",
           description: "Наші учні працюють у командах над спільними проєктами, допомагають одне одному та діляться досвідом. Досвідчені викладачі створюють комфортну атмосферу для кожної дитини."
         },
         {
-          icon: `${f}/img/info_popup/2/content_icons/icon-3.webp`,
+          icon: `${_}/img/info_popup/2/content_icons/icon-3.webp`,
           title: "Ком'юніті студентів: простір для веселощів",
           description: "GoITeens Club — це місце, де підлітки спілкуються, допомагають із завданнями, обговорюють аніме, грають в ігри та весело проводять час у дружній атмосфері."
         }
@@ -1992,19 +2031,19 @@ body:has(.crs-contact_popup[open]) {
       comment: {
         text: (
           /* HTML */
-          "<p>Дитина закінчила перший рік Digital art. Маємо портфоліо з 8 робіт. Цікаве навчання, приємне спілкування.</p>  <p>Команда молода, весела. Тільки актуальні знання і програми. Будемо і далі навчатись з Go Iteens</p>"
+          'Дитина закінчила перший рік Digital art. Маємо портфоліо з 8 робіт. Цікаве навчання, приємне спілкування.<br class="desktop" >Команда молода, весела. Тільки актуальні знання і програми. Будемо і далі <br class="mobile"> навчатись з Go Iteens'
         ),
         authorName: "Катерина Кириленко",
         authorYear: "Мама Микити, 12 років, обрав Frontend",
-        authorPhoto: `${f}/img/info_popup/2/ava.webp`,
-        quoteIcon: `${f}/img/info_popup/2/quote.webp`
+        authorPhoto: `${_}/img/info_popup/2/ava.webp`,
+        quoteIcon: `${_}/img/info_popup/2/quote.webp`
       },
       theme: "pink",
       note: "GoITeens — там, де освіта стає спілкуванням і новими знайомствами!"
     },
     3: {
       id: 3,
-      topIcon: `${f}/img/info_popup/3/top-image.webp`,
+      topIcon: `${_}/img/info_popup/3/top-image.webp`,
       title: (
         /* HTML */
         "Спрямуйте захоплення гаджетами у розвиток"
@@ -2012,17 +2051,17 @@ body:has(.crs-contact_popup[open]) {
       description: "Дитина захоплюється іграми чи гаджетами? Направте її інтереси в корисне русло!",
       list: [
         {
-          icon: `${f}/img/info_popup/3/content_icons/icon-1.webp`,
+          icon: `${_}/img/info_popup/3/content_icons/icon-1.webp`,
           title: "Замість TikTok — час, проведений із користю",
           description: "Дитина навчиться створювати анімації в Scratch та малювати на планшеті, будувати світи в Minecraft, або створювати власні ігри і 3D персонажів в Roblox. Навички, якими ви будете пишатись!"
         },
         {
-          icon: `${f}/img/info_popup/3/content_icons/icon-2.webp`,
+          icon: `${_}/img/info_popup/3/content_icons/icon-2.webp`,
           title: "Навчання через гру",
           description: "Уроки в Roblox перетворять нудну таблицю множення на цікаву гру. Дитина зможе застосовувати знання у реальних проєктах, розвиваючи креативність та застосування математики в житті."
         },
         {
-          icon: `${f}/img/info_popup/3/content_icons/icon-3.webp`,
+          icon: `${_}/img/info_popup/3/content_icons/icon-3.webp`,
           title: "Від геймера до розробника ігор",
           description: "Дитина створить три власні ігри, перетворюючи хоббі на навички розробника, які дуже цінуються в світі IT. Наші випускники заробляють на своїх проєктах або отримують пропозиції від IT-компаній."
         }
@@ -2034,14 +2073,14 @@ body:has(.crs-contact_popup[open]) {
         ),
         authorName: "Серафім Карпань",
         authorYear: "9 років",
-        authorPhoto: `${f}/img/info_popup/3/ava.webp`,
-        quoteIcon: `${f}/img/info_popup/3/quote.webp`
+        authorPhoto: `${_}/img/info_popup/3/ava.webp`,
+        quoteIcon: `${_}/img/info_popup/3/quote.webp`
       },
       theme: "blue"
     },
     4: {
       id: 4,
-      topIcon: `${f}/img/info_popup/4/top-image.webp`,
+      topIcon: `${_}/img/info_popup/4/top-image.webp`,
       title: (
         /* HTML */
         "Розвивайте м’які навички, логічне та креативне мислення"
@@ -2049,17 +2088,17 @@ body:has(.crs-contact_popup[open]) {
       description: "Наші програми допоможуть вашій дитині розвинути важливі м’які навички, логічне мислення та креативність, що зробить її успішною не тільки в школі, а й у житті.",
       list: [
         {
-          icon: `${f}/img/info_popup/4/content_icons/icon-1.webp`,
+          icon: `${_}/img/info_popup/4/content_icons/icon-1.webp`,
           title: "Сприяйте розумовому розвитку вашої дитини",
           description: "Зробіть математику захоплюючою і цікавою завдяки інтерактивному практичному підходу. А блочне програмування і спеціальні техніки допоможуть розвинути у вашій дитині логіку, критичне мислення, концентрацію та пам’ять."
         },
         {
-          icon: `${f}/img/info_popup/4/content_icons/icon-2.webp`,
+          icon: `${_}/img/info_popup/4/content_icons/icon-2.webp`,
           title: "Креативність, що надихає на навчання",
           description: "Малюючи на планшеті чи створюючи ігри в Scratch, ваша дитина розкриє свій творчий потенціал. Миттєвий результат і радість від творчості природно мотивують її до навчання та експериментів."
         },
         {
-          icon: `${f}/img/info_popup/4/content_icons/icon-3.webp`,
+          icon: `${_}/img/info_popup/4/content_icons/icon-3.webp`,
           title: "М'які навички для успіху в сучасному світі",
           description: "Курс “Майстерня лідерства” допоможе вашій дитині підвищити самооцінку, навчитися керувати емоціями, організовувати свій час і ефективно взаємодіяти з іншими. Це стане міцною основою для майбутніх досягнень!"
         }
@@ -2071,12 +2110,12 @@ body:has(.crs-contact_popup[open]) {
         ),
         authorName: "Ніна Кравчук",
         authorYear: "Мама Серафіма, 9 років",
-        authorPhoto: `${f}/img/info_popup/4/ava.webp`,
-        quoteIcon: `${f}/img/info_popup/4/quote.webp`
+        authorPhoto: `${_}/img/info_popup/4/ava.webp`,
+        quoteIcon: `${_}/img/info_popup/4/quote.webp`
       },
       theme: "lavender"
     }
-  }, st = `.crs-info_popup {
+  }, at = `.crs-info_popup {
   --primary-color: #5f3ed1;
   --secondary-color: #3c1ea6;
   --popup-bg: #fff;
@@ -2092,23 +2131,27 @@ body:has(.crs-contact_popup[open]) {
   --popup-bg: #e7f8ed;
   --popup-secondary-bg: #afebc4;
   --popup-bg-color: #90e5ae;
+  --popup-secondary-bg-color: #ceefda;
 }
 
 .crs-info_popup[data-theme='pink'] {
   --popup-bg: #f7e7f2;
   --popup-secondary-bg: #dfb6d2;
   --popup-bg-color: #dbadcc;
+  --popup-secondary-bg-color: #ebd4e4;
 }
 
 .crs-info_popup[data-theme='blue'] {
   --popup-bg: #e5e9f5;
   --popup-secondary-bg: #bdcae9;
   --popup-bg-color: #b5c3e7;
+  --popup-secondary-bg-color: #ccd9f8;
 }
 .crs-info_popup[data-theme='lavender'] {
   --popup-bg: #eeebf6;
   --popup-secondary-bg: #d0c7e8;
   --popup-bg-color: #c7bce3;
+  --popup-secondary-bg-color: #e0d7f9;
 }
 
 body:has(.crs-info_popup[open]) {
@@ -2161,6 +2204,10 @@ body:has(.crs-info_popup[open]) {
   right: 0;
   color: var(--popup-bg-color);
 }
+
+.crs-info_popup__bg--mob {
+  display: none;
+}
 .crs-info_popup__title {
   margin-left: 120px;
   position: relative;
@@ -2178,10 +2225,15 @@ body:has(.crs-info_popup[open]) {
   margin-top: 24px;
   color: #474747;
   font-family: 'IBMPlexSans';
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 155.556% */
+  line-height: 28px;
+}
+
+[data-theme='pink'] .crs-info_popup__description {
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .crs-info_popup__content {
@@ -2216,8 +2268,13 @@ body:has(.crs-info_popup[open]) {
   grid-row: 1 / 2;
   color: #474747;
   font-family: 'IBMPlexMono', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
+  line-height: 28px;
+}
+
+[data-theme='pink'] .crs-info_popup__content-title {
+  font-size: 16px;
   line-height: 24px;
 }
 
@@ -2242,13 +2299,17 @@ body:has(.crs-info_popup[open]) {
   line-height: 28px;
 }
 .crs-info_popup__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: var(--popup-secondary-bg);
   max-width: 480px;
+  padding-bottom: 15px;
 }
 
 .crs-comment {
   position: relative;
-  margin-top: 106px;
+  margin-top: 40px;
   background-color: var(--popup-bg);
   padding: 30px;
   border-radius: 32px;
@@ -2314,6 +2375,7 @@ body:has(.crs-info_popup[open]) {
   font-style: normal;
   font-weight: 600;
   line-height: 28px; /* 155.556% */
+  white-space: nowrap;
 }
 
 .crs-comment__author-year {
@@ -2361,12 +2423,18 @@ body:has(.crs-info_popup[open]) {
   font-weight: 500;
   line-height: 28px;
 }
+
+.crs-info_popup__action-sticky,
+.crs-info_popup__action-sticky + .crs-info_popup__action-text {
+  display: none;
+}
 @media (max-width: 992px) {
   .crs-info_popup {
     max-width: 360px;
     border-radius: 24px;
     background-size: 265px 563px;
     background-position: top -24px right -81px;
+    overflow-x: clip;
   }
 
   .crs-info_popup__close {
@@ -2377,6 +2445,7 @@ body:has(.crs-info_popup[open]) {
   }
 
   .crs-info_popup__wrap {
+    max-height: 100vh;
     flex-direction: column;
     gap: 24px;
     padding: 0;
@@ -2389,13 +2458,20 @@ body:has(.crs-info_popup[open]) {
   .crs-info_popup__right {
     padding-top: 24px;
     padding-inline: 16px;
+    padding-bottom: 0;
   }
 
   .crs-info_popup__bg {
+    display: none;
     top: 144px;
-    left: 234px;
+    left: 175px;
     color: var(--popup-secondary-bg);
     z-index: -2;
+  }
+
+  .crs-info_popup__bg--mob {
+    display: block;
+    color: var(--popup-secondary-bg-color);
   }
 
   .crs-info_popup__bg svg {
@@ -2426,6 +2502,11 @@ body:has(.crs-info_popup[open]) {
 
   .crs-info_popup__content-list li {
     gap: 12px;
+
+    align-items: center;
+  }
+  .crs-info_popup__content-icon {
+    grid-row: 1 / 1;
   }
   .crs-info_popup__content-title {
     color: #474747;
@@ -2436,6 +2517,7 @@ body:has(.crs-info_popup[open]) {
   }
 
   .crs-info_popup__content-description {
+    grid-column: 1 / 3;
     color: #474747;
     font-family: 'IBMPlexSans';
     font-size: 16px;
@@ -2492,7 +2574,13 @@ body:has(.crs-info_popup[open]) {
     line-height: 24px;
   }
 
+  .crs-info_popup__action {
+    display: none;
+    position: static;
+  }
+
   .crs-info_popup__action-button {
+    display: none;
     height: 52px;
     font-size: 16px;
     font-weight: 400;
@@ -2500,13 +2588,42 @@ body:has(.crs-info_popup[open]) {
   }
 
   .crs-info_popup__action-text {
+    display: none;
     text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .crs-info_popup__action-sticky,
+  .crs-info_popup__action-sticky button,
+  .crs-info_popup__action-sticky + .crs-info_popup__action-text {
+    display: block;
+  }
+
+  .crs-info_popup__action-sticky {
+    margin-top: -36px;
+    position: sticky;
+    display: block;
+    width: 100%;
+    bottom: 0;
+    z-index: 2;
+    padding: 16px 12px;
+    background-color: var(--popup-secondary-bg);
+  }
+
+  .crs-info_popup__action-sticky + .crs-info_popup__action-text {
+    margin-top: -24px;
+    background-color: var(--popup-secondary-bg);
+    padding-bottom: 16px;
+  }
+
+  .crs-info_popup__note {
     font-size: 16px;
     line-height: 24px;
   }
 }
 `;
-  class rt {
+  class pt {
     constructor() {
       this.popup = null, this.contactPopup = new U(), this.init();
     }
@@ -2519,28 +2636,29 @@ body:has(.crs-info_popup[open]) {
         `<dialog class="crs-info_popup">
       <button type="button" class="crs-info_popup__close"></button>
       <div class="crs-info_popup__wrap"></div>
-      <div class="crs-info_popup__bg">${Y}</div>
+      <div class="crs-info_popup__bg">${J}</div>
+      <div class="crs-info_popup__bg crs-info_popup__bg--mob">${Q}</div>
     </dialog>`
       );
       document.body.insertAdjacentHTML("beforeend", i), this.popup = document.querySelector(".crs-info_popup");
     }
     eventListeners() {
-      var r, p;
+      var r, l;
       const i = (r = this.popup) == null ? void 0 : r.querySelector(".crs-info_popup__close");
       i == null || i.addEventListener("click", () => {
         this.close();
-      }), (p = this.popup) == null || p.addEventListener("click", (h) => {
+      }), (l = this.popup) == null || l.addEventListener("click", (h) => {
         h.target === this.popup && this.close();
       });
     }
     open(i) {
-      var p;
-      const r = ot[i];
+      var l;
+      const r = rt[i];
       if (!r) {
         console.log("Index is not found");
         return;
       }
-      sessionStorage.setItem("info-popup-title", r.title.replace(/<[^>]*>?/gm, "")), this.popup && (this.updatePopupContent(r), (p = this.popup) == null || p.setAttribute("data-index", i.toString()), this.popup.showModal(), E("exp_hyp_1__popup_1__view", "Секція на екрані", "view", `Попап. Крок 1. ${r.title}`));
+      sessionStorage.setItem("info-popup-title", r.title.replace(/<[^>]*>?/gm, "")), this.popup && (this.updatePopupContent(r), (l = this.popup) == null || l.setAttribute("data-index", i.toString()), this.popup.showModal(), E("exp_hyp_1__popup_1__view", "Секція на екрані", "view", `Попап. Крок 1. ${r.title}`));
     }
     close() {
       if (this.popup) {
@@ -2551,7 +2669,7 @@ body:has(.crs-info_popup[open]) {
       }
     }
     updatePopupContent(i) {
-      var h, b;
+      var h, C;
       if (!i) {
         console.log("Data is not found");
         return;
@@ -2567,15 +2685,15 @@ body:has(.crs-info_popup[open]) {
         <div class="crs-info_popup__content">
           <ol class="crs-info_popup__content-list">
             ${i.list.map(
-          (_) => (
+          (f) => (
             /* HTML */
             `<li>
                     <div class="crs-info_popup__content-icon">
-                      <img src="${_.icon}" alt="${_.title}" width="41" height="41" loading="lazy" />
+                      <img src="${f.icon}" alt="${f.title}" width="41" height="41" loading="lazy" />
                     </div>
 
-                    <h4 class="crs-info_popup__content-title">${_.title}</h4>
-                    <div class="crs-info_popup__content-description">${_.description}</div>
+                    <h4 class="crs-info_popup__content-title">${f.title}</h4>
+                    <div class="crs-info_popup__content-description">${f.description}</div>
                   </li>`
           )
         ).join("")}
@@ -2592,7 +2710,10 @@ body:has(.crs-info_popup[open]) {
           <div class="crs-info_popup__comment-quote">
             <img src="${i.comment.quoteIcon}" alt="" width="94" height="41" loading="lazy" />
           </div>
-          ${i.comment.title ? `<h4 class="crs-comment__title">${i.comment.title}</h4>` : ""}
+          ${i.comment.title ? (
+          /* HTML */
+          `<h4 class="crs-comment__title">${i.comment.title}</h4>`
+        ) : ""}
           <div class="crs-comment__text">${i.comment.text}</div>
           <div class="crs-comment__author">
             <div class="crs-comment__author-photo">
@@ -2617,29 +2738,33 @@ body:has(.crs-info_popup[open]) {
           </button>
           <div class="crs-info_popup__action-text">Дізнайтесь про професії які ваша дитина може вивчати вже зараз</div>
         </div>
-      </div>`
-      ), p = (h = this.popup) == null ? void 0 : h.querySelector(".crs-info_popup__wrap");
-      if (p) {
-        (b = this.popup) == null || b.setAttribute("data-theme", i.theme), p.innerHTML = r;
-        const _ = document.querySelector(".crs-info_popup__action-button");
-        _ == null || _.addEventListener("click", () => {
-          var m;
-          const x = (m = this.popup) == null ? void 0 : m.getAttribute("data-index");
-          x && (this.close(), E(
+      </div>
+      <div class="crs-info_popup__action-sticky">
+        <button type="button" class="crs-info_popup__action-button" data-contact-popup="${i.id}">
+          Записатись на безоплатний урок
+        </button>
+      </div>
+      <div class="crs-info_popup__action-text">Дізнайтесь про професії які ваша дитина може вивчати вже зараз</div>`
+      ), l = (h = this.popup) == null ? void 0 : h.querySelector(".crs-info_popup__wrap");
+      l && ((C = this.popup) == null || C.setAttribute("data-theme", i.theme), l.innerHTML = r, document.querySelectorAll(".crs-info_popup__action-button").forEach((v) => {
+        v == null || v.addEventListener("click", () => {
+          var y;
+          const m = (y = this.popup) == null ? void 0 : y.getAttribute("data-index");
+          m && (this.close(), E(
             "exp_hyp_1__popup_1__click",
             "Записатися на безоплатний урок",
             "click",
             `Попап. Крок 1. ${i.title}`
-          ), this.contactPopup.open(Number(x)));
+          ), this.contactPopup.open(Number(m)));
         });
-      }
+      }));
     }
     initStyles() {
       const i = document.createElement("style");
-      i.textContent = st, document.head.insertAdjacentElement("beforeend", i);
+      i.textContent = at, document.head.insertAdjacentElement("beforeend", i);
     }
   }
-  const at = `.crs-proposition {
+  const lt = `.crs-proposition {
   position: relative;
   padding: 60px 80px;
   padding-bottom: 0;
@@ -2681,6 +2806,7 @@ body:has(.crs-info_popup[open]) {
 }
 
 .crs-proposition__title {
+  margin-top: 79px;
   color: #474747;
   font-family: 'IBMPlexMono';
   font-size: 32px;
@@ -2709,6 +2835,8 @@ body:has(.crs-info_popup[open]) {
   align-items: center;
   height: 68px;
   width: 100%;
+  max-width: 542px;
+
   padding: 24px;
   border-radius: 64px;
   background: #5f3ed1;
@@ -2809,8 +2937,8 @@ body:has(.crs-info_popup[open]) {
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
-  transition-duration: .3s;
-    transition-timing-function: linear;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 }
 
 .crs-proposition__block-action:hover {
@@ -2842,6 +2970,7 @@ body:has(.crs-info_popup[open]) {
   }
 
   .crs-proposition__title {
+    margin-top: 0;
     font-size: 24px;
     font-weight: 500;
     line-height: 28.8px;
@@ -2881,9 +3010,9 @@ body:has(.crs-info_popup[open]) {
   }
 }
 `;
-  class lt {
+  class ct {
     constructor({ container: i, position: r }) {
-      this.container = i, this.position = r || "beforeend", this.infoPopup = new rt(), this.contactPopup = new U(), this.init();
+      this.container = i, this.position = r || "beforeend", this.infoPopup = new pt(), this.contactPopup = new U(), this.init();
     }
     init() {
       if (!this.container) {
@@ -2901,7 +3030,7 @@ body:has(.crs-info_popup[open]) {
           <div class="crs-proposition__left">
             <img
               class="crs-proposition__image"
-              src="${f}/img/goit-main.webp"
+              src="${_}/img/goit-main.webp"
               width="605"
               height="561"
               loading="lazy"
@@ -2927,14 +3056,14 @@ body:has(.crs-info_popup[open]) {
         <div class="crs-proposition__blocks">
           <div class="crs-proposition__block" data-block="1">
             <div class="crs-proposition__block-icon">
-              <img src="${f}/img/1.webp" alt="" width="44" height="44" loading="lazy" />
+              <img src="${_}/img/1.webp" alt="" width="44" height="44" loading="lazy" />
             </div>
             <div class="crs-proposition__block-text">Підготуйте дитину до високооплачуваної професії в IT</div>
             <button type="button" class="crs-proposition__block-action" data-info-popup="1">Докладніше</button>
           </div>
           <div class="crs-proposition__block" data-block="2">
             <div class="crs-proposition__block-icon">
-              <img src="${f}/img/2.webp" alt="" width="44" height="44" loading="lazy" />
+              <img src="${_}/img/2.webp" alt="" width="44" height="44" loading="lazy" />
             </div>
 
             <div class="crs-proposition__block-text">Навчайся, спілкуйся, знаходь друзів!</div>
@@ -2942,7 +3071,7 @@ body:has(.crs-info_popup[open]) {
           </div>
           <div class="crs-proposition__block" data-block="3">
             <div class="crs-proposition__block-icon">
-              <img src="${f}/img/3.webp" alt="" width="44" height="44" loading="lazy" />
+              <img src="${_}/img/3.webp" alt="" width="44" height="44" loading="lazy" />
             </div>
 
             <div class="crs-proposition__block-text">Спрямуйте захоплення гаджетами у розвиток</div>
@@ -2950,7 +3079,7 @@ body:has(.crs-info_popup[open]) {
           </div>
           <div class="crs-proposition__block" data-block="4">
             <div class="crs-proposition__block-icon">
-              <img src="${f}/img/4.webp" alt="" width="44" height="44" loading="lazy" />
+              <img src="${_}/img/4.webp" alt="" width="44" height="44" loading="lazy" />
             </div>
 
             <div class="crs-proposition__block-text">Розвивайте м’які навички, логічне та креативне мислення</div>
@@ -2959,7 +3088,7 @@ body:has(.crs-info_popup[open]) {
         </div>
       </div>
       <div class="crs-proposition__bg">
-        <img src="${f}/img/main-bg.svg" alt="" width="377" height="652" loading="lazy" />
+        <img src="${_}/img/main-bg.svg" alt="" width="377" height="652" loading="lazy" />
       </div>
     </section>`
       );
@@ -2976,11 +3105,11 @@ body:has(.crs-info_popup[open]) {
       );
     }
     eventListeners() {
-      document.querySelectorAll(".crs-proposition__block-action").forEach((p) => {
-        p.addEventListener("click", (h) => {
-          var m, I;
-          const b = h.target, _ = b.dataset.infoPopup, x = (I = (m = b.parentElement) == null ? void 0 : m.querySelector(".crs-proposition__block-text")) == null ? void 0 : I.textContent;
-          _ && (this.infoPopup.open(+_), E("exp_hyp_1__4_cards__click", `Докладніше. ${x}`, "click", "Ряд з чотирьох кнопок"));
+      document.querySelectorAll(".crs-proposition__block-action").forEach((l) => {
+        l.addEventListener("click", (h) => {
+          var m, y;
+          const C = h.target, f = C.dataset.infoPopup, v = (y = (m = C.parentElement) == null ? void 0 : m.querySelector(".crs-proposition__block-text")) == null ? void 0 : y.textContent;
+          f && (this.infoPopup.open(+f), E("exp_hyp_1__4_cards__click", `Докладніше. ${v}`, "click", "Ряд з чотирьох кнопок"));
         });
       });
       const r = document.querySelector(".crs-proposition__action");
@@ -2995,10 +3124,10 @@ body:has(.crs-info_popup[open]) {
     }
     initStyles() {
       const i = document.createElement("style");
-      i.innerHTML = at, document.head.appendChild(i);
+      i.innerHTML = lt, document.head.appendChild(i);
     }
   }
-  const pt = `@media (min-width: 1200px) {
+  const dt = `@media (min-width: 1200px) {
   br.mobile {
     display: none;
   }
@@ -3009,21 +3138,21 @@ body:has(.crs-info_popup[open]) {
     display: none;
   }
 }`;
-  G({
+  H({
     name: "Reinforce the value proposition by addressing the key parents' drivers for looking a solution",
     dev: "OS"
-  }), H('goiteens_hyp_1"');
-  class ct {
+  }), G('goiteens_hyp_1"');
+  class ut {
     constructor() {
       this.init();
     }
     init() {
-      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new Z(), new V({ container: document.querySelector("header"), position: "beforeend" }), new lt({ container: document.querySelector("main"), position: "afterbegin" }));
+      location.pathname.includes("v-gl-v2/") && (this.initStyles(), new K(), new R({ container: document.querySelector("header"), position: "beforeend" }), new ct({ container: document.querySelector("main"), position: "afterbegin" }));
     }
     initStyles() {
       const i = document.createElement("style");
-      i.innerHTML = pt, document.head.appendChild(i);
+      i.innerHTML = dt, document.head.appendChild(i);
     }
   }
-  new ct();
+  new ut();
 })();
