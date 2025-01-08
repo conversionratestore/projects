@@ -1385,7 +1385,7 @@
           name="name"
           data-type="text"
           placeholder="Ваше імʼя*"
-          autofocus="true"
+ 
         />
       </div>
       <div class="input-wrap">
@@ -1542,7 +1542,7 @@ body:has(.crs-contact_popup[open]) {
 .crs-contact_popup__bg {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 5px;
   color: var(--form-bg);
   z-index: -2;
 }
@@ -1870,7 +1870,7 @@ body:has(.crs-contact_popup[open]) {
 `;
   class U {
     constructor() {
-      console.log("ContactPopup"), this.popup = null, this.init();
+      this.popup = null, this.init();
     }
     init() {
       this.initStyles(), this.render(), this.eventListeners();
@@ -1889,10 +1889,9 @@ body:has(.crs-contact_popup[open]) {
     }
     eventListeners() {
       var r, l;
-      console.log("eventListeners");
       const i = (r = this.popup) == null ? void 0 : r.querySelector(".crs-contact_popup__close");
       i == null || i.addEventListener("click", () => {
-        console.log("close"), this.close();
+        this.close();
       }), (l = this.popup) == null || l.addEventListener("click", (h) => {
         h.target === this.popup && this.close();
       });
@@ -1931,6 +1930,7 @@ body:has(.crs-contact_popup[open]) {
       <div class="crs-contact_popup__description">${i.description}</div>
       <div class="crs-contact_popup__content">
         <h4 class="crs-contact_popup__content-title">Як проходить урок:</h4>
+      
         <ol class="crs-contact_popup__content-list">
           ${i.content.map((f) => `<li>${f}</li>`).join("")}
         </ol>
@@ -2154,7 +2154,7 @@ body:has(.crs-contact_popup[open]) {
   --popup-secondary-bg-color: #e0d7f9;
 }
 
-body:has(.crs-info_popup[open]) {
+.page:has(~ .crs-info_popup[open]) {
   overflow: hidden;
 }
 .crs-info_popup::backdrop {
