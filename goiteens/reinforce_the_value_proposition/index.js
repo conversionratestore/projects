@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const E = (g, i, r, l = "") => {
+  const L = (g, i, r, l = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: g,
@@ -28,8 +28,8 @@
       return;
     }
     let C = new IntersectionObserver(
-      (v) => {
-        v.forEach((m) => {
+      (x) => {
+        x.forEach((m) => {
           m.isIntersecting && (C.unobserve(m.target), setTimeout(function() {
             f.observe(m.target);
           }, 1e3));
@@ -38,13 +38,13 @@
       {
         threshold: 0.2
       }
-    ), f = new IntersectionObserver((v) => {
-      v.forEach((m) => {
-        m.isIntersecting ? (E(i || `view_element_${m.target.id}`, r || "Element visibility", "view", l || m.target.id), C.unobserve(m.target)) : C.observe(m.target), f.unobserve(m.target);
+    ), f = new IntersectionObserver((x) => {
+      x.forEach((m) => {
+        m.isIntersecting ? (L(i || `view_element_${m.target.id}`, r || "Element visibility", "view", l || m.target.id), C.unobserve(m.target)) : C.observe(m.target), f.unobserve(m.target);
       });
     });
-    h.forEach((v) => {
-      C.observe(v);
+    h.forEach((x) => {
+      C.observe(x);
     });
   }, _ = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition", V = `.crs-badges {
   position: absolute;
@@ -548,33 +548,33 @@
           return d;
         }
         function f(d, o, t) {
-          return o = L(o), o in d ? Object.defineProperty(d, o, {
+          return o = S(o), o in d ? Object.defineProperty(d, o, {
             value: t,
             enumerable: !0,
             configurable: !0,
             writable: !0
           }) : d[o] = t, d;
         }
-        function v(d, o) {
+        function x(d, o) {
           if (!(d instanceof o))
             throw new TypeError("Cannot call a class as a function");
         }
         function m(d, o) {
           for (var t = 0; t < o.length; t++) {
             var n = o[t];
-            n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(d, L(n.key), n);
+            n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(d, S(n.key), n);
           }
         }
-        function y(d, o, t) {
+        function v(d, o, t) {
           return o && m(d.prototype, o), t && m(d, t), Object.defineProperty(d, "prototype", {
             writable: !1
           }), d;
         }
-        function L(d) {
-          var o = S(d, "string");
+        function S(d) {
+          var o = E(d, "string");
           return typeof o == "symbol" ? o : String(o);
         }
-        function S(d, o) {
+        function E(d, o) {
           if (typeof d != "object" || d === null)
             return d;
           var t = d[Symbol.toPrimitive];
@@ -586,7 +586,7 @@
           }
           return (o === "string" ? String : Number)(d);
         }
-        var x = {
+        var y = {
           getInstance: function(o) {
             var t = o.getAttribute("data-intl-tel-input-id");
             return window.intlTelInputGlobals.instances[t];
@@ -597,7 +597,7 @@
             return document.readyState === "complete";
           }
         };
-        typeof window == "object" && (window.intlTelInputGlobals = x);
+        typeof window == "object" && (window.intlTelInputGlobals = y);
         var M = 0, A = {
           // whether or not to allow the dropdown
           allowDropdown: !0,
@@ -659,13 +659,13 @@
         }, ht = /* @__PURE__ */ function() {
           function d(o, t) {
             var n = this;
-            v(this, d), this.id = M++, this.telInput = o, this.activeItem = null, this.highlightedItem = null;
+            x(this, d), this.id = M++, this.telInput = o, this.activeItem = null, this.highlightedItem = null;
             var e = t || {};
             this.options = {}, N(A, function(s, a) {
               n.options[s] = e.hasOwnProperty(s) ? e[s] : a;
             }), this.hadInitialPlaceholder = !!o.getAttribute("placeholder");
           }
-          return y(d, [{
+          return v(d, [{
             key: "_init",
             value: function() {
               var t = this;
@@ -1334,7 +1334,7 @@
             }
           }]), d;
         }();
-        x.getCountryData = function() {
+        y.getCountryData = function() {
           return r;
         };
         var O = function(o, t, n) {
@@ -1345,7 +1345,7 @@
             T("rejectUtilsScriptPromise"), n && n();
           }, e.className = "iti-load-utils", e.async = !0, e.src = o, document.body.appendChild(e);
         };
-        return x.loadUtils = function(d) {
+        return y.loadUtils = function(d) {
           if (!window.intlTelInputUtils && !window.intlTelInputGlobals.startedLoadingUtilsScript) {
             if (window.intlTelInputGlobals.startedLoadingUtilsScript = !0, typeof Promise < "u")
               return new Promise(function(o, t) {
@@ -1354,7 +1354,7 @@
             O(d);
           }
           return null;
-        }, x.defaults = A, x.version = "18.5.3", function(d, o) {
+        }, y.defaults = A, y.version = "18.5.3", function(d, o) {
           var t = new ht(d, o);
           return t._init(), d.setAttribute("data-intl-tel-input-id", t.id), window.intlTelInputGlobals.instances[t.id] = t, t;
         };
@@ -1385,7 +1385,6 @@
           name="name"
           data-type="text"
           placeholder="Ваше імʼя*"
- 
         />
       </div>
       <div class="input-wrap">
@@ -1408,21 +1407,27 @@
           useFullscreenPopup: !1
         }), C = () => {
           if (r.value) {
-            const { add: y, remove: L } = this.errorToInput(r);
-            h.isValidNumber() || y("Номер телефону невірний!"), h.isValidNumber() && (r.dataset.value = h.getNumber(), L());
+            const { add: v, remove: S } = this.errorToInput(r);
+            h.isValidNumber() || v("Номер телефону невірний!"), h.isValidNumber() && (r.dataset.value = h.getNumber(), S());
           }
-        }, f = document.querySelector("#popup_input_name"), v = (y) => {
-          const L = y.target.value;
-          if (L) {
-            const { add: S, remove: x } = this.errorToInput(f);
-            x(), /\d/.test(L) ? S("Ім’я невірне") : L.trim() === "" ? S("Ім’я обов’язкове") : L.length < 2 ? S("Поле повинно містити мінімум 2 символи") : x();
+        }, f = document.querySelector("#popup_input_name"), x = (v) => {
+          const S = v.target.value;
+          if (S) {
+            const { add: E, remove: y } = this.errorToInput(f);
+            y(), /\d/.test(S) ? E("Ім’я невірне") : S.trim() === "" ? E("Ім’я обов’язкове") : S.length < 2 ? E("Поле повинно містити мінімум 2 символи") : y();
           }
         };
         r.addEventListener("input", C), r.addEventListener("change", () => {
-        }), f == null || f.addEventListener("input", v), f.addEventListener("change", () => {
+          const v = sessionStorage.getItem("contact-popup-title");
+          L("exp_hyp_1__popup_2__phone", "Поле для вводу. Номер телефону", "input", `Попап. Крок 2. ${v}`);
+        }), f == null || f.addEventListener("input", x), f.addEventListener("change", () => {
+          const v = sessionStorage.getItem("contact-popup-title");
+          L("exp_hyp_1__popup_2__name", "Поле для вводу. Ваше імʼя", "input", `Попап. Крок 2. ${v}`);
         });
         const m = document.querySelector('.crs-popup-form button[type="submit"]');
         m && m.addEventListener("click", () => {
+          const v = sessionStorage.getItem("contact-popup-title");
+          L("exp_hyp_1__popup_2__click", "Записатись", "click", `Попап. Крок 2. ${v}`);
         });
       }
     }
@@ -1450,12 +1455,12 @@
         const l = i.querySelector("#popup_input_name"), h = i.querySelector("#popup_input_phone");
         if (!l || !h)
           return;
-        const C = l == null ? void 0 : l.value, f = h == null ? void 0 : h.dataset.value, { add: v, remove: m } = this.errorToInput(l), { add: y, remove: L } = this.errorToInput(h);
-        let S = !0;
-        if ((!C || C.trim() === "") && (v("Ім’я обов’язкове"), S = !1), (!f || f.trim() === "") && (h == null || h.classList.add("is-invalid"), y("Номер телефону невірний!"), S = !1), !S)
+        const C = l == null ? void 0 : l.value, f = h == null ? void 0 : h.dataset.value, { add: x, remove: m } = this.errorToInput(l), { add: v, remove: S } = this.errorToInput(h);
+        let E = !0;
+        if ((!C || C.trim() === "") && (x("Ім’я обов’язкове"), E = !1), (!f || f.trim() === "") && (h == null || h.classList.add("is-invalid"), v("Номер телефону невірний!"), E = !1), !E)
           return;
-        const x = i.querySelector('button[type="submit"]');
-        x == null || x.setAttribute("disabled", "true");
+        const y = i.querySelector('button[type="submit"]');
+        y == null || y.setAttribute("disabled", "true");
         try {
           if ((await (await fetch("https://courses-all.goiteens.com/v-gl-v3/crm/lead.php", {
             method: "POST",
@@ -1469,7 +1474,7 @@
               "Content-type": "application/json; charset=UTF-8"
             }
           })).json()).Deal_ID) {
-            x == null || x.removeAttribute("disabled"), i.reset();
+            y == null || y.removeAttribute("disabled"), i.reset();
             const P = i.closest("dialog");
             P && P.close(), location.href = "https://courses-all.goiteens.com/v-gl/success/";
           }
@@ -1903,7 +1908,7 @@ body:has(.crs-contact_popup[open]) {
         console.log("Index is not found");
         return;
       }
-      sessionStorage.setItem("contact-popup-title", r.title.replace(/<[^>]*>?/gm, "")), this.popup && (this.updatePopupContent(r), (l = this.popup) == null || l.setAttribute("data-index", i.toString()), E(
+      sessionStorage.setItem("contact-popup-title", r.title.replace(/<[^>]*>?/gm, "")), this.popup && (this.updatePopupContent(r), (l = this.popup) == null || l.setAttribute("data-index", i.toString()), L(
         "exp_hyp_1__popup_2__view",
         "Секція на екрані",
         "view",
@@ -1915,7 +1920,7 @@ body:has(.crs-contact_popup[open]) {
         const i = sessionStorage.getItem("contact-popup-title");
         this.popup.close();
         const r = this.popup.querySelector(".crs-contact_popup__wrap");
-        r && (r.innerHTML = ""), E("exp_hyp_1__popup_2__close", "Закриття попапу", "click", `Попап. Крок 2. ${i}`), sessionStorage.removeItem("contact-popup-title");
+        r && (r.innerHTML = ""), L("exp_hyp_1__popup_2__close", "Закриття попапу", "click", `Попап. Крок 2. ${i}`), sessionStorage.removeItem("contact-popup-title");
       }
     }
     updatePopupContent(i) {
@@ -2154,7 +2159,7 @@ body:has(.crs-contact_popup[open]) {
   --popup-secondary-bg-color: #e0d7f9;
 }
 
-.page:has(~ .crs-info_popup[open]) {
+body:has(.crs-info_popup[open]) {
   overflow: hidden;
 }
 .crs-info_popup::backdrop {
@@ -2658,14 +2663,14 @@ body:has(.crs-contact_popup[open]) {
         console.log("Index is not found");
         return;
       }
-      sessionStorage.setItem("info-popup-title", r.title.replace(/<[^>]*>?/gm, "")), this.popup && (this.updatePopupContent(r), (l = this.popup) == null || l.setAttribute("data-index", i.toString()), this.popup.showModal(), E("exp_hyp_1__popup_1__view", "Секція на екрані", "view", `Попап. Крок 1. ${r.title}`));
+      sessionStorage.setItem("info-popup-title", r.title.replace(/<[^>]*>?/gm, "")), this.popup && (this.updatePopupContent(r), (l = this.popup) == null || l.setAttribute("data-index", i.toString()), this.popup.showModal(), L("exp_hyp_1__popup_1__view", "Секція на екрані", "view", `Попап. Крок 1. ${r.title}`));
     }
     close() {
       if (this.popup) {
         const i = sessionStorage.getItem("info-popup-title");
         this.popup.close();
         const r = this.popup.querySelector(".crs-info_popup__wrap");
-        r && (r.innerHTML = ""), E("exp_hyp_1__popup_1__close", "Закриття попапу", "click", `Попап. Крок 1. ${i}`), sessionStorage.removeItem("info-popup-title");
+        r && (r.innerHTML = ""), L("exp_hyp_1__popup_1__close", "Закриття попапу", "click", `Попап. Крок 1. ${i}`), sessionStorage.removeItem("info-popup-title");
       }
     }
     updatePopupContent(i) {
@@ -2746,11 +2751,11 @@ body:has(.crs-contact_popup[open]) {
       </div>
       <div class="crs-info_popup__action-text">Дізнайтесь про професії які ваша дитина може вивчати вже зараз</div>`
       ), l = (h = this.popup) == null ? void 0 : h.querySelector(".crs-info_popup__wrap");
-      l && ((C = this.popup) == null || C.setAttribute("data-theme", i.theme), l.innerHTML = r, document.querySelectorAll(".crs-info_popup__action-button").forEach((v) => {
-        v == null || v.addEventListener("click", () => {
-          var y;
-          const m = (y = this.popup) == null ? void 0 : y.getAttribute("data-index");
-          m && (this.close(), E(
+      l && ((C = this.popup) == null || C.setAttribute("data-theme", i.theme), l.innerHTML = r, document.querySelectorAll(".crs-info_popup__action-button").forEach((x) => {
+        x == null || x.addEventListener("click", () => {
+          var v;
+          const m = (v = this.popup) == null ? void 0 : v.getAttribute("data-index");
+          m && (this.close(), L(
             "exp_hyp_1__popup_1__click",
             "Записатися на безоплатний урок",
             "click",
@@ -3107,14 +3112,14 @@ body:has(.crs-contact_popup[open]) {
     eventListeners() {
       document.querySelectorAll(".crs-proposition__block-action").forEach((l) => {
         l.addEventListener("click", (h) => {
-          var m, y;
-          const C = h.target, f = C.dataset.infoPopup, v = (y = (m = C.parentElement) == null ? void 0 : m.querySelector(".crs-proposition__block-text")) == null ? void 0 : y.textContent;
-          f && (this.infoPopup.open(+f), E("exp_hyp_1__4_cards__click", `Докладніше. ${v}`, "click", "Ряд з чотирьох кнопок"));
+          var m, v;
+          const C = h.target, f = C.dataset.infoPopup, x = (v = (m = C.parentElement) == null ? void 0 : m.querySelector(".crs-proposition__block-text")) == null ? void 0 : v.textContent;
+          f && (this.infoPopup.open(+f), L("exp_hyp_1__4_cards__click", `Докладніше. ${x}`, "click", "Ряд з чотирьох кнопок"));
         });
       });
       const r = document.querySelector(".crs-proposition__action");
       r == null || r.addEventListener("click", () => {
-        this.contactPopup.open(4), E(
+        this.contactPopup.open(4), L(
           "exp_hyp_1__new_section__click",
           "Записатися на безоплатний урок",
           "click",
