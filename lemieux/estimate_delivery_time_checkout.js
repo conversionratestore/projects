@@ -1,26 +1,26 @@
 (function() {
   "use strict";
-  const g = ({ name: i, dev: e }) => {
+  const h = ({ name: t, dev: e }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${e})`,
+      `%c EXP: ${t} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  function h(i) {
+  function g(t) {
     return new Promise((e) => {
-      if (document.querySelector(i))
-        return e(document.querySelector(i));
-      const t = new MutationObserver(() => {
-        document.querySelector(i) && (e(document.querySelector(i)), t.disconnect());
+      if (document.querySelector(t))
+        return e(document.querySelector(t));
+      const i = new MutationObserver(() => {
+        document.querySelector(t) && (e(document.querySelector(t)), i.disconnect());
       });
-      t.observe(document.documentElement, {
+      i.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
       });
     });
   }
-  g({
+  h({
     name: "Estimate Delivery time at checkout",
     dev: "OS"
   });
@@ -49,23 +49,24 @@
       this.checkout(), this.observePageChange();
     }
     async checkout() {
-      const e = await h('[name="shippingMethod"'), t = async () => {
-        var s;
-        const c = e.querySelectorAll("radio"), u = document.querySelector('select[name="country"]'), r = u.options[u.selectedIndex].value;
-        console.log("country:", r), c.length >= 1 && c.forEach((d, k) => {
-          const a = d.querySelector(".radio__body > div p"), o = d.querySelector(".radio__body > p i");
-          if (a && o) {
-            let n = l[a == null ? void 0 : a.textContent];
-            l[r] && (n = l[r]), Array.isArray(n) ? (o.innerText = n[k] || n[0], o.classList.add("ch")) : n && (o.innerText = n, o.classList.add("ch"));
+      const e = await g('[name="shippingMethod"'), i = async () => {
+        var o;
+        const c = e.querySelectorAll("radio"), u = document.querySelector('select[name="country"]'), n = u.options[u.selectedIndex].value;
+        console.log("country:", n), c.length >= 1 && c.forEach((d, k) => {
+          const a = d.querySelector(".radio__body > div p");
+          let r;
+          if (location.pathname === "/us/checkout" ? (console.log("US"), r = d.querySelector(".radio__body > p:last-of-type:not(.s2)")) : r = d.querySelector(".radio__body > p:not(.s2)"), a && r) {
+            let s = l[a == null ? void 0 : a.textContent];
+            l[n] && (s = l[n]), Array.isArray(s) ? (r.innerText = s[k] || s[0], r.classList.add("ch")) : s && (r.innerText = s, r.classList.add("ch"));
           }
-        }), (s = this.shippingObserver) == null || s.disconnect();
+        }), (o = this.shippingObserver) == null || o.disconnect();
       };
-      t(), this.shippingObserver = new MutationObserver((c) => {
+      i(), this.shippingObserver = new MutationObserver((c) => {
         c.forEach((u) => {
-          var r;
-          (r = this.shippingObserver) == null || r.disconnect(), setTimeout(() => {
-            var s;
-            t(), (s = this.shippingObserver) == null || s.observe(e, y);
+          var n;
+          (n = this.shippingObserver) == null || n.disconnect(), setTimeout(() => {
+            var o;
+            i(), (o = this.shippingObserver) == null || o.observe(e, y);
           }, 1e3);
         });
       });
@@ -73,8 +74,8 @@
       this.shippingObserver.observe(e, y);
     }
     observePageChange() {
-      this.pageObserver = new MutationObserver((t) => {
-        t.forEach((y) => {
+      this.pageObserver = new MutationObserver((i) => {
+        i.forEach((y) => {
           window.location.pathname !== this.lastPath && (this.device === "mobile" ? setTimeout(() => {
             this.checkout();
           }, 2800) : this.checkout(), this.lastPath = window.location.pathname);
