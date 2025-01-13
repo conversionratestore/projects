@@ -55,7 +55,7 @@
         console.log("country:", n), c.length >= 1 && c.forEach((d, k) => {
           const a = d.querySelector(".radio__body > div p");
           let r;
-          if (location.pathname === "/us/checkout" ? (console.log("US"), r = d.querySelector(".radio__body > p:last-of-type:not(.s2)")) : r = d.querySelector(".radio__body > p:not(.s2)"), a && r) {
+          if (location.pathname === "/us/checkout" ? (console.log("US"), r = d.querySelector(".radio__body > p:last-of-type:not(:has(i))")) : r = d.querySelector(".radio__body > p:not(.s2)"), a && r) {
             let s = l[a == null ? void 0 : a.textContent];
             l[n] && (s = l[n]), Array.isArray(s) ? (r.innerText = s[k] || s[0], r.classList.add("ch")) : s && (r.innerText = s, r.classList.add("ch"));
           }
