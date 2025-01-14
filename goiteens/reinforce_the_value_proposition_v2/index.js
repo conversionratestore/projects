@@ -47,7 +47,6 @@
       g.observe(C);
     });
   }, b = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition", x = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition_v2", V = `.crs-badges {
-
   margin-top: 60px;
 }
 
@@ -70,19 +69,21 @@
   padding-top: 63px;
 }
 
+.crs-badges__item :is(span, p, h3) {
+  font-family: 'IBMPlexMono', sans-serif !important;
+}
+
 .crs-badges__item span {
   font-size: 62px;
   line-height: 0.8;
-  font-family: "IBMPlexMono";
-
+  font-family: 'IBMPlexMono';
 }
 
 .crs-badges__item p {
   margin-top: 26px;
   font-size: 15px;
-  font-family: "IBMPlexMono";
-  font-weight: 600 !important;
 
+  font-weight: 600 !important;
 }
 .crs-badges__item:is(.item-1, .item-4) {
   padding-top: 0;
@@ -156,7 +157,6 @@
 }
 
 @media (max-width: 1280px) {
-
   .crs-badges {
     margin-top: 40px;
     margin-bottom: 13px;
