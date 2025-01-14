@@ -28,8 +28,8 @@
       return;
     }
     let g = new IntersectionObserver(
-      (C) => {
-        C.forEach((m) => {
+      (v) => {
+        v.forEach((m) => {
           m.isIntersecting && (g.unobserve(m.target), setTimeout(function() {
             _.observe(m.target);
           }, 1e3));
@@ -38,15 +38,15 @@
       {
         threshold: 0.2
       }
-    ), _ = new IntersectionObserver((C) => {
-      C.forEach((m) => {
+    ), _ = new IntersectionObserver((v) => {
+      v.forEach((m) => {
         m.isIntersecting ? (I(i || `view_element_${m.target.id}`, r || "Element visibility", "view", l || m.target.id), g.unobserve(m.target)) : g.observe(m.target), _.unobserve(m.target);
       });
     });
-    p.forEach((C) => {
-      g.observe(C);
+    p.forEach((v) => {
+      g.observe(v);
     });
-  }, b = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition", x = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition_v2", V = `.crs-badges {
+  }, C = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition", b = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition_v2", V = `.crs-badges {
   margin-top: 60px;
 }
 
@@ -317,7 +317,7 @@
             <li class="crs-badges__item item-4">
               <img
                 class="crs-badges__img-mob"
-                src="${b}/img/forbes_award_small.webp"
+                src="${C}/img/forbes_award_small.webp"
                 alt=""
                 loading="lazy"
                 width="138"
@@ -325,7 +325,7 @@
               />
               <img
                 class="crs-badges__img-desk"
-                src="${b}/img/forbes_award_large.webp"
+                src="${C}/img/forbes_award_large.webp"
                 alt=""
                 loading="lazy"
                 width="220"
@@ -457,7 +457,7 @@
   function X(f) {
     return f && f.__esModule && Object.prototype.hasOwnProperty.call(f, "default") ? f.default : f;
   }
-  var j = { exports: {} };
+  var U = { exports: {} };
   (function(f) {
     (function(i) {
       f.exports ? f.exports = i() : window.intlTelInput = i();
@@ -492,7 +492,7 @@
             writable: !0
           }) : u[o] = t, u;
         }
-        function C(u, o) {
+        function v(u, o) {
           if (!(u instanceof o))
             throw new TypeError("Cannot call a class as a function");
         }
@@ -589,14 +589,14 @@
         }, D = ["800", "822", "833", "844", "855", "866", "877", "880", "881", "882", "883", "884", "885", "886", "887", "888", "889"], F = function(o, t) {
           for (var n = Object.keys(o), e = 0; e < n.length; e++)
             t(n[e], o[n[e]]);
-        }, B = function(o) {
+        }, z = function(o) {
           F(window.intlTelInputGlobals.instances, function(t) {
             window.intlTelInputGlobals.instances[t][o]();
           });
         }, _t = /* @__PURE__ */ function() {
           function u(o, t) {
             var n = this;
-            C(this, u), this.id = T++, this.telInput = o, this.activeItem = null, this.highlightedItem = null;
+            v(this, u), this.id = T++, this.telInput = o, this.activeItem = null, this.highlightedItem = null;
             var e = t || {};
             this.options = {}, F(A, function(s, a) {
               n.options[s] = e.hasOwnProperty(s) ? e[s] : a;
@@ -682,8 +682,8 @@
                 if (s.areaCodes)
                   for (var a = this.countryCodes[s.dialCode][0], d = 0; d < s.areaCodes.length; d++) {
                     for (var c = s.areaCodes[d], h = 1; h < c.length; h++) {
-                      var v = s.dialCode + c.substr(0, h);
-                      this._addCountryCode(a, v), this._addCountryCode(s.iso2, v);
+                      var x = s.dialCode + c.substr(0, h);
+                      this._addCountryCode(a, x), this._addCountryCode(s.iso2, x);
                     }
                     this._addCountryCode(s.iso2, s.dialCode + c);
                   }
@@ -710,16 +710,16 @@
             key: "_generateMarkup",
             value: function() {
               this.telInput.classList.add("iti__tel-input"), !this.telInput.hasAttribute("autocomplete") && !(this.telInput.form && this.telInput.form.hasAttribute("autocomplete")) && this.telInput.setAttribute("autocomplete", "off");
-              var t = this.options, n = t.allowDropdown, e = t.separateDialCode, s = t.showFlags, a = t.customContainer, d = t.hiddenInput, c = t.dropdownContainer, h = t.fixDropdownWidth, v = t.useFullscreenPopup, L = t.countrySearch, S = "iti";
+              var t = this.options, n = t.allowDropdown, e = t.separateDialCode, s = t.showFlags, a = t.customContainer, d = t.hiddenInput, c = t.dropdownContainer, h = t.fixDropdownWidth, x = t.useFullscreenPopup, L = t.countrySearch, S = "iti";
               n && (S += " iti--allow-dropdown"), e && (S += " iti--separate-dial-code"), s && (S += " iti--show-flags"), a && (S += " ".concat(a));
               var E = this._createEl("div", {
                 class: S
               });
               this.telInput.parentNode.insertBefore(E, this.telInput);
-              var z = n || s || e;
-              if (z && (this.flagsContainer = this._createEl("div", {
+              var B = n || s || e;
+              if (B && (this.flagsContainer = this._createEl("div", {
                 class: "iti__flag-container"
-              }, E)), E.appendChild(this.telInput), z && (this.selectedFlag = this._createEl("div", g({
+              }, E)), E.appendChild(this.telInput), B && (this.selectedFlag = this._createEl("div", g({
                 class: "iti__selected-flag"
               }, n && {
                 role: "combobox",
@@ -752,17 +752,17 @@
                   "aria-hidden": "true"
                 }, this.countryList)), this._appendListItems(this.countries, "iti__standard"), c) {
                   var $ = "iti iti--container";
-                  v && ($ += " iti--fullscreen-popup"), L && ($ += " iti--country-search"), this.dropdown = this._createEl("div", {
+                  x && ($ += " iti--fullscreen-popup"), L && ($ += " iti--country-search"), this.dropdown = this._createEl("div", {
                     class: $
                   }), this.dropdown.appendChild(this.dropdownContent);
                 } else
                   this.flagsContainer.appendChild(this.dropdownContent);
               }
               if (d) {
-                var N = d, U = this.telInput.getAttribute("name");
-                if (U) {
-                  var q = U.lastIndexOf("[");
-                  q !== -1 && (N = "".concat(U.substr(0, q), "[").concat(N, "]"));
+                var N = d, j = this.telInput.getAttribute("name");
+                if (j) {
+                  var q = j.lastIndexOf("[");
+                  q !== -1 && (N = "".concat(j.substr(0, q), "[").concat(N, "]"));
                 }
                 this.hiddenInput = this._createEl("input", {
                   type: "hidden",
@@ -791,12 +791,12 @@
           }, {
             key: "_setInitialState",
             value: function() {
-              var t = this.telInput.getAttribute("value"), n = this.telInput.value, e = t && t.charAt(0) === "+" && (!n || n.charAt(0) !== "+"), s = e ? t : n, a = this._getDialCode(s), d = this._isRegionlessNanp(s), c = this.options, h = c.initialCountry, v = c.autoInsertDialCode;
+              var t = this.telInput.getAttribute("value"), n = this.telInput.value, e = t && t.charAt(0) === "+" && (!n || n.charAt(0) !== "+"), s = e ? t : n, a = this._getDialCode(s), d = this._isRegionlessNanp(s), c = this.options, h = c.initialCountry, x = c.autoInsertDialCode;
               if (a && !d)
                 this._updateFlagFromNumber(s);
               else if (h !== "auto") {
                 var L = h && this._getCountryData(h, !1, !0);
-                L ? this._setFlag(h.toLowerCase()) : a && d ? this._setFlag("us") : (this.defaultCountry = this.preferredCountries.length ? this.preferredCountries[0].iso2 : this.countries[0].iso2, s || this._setFlag(this.defaultCountry)), !s && v && (this.telInput.value = "+".concat(this.selectedCountryData.dialCode));
+                L ? this._setFlag(h.toLowerCase()) : a && d ? this._setFlag("us") : (this.defaultCountry = this.preferredCountries.length ? this.preferredCountries[0].iso2 : this.countries[0].iso2, s || this._setFlag(this.defaultCountry)), !s && x && (this.telInput.value = "+".concat(this.selectedCountryData.dialCode));
               }
               s && this._updateValFromNumber(s);
             }
@@ -848,10 +848,10 @@
             value: function() {
               window.intlTelInputGlobals.autoCountry ? this.handleAutoCountry() : window.intlTelInputGlobals.startedLoadingAutoCountry || (window.intlTelInputGlobals.startedLoadingAutoCountry = !0, typeof this.options.geoIpLookup == "function" && this.options.geoIpLookup(function(t) {
                 window.intlTelInputGlobals.autoCountry = t.toLowerCase(), setTimeout(function() {
-                  return B("handleAutoCountry");
+                  return z("handleAutoCountry");
                 });
               }, function() {
-                return B("rejectAutoCountryPromise");
+                return z("rejectAutoCountryPromise");
               }));
             }
           }, {
@@ -914,8 +914,8 @@
               if (this.options.dropdownContainer && this.options.dropdownContainer.appendChild(this.dropdown), !this.options.useFullscreenPopup) {
                 var n = this.telInput.getBoundingClientRect(), e = window.pageYOffset || document.documentElement.scrollTop, s = n.top + e, a = this.dropdownContent.offsetHeight, d = s + this.telInput.offsetHeight + a < e + window.innerHeight, c = s - a > e, h = !this.options.countrySearch && !d && c;
                 if (this._toggleClass(this.dropdownContent, "iti__dropdown-content--dropup", h), this.options.dropdownContainer) {
-                  var v = h ? 0 : this.telInput.offsetHeight;
-                  this.dropdown.style.top = "".concat(s + v, "px"), this.dropdown.style.left = "".concat(n.left + document.body.scrollLeft, "px"), this._handleWindowScroll = function() {
+                  var x = h ? 0 : this.telInput.offsetHeight;
+                  this.dropdown.style.top = "".concat(s + x, "px"), this.dropdown.style.left = "".concat(n.left + document.body.scrollLeft, "px"), this._handleWindowScroll = function() {
                     return t._closeDropdown();
                   }, window.addEventListener("scroll", this._handleWindowScroll);
                 }
@@ -1018,11 +1018,11 @@
               e && a && e.charAt(0) !== "+" && (e.charAt(0) !== "1" && (e = "1".concat(e)), e = "+".concat(e)), this.options.separateDialCode && s && e.charAt(0) !== "+" && (e = "+".concat(s).concat(e));
               var d = this._getDialCode(e, !0), c = this._getNumeric(e), h = null;
               if (d) {
-                var v = this.countryCodes[this._getNumeric(d)], L = v.indexOf(this.selectedCountryData.iso2) !== -1 && c.length <= d.length - 1, S = s === "1" && this._isRegionlessNanp(c);
+                var x = this.countryCodes[this._getNumeric(d)], L = x.indexOf(this.selectedCountryData.iso2) !== -1 && c.length <= d.length - 1, S = s === "1" && this._isRegionlessNanp(c);
                 if (!S && !L) {
-                  for (var E = 0; E < v.length; E++)
-                    if (v[E]) {
-                      h = v[E];
+                  for (var E = 0; E < x.length; E++)
+                    if (x[E]) {
+                      h = x[E];
                       break;
                     }
                 }
@@ -1067,8 +1067,8 @@
                 this.isRTL ? this.telInput.style.paddingRight = "".concat(h + 6, "px") : this.telInput.style.paddingLeft = "".concat(h + 6, "px");
               }
               if (this._updatePlaceholder(), e) {
-                var v = this.activeItem;
-                if (v && (v.classList.remove("iti__active"), v.setAttribute("aria-selected", "false")), t) {
+                var x = this.activeItem;
+                if (x && (x.classList.remove("iti__active"), x.setAttribute("aria-selected", "false")), t) {
                   var L = this.countryList.querySelector("#iti-".concat(this.id, "__item-").concat(t, "-preferred")) || this.countryList.querySelector("#iti-".concat(this.id, "__item-").concat(t));
                   L.setAttribute("aria-selected", "true"), L.classList.add("iti__active"), this.activeItem = L;
                 }
@@ -1120,13 +1120,13 @@
           }, {
             key: "_scrollTo",
             value: function(t, n) {
-              var e = this.dropdownContent, s = window.pageYOffset || document.documentElement.scrollTop, a = e.offsetHeight, d = e.getBoundingClientRect().top + s, c = d + a, h = t.offsetHeight, v = t.getBoundingClientRect().top + s, L = v + h, S = v - d + e.scrollTop, E = a / 2 - h / 2;
-              if (v < d)
+              var e = this.dropdownContent, s = window.pageYOffset || document.documentElement.scrollTop, a = e.offsetHeight, d = e.getBoundingClientRect().top + s, c = d + a, h = t.offsetHeight, x = t.getBoundingClientRect().top + s, L = x + h, S = x - d + e.scrollTop, E = a / 2 - h / 2;
+              if (x < d)
                 n && (S -= E), e.scrollTop = S;
               else if (L > c) {
                 n && (S += E);
-                var z = a - h;
-                e.scrollTop = S - z;
+                var B = a - h;
+                e.scrollTop = S - B;
               }
             }
           }, {
@@ -1277,9 +1277,9 @@
         var O = function(o, t, n) {
           var e = document.createElement("script");
           e.onload = function() {
-            B("handleUtils"), t && t();
+            z("handleUtils"), t && t();
           }, e.onerror = function() {
-            B("rejectUtilsScriptPromise"), n && n();
+            z("rejectUtilsScriptPromise"), n && n();
           }, e.className = "iti-load-utils", e.async = !0, e.src = o, document.body.appendChild(e);
         };
         return k.loadUtils = function(u) {
@@ -1297,8 +1297,8 @@
         };
       }();
     });
-  })(j);
-  var tt = j.exports, nt = tt;
+  })(U);
+  var tt = U.exports, nt = tt;
   const et = /* @__PURE__ */ X(nt);
   class it {
     constructor({ container: i, position: r }) {
@@ -1347,7 +1347,7 @@
             const { add: y, remove: w } = this.errorToInput(r);
             p.isValidNumber() || y("Номер телефону невірний!"), p.isValidNumber() && (r.dataset.value = p.getNumber(), w());
           }
-        }, _ = document.querySelector("#popup_input_name"), C = (y) => {
+        }, _ = document.querySelector("#popup_input_name"), v = (y) => {
           const w = y.target.value;
           if (w) {
             const { add: M, remove: k } = this.errorToInput(_);
@@ -1357,7 +1357,7 @@
         r.addEventListener("input", g), r.addEventListener("change", () => {
           const y = sessionStorage.getItem("contact-popup-title"), w = sessionStorage.getItem("contact-popup-index");
           I(`exp_hyp_3__popup_${w}__2__phone`, "Поле для вводу. Номер телефону", "input", `Попап. Крок 2. ${y}`);
-        }), _ == null || _.addEventListener("input", C), _.addEventListener("change", () => {
+        }), _ == null || _.addEventListener("input", v), _.addEventListener("change", () => {
           const y = sessionStorage.getItem("contact-popup-title"), w = sessionStorage.getItem("contact-popup-index");
           I(`exp_hyp_3__popup_${w}__2__name`, "Поле для вводу. Ваше імʼя", "input", `Попап. Крок 2. ${y}`);
         });
@@ -1392,9 +1392,9 @@
         const l = i.querySelector("#popup_input_name"), p = i.querySelector("#popup_input_phone");
         if (!l || !p)
           return;
-        const g = l == null ? void 0 : l.value, _ = p == null ? void 0 : p.dataset.value, { add: C, remove: m } = this.errorToInput(l), { add: y, remove: w } = this.errorToInput(p);
+        const g = l == null ? void 0 : l.value, _ = p == null ? void 0 : p.dataset.value, { add: v, remove: m } = this.errorToInput(l), { add: y, remove: w } = this.errorToInput(p);
         let M = !0;
-        if ((!g || g.trim() === "") && (C("Ім’я обов’язкове"), M = !1), (!_ || _.trim() === "") && (p == null || p.classList.add("is-invalid"), y("Номер телефону невірний!"), M = !1), !M)
+        if ((!g || g.trim() === "") && (v("Ім’я обов’язкове"), M = !1), (!_ || _.trim() === "") && (p == null || p.classList.add("is-invalid"), y("Номер телефону невірний!"), M = !1), !M)
           return;
         const k = i.querySelector('button[type="submit"]');
         k == null || k.setAttribute("disabled", "true");
@@ -1917,84 +1917,84 @@ body:has(.crs-contact_popup[open]) {
   const st = [
     {
       id: 1,
-      icon: `${x}/img/icons/draw.svg`,
+      icon: `${b}/img/icons/draw.svg`,
       text: "Малювання на планшеті",
       slide: 5,
       name: "paint"
     },
     {
       id: 2,
-      icon: `${x}/img/icons/logic.svg`,
+      icon: `${b}/img/icons/logic.svg`,
       text: "Логіка",
       slide: 1,
       name: "logic"
     },
     {
       id: 3,
-      icon: `${x}/img/icons/minecraft.svg`,
+      icon: `${b}/img/icons/minecraft.svg`,
       text: "Minecraft",
       slide: 4,
       name: "minecraft"
     },
     {
       id: 4,
-      icon: `${x}/img/icons/math.svg`,
+      icon: `${b}/img/icons/math.svg`,
       text: "Математика",
       slide: 3,
       name: "math"
     },
     {
       id: 5,
-      icon: `${x}/img/icons/roblox.svg`,
+      icon: `${b}/img/icons/roblox.svg`,
       text: "Roblox",
       slide: 6,
       name: "roblox"
     },
     {
       id: 6,
-      icon: `${x}/img/icons/frontend.svg`,
+      icon: `${b}/img/icons/frontend.svg`,
       text: "Front-end",
       slide: 7,
       name: "frontend"
     },
     {
       id: 7,
-      icon: `${x}/img/icons/pyton.svg`,
+      icon: `${b}/img/icons/pyton.svg`,
       text: "Python",
       slide: 10,
       name: "python"
     },
     {
       id: 8,
-      icon: `${x}/img/icons/lider.svg`,
+      icon: `${b}/img/icons/lider.svg`,
       text: "Майстерня лідерства",
       slide: 11,
       name: "leadership"
     },
     {
       id: 9,
-      icon: `${x}/img/icons/gamedev.svg`,
+      icon: `${b}/img/icons/gamedev.svg`,
       text: "GameDev",
       slide: 9,
       name: "gamedev"
     },
     {
       id: 10,
-      icon: `${x}/img/icons/nmt.svg`,
+      icon: `${b}/img/icons/nmt.svg`,
       text: "Підготовка до НМТ",
       slide: 12,
       name: "nmt"
     },
     {
       id: 11,
-      icon: `${x}/img/icons/design.svg`,
+      icon: `${b}/img/icons/design.svg`,
       text: "Digital-design",
       slide: 8,
       name: "design"
     },
     {
       id: 12,
-      icon: `${x}/img/icons/scratch.svg`,
+      icon: `${b}/img/icons/scratch.svg`,
       text: "Scratch",
       slide: 2,
       name: "scratch"
@@ -2239,7 +2239,7 @@ body:has(.crs-contact_popup[open]) {
         /* HTML */
         ` <div class="crs-header">
       <div class="crs-header__img">
-        <img src="${x}/img/children.webp" alt="" width="645" height="605" loading="lazy" />
+        <img src="${b}/img/children.webp" alt="" width="645" height="605" loading="lazy" />
       </div>
       <div class="crs-header__free-course">
         <h1>
@@ -2300,8 +2300,8 @@ body:has(.crs-contact_popup[open]) {
         l.addEventListener("click", (p) => {
           const g = p.target, _ = parseInt(g.dataset.slide || "0");
           r.scrollIntoView({ behavior: "smooth" });
-          const C = _ - 1, m = g.dataset.name;
-          I(`exp_hyp_3__sec_2__${m}`, `${m}`, "click", "Інтерактивні захоплюючі курси з індивідувальним підходом"), this.device === "desktop" && C === 11 && (r == null || r.slick.slickGoTo(10)), r == null || r.slick.slickGoTo(C);
+          const v = _ - 1, m = g.dataset.name;
+          I(`exp_hyp_3__sec_2__${m}`, `${m}`, "click", "Інтерактивні захоплюючі курси з індивідувальним підходом"), this.device === "desktop" && v === 11 && (r == null || r.slick.slickGoTo(10)), r == null || r.slick.slickGoTo(v);
         });
       });
     }
@@ -2313,7 +2313,7 @@ body:has(.crs-contact_popup[open]) {
   const lt = {
     1: {
       id: 1,
-      topIcon: `${x}/img/green-top-image.webp`,
+      topIcon: `${b}/img/green-top-image.webp`,
       title: (
         /* HTML */
         "Підготуйте дитину до високооплачуваної професії в IT "
@@ -2321,17 +2321,17 @@ body:has(.crs-contact_popup[open]) {
       description: "Хочете дати своїй дитині інструменти для успіху в стрімко змінюваному світі? Ми допоможемо їй здобути необхідні навички для високооплачуваної кар’єри в IT!",
       list: [
         {
-          icon: `${b}/img/info_popup/1/content_icons/icon-1.webp`,
+          icon: `${C}/img/info_popup/1/content_icons/icon-1.webp`,
           title: "Допоможемо обрати правильний напрямок",
           description: "Ваша дитина познайомиться із сучасними IT-професіями та здобуде основні технічні знання, що відкриють перед нею безмежні можливості в технологічному світі."
         },
         {
-          icon: `${b}/img/info_popup/1/content_icons/icon-2.webp`,
+          icon: `${C}/img/info_popup/1/content_icons/icon-2.webp`,
           title: "Практичне навчання через реальні проєкти",
           description: "Створюючи ігри, застосунки чи вебсайти, дитина набуде практичних навичок, які стануть основою для її професійного розвитку."
         },
         {
-          icon: `${b}/img/info_popup/1/content_icons/icon-3.webp`,
+          icon: `${C}/img/info_popup/1/content_icons/icon-3.webp`,
           title: "Перші кроки до кар'єри",
           description: "Ваша дитина розпочне шлях від початківця до junior-спеціаліста в обраному напрямку, створюючи власне портфоліо проектів і впевнено рухаючись до успішної кар'єри в IT."
         }
@@ -2344,14 +2344,14 @@ body:has(.crs-contact_popup[open]) {
         ),
         authorName: "Микита",
         authorYear: "12 років",
-        authorPhoto: `${b}/img/info_popup/1/ava.webp`,
-        quoteIcon: `${b}/img/info_popup/1/quote.webp`
+        authorPhoto: `${C}/img/info_popup/1/ava.webp`,
+        quoteIcon: `${C}/img/info_popup/1/quote.webp`
       },
       theme: "green"
     },
     3: {
       id: 3,
-      topIcon: `${b}/img/info_popup/2/top-image.webp`,
+      topIcon: `${C}/img/info_popup/2/top-image.webp`,
       title: (
         /* HTML */
         "Навчайся, спілкуйся, знаходь друзів!"
@@ -2359,17 +2359,17 @@ body:has(.crs-contact_popup[open]) {
       description: "У GoITeens діти знаходять однодумців, розвивають комунікацію та будують дружні стосунки через спільні проєкти й активне спілкування в спільноті.",
       list: [
         {
-          icon: `${b}/img/info_popup/2/content_icons/icon-1.webp`,
+          icon: `${C}/img/info_popup/2/content_icons/icon-1.webp`,
           title: "Розвиток через спілкування",
           description: "Наші учні працюють у командах над спільними проєктами, допомагають одне одному та діляться досвідом. Досвідчені викладачі створюють комфортну атмосферу для кожної дитини."
         },
         {
-          icon: `${b}/img/info_popup/2/content_icons/icon-2.webp`,
+          icon: `${C}/img/info_popup/2/content_icons/icon-2.webp`,
           title: "Освітні марафони: навчання з однодумцями",
           description: "Наші учні працюють у командах над спільними проєктами, допомагають одне одному та діляться досвідом. Досвідчені викладачі створюють комфортну атмосферу для кожної дитини."
         },
         {
-          icon: `${b}/img/info_popup/2/content_icons/icon-3.webp`,
+          icon: `${C}/img/info_popup/2/content_icons/icon-3.webp`,
           title: "Ком'юніті студентів: простір для веселощів",
           description: "GoITeens Club — це місце, де підлітки спілкуються, допомагають із завданнями, обговорюють аніме, грають в ігри та весело проводять час у дружній атмосфері."
         }
@@ -2381,15 +2381,15 @@ body:has(.crs-contact_popup[open]) {
         ),
         authorName: "Катерина Кириленко",
         authorYear: "Мама Микити, 12 років, обрав Frontend",
-        authorPhoto: `${b}/img/info_popup/2/ava.webp`,
-        quoteIcon: `${b}/img/info_popup/2/quote.webp`
+        authorPhoto: `${C}/img/info_popup/2/ava.webp`,
+        quoteIcon: `${C}/img/info_popup/2/quote.webp`
       },
       theme: "pink",
       note: "GoITeens — там, де освіта стає спілкуванням і новими знайомствами!"
     },
     2: {
       id: 2,
-      topIcon: `${x}/img/blue-top-image.webp`,
+      topIcon: `${b}/img/blue-top-image.webp`,
       title: (
         /* HTML */
         "Спрямуйте захоплення гаджетами у розвиток"
@@ -2397,17 +2397,17 @@ body:has(.crs-contact_popup[open]) {
       description: "Дитина захоплюється іграми чи гаджетами? Направте її інтереси в корисне русло!",
       list: [
         {
-          icon: `${b}/img/info_popup/3/content_icons/icon-1.webp`,
+          icon: `${C}/img/info_popup/3/content_icons/icon-1.webp`,
           title: "Замість TikTok — час, проведений із користю",
           description: "Дитина навчиться створювати анімації в Scratch та малювати на планшеті, будувати світи в Minecraft, або створювати власні ігри і 3D персонажів в Roblox. Навички, якими ви будете пишатись!"
         },
         {
-          icon: `${b}/img/info_popup/3/content_icons/icon-2.webp`,
+          icon: `${C}/img/info_popup/3/content_icons/icon-2.webp`,
           title: "Навчання через гру",
           description: "Уроки в Roblox перетворять нудну таблицю множення на цікаву гру. Дитина зможе застосовувати знання у реальних проєктах, розвиваючи креативність та застосування математики в житті."
         },
         {
-          icon: `${b}/img/info_popup/3/content_icons/icon-3.webp`,
+          icon: `${C}/img/info_popup/3/content_icons/icon-3.webp`,
           title: "Від геймера до розробника ігор",
           description: "Дитина створить три власні ігри, перетворюючи хоббі на навички розробника, які дуже цінуються в світі IT. Наші випускники заробляють на своїх проєктах або отримують пропозиції від IT-компаній."
         }
@@ -2419,14 +2419,14 @@ body:has(.crs-contact_popup[open]) {
         ),
         authorName: "Серафім Карпань",
         authorYear: "9 років",
-        authorPhoto: `${b}/img/info_popup/3/ava.webp`,
-        quoteIcon: `${b}/img/info_popup/3/quote.webp`
+        authorPhoto: `${C}/img/info_popup/3/ava.webp`,
+        quoteIcon: `${C}/img/info_popup/3/quote.webp`
       },
       theme: "blue"
     },
     4: {
       id: 4,
-      topIcon: `${x}/img/lavander-top-image.webp`,
+      topIcon: `${b}/img/lavander-top-image.webp`,
       title: (
         /* HTML */
         "Розвивайте м’які навички, логічне та креативне мислення"
@@ -2434,17 +2434,17 @@ body:has(.crs-contact_popup[open]) {
       description: "Наші програми допоможуть вашій дитині розвинути важливі м’які навички, логічне мислення та креативність, що зробить її успішною не тільки в школі, а й у житті.",
       list: [
         {
-          icon: `${b}/img/info_popup/4/content_icons/icon-1.webp`,
+          icon: `${C}/img/info_popup/4/content_icons/icon-1.webp`,
           title: "Сприяйте розумовому розвитку вашої дитини",
           description: "Зробіть математику захоплюючою і цікавою завдяки інтерактивному практичному підходу. А блочне програмування і спеціальні техніки допоможуть розвинути у вашій дитині логіку, критичне мислення, концентрацію та пам’ять."
         },
         {
-          icon: `${b}/img/info_popup/4/content_icons/icon-2.webp`,
+          icon: `${C}/img/info_popup/4/content_icons/icon-2.webp`,
           title: "Креативність, що надихає на навчання",
           description: "Малюючи на планшеті чи створюючи ігри в Scratch, ваша дитина розкриє свій творчий потенціал. Миттєвий результат і радість від творчості природно мотивують її до навчання та експериментів."
         },
         {
-          icon: `${b}/img/info_popup/4/content_icons/icon-3.webp`,
+          icon: `${C}/img/info_popup/4/content_icons/icon-3.webp`,
           title: "М'які навички для успіху в сучасному світі",
           description: "Курс “Майстерня лідерства” допоможе вашій дитині підвищити самооцінку, навчитися керувати емоціями, організовувати свій час і ефективно взаємодіяти з іншими. Це стане міцною основою для майбутніх досягнень!"
         }
@@ -2456,8 +2456,8 @@ body:has(.crs-contact_popup[open]) {
         ),
         authorName: "Ніна Кравчук",
         authorYear: "Мама Серафіма, 9 років, обрав Scratch",
-        authorPhoto: `${b}/img/info_popup/4/ava.webp`,
-        quoteIcon: `${b}/img/info_popup/4/quote.webp`
+        authorPhoto: `${C}/img/info_popup/4/ava.webp`,
+        quoteIcon: `${C}/img/info_popup/4/quote.webp`
       },
       theme: "lavender"
     }
@@ -3099,8 +3099,8 @@ body:has(.crs-info_popup[open]) {
       </div>
       <div class="crs-info_popup__action-text">Дізнайтесь про професії які ваша дитина може вивчати вже зараз</div>`
       ), l = (p = this.popup) == null ? void 0 : p.querySelector(".crs-info_popup__wrap");
-      l && ((g = this.popup) == null || g.setAttribute("data-theme", i.theme), l.innerHTML = r, document.querySelectorAll(".crs-info_popup__action-button").forEach((C) => {
-        C == null || C.addEventListener("click", () => {
+      l && ((g = this.popup) == null || g.setAttribute("data-theme", i.theme), l.innerHTML = r, document.querySelectorAll(".crs-info_popup__action-button").forEach((v) => {
+        v == null || v.addEventListener("click", () => {
           var y;
           const m = (y = this.popup) == null ? void 0 : y.getAttribute("data-index");
           m && (this.close(), I(
@@ -3185,6 +3185,10 @@ body:has(.crs-info_popup[open]) {
   height: 155px;
   width: auto;
   object-fit: contain;
+}
+
+.crs_proposition__block-img--mob {
+  display: none;
 }
 @media (max-width: 1439px) and (min-width: 1280px) {
   .crs-proposition__block {
@@ -3288,6 +3292,7 @@ body:has(.crs-info_popup[open]) {
   }
 
   .crs-proposition__block {
+    justify-content: center;
     gap: 16px;
     border: none;
     width: 100%;
@@ -3301,6 +3306,27 @@ body:has(.crs-info_popup[open]) {
     font-size: 15px;
     font-weight: 600;
     line-height: 22px;
+  }
+  .crs_proposition__block-img {
+    display: none;
+  }
+
+  .crs_proposition__block-img--mob {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: block;
+    width: auto;
+    height: 158px;
+    object-position: center right;
+  }
+
+  :is([data-block='2'], [data-block='3']) .crs_proposition__block-img--mob {
+    height: 138px;
+  }
+  .crs-proposition__block-action {
+    margin-top: 0;
   }
 }
 `;
@@ -3334,10 +3360,18 @@ body:has(.crs-info_popup[open]) {
             <button type="button" class="crs-proposition__block-action" data-info-popup="1">Докладніше</button>
             <img
               class="crs_proposition__block-img"
-              src="${x}/img/child-1.webp"
+              src="${b}/img/child-1.webp"
               alt=""
               width="165"
               height="165"
+              loading="lazy"
+            />
+            <img
+              class="crs_proposition__block-img--mob"
+              src="${b}/img/child-1-mob.webp"
+              alt=""
+              width="230"
+              height="152"
               loading="lazy"
             />
           </div>
@@ -3347,10 +3381,18 @@ body:has(.crs-info_popup[open]) {
             <button type="button" class="crs-proposition__block-action" data-info-popup="2">Докладніше</button>
             <img
               class="crs_proposition__block-img"
-              src="${x}/img/child-2.webp"
+              src="${b}/img/child-2.webp"
               alt=""
               width="165"
               height="165"
+              loading="lazy"
+            />
+            <img
+              class="crs_proposition__block-img--mob"
+              src="${b}/img/child-2-mob.webp"
+              alt=""
+              width="230"
+              height="152"
               loading="lazy"
             />
           </div>
@@ -3360,10 +3402,18 @@ body:has(.crs-info_popup[open]) {
             <button type="button" class="crs-proposition__block-action" data-info-popup="3">Докладніше</button>
             <img
               class="crs_proposition__block-img"
-              src="${x}/img/child-3.webp"
+              src="${b}/img/child-3.webp"
               alt=""
               width="165"
               height="165"
+              loading="lazy"
+            />
+            <img
+              class="crs_proposition__block-img--mob"
+              src="${b}/img/child-3-mob.webp"
+              alt=""
+              width="230"
+              height="152"
               loading="lazy"
             />
           </div>
@@ -3372,10 +3422,18 @@ body:has(.crs-info_popup[open]) {
             <button type="button" class="crs-proposition__block-action" data-info-popup="4">Докладніше</button>
             <img
               class="crs_proposition__block-img"
-              src="${x}/img/child-4.webp"
+              src="${b}/img/child-4.webp"
               alt=""
               width="165"
               height="165"
+              loading="lazy"
+            />
+            <img
+              class="crs_proposition__block-img--mob"
+              src="${b}/img/child-4-mob.webp"
+              alt=""
+              width="230"
+              height="152"
               loading="lazy"
             />
           </div>
@@ -3393,8 +3451,8 @@ body:has(.crs-info_popup[open]) {
     eventListeners() {
       document.querySelectorAll(".crs-proposition__block-action").forEach((r) => {
         r.addEventListener("click", (l) => {
-          var C, m, y;
-          const p = l.target, g = p.dataset.infoPopup, _ = (y = (m = (C = p.parentElement) == null ? void 0 : C.querySelector(".crs-proposition__block-text")) == null ? void 0 : m.textContent) == null ? void 0 : y.replace(/<[^>]*>/g, "");
+          var v, m, y;
+          const p = l.target, g = p.dataset.infoPopup, _ = (y = (m = (v = p.parentElement) == null ? void 0 : v.querySelector(".crs-proposition__block-text")) == null ? void 0 : m.textContent) == null ? void 0 : y.replace(/<[^>]*>/g, "");
           g && (this.infoPopup.open(+g), I(
             "exp_hyp_3__sec_4__cta",
             `Докладніше. ${_}`,
