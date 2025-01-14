@@ -1,12 +1,20 @@
 (function() {
   "use strict";
-  const d = ({ name: e, dev: t }) => {
+  const h = (e, t, i, n = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: e,
+      event_desc: t,
+      event_type: i,
+      event_loc: n
+    }), console.log(`Event: ${e} | ${t} | ${i} | ${n}`);
+  }, g = ({ name: e, dev: t }) => {
     console.log(
       `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  function g(e) {
+  function v(e) {
     return new Promise((t) => {
       if (document.querySelector(e))
         return t(document.querySelector(e));
@@ -20,15 +28,15 @@
       });
     });
   }
-  d({
+  g({
     name: "Estimate Delivery time at checkout",
     dev: "OS"
-  }), function(e, t, i, a, n, r) {
+  }), function(e, t, i, n, r, s) {
     e.hj = e.hj || function() {
       (e.hj.q = e.hj.q || []).push(arguments);
-    }, e._hjSettings = { hjid: 2667925, hjsv: 6 }, n = t.getElementsByTagName("head")[0], r = t.createElement("script"), r.async = !0, r.src = i + e._hjSettings.hjid + a + e._hjSettings.hjsv, n && n.appendChild(r);
+    }, e._hjSettings = { hjid: 2667925, hjsv: 6 }, r = t.getElementsByTagName("head")[0], s = t.createElement("script"), s.async = !0, s.src = i + e._hjSettings.hjid + n + e._hjSettings.hjsv, r && r.appendChild(s);
   }(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "plp_grid");
-  const y = {
+  const d = {
     "Worldwide Express Delivery": "Delivery is currently taking 3 - 5 working days",
     "Worldwide Express Shipping": "Delivery is currently taking 3 - 6 working days",
     "EU Delivery": "Delivery is currently taking 2 - 4 working days",
@@ -45,41 +53,43 @@
     MX: "Delivery is currently taking 3 - 6 working days",
     IE: "Delivery is currently taking 2 - 4 working days"
   };
-  class v {
+  class p {
     constructor() {
       this.lastPath = window.location.pathname, this.pageObserver = null, this.shippingObserver = null, this.device = window.innerWidth > 1100 ? "desktop" : "mobile", this.init();
     }
     async init() {
-      this.checkout(), this.observePageChange();
+      this.checkout(), this.observePageChange(), h("exp_checkout", "init", "success", "Init event");
     }
     async checkout() {
-      const t = await g('[name="shippingMethod"'), i = async () => {
+      if (!location.pathname.includes("/checkout"))
+        return;
+      const t = await v('[name="shippingMethod"'), i = async () => {
         var l;
-        const n = t.querySelectorAll("radio"), r = document.querySelector('select[name="country"]'), o = r.options[r.selectedIndex].value;
-        console.log("country:", o), n.length >= 1 && n.forEach((h, p) => {
-          const u = h.querySelector(".radio__body > div p");
-          let s;
-          if (location.pathname === "/us/checkout" ? (console.log("US"), s = h.querySelector(".radio__body > p:last-of-type:not(:has(i))")) : s = h.querySelector(".radio__body > p:not(.s2)"), u && s) {
-            let c = y[u == null ? void 0 : u.textContent];
-            y[o] && (c = y[o]), Array.isArray(c) ? (s.innerText = c[p] || c[0], s.classList.add("ch")) : c && (s.innerText = c, s.classList.add("ch"));
+        const r = t.querySelectorAll("radio"), s = document.querySelector('select[name="country"]'), a = s.options[s.selectedIndex].value;
+        console.log("country:", a), r.length >= 1 && r.forEach((y, w) => {
+          const u = y.querySelector(".radio__body > div p");
+          let o;
+          if (location.pathname === "/us/checkout" ? (console.log("US"), o = y.querySelector(".radio__body > p:last-of-type:not(:has(i))")) : o = y.querySelector(".radio__body > p:not(.s2)"), u && o) {
+            let c = d[u == null ? void 0 : u.textContent];
+            d[a] && (c = d[a]), Array.isArray(c) ? (o.innerText = c[w] || c[0], o.classList.add("ch")) : c && (o.innerText = c, o.classList.add("ch"));
           }
         }), (l = this.shippingObserver) == null || l.disconnect();
       };
-      i(), this.shippingObserver = new MutationObserver((n) => {
-        n.forEach((r) => {
-          var o;
-          (o = this.shippingObserver) == null || o.disconnect(), setTimeout(() => {
+      i(), this.shippingObserver = new MutationObserver((r) => {
+        r.forEach((s) => {
+          var a;
+          (a = this.shippingObserver) == null || a.disconnect(), setTimeout(() => {
             var l;
-            i(), (l = this.shippingObserver) == null || l.observe(t, a);
+            i(), (l = this.shippingObserver) == null || l.observe(t, n);
           }, 1e3);
         });
       });
-      const a = { childList: !0, subtree: !0 };
-      this.shippingObserver.observe(t, a);
+      const n = { childList: !0, subtree: !0 };
+      this.shippingObserver.observe(t, n);
     }
     observePageChange() {
       this.pageObserver = new MutationObserver((i) => {
-        i.forEach((a) => {
+        i.forEach((n) => {
           window.location.pathname !== this.lastPath && (this.device === "mobile" ? setTimeout(() => {
             this.checkout();
           }, 2800) : this.checkout(), this.lastPath = window.location.pathname);
@@ -89,5 +99,5 @@
       this.pageObserver.observe(document.body, t);
     }
   }
-  new v();
+  new p();
 })();
