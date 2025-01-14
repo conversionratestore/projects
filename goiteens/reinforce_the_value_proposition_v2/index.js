@@ -73,11 +73,16 @@
 .crs-badges__item span {
   font-size: 62px;
   line-height: 0.8;
+  font-family: "IBMPlexMono";
+
 }
 
 .crs-badges__item p {
   margin-top: 26px;
   font-size: 15px;
+  font-family: "IBMPlexMono";
+  font-weight: 600 !important;
+
 }
 .crs-badges__item:is(.item-1, .item-4) {
   padding-top: 0;
@@ -92,32 +97,33 @@
 }
 
 .crs-badges__item.item-1 h3 {
-  font-size: 15px;
-  line-height: 25px;
-  font-weight: 600;
-  color: #5331b2;
+  font-size: 15px !important;
+  line-height: 25px !important;
+  font-weight: 600 !important;
+  color: #5331b2 !important;
 }
 
 .crs-badges__item.item-1 p {
-  margin-top: 5px;
-  font-size: 14px;
-  line-height: 19px;
-  font-weight: 600;
-  color: #5331b2;
+  margin-top: 5px !important;
+  font-size: 14px !important;
+  line-height: 19px !important;
+  font-weight: 600 !important;
+  color: #5331b2 !important;
 }
 .crs-badges__item.item-2 {
-  background-image: url(https://courses-all.goiteens.com/v-gl-v2/assets/images/about/item-2.svg);
-  background-repeat: no-repeat;
-  background-size: 220px 220px;
-  background-position: center;
+  background-image: url(https://courses-all.goiteens.com/v-gl-v2/assets/images/about/item-2.svg) !important;
+  background-repeat: no-repeat !important;
+  background-size: 220px 220px !important;
+  background-position: center !important;
 }
 
 .crs-badges__item.item-2 span {
-  color: #1d4766;
+  color: #1d4766 !important;
 }
 
 .crs-badges__item.item-2 p {
-  color: #225f8a;
+  color: #225f8a !important;
+  font-weight: 600 !important;
 }
 
 .crs-badges__item.item-3 {
@@ -128,17 +134,17 @@
 }
 
 .crs-badges__item.item-3 span {
-  color: #997500;
+  color: #997500 !important;
 }
 
 .crs-badges__item.item-3 p {
-  color: #b28800;
+  color: #b28800 !important;
 }
 
 .crs-badges__item.item-4 img {
-  width: 220px;
-  height: auto;
-  object-fit: cover;
+  width: 220px !important;
+  height: auto !important;
+  object-fit: cover !important;
 }
 
 .crs-badges__img-desk {
@@ -182,56 +188,56 @@
     height: 66px;
   }
   .crs-badges__item.item-1 h3 {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 12px !important;
+    line-height: 18px !important;
   }
 
   .crs-badges__item.item-1 p {
-    margin-top: 5px;
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 14px;
+    margin-top: 5px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 14px !important;
   }
 
   .crs-badges__item.item-2 {
     order: 3;
-    background-size: 140px 140px;
+    background-size: 140px 140px !important;
   }
 
   .crs-badges__item.item-2 span {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 32px !important;
+    line-height: 40px !important;
   }
 
   .crs-badges__item.item-2 p {
-    margin-top: 0;
-    font-size: 12px;
-    line-height: 20px;
+    margin-top: 0 !important;
+    font-size: 12px !important;
+    line-height: 20px !important;
   }
 
   .crs-badges__item.item-3 {
     order: 4;
-    background-size: 158px 158px;
+    background-size: 158px 158px !important;
   }
 
   .crs-badges__item.item-3 span {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 32px !important;
+    line-height: 40px !important;
   }
 
   .crs-badges__item.item-3 p {
-    margin-top: 0;
+    margin-top: 0 !important;
 
-    font-size: 12px;
-    line-height: 20px;
+    font-size: 12px !important;
+    line-height: 20px !important;
   }
 
   .crs-badges__item.item-4 {
     order: 2;
   }
   .crs-badges__item.item-4 img {
-    width: 138px;
-    height: 152px;
+    width: 138px !important;
+    height: 152px !important;
   }
   .crs-badges__img-desk {
     display: none;
@@ -583,7 +589,7 @@
         }, D = ["800", "822", "833", "844", "855", "866", "877", "880", "881", "882", "883", "884", "885", "886", "887", "888", "889"], F = function(o, t) {
           for (var n = Object.keys(o), e = 0; e < n.length; e++)
             t(n[e], o[n[e]]);
-        }, z = function(o) {
+        }, B = function(o) {
           F(window.intlTelInputGlobals.instances, function(t) {
             window.intlTelInputGlobals.instances[t][o]();
           });
@@ -710,10 +716,10 @@
                 class: S
               });
               this.telInput.parentNode.insertBefore(E, this.telInput);
-              var B = n || s || e;
-              if (B && (this.flagsContainer = this._createEl("div", {
+              var z = n || s || e;
+              if (z && (this.flagsContainer = this._createEl("div", {
                 class: "iti__flag-container"
-              }, E)), E.appendChild(this.telInput), B && (this.selectedFlag = this._createEl("div", g({
+              }, E)), E.appendChild(this.telInput), z && (this.selectedFlag = this._createEl("div", g({
                 class: "iti__selected-flag"
               }, n && {
                 role: "combobox",
@@ -842,10 +848,10 @@
             value: function() {
               window.intlTelInputGlobals.autoCountry ? this.handleAutoCountry() : window.intlTelInputGlobals.startedLoadingAutoCountry || (window.intlTelInputGlobals.startedLoadingAutoCountry = !0, typeof this.options.geoIpLookup == "function" && this.options.geoIpLookup(function(t) {
                 window.intlTelInputGlobals.autoCountry = t.toLowerCase(), setTimeout(function() {
-                  return z("handleAutoCountry");
+                  return B("handleAutoCountry");
                 });
               }, function() {
-                return z("rejectAutoCountryPromise");
+                return B("rejectAutoCountryPromise");
               }));
             }
           }, {
@@ -1119,8 +1125,8 @@
                 n && (S -= E), e.scrollTop = S;
               else if (L > c) {
                 n && (S += E);
-                var B = a - h;
-                e.scrollTop = S - B;
+                var z = a - h;
+                e.scrollTop = S - z;
               }
             }
           }, {
@@ -1271,9 +1277,9 @@
         var O = function(o, t, n) {
           var e = document.createElement("script");
           e.onload = function() {
-            z("handleUtils"), t && t();
+            B("handleUtils"), t && t();
           }, e.onerror = function() {
-            z("rejectUtilsScriptPromise"), n && n();
+            B("rejectUtilsScriptPromise"), n && n();
           }, e.className = "iti-load-utils", e.async = !0, e.src = o, document.body.appendChild(e);
         };
         return k.loadUtils = function(u) {
@@ -1791,6 +1797,7 @@ body:has(.crs-contact_popup[open]) {
   .crs-contact_popup__branding div {
     font-size: 14px;
     line-height: 20px;
+    font-weight: 400;
   }
   .crs-contact_popup__content {
     grid-row: 4 / 5;
@@ -2186,7 +2193,7 @@ body:has(.crs-contact_popup[open]) {
 
   .crs-header h1 {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 28.8px;
   }
 
@@ -2200,9 +2207,9 @@ body:has(.crs-contact_popup[open]) {
   .crs-header__description {
     margin-top: 4px;
     font-size: 18px;
-    font-style: normal;
     font-weight: 500;
     line-height: 24px;
+    text-align: center;
   }
 
   .crs-interaction__wrap {
@@ -2237,7 +2244,7 @@ body:has(.crs-contact_popup[open]) {
       <div class="crs-header__free-course">
         <h1>
           Дізнайтесь, яку <br />
-          <span>IT-професію</span> може отримати ваша дитина <br class="mobile" />
+          <span>IT-професію</span> може отримати ваша дитина <br class="mobile-sm" />
           та як
           <span>перетворити любов до гаджетів на розвиток</span>
         </h1>
@@ -2448,7 +2455,7 @@ body:has(.crs-contact_popup[open]) {
           "<p>Мій син починав зі Scratch в GoITeens. Якщо бути відвертою, то йому дуже сподобалася викладачка… Звернула увагу на викладачів, бо на всім дітям в пубертатному періоді можна довести необхідність таких занять.</p> <p>Хороший викладач — гарна додаткова мотивація. Коли дитина з задоволенням слухає і чує, це 80% успіху.</p>"
         ),
         authorName: "Ніна Кравчук",
-        authorYear: "Мама Серафіма, 9 років",
+        authorYear: "Мама Серафіма, 9 років, обрав Scratch",
         authorPhoto: `${b}/img/info_popup/4/ava.webp`,
         quoteIcon: `${b}/img/info_popup/4/quote.webp`
       },
@@ -2931,6 +2938,8 @@ body:has(.crs-info_popup[open]) {
     text-align: center;
     font-size: 16px;
     line-height: 24px;
+    font-weight: 400;
+    padding-inline: 20px
   }
 
   .crs-info_popup__action-sticky,
@@ -3139,7 +3148,6 @@ body:has(.crs-info_popup[open]) {
   z-index: 1;
 }
 
-
 .crs-proposition__block {
   --block-bg: #e7f8ed;
   --block-action-bg: #009000;
@@ -3227,7 +3235,7 @@ body:has(.crs-info_popup[open]) {
   color: #434343;
   font-family: 'IBMPlexMono';
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 28px;
   z-index: 2;
 }
@@ -3288,7 +3296,7 @@ body:has(.crs-info_popup[open]) {
   }
 
   .crs-proposition__block-text {
-    color: #434343;
+    color: #474747;
     font-family: 'IBMPlexMono';
     font-size: 15px;
     font-weight: 600;
@@ -3401,7 +3409,13 @@ body:has(.crs-info_popup[open]) {
       i.innerHTML = dt, document.head.appendChild(i);
     }
   }
-  const ht = `@media (min-width: 1280px) {
+  const ht = `@media (min-width: 376px) {
+  br.mobile-sm {
+    display: none;
+  }
+}
+
+@media (min-width: 1280px) {
   br.mobile {
     display: none;
   }
