@@ -1,17 +1,17 @@
 (function() {
   "use strict";
-  const h = ({ name: t, dev: e }) => {
+  const d = ({ name: e, dev: t }) => {
     console.log(
-      `%c EXP: ${t} (DEV: ${e})`,
+      `%c EXP: ${e} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  function g(t) {
-    return new Promise((e) => {
-      if (document.querySelector(t))
-        return e(document.querySelector(t));
+  function g(e) {
+    return new Promise((t) => {
+      if (document.querySelector(e))
+        return t(document.querySelector(e));
       const i = new MutationObserver(() => {
-        document.querySelector(t) && (e(document.querySelector(t)), i.disconnect());
+        document.querySelector(e) && (t(document.querySelector(e)), i.disconnect());
       });
       i.observe(document.documentElement, {
         childList: !0,
@@ -20,11 +20,15 @@
       });
     });
   }
-  h({
+  d({
     name: "Estimate Delivery time at checkout",
     dev: "OS"
-  });
-  const l = {
+  }), function(e, t, i, a, n, r) {
+    e.hj = e.hj || function() {
+      (e.hj.q = e.hj.q || []).push(arguments);
+    }, e._hjSettings = { hjid: 2667925, hjsv: 6 }, n = t.getElementsByTagName("head")[0], r = t.createElement("script"), r.async = !0, r.src = i + e._hjSettings.hjid + a + e._hjSettings.hjsv, n && n.appendChild(r);
+  }(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "plp_grid");
+  const y = {
     "Worldwide Express Delivery": "Delivery is currently taking 3 - 5 working days",
     "Worldwide Express Shipping": "Delivery is currently taking 3 - 6 working days",
     "EU Delivery": "Delivery is currently taking 2 - 4 working days",
@@ -49,40 +53,40 @@
       this.checkout(), this.observePageChange();
     }
     async checkout() {
-      const e = await g('[name="shippingMethod"'), i = async () => {
-        var o;
-        const c = e.querySelectorAll("radio"), u = document.querySelector('select[name="country"]'), n = u.options[u.selectedIndex].value;
-        console.log("country:", n), c.length >= 1 && c.forEach((d, k) => {
-          const a = d.querySelector(".radio__body > div p");
-          let r;
-          if (location.pathname === "/us/checkout" ? (console.log("US"), r = d.querySelector(".radio__body > p:last-of-type:not(:has(i))")) : r = d.querySelector(".radio__body > p:not(.s2)"), a && r) {
-            let s = l[a == null ? void 0 : a.textContent];
-            l[n] && (s = l[n]), Array.isArray(s) ? (r.innerText = s[k] || s[0], r.classList.add("ch")) : s && (r.innerText = s, r.classList.add("ch"));
+      const t = await g('[name="shippingMethod"'), i = async () => {
+        var l;
+        const n = t.querySelectorAll("radio"), r = document.querySelector('select[name="country"]'), o = r.options[r.selectedIndex].value;
+        console.log("country:", o), n.length >= 1 && n.forEach((h, p) => {
+          const u = h.querySelector(".radio__body > div p");
+          let s;
+          if (location.pathname === "/us/checkout" ? (console.log("US"), s = h.querySelector(".radio__body > p:last-of-type:not(:has(i))")) : s = h.querySelector(".radio__body > p:not(.s2)"), u && s) {
+            let c = y[u == null ? void 0 : u.textContent];
+            y[o] && (c = y[o]), Array.isArray(c) ? (s.innerText = c[p] || c[0], s.classList.add("ch")) : c && (s.innerText = c, s.classList.add("ch"));
           }
-        }), (o = this.shippingObserver) == null || o.disconnect();
+        }), (l = this.shippingObserver) == null || l.disconnect();
       };
-      i(), this.shippingObserver = new MutationObserver((c) => {
-        c.forEach((u) => {
-          var n;
-          (n = this.shippingObserver) == null || n.disconnect(), setTimeout(() => {
-            var o;
-            i(), (o = this.shippingObserver) == null || o.observe(e, y);
+      i(), this.shippingObserver = new MutationObserver((n) => {
+        n.forEach((r) => {
+          var o;
+          (o = this.shippingObserver) == null || o.disconnect(), setTimeout(() => {
+            var l;
+            i(), (l = this.shippingObserver) == null || l.observe(t, a);
           }, 1e3);
         });
       });
-      const y = { childList: !0, subtree: !0 };
-      this.shippingObserver.observe(e, y);
+      const a = { childList: !0, subtree: !0 };
+      this.shippingObserver.observe(t, a);
     }
     observePageChange() {
       this.pageObserver = new MutationObserver((i) => {
-        i.forEach((y) => {
+        i.forEach((a) => {
           window.location.pathname !== this.lastPath && (this.device === "mobile" ? setTimeout(() => {
             this.checkout();
           }, 2800) : this.checkout(), this.lastPath = window.location.pathname);
         });
       });
-      const e = { childList: !0, subtree: !0 };
-      this.pageObserver.observe(document.body, e);
+      const t = { childList: !0, subtree: !0 };
+      this.pageObserver.observe(document.body, t);
     }
   }
   new v();
