@@ -28,8 +28,8 @@
       return;
     }
     let g = new IntersectionObserver(
-      (v) => {
-        v.forEach((m) => {
+      (x) => {
+        x.forEach((m) => {
           m.isIntersecting && (g.unobserve(m.target), setTimeout(function() {
             _.observe(m.target);
           }, 1e3));
@@ -38,13 +38,13 @@
       {
         threshold: 0.2
       }
-    ), _ = new IntersectionObserver((v) => {
-      v.forEach((m) => {
+    ), _ = new IntersectionObserver((x) => {
+      x.forEach((m) => {
         m.isIntersecting ? (I(i || `view_element_${m.target.id}`, r || "Element visibility", "view", l || m.target.id), g.unobserve(m.target)) : g.observe(m.target), _.unobserve(m.target);
       });
     });
-    p.forEach((v) => {
-      g.observe(v);
+    p.forEach((x) => {
+      g.observe(x);
     });
   }, C = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition", b = "https://conversionratestore.github.io/projects/goiteens/reinforce_the_value_proposition_v2", V = `.crs-badges {
   margin-top: 60px;
@@ -492,7 +492,7 @@
             writable: !0
           }) : u[o] = t, u;
         }
-        function v(u, o) {
+        function x(u, o) {
           if (!(u instanceof o))
             throw new TypeError("Cannot call a class as a function");
         }
@@ -502,7 +502,7 @@
             n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(u, w(n.key), n);
           }
         }
-        function y(u, o, t) {
+        function v(u, o, t) {
           return o && m(u.prototype, o), t && m(u, t), Object.defineProperty(u, "prototype", {
             writable: !1
           }), u;
@@ -596,13 +596,13 @@
         }, _t = /* @__PURE__ */ function() {
           function u(o, t) {
             var n = this;
-            v(this, u), this.id = T++, this.telInput = o, this.activeItem = null, this.highlightedItem = null;
+            x(this, u), this.id = T++, this.telInput = o, this.activeItem = null, this.highlightedItem = null;
             var e = t || {};
             this.options = {}, F(A, function(s, a) {
               n.options[s] = e.hasOwnProperty(s) ? e[s] : a;
             }), this.hadInitialPlaceholder = !!o.getAttribute("placeholder");
           }
-          return y(u, [{
+          return v(u, [{
             key: "_init",
             value: function() {
               var t = this;
@@ -682,8 +682,8 @@
                 if (s.areaCodes)
                   for (var a = this.countryCodes[s.dialCode][0], d = 0; d < s.areaCodes.length; d++) {
                     for (var c = s.areaCodes[d], h = 1; h < c.length; h++) {
-                      var x = s.dialCode + c.substr(0, h);
-                      this._addCountryCode(a, x), this._addCountryCode(s.iso2, x);
+                      var y = s.dialCode + c.substr(0, h);
+                      this._addCountryCode(a, y), this._addCountryCode(s.iso2, y);
                     }
                     this._addCountryCode(s.iso2, s.dialCode + c);
                   }
@@ -710,7 +710,7 @@
             key: "_generateMarkup",
             value: function() {
               this.telInput.classList.add("iti__tel-input"), !this.telInput.hasAttribute("autocomplete") && !(this.telInput.form && this.telInput.form.hasAttribute("autocomplete")) && this.telInput.setAttribute("autocomplete", "off");
-              var t = this.options, n = t.allowDropdown, e = t.separateDialCode, s = t.showFlags, a = t.customContainer, d = t.hiddenInput, c = t.dropdownContainer, h = t.fixDropdownWidth, x = t.useFullscreenPopup, L = t.countrySearch, S = "iti";
+              var t = this.options, n = t.allowDropdown, e = t.separateDialCode, s = t.showFlags, a = t.customContainer, d = t.hiddenInput, c = t.dropdownContainer, h = t.fixDropdownWidth, y = t.useFullscreenPopup, L = t.countrySearch, S = "iti";
               n && (S += " iti--allow-dropdown"), e && (S += " iti--separate-dial-code"), s && (S += " iti--show-flags"), a && (S += " ".concat(a));
               var E = this._createEl("div", {
                 class: S
@@ -752,7 +752,7 @@
                   "aria-hidden": "true"
                 }, this.countryList)), this._appendListItems(this.countries, "iti__standard"), c) {
                   var $ = "iti iti--container";
-                  x && ($ += " iti--fullscreen-popup"), L && ($ += " iti--country-search"), this.dropdown = this._createEl("div", {
+                  y && ($ += " iti--fullscreen-popup"), L && ($ += " iti--country-search"), this.dropdown = this._createEl("div", {
                     class: $
                   }), this.dropdown.appendChild(this.dropdownContent);
                 } else
@@ -791,12 +791,12 @@
           }, {
             key: "_setInitialState",
             value: function() {
-              var t = this.telInput.getAttribute("value"), n = this.telInput.value, e = t && t.charAt(0) === "+" && (!n || n.charAt(0) !== "+"), s = e ? t : n, a = this._getDialCode(s), d = this._isRegionlessNanp(s), c = this.options, h = c.initialCountry, x = c.autoInsertDialCode;
+              var t = this.telInput.getAttribute("value"), n = this.telInput.value, e = t && t.charAt(0) === "+" && (!n || n.charAt(0) !== "+"), s = e ? t : n, a = this._getDialCode(s), d = this._isRegionlessNanp(s), c = this.options, h = c.initialCountry, y = c.autoInsertDialCode;
               if (a && !d)
                 this._updateFlagFromNumber(s);
               else if (h !== "auto") {
                 var L = h && this._getCountryData(h, !1, !0);
-                L ? this._setFlag(h.toLowerCase()) : a && d ? this._setFlag("us") : (this.defaultCountry = this.preferredCountries.length ? this.preferredCountries[0].iso2 : this.countries[0].iso2, s || this._setFlag(this.defaultCountry)), !s && x && (this.telInput.value = "+".concat(this.selectedCountryData.dialCode));
+                L ? this._setFlag(h.toLowerCase()) : a && d ? this._setFlag("us") : (this.defaultCountry = this.preferredCountries.length ? this.preferredCountries[0].iso2 : this.countries[0].iso2, s || this._setFlag(this.defaultCountry)), !s && y && (this.telInput.value = "+".concat(this.selectedCountryData.dialCode));
               }
               s && this._updateValFromNumber(s);
             }
@@ -914,8 +914,8 @@
               if (this.options.dropdownContainer && this.options.dropdownContainer.appendChild(this.dropdown), !this.options.useFullscreenPopup) {
                 var n = this.telInput.getBoundingClientRect(), e = window.pageYOffset || document.documentElement.scrollTop, s = n.top + e, a = this.dropdownContent.offsetHeight, d = s + this.telInput.offsetHeight + a < e + window.innerHeight, c = s - a > e, h = !this.options.countrySearch && !d && c;
                 if (this._toggleClass(this.dropdownContent, "iti__dropdown-content--dropup", h), this.options.dropdownContainer) {
-                  var x = h ? 0 : this.telInput.offsetHeight;
-                  this.dropdown.style.top = "".concat(s + x, "px"), this.dropdown.style.left = "".concat(n.left + document.body.scrollLeft, "px"), this._handleWindowScroll = function() {
+                  var y = h ? 0 : this.telInput.offsetHeight;
+                  this.dropdown.style.top = "".concat(s + y, "px"), this.dropdown.style.left = "".concat(n.left + document.body.scrollLeft, "px"), this._handleWindowScroll = function() {
                     return t._closeDropdown();
                   }, window.addEventListener("scroll", this._handleWindowScroll);
                 }
@@ -1018,11 +1018,11 @@
               e && a && e.charAt(0) !== "+" && (e.charAt(0) !== "1" && (e = "1".concat(e)), e = "+".concat(e)), this.options.separateDialCode && s && e.charAt(0) !== "+" && (e = "+".concat(s).concat(e));
               var d = this._getDialCode(e, !0), c = this._getNumeric(e), h = null;
               if (d) {
-                var x = this.countryCodes[this._getNumeric(d)], L = x.indexOf(this.selectedCountryData.iso2) !== -1 && c.length <= d.length - 1, S = s === "1" && this._isRegionlessNanp(c);
+                var y = this.countryCodes[this._getNumeric(d)], L = y.indexOf(this.selectedCountryData.iso2) !== -1 && c.length <= d.length - 1, S = s === "1" && this._isRegionlessNanp(c);
                 if (!S && !L) {
-                  for (var E = 0; E < x.length; E++)
-                    if (x[E]) {
-                      h = x[E];
+                  for (var E = 0; E < y.length; E++)
+                    if (y[E]) {
+                      h = y[E];
                       break;
                     }
                 }
@@ -1067,8 +1067,8 @@
                 this.isRTL ? this.telInput.style.paddingRight = "".concat(h + 6, "px") : this.telInput.style.paddingLeft = "".concat(h + 6, "px");
               }
               if (this._updatePlaceholder(), e) {
-                var x = this.activeItem;
-                if (x && (x.classList.remove("iti__active"), x.setAttribute("aria-selected", "false")), t) {
+                var y = this.activeItem;
+                if (y && (y.classList.remove("iti__active"), y.setAttribute("aria-selected", "false")), t) {
                   var L = this.countryList.querySelector("#iti-".concat(this.id, "__item-").concat(t, "-preferred")) || this.countryList.querySelector("#iti-".concat(this.id, "__item-").concat(t));
                   L.setAttribute("aria-selected", "true"), L.classList.add("iti__active"), this.activeItem = L;
                 }
@@ -1120,8 +1120,8 @@
           }, {
             key: "_scrollTo",
             value: function(t, n) {
-              var e = this.dropdownContent, s = window.pageYOffset || document.documentElement.scrollTop, a = e.offsetHeight, d = e.getBoundingClientRect().top + s, c = d + a, h = t.offsetHeight, x = t.getBoundingClientRect().top + s, L = x + h, S = x - d + e.scrollTop, E = a / 2 - h / 2;
-              if (x < d)
+              var e = this.dropdownContent, s = window.pageYOffset || document.documentElement.scrollTop, a = e.offsetHeight, d = e.getBoundingClientRect().top + s, c = d + a, h = t.offsetHeight, y = t.getBoundingClientRect().top + s, L = y + h, S = y - d + e.scrollTop, E = a / 2 - h / 2;
+              if (y < d)
                 n && (S -= E), e.scrollTop = S;
               else if (L > c) {
                 n && (S += E);
@@ -1344,27 +1344,27 @@
           useFullscreenPopup: !1
         }), g = () => {
           if (r.value) {
-            const { add: y, remove: w } = this.errorToInput(r);
-            p.isValidNumber() || y("Номер телефону невірний!"), p.isValidNumber() && (r.dataset.value = p.getNumber(), w());
+            const { add: v, remove: w } = this.errorToInput(r);
+            p.isValidNumber() || v("Номер телефону невірний!"), p.isValidNumber() && (r.dataset.value = p.getNumber(), w());
           }
-        }, _ = document.querySelector("#popup_input_name"), v = (y) => {
-          const w = y.target.value;
+        }, _ = document.querySelector("#popup_input_name"), x = (v) => {
+          const w = v.target.value;
           if (w) {
             const { add: M, remove: k } = this.errorToInput(_);
             k(), /\d/.test(w) ? M("Ім’я невірне") : w.trim() === "" ? M("Ім’я обов’язкове") : w.length < 2 ? M("Поле повинно містити мінімум 2 символи") : k();
           }
         };
         r.addEventListener("input", g), r.addEventListener("change", () => {
-          const y = sessionStorage.getItem("contact-popup-title"), w = sessionStorage.getItem("contact-popup-index");
-          I(`exp_hyp_3__popup_${w}__2__phone`, "Поле для вводу. Номер телефону", "input", `Попап. Крок 2. ${y}`);
-        }), _ == null || _.addEventListener("input", v), _.addEventListener("change", () => {
-          const y = sessionStorage.getItem("contact-popup-title"), w = sessionStorage.getItem("contact-popup-index");
-          I(`exp_hyp_3__popup_${w}__2__name`, "Поле для вводу. Ваше імʼя", "input", `Попап. Крок 2. ${y}`);
+          const v = sessionStorage.getItem("contact-popup-title"), w = sessionStorage.getItem("contact-popup-index");
+          I(`exp_hyp_3__popup_${w}__2__phone`, "Поле для вводу. Номер телефону", "input", `Попап. Крок 2. ${v}`);
+        }), _ == null || _.addEventListener("input", x), _.addEventListener("change", () => {
+          const v = sessionStorage.getItem("contact-popup-title"), w = sessionStorage.getItem("contact-popup-index");
+          I(`exp_hyp_3__popup_${w}__2__name`, "Поле для вводу. Ваше імʼя", "input", `Попап. Крок 2. ${v}`);
         });
         const m = document.querySelector('.crs-popup-form button[type="submit"]');
         m && m.addEventListener("click", () => {
-          const y = sessionStorage.getItem("contact-popup-title"), w = sessionStorage.getItem("contact-popup-index");
-          I(`exp_hyp_3__popup_${w}__2__book`, "Записатись", "click", `Попап. Крок 2. ${y}`);
+          const v = sessionStorage.getItem("contact-popup-title"), w = sessionStorage.getItem("contact-popup-index");
+          I(`exp_hyp_3__popup_${w}__2__book`, "Записатись", "click", `Попап. Крок 2. ${v}`);
         });
       }
     }
@@ -1392,9 +1392,9 @@
         const l = i.querySelector("#popup_input_name"), p = i.querySelector("#popup_input_phone");
         if (!l || !p)
           return;
-        const g = l == null ? void 0 : l.value, _ = p == null ? void 0 : p.dataset.value, { add: v, remove: m } = this.errorToInput(l), { add: y, remove: w } = this.errorToInput(p);
+        const g = l == null ? void 0 : l.value, _ = p == null ? void 0 : p.dataset.value, { add: x, remove: m } = this.errorToInput(l), { add: v, remove: w } = this.errorToInput(p);
         let M = !0;
-        if ((!g || g.trim() === "") && (v("Ім’я обов’язкове"), M = !1), (!_ || _.trim() === "") && (p == null || p.classList.add("is-invalid"), y("Номер телефону невірний!"), M = !1), !M)
+        if ((!g || g.trim() === "") && (x("Ім’я обов’язкове"), M = !1), (!_ || _.trim() === "") && (p == null || p.classList.add("is-invalid"), v("Номер телефону невірний!"), M = !1), !M)
           return;
         const k = i.querySelector('button[type="submit"]');
         k == null || k.setAttribute("disabled", "true");
@@ -2298,10 +2298,11 @@ body:has(.crs-contact_popup[open]) {
       const i = document.querySelectorAll(".crs-interaction__item"), r = document.querySelector(".slider-1-js");
       !i || !r || i.forEach((l) => {
         l.addEventListener("click", (p) => {
-          const g = p.target, _ = parseInt(g.dataset.slide || "0");
-          r.scrollIntoView({ behavior: "smooth" });
-          const v = _ - 1, m = g.dataset.name;
-          I(`exp_hyp_3__sec_2__${m}`, `${m}`, "click", "Інтерактивні захоплюючі курси з індивідувальним підходом"), this.device === "desktop" && v === 11 && (r == null || r.slick.slickGoTo(10)), r == null || r.slick.slickGoTo(v);
+          var v;
+          const g = p.currentTarget, _ = parseInt(g.dataset.slide || "0");
+          (v = r.closest(".container")) == null || v.scrollIntoView({ behavior: "smooth" });
+          const x = _ - 1, m = g.dataset.name;
+          I(`exp_hyp_3__sec_2__${m}`, `${m}`, "click", "Інтерактивні захоплюючі курси з індивідувальним підходом"), this.device === "desktop" && x === 11 && (r == null || r.slick.slickGoTo(10)), r == null || r.slick.slickGoTo(x);
         });
       });
     }
@@ -2939,7 +2940,7 @@ body:has(.crs-info_popup[open]) {
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    padding-inline: 20px
+    padding-inline: 20px;
   }
 
   .crs-info_popup__action-sticky,
@@ -3099,10 +3100,10 @@ body:has(.crs-info_popup[open]) {
       </div>
       <div class="crs-info_popup__action-text">Дізнайтесь про професії які ваша дитина може вивчати вже зараз</div>`
       ), l = (p = this.popup) == null ? void 0 : p.querySelector(".crs-info_popup__wrap");
-      l && ((g = this.popup) == null || g.setAttribute("data-theme", i.theme), l.innerHTML = r, document.querySelectorAll(".crs-info_popup__action-button").forEach((v) => {
-        v == null || v.addEventListener("click", () => {
-          var y;
-          const m = (y = this.popup) == null ? void 0 : y.getAttribute("data-index");
+      l && ((g = this.popup) == null || g.setAttribute("data-theme", i.theme), l.innerHTML = r, document.querySelectorAll(".crs-info_popup__action-button").forEach((x) => {
+        x == null || x.addEventListener("click", () => {
+          var v;
+          const m = (v = this.popup) == null ? void 0 : v.getAttribute("data-index");
           m && (this.close(), I(
             `exp_hyp_3__popup_${m}__1__cta_1`,
             "Записатися на безоплатний урок",
@@ -3451,8 +3452,8 @@ body:has(.crs-info_popup[open]) {
     eventListeners() {
       document.querySelectorAll(".crs-proposition__block-action").forEach((r) => {
         r.addEventListener("click", (l) => {
-          var v, m, y;
-          const p = l.target, g = p.dataset.infoPopup, _ = (y = (m = (v = p.parentElement) == null ? void 0 : v.querySelector(".crs-proposition__block-text")) == null ? void 0 : m.textContent) == null ? void 0 : y.replace(/<[^>]*>/g, "");
+          var x, m, v;
+          const p = l.target, g = p.dataset.infoPopup, _ = (v = (m = (x = p.parentElement) == null ? void 0 : x.querySelector(".crs-proposition__block-text")) == null ? void 0 : m.textContent) == null ? void 0 : v.replace(/<[^>]*>/g, "");
           g && (this.infoPopup.open(+g), I(
             "exp_hyp_3__sec_4__cta",
             `Докладніше. ${_}`,
