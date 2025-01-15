@@ -1750,17 +1750,19 @@ body:has(.crs-contact_popup[open]) {
   }
 
   .crs-form__wrap {
-    margin-top: 141px;
+    margin-top: 24px;
     width: 100%;
     padding: 16px;
   }
 
   .crs-form__wrap::after {
+    display: none;
     top: -117px;
     width: 290px;
     height: 173px;
   }
   .crs-form__title {
+    display: none;
     font-size: 22px;
     font-weight: 600;
     line-height: 28px;
@@ -2472,6 +2474,7 @@ body:has(.crs-contact_popup[open]) {
   border: none;
   border-radius: 40px;
   background: var(--popup-bg);
+  overflow-y: scroll
 }
 
 .crs-info_popup[data-theme='green'] {
@@ -2782,6 +2785,7 @@ body:has(.crs-info_popup[open]) {
     background-size: 265px 563px;
     background-position: top -24px right -81px;
     overflow-x: clip;
+    
   }
 
   .crs-info_popup__close {
