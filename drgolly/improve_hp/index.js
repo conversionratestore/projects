@@ -299,6 +299,7 @@
   }
 
   #courses .tabs__nav {
+    margin-bottom: 16px;
     justify-content: flex-start;
     width: 100%;
     padding-inline: 12px;
