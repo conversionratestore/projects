@@ -1,11 +1,26 @@
 (function() {
   "use strict";
-  const g = ({ name: l, dev: n }) => {
+  const g = ({ name: i, dev: n }) => {
     console.log(
-      `%c EXP: ${l} (DEV: ${n})`,
+      `%c EXP: ${i} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, h = "https://conversionratestore.github.io/projects/drgolly/improve_hp", _ = `#courses > div > div > div:nth-child(3) {
+  };
+  function _(i) {
+    return new Promise((n) => {
+      if (document.querySelector(i))
+        return n(document.querySelector(i));
+      const e = new MutationObserver(() => {
+        document.querySelector(i) && (n(document.querySelector(i)), e.disconnect());
+      });
+      e.observe(document.documentElement, {
+        childList: !0,
+        subtree: !0,
+        characterData: !0
+      });
+    });
+  }
+  const h = "https://conversionratestore.github.io/projects/drgolly/improve_hp", m = `#courses > div > div > div:nth-child(3) {
   /* display: none; */
 }
 
@@ -473,7 +488,7 @@
   }
 }
 `;
-  class m {
+  class f {
     constructor() {
       this.sectionObserver = null, this.init();
     }
@@ -510,16 +525,17 @@
     </section>`
       );
     }
-    moveCourses() {
-      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), i = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), c = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), s = /* @__PURE__ */ new Set();
-      n.forEach((r) => {
-        const t = r.dataset.swiperSlideIndex;
-        if (t && !s.has(t)) {
-          s.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(r)), (t === "8" || t === "12") && (i == null || i.appendChild(r)), (t === "3" || t === "4" || t === "5" || t === "6") && (c == null || c.appendChild(r)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(r));
-          const a = r == null ? void 0 : r.querySelector(".product__title a"), p = r == null ? void 0 : r.querySelector(".product__action a");
-          a && p && (p.href = a.href, p.textContent = "Learn More");
+    async moveCourses() {
+      await _("#courses .product");
+      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), a = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), l = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), r = /* @__PURE__ */ new Set();
+      n.forEach((s) => {
+        const t = s.dataset.swiperSlideIndex;
+        if (t && !r.has(t)) {
+          r.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(s)), (t === "8" || t === "12") && (a == null || a.appendChild(s)), (t === "3" || t === "4" || t === "5" || t === "6") && (l == null || l.appendChild(s)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(s));
+          const c = s == null ? void 0 : s.querySelector(".product__title a"), d = s == null ? void 0 : s.querySelector(".product__action a");
+          c && d && (d.href = c.href, d.textContent = "Learn More");
         }
-      });
+      }), o != null && o.querySelector(".product") || (console.log("No extras"), this.moveCourses());
     }
     setBestSeller() {
       const n = document.querySelector('#courses .product[data-swiper-slide-index="8"]');
@@ -549,44 +565,44 @@
       const n = document.querySelectorAll(".crs-courses__group");
       document.querySelector("#courses .tabs__nav");
       const e = document.querySelectorAll("#courses .tabs__nav li");
-      document.querySelectorAll("#courses .tabs__nav li a").forEach((o, s) => {
-        s === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), s === 1 && (o.textContent = "Bundles", o.href = "#bundles"), s === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), s === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (r) => {
-          var p;
-          r.preventDefault();
+      document.querySelectorAll("#courses .tabs__nav li a").forEach((o, r) => {
+        r === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), r === 1 && (o.textContent = "Bundles", o.href = "#bundles"), r === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), r === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (s) => {
+          var d;
+          s.preventDefault();
           const t = o.getAttribute("href");
           if (!t)
             return;
-          const a = document.querySelector(t);
-          (p = this.sectionObserver) == null || p.disconnect(), a == null || a.scrollIntoView({ behavior: "smooth", block: "start" }), setTimeout(() => {
-            n.forEach((d) => {
+          const c = document.querySelector(t);
+          (d = this.sectionObserver) == null || d.disconnect(), c == null || c.scrollIntoView({ behavior: "smooth", block: "start" }), setTimeout(() => {
+            n.forEach((p) => {
               var u;
-              (u = this.sectionObserver) == null || u.observe(d);
+              (u = this.sectionObserver) == null || u.observe(p);
             });
           }, 1e3);
         });
       });
-      const c = window.innerWidth <= 768 ? 0.2 : 0.5;
+      const l = window.innerWidth <= 768 ? 0.2 : 0.5;
       this.sectionObserver = new IntersectionObserver(
         (o) => {
-          o.forEach((s) => {
-            const r = s.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${r}"])`);
-            if (s.isIntersecting) {
-              e.forEach((d) => d.classList.remove("active")), t == null || t.classList.add("active");
-              const a = document.querySelector("#courses .tabs__nav"), p = t == null ? void 0 : t.querySelector("a");
-              if (a && p) {
-                const d = a.getBoundingClientRect(), u = p.getBoundingClientRect(), w = u.left - d.left + a.scrollLeft - d.width / 2 + u.width / 2;
-                a.scrollTo({ left: w, behavior: "smooth" });
+          o.forEach((r) => {
+            const s = r.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${s}"])`);
+            if (r.isIntersecting) {
+              e.forEach((p) => p.classList.remove("active")), t == null || t.classList.add("active");
+              const c = document.querySelector("#courses .tabs__nav"), d = t == null ? void 0 : t.querySelector("a");
+              if (c && d) {
+                const p = c.getBoundingClientRect(), u = d.getBoundingClientRect(), y = u.left - p.left + c.scrollLeft - p.width / 2 + u.width / 2;
+                c.scrollTo({ left: y, behavior: "smooth" });
               }
             } else
               t == null || t.classList.remove("active");
           });
         },
         {
-          threshold: [c]
+          threshold: [l]
         }
       ), n.forEach((o) => {
-        var s;
-        (s = this.sectionObserver) == null || s.observe(o);
+        var r;
+        (r = this.sectionObserver) == null || r.observe(o);
       });
     }
     getStickyNav() {
@@ -595,41 +611,41 @@
         return;
       const e = document.createElement("div");
       e.classList.add("crs-sentinel"), e.style.position = "absolute", e.style.width = "100%", e.style.height = "1px", n.prepend(e);
-      const i = new IntersectionObserver(
-        ([c]) => {
-          n.classList.toggle("is-sticky", c.intersectionRatio < 1);
+      const a = new IntersectionObserver(
+        ([l]) => {
+          n.classList.toggle("is-sticky", l.intersectionRatio < 1);
         },
         { threshold: [1] }
       );
-      n && i.observe(e);
+      n && a.observe(e);
     }
     checkHeaderHeight() {
       const n = () => {
-        const e = document.querySelector("header"), i = document.querySelector("#courses .tabs__nav");
+        const e = document.querySelector("header"), a = document.querySelector("#courses .tabs__nav");
         if (e) {
-          const c = e.offsetHeight;
-          i == null || i.style.setProperty("--header-height", `${c}px`);
+          const l = e.offsetHeight;
+          a == null || a.style.setProperty("--header-height", `${l}px`);
         }
       };
       n(), window.addEventListener("resize", n), window.addEventListener("scroll", n);
     }
     initStyles() {
       const n = document.createElement("style");
-      n.textContent = _, document.head.appendChild(n);
+      n.textContent = m, document.head.appendChild(n);
     }
   }
-  const f = async () => {
+  const x = async () => {
     try {
-      const l = await fetch(
+      const i = await fetch(
         "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=50&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
-      ), n = await l.json();
-      if (!l.ok)
+      ), n = await i.json();
+      if (!i.ok)
         throw new Error(n.message || "Failed to fetch data");
       return [null, n.stats];
-    } catch (l) {
-      return [l, null];
+    } catch (i) {
+      return [i, null];
     }
-  }, x = `@media (min-width: 981px) {
+  }, b = `@media (min-width: 981px) {
   .et_pb_column:has(h1) h2 {
     width: 462px;
     font-size: 40.6px;
@@ -787,7 +803,7 @@
   }
 }
 `;
-  class b {
+  class v {
     constructor() {
       this.init();
     }
@@ -806,12 +822,12 @@
       e == null || e.insertAdjacentHTML("beforeend", n);
     }
     async addRating() {
-      const [n, e] = await f();
+      const [n, e] = await x();
       if (n) {
         console.error(n);
         return;
       }
-      const i = e.review_count, o = (
+      const a = e.review_count, o = (
         /* HTML */
         `
       <div class="crs-reviews">
@@ -821,11 +837,11 @@
             ><img src="${h}/img/stars.webp" alt="" width="114" height="22" loading="lazy"
           /></span>
         </div>
-        <div class="crs-reviews__total">Based on ${i} reviews</div>
+        <div class="crs-reviews__total">Based on ${a} reviews</div>
       </div>
     `
-      ), s = document.querySelector(".et_pb_module:has(h1)");
-      s == null || s.insertAdjacentHTML("beforebegin", o);
+      ), r = document.querySelector(".et_pb_module:has(h1)");
+      r == null || r.insertAdjacentHTML("beforebegin", o);
     }
     changeCopy() {
       const n = document.querySelector("article h2");
@@ -833,20 +849,20 @@
     }
     initStyles() {
       const n = document.createElement("style");
-      n.textContent = x, document.head.appendChild(n);
+      n.textContent = b, document.head.appendChild(n);
     }
   }
   g({
     name: "Improve HP to PDP progression rate",
     dev: "OS"
   });
-  class v {
+  class w {
     constructor() {
       this.init();
     }
     init() {
-      location.pathname === "/" && (new b(), new m());
+      location.pathname === "/" && (new v(), new f());
     }
   }
-  new v();
+  new w();
 })();
