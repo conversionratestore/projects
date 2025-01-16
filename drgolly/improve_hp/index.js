@@ -510,12 +510,12 @@
       );
     }
     moveCourses() {
-      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), i = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), c = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), r = /* @__PURE__ */ new Set();
-      n.forEach((s) => {
-        const t = s.dataset.swiperSlideIndex;
-        if (t && !r.has(t)) {
-          r.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(s)), (t === "8" || t === "12") && (i == null || i.appendChild(s)), (t === "3" || t === "4" || t === "5" || t === "6") && (c == null || c.appendChild(s)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(s));
-          const a = s == null ? void 0 : s.querySelector(".product__title a"), p = s == null ? void 0 : s.querySelector(".product__action a");
+      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), i = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), c = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), s = /* @__PURE__ */ new Set();
+      n.forEach((r) => {
+        const t = r.dataset.swiperSlideIndex;
+        if (t && !s.has(t)) {
+          s.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(r)), (t === "8" || t === "12") && (i == null || i.appendChild(r)), (t === "3" || t === "4" || t === "5" || t === "6") && (c == null || c.appendChild(r)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(r));
+          const a = r == null ? void 0 : r.querySelector(".product__title a"), p = r == null ? void 0 : r.querySelector(".product__action a");
           a && p && (p.href = a.href, p.textContent = "Learn More");
         }
       });
@@ -548,10 +548,10 @@
       const n = document.querySelectorAll(".crs-courses__group");
       document.querySelector("#courses .tabs__nav");
       const e = document.querySelectorAll("#courses .tabs__nav li");
-      document.querySelectorAll("#courses .tabs__nav li a").forEach((o, r) => {
-        r === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), r === 1 && (o.textContent = "Bundles", o.href = "#bundles"), r === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), r === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (s) => {
+      document.querySelectorAll("#courses .tabs__nav li a").forEach((o, s) => {
+        s === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), s === 1 && (o.textContent = "Bundles", o.href = "#bundles"), s === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), s === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (r) => {
           var p;
-          s.preventDefault();
+          r.preventDefault();
           const t = o.getAttribute("href");
           if (!t)
             return;
@@ -567,9 +567,9 @@
       const c = window.innerWidth <= 768 ? 0.2 : 0.5;
       this.sectionObserver = new IntersectionObserver(
         (o) => {
-          o.forEach((r) => {
-            const s = r.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${s}"])`);
-            if (r.isIntersecting) {
+          o.forEach((s) => {
+            const r = s.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${r}"])`);
+            if (s.isIntersecting) {
               e.forEach((d) => d.classList.remove("active")), t == null || t.classList.add("active");
               const a = document.querySelector("#courses .tabs__nav"), p = t == null ? void 0 : t.querySelector("a");
               if (a && p) {
@@ -584,8 +584,8 @@
           threshold: [c]
         }
       ), n.forEach((o) => {
-        var r;
-        (r = this.sectionObserver) == null || r.observe(o);
+        var s;
+        (s = this.sectionObserver) == null || s.observe(o);
       });
     }
     getStickyNav() {
@@ -629,18 +629,18 @@
       return [l, null];
     }
   }, x = `@media (min-width: 981px) {
-  article h2 {
+  .et_pb_column:has(h1) h2 {
     width: 462px;
     font-size: 40.6px;
     font-weight: 700;
     line-height: 57.19px;
   }
 
-  div.et_pb_section.et_pb_section_1 {
+  div.et_pb_section.et_pb_section_1:has(h1) {
     background-position: right -140px center !important;
   }
 
-  body #page-container .et_pb_section a.et_pb_button_0 {
+  body #page-container .et_pb_section:has(h1) a.et_pb_button_0 {
     border-radius: 75px;
     background-color: var(--secondary-color) !important;
     border-color: var(--secondary-color) !important;
@@ -732,7 +732,7 @@
   background-size: contain;
 }
 @media (max-width: 981px) {
-  .post-2 .et_pb_section_1.et_pb_section {
+  .post-2 .et_pb_section_1.et_pb_section:has(h1) {
     background-color: #e9eaec !important;
   }
   .et_pb_column:has(.crs-reviews) {
@@ -745,7 +745,7 @@
     order: 2;
   }
 
-  div.et_pb_section.et_pb_section_1 {
+  div.et_pb_section.et_pb_section_1:has(h1) {
     background-position: right -83px top 105px !important;
     background-size: 740px;
   }
@@ -769,7 +769,7 @@
     line-height: 21px;
   }
 
-  body #page-container .et_pb_section a.et_pb_button_0 {
+  body #page-container .et_pb_section:has(h1) a.et_pb_button_0 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -823,8 +823,8 @@
         <div class="crs-reviews__total">Based on ${i} reviews</div>
       </div>
     `
-      ), r = document.querySelector(".et_pb_module:has(h1)");
-      r == null || r.insertAdjacentHTML("beforebegin", o);
+      ), s = document.querySelector(".et_pb_module:has(h1)");
+      s == null || s.insertAdjacentHTML("beforebegin", o);
     }
     changeCopy() {
       const n = document.querySelector("article h2");
