@@ -493,7 +493,9 @@
       this.sectionObserver = null, this.init();
     }
     init() {
-      this.render(), this.initStyles(), this.getStickyNav(), this.setupSectionObservers(), this.moveCourses(), this.checkHeaderHeight(), this.setBestSeller(), this.changeCopy();
+      this.initStyles(), setTimeout(() => {
+        this.render(), this.getStickyNav(), this.setupSectionObservers(), this.moveCourses(), this.checkHeaderHeight(), this.setBestSeller(), this.changeCopy();
+      }, 500);
     }
     render() {
       var e;
@@ -526,7 +528,7 @@
       );
     }
     async moveCourses() {
-      await _("#courses .product");
+      await _('#courses .product[data-swiper-slide-index="12"]');
       const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), a = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), l = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), r = /* @__PURE__ */ new Set();
       n.forEach((s) => {
         const t = s.dataset.swiperSlideIndex;
