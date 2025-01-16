@@ -535,7 +535,7 @@
           const c = s == null ? void 0 : s.querySelector(".product__title a"), d = s == null ? void 0 : s.querySelector(".product__action a");
           c && d && (d.href = c.href, d.textContent = "Learn More");
         }
-      }), o != null && o.querySelector(".product") || (console.log("No extras"), this.moveCourses());
+      });
     }
     setBestSeller() {
       const n = document.querySelector('#courses .product[data-swiper-slide-index="8"]');
