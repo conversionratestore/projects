@@ -45,7 +45,9 @@
   padding-block: 12px;
   z-index: 3;
 }
-
+#courses .tabs__nav .crs-sentinel {
+  top: calc(-1 * var(--header-height) - 2px);
+}
 #courses .tabs__nav.is-sticky {
   border-top: 1px solid rgba(139, 195, 195, 0.24);
   background: #f7fafa;
@@ -462,17 +464,16 @@
     aspect-ratio: auto;
     overflow: unset !important;
   }
-  
+
   #courses .product:hover .product__image img {
     transform: scale(1);
   }
   #courses .product[data-swiper-slide-index='0']:hover .product__image img {
     transform: rotate(-90deg) scale(1.1);
   }
-
 }
 `;
-  class f {
+  class m {
     constructor() {
       this.sectionObserver = null, this.init();
     }
@@ -590,15 +591,15 @@
     }
     getStickyNav() {
       const n = document.querySelector("#courses .tabs__nav");
-      if (!n)
+      if (console.log("height", n == null ? void 0 : n.scrollHeight), !n)
         return;
       const e = document.createElement("div");
-      e.style.position = "absolute", e.style.top = "-72px", e.style.width = "100%", e.style.height = "1px", n.prepend(e);
+      e.classList.add("crs-sentinel"), e.style.position = "absolute", e.style.width = "100%", e.style.height = "1px", n.prepend(e);
       const i = new IntersectionObserver(
         ([c]) => {
           n.classList.toggle("is-sticky", c.intersectionRatio < 1);
         },
-        { rootMargin: `-${n.offsetHeight}px 0px 0px 0px`, threshold: [1] }
+        { threshold: [1] }
       );
       n && i.observe(e);
     }
@@ -617,7 +618,7 @@
       n.textContent = _, document.head.appendChild(n);
     }
   }
-  const m = async () => {
+  const f = async () => {
     try {
       const l = await fetch(
         "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=50&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
@@ -805,7 +806,7 @@
       e == null || e.insertAdjacentHTML("beforeend", n);
     }
     async addRating() {
-      const [n, e] = await m();
+      const [n, e] = await f();
       if (n) {
         console.error(n);
         return;
@@ -844,7 +845,7 @@
       this.init();
     }
     init() {
-      location.pathname === "/" && (new b(), new f());
+      location.pathname === "/" && (new b(), new m());
     }
   }
   new v();
