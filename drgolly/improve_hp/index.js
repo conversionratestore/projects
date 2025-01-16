@@ -479,7 +479,13 @@
     aspect-ratio: auto;
     overflow: unset !important;
   }
-
+  #courses .product__price {
+    font-size: 19.5px !important;
+    font-style: normal;
+    font-weight: 700 !important;
+    line-height: 27.58px !important;
+    white-space: nowrap;
+  }
   #courses .product:hover .product__image img {
     transform: scale(1);
   }
