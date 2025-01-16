@@ -90,9 +90,11 @@
 #courses .crs-courses__list {
   display: grid;
   gap: 40px;
+  justify-items: center;
 }
 
 #courses .crs-courses__group {
+  width: max-content;
   scroll-margin-top: 135px;
   border-radius: 24px;
   background: #ebf5f5;
@@ -346,7 +348,12 @@
     color: #fff;
   }
 
+  #courses .crs-courses__list {
+    gap: 16px;
+  }
+
   #courses .crs-courses__group {
+    width: 100%;
     padding: 30px 16px;
   }
 
@@ -382,7 +389,7 @@
     position: absolute;
     inset: 0;
     width: 50%;
-    height: 60px;
+    height: 50px;
     z-index: 2;
     border-radius: 8px 0 0 0;
   }
@@ -454,6 +461,14 @@
     aspect-ratio: auto;
     overflow: unset !important;
   }
+  
+  #courses .product:hover .product__image img {
+    transform: scale(1);
+  }
+  #courses .product[data-swiper-slide-index='0']:hover .product__image img {
+    transform: rotate(-90deg) scale(1.1);
+  }
+
 }
 `;
   class f {
@@ -494,12 +509,12 @@
       );
     }
     moveCourses() {
-      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), i = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), c = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), s = /* @__PURE__ */ new Set();
-      n.forEach((r) => {
-        const t = r.dataset.swiperSlideIndex;
-        if (t && !s.has(t)) {
-          s.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(r)), (t === "8" || t === "12") && (i == null || i.appendChild(r)), (t === "3" || t === "4" || t === "5" || t === "6") && (c == null || c.appendChild(r)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(r));
-          const a = r == null ? void 0 : r.querySelector(".product__title a"), p = r == null ? void 0 : r.querySelector(".product__action a");
+      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), i = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), c = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), r = /* @__PURE__ */ new Set();
+      n.forEach((s) => {
+        const t = s.dataset.swiperSlideIndex;
+        if (t && !r.has(t)) {
+          r.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(s)), (t === "8" || t === "12") && (i == null || i.appendChild(s)), (t === "3" || t === "4" || t === "5" || t === "6") && (c == null || c.appendChild(s)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(s));
+          const a = s == null ? void 0 : s.querySelector(".product__title a"), p = s == null ? void 0 : s.querySelector(".product__action a");
           a && p && (p.href = a.href, p.textContent = "Learn More");
         }
       });
@@ -532,10 +547,10 @@
       const n = document.querySelectorAll(".crs-courses__group");
       document.querySelector("#courses .tabs__nav");
       const e = document.querySelectorAll("#courses .tabs__nav li");
-      document.querySelectorAll("#courses .tabs__nav li a").forEach((o, s) => {
-        s === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), s === 1 && (o.textContent = "Bundles", o.href = "#bundles"), s === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), s === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (r) => {
+      document.querySelectorAll("#courses .tabs__nav li a").forEach((o, r) => {
+        r === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), r === 1 && (o.textContent = "Bundles", o.href = "#bundles"), r === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), r === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (s) => {
           var p;
-          r.preventDefault();
+          s.preventDefault();
           const t = o.getAttribute("href");
           if (!t)
             return;
@@ -551,9 +566,9 @@
       const c = window.innerWidth <= 768 ? 0.2 : 0.5;
       this.sectionObserver = new IntersectionObserver(
         (o) => {
-          o.forEach((s) => {
-            const r = s.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${r}"])`);
-            if (s.isIntersecting) {
+          o.forEach((r) => {
+            const s = r.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${s}"])`);
+            if (r.isIntersecting) {
               e.forEach((d) => d.classList.remove("active")), t == null || t.classList.add("active");
               const a = document.querySelector("#courses .tabs__nav"), p = t == null ? void 0 : t.querySelector("a");
               if (a && p) {
@@ -568,8 +583,8 @@
           threshold: [c]
         }
       ), n.forEach((o) => {
-        var s;
-        (s = this.sectionObserver) == null || s.observe(o);
+        var r;
+        (r = this.sectionObserver) == null || r.observe(o);
       });
     }
     getStickyNav() {
@@ -601,7 +616,7 @@
       n.textContent = _, document.head.appendChild(n);
     }
   }
-  const x = async () => {
+  const m = async () => {
     try {
       const l = await fetch(
         "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=50&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
@@ -612,7 +627,7 @@
     } catch (l) {
       return [l, null];
     }
-  }, m = `@media (min-width: 981px) {
+  }, x = `@media (min-width: 981px) {
   article h2 {
     width: 462px;
     font-size: 40.6px;
@@ -752,6 +767,22 @@
     font-weight: 500;
     line-height: 21px;
   }
+
+  body #page-container .et_pb_section a.et_pb_button_0 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 54px;
+    max-width: 191px;
+    padding: 17px 42px;
+    border-radius: 75px;
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+    font-size: 16.6px !important;
+    font-style: normal;
+    font-weight: 700 !important;
+    line-height: 28.15px !important;
+  }
 }
 `;
   class b {
@@ -773,7 +804,7 @@
       e == null || e.insertAdjacentHTML("beforeend", n);
     }
     async addRating() {
-      const [n, e] = await x();
+      const [n, e] = await m();
       if (n) {
         console.error(n);
         return;
@@ -791,8 +822,8 @@
         <div class="crs-reviews__total">Based on ${i} reviews</div>
       </div>
     `
-      ), s = document.querySelector(".et_pb_module:has(h1)");
-      s == null || s.insertAdjacentHTML("beforebegin", o);
+      ), r = document.querySelector(".et_pb_module:has(h1)");
+      r == null || r.insertAdjacentHTML("beforebegin", o);
     }
     changeCopy() {
       const n = document.querySelector("article h2");
@@ -800,7 +831,7 @@
     }
     initStyles() {
       const n = document.createElement("style");
-      n.textContent = m, document.head.appendChild(n);
+      n.textContent = x, document.head.appendChild(n);
     }
   }
   g({
