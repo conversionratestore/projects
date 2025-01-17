@@ -1086,8 +1086,8 @@
     }
     async addPopup() {
       const n = await r(".c-button--cta.c-dropdownMenu__link");
-      n && n.innerHTML.includes("Subscribe") && (n.innerHTML = "Start Free Trial", n.addEventListener("click", () => {
-        l("exp_trial_flow_button_06", "Start free trial", "click", "Header");
+      n && n.innerHTML.includes("Subscribe") && (n.innerHTML = "Start Free Trial", n.addEventListener("click", (t) => {
+        t.preventDefault(), this.showPopup(), l("exp_trial_flow_button_06", "Start free trial", "click", "Header");
       })), n && n.innerHTML.includes("Sign Up") && n.addEventListener("click", (t) => {
         t.preventDefault(), window.location.href = "/yogi/register?destination=" + window.location.pathname + "?freetrial";
       }), window.location.search.includes("freetrial") && window.location.pathname.includes("/content/") && !document.querySelector(".sfc-playablePreviewFunnel__overlay--actions h2") ? document.body.insertAdjacentHTML("beforeend", b(!0)) : document.body.insertAdjacentHTML("beforeend", b()), e(".skip").on("click", () => {
