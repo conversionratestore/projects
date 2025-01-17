@@ -540,13 +540,13 @@
     }
     async moveCourses() {
       await _('#courses .product[data-swiper-slide-index="12"]');
-      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), i = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), c = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), r = /* @__PURE__ */ new Set();
-      n.forEach((s) => {
-        const t = s.dataset.swiperSlideIndex;
+      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), s = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), c = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), r = /* @__PURE__ */ new Set();
+      n.forEach((i) => {
+        const t = i.dataset.swiperSlideIndex;
         if (t && !r.has(t)) {
-          r.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(s)), (t === "8" || t === "12") && (i == null || i.appendChild(s)), (t === "3" || t === "4" || t === "5" || t === "6") && (c == null || c.appendChild(s)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(s));
-          const l = s == null ? void 0 : s.querySelector(".product__title a"), d = s == null ? void 0 : s.querySelector(".product__action a");
-          l && d && (d.href = l.href, d.textContent = "Learn More");
+          r.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(i)), (t === "8" || t === "12") && (s == null || s.appendChild(i)), (t === "3" || t === "4" || t === "5" || t === "6") && (c == null || c.appendChild(i)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(i));
+          const l = i == null ? void 0 : i.querySelector(".product__title a"), d = i == null ? void 0 : i.querySelector(".product__action a");
+          l && d && (console.log("titleLink", l.textContent), d.href = l.href, d.textContent = "Learn More");
         }
       });
     }
@@ -571,20 +571,25 @@
       n.insertAdjacentHTML("afterbegin", e);
     }
     changeCopy() {
-      var r, s;
-      const n = document.querySelector('#courses .product[data-swiper-slide-index="8"]'), e = n == null ? void 0 : n.querySelector(".product__age"), i = n == null ? void 0 : n.querySelector(".product__title");
-      e && (e.textContent = "0-5 Years"), i && ((r = i.textContent) == null ? void 0 : r.trim()) === "Sleep Bundle Deal" && (i.textContent = "Sleep Bundle");
+      const n = document.querySelector('#courses .product[data-swiper-slide-index="8"]'), e = n == null ? void 0 : n.querySelector(".product__age"), s = n == null ? void 0 : n.querySelector(".product__title");
+      e && (e.textContent = "0-5 Years"), setTimeout(() => {
+        var r;
+        s && ((r = s.textContent) == null ? void 0 : r.trim()) === "Sleep Bundle Deal" && (s.textContent = "Sleep Bundle");
+      }, 1e3);
       const c = document.querySelector('#courses .product[data-swiper-slide-index="12"]'), o = c == null ? void 0 : c.querySelector(".product__title");
-      o && ((s = o.textContent) == null ? void 0 : s.trim()) === "Toddler Bundle Deal" && (o.textContent = "Toddler Bundle");
+      setTimeout(() => {
+        var r;
+        o && ((r = o.textContent) == null ? void 0 : r.trim()) === "Toddler Bundle Deal" && (o.textContent = "Toddler Bundle");
+      }, 1e3);
     }
     setupSectionObservers() {
       const n = document.querySelectorAll(".crs-courses__group");
       document.querySelector("#courses .tabs__nav");
       const e = document.querySelectorAll("#courses .tabs__nav li");
       document.querySelectorAll("#courses .tabs__nav li a").forEach((o, r) => {
-        r === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), r === 1 && (o.textContent = "Bundles", o.href = "#bundles"), r === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), r === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (s) => {
+        r === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), r === 1 && (o.textContent = "Bundles", o.href = "#bundles"), r === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), r === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (i) => {
           var d;
-          s.preventDefault();
+          i.preventDefault();
           const t = o.getAttribute("href");
           if (!t)
             return;
@@ -601,7 +606,7 @@
       this.sectionObserver = new IntersectionObserver(
         (o) => {
           o.forEach((r) => {
-            const s = r.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${s}"])`);
+            const i = r.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${i}"])`);
             if (r.isIntersecting) {
               e.forEach((p) => p.classList.remove("active")), t == null || t.classList.add("active");
               const l = document.querySelector("#courses .tabs__nav"), d = t == null ? void 0 : t.querySelector("a");
@@ -627,20 +632,20 @@
         return;
       const e = document.createElement("div");
       e.classList.add("crs-sentinel"), e.style.position = "absolute", e.style.width = "100%", e.style.height = "1px", n.prepend(e);
-      const i = new IntersectionObserver(
+      const s = new IntersectionObserver(
         ([c]) => {
           n.classList.toggle("is-sticky", c.intersectionRatio < 1);
         },
         { threshold: [1] }
       );
-      n && i.observe(e);
+      n && s.observe(e);
     }
     checkHeaderHeight() {
       const n = () => {
-        const e = document.querySelector("header"), i = document.querySelector("#courses .tabs__nav");
+        const e = document.querySelector("header"), s = document.querySelector("#courses .tabs__nav");
         if (e) {
           const c = e.offsetHeight;
-          i == null || i.style.setProperty("--header-height", `${c}px`);
+          s == null || s.style.setProperty("--header-height", `${c}px`);
         }
       };
       n(), window.addEventListener("resize", n), window.addEventListener("scroll", n);
@@ -843,7 +848,7 @@
         console.error(n);
         return;
       }
-      const i = e.review_count, o = (
+      const s = e.review_count, o = (
         /* HTML */
         `
       <div class="crs-reviews">
@@ -853,7 +858,7 @@
             ><img src="${h}/img/stars.webp" alt="" width="114" height="22" loading="lazy"
           /></span>
         </div>
-        <div class="crs-reviews__total">Based on ${i} reviews</div>
+        <div class="crs-reviews__total">Based on ${s} reviews</div>
       </div>
     `
       ), r = document.querySelector(".et_pb_module:has(h1)");
