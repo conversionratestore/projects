@@ -595,17 +595,17 @@
       await f('#courses .product[data-swiper-slide-index="12"]');
       const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), c = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), r = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), s = /* @__PURE__ */ new Set();
       n.forEach((i) => {
-        var d;
+        var l;
         const t = i.dataset.swiperSlideIndex;
         if (t && !s.has(t)) {
           s.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(i)), (t === "8" || t === "12") && (c == null || c.appendChild(i)), (t === "3" || t === "4" || t === "5" || t === "6") && (r == null || r.appendChild(i)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(i));
-          const p = i == null ? void 0 : i.querySelector(".product__title a"), l = i == null ? void 0 : i.querySelector(".product__action a");
-          p && l && (l.href = p.href, l.textContent = "Learn More");
-          const u = (d = i == null ? void 0 : i.closest(".crs-courses__group")) == null ? void 0 : d.querySelector(".crs-courses__group-title");
-          l == null || l.addEventListener("click", () => {
-            g("exp_courses_hp_", "Learn More", "click", `${u == null ? void 0 : u.textContent}`);
-          }), i.addEventListener("click", () => {
-            p && (location.href = p.href);
+          const d = i == null ? void 0 : i.querySelector(".product__title a"), p = i == null ? void 0 : i.querySelector(".product__action a");
+          d && p && (p.href = d.href, p.textContent = "Learn More");
+          const u = (l = i == null ? void 0 : i.closest(".crs-courses__group")) == null ? void 0 : l.querySelector(".crs-courses__group-title");
+          i.addEventListener("click", () => {
+            d && (g("exp_courses_hp_", "Learn More", "click", `${u == null ? void 0 : u.textContent}`), setTimeout(() => {
+              location.href = d.href;
+            }, 100));
           });
         }
       });
@@ -643,21 +643,19 @@
       }, 1e3);
     }
     setupSectionObservers() {
-      const n = document.querySelectorAll(".crs-courses__group");
-      document.querySelector("#courses .tabs__nav");
-      const e = document.querySelectorAll("#courses .tabs__nav li");
+      const n = document.querySelectorAll(".crs-courses__group"), e = document.querySelectorAll("#courses .tabs__nav li");
       document.querySelectorAll("#courses .tabs__nav li a").forEach((o, s) => {
         s === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), s === 1 && (o.textContent = "Bundles", o.href = "#bundles"), s === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), s === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (i) => {
-          var p;
+          var d;
           i.preventDefault();
           const t = o.getAttribute("href");
           if (!t)
             return;
-          const d = document.querySelector(t);
-          (p = this.sectionObserver) == null || p.disconnect(), d == null || d.scrollIntoView({ behavior: "smooth", block: "start" }), setTimeout(() => {
-            n.forEach((l) => {
+          const l = document.querySelector(t);
+          (d = this.sectionObserver) == null || d.disconnect(), l == null || l.scrollIntoView({ behavior: "smooth", block: "start" }), setTimeout(() => {
+            n.forEach((p) => {
               var u;
-              (u = this.sectionObserver) == null || u.observe(l);
+              (u = this.sectionObserver) == null || u.observe(p);
             });
           }, 1e3);
         });
@@ -668,11 +666,11 @@
           o.forEach((s) => {
             const i = s.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${i}"])`);
             if (s.isIntersecting) {
-              e.forEach((l) => l.classList.remove("active")), t == null || t.classList.add("active");
-              const d = document.querySelector("#courses .tabs__nav ul"), p = t == null ? void 0 : t.querySelector("a");
-              if (d && p) {
-                const l = d.getBoundingClientRect(), u = p.getBoundingClientRect(), k = u.left - l.left + d.scrollLeft - l.width / 2 + u.width / 2;
-                d.scrollTo({ left: k, behavior: "smooth" });
+              e.forEach((p) => p.classList.remove("active")), t == null || t.classList.add("active");
+              const l = document.querySelector("#courses .tabs__nav ul"), d = t == null ? void 0 : t.querySelector("a");
+              if (l && d) {
+                const p = l.getBoundingClientRect(), u = d.getBoundingClientRect(), k = u.left - p.left + l.scrollLeft - p.width / 2 + u.width / 2;
+                l.scrollTo({ left: k, behavior: "smooth" });
               }
             } else
               t == null || t.classList.remove("active");
@@ -701,7 +699,7 @@
       o.style.position = "absolute", o.style.bottom = `${e.clientHeight}px`, o.style.width = "100%", o.style.height = "1px", n.prepend(r), e.appendChild(o);
       const s = new IntersectionObserver(
         ([t]) => {
-          console.log(t.intersectionRatio), t.intersectionRatio < 1 ? n.classList.add("is-sticky") : n.classList.remove("is-sticky");
+          t.intersectionRatio < 1 ? n.classList.add("is-sticky") : n.classList.remove("is-sticky");
         },
         { threshold: [1] }
       );
