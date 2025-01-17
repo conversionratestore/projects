@@ -526,6 +526,7 @@
 .trial_popup .total_after {
   color: #555;
   font-size: 16px;
+  max-width: unset;
 }
 .trial_popup .right_part {
   border-radius: 36px 36px 36px 160px;
