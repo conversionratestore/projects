@@ -372,7 +372,7 @@
   }
 
 
-  #courses .tabs__nav.tabs__nav.is-fixed {
+  #courses .tabs__nav.tabs__nav:is(.is-fixed, .is-sticky) {
     border-top: 2px solid rgba(139, 195, 195, 0.24);
   }
 
