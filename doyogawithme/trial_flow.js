@@ -19,7 +19,7 @@
       childList: !0,
       subtree: !0
     });
-  }), w = ({ name: a, dev: n }) => {
+  }), x = ({ name: a, dev: n }) => {
     console.log(
       `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -279,6 +279,8 @@
   align-items: stretch;
   height: 670px;
   gap: 88px;
+  width: 100%;
+  justify-content: center;
 }
 @media (max-width: 768px) {
   .trial_popup {
@@ -950,7 +952,7 @@
     </div>
   `
     );
-  }, x = () => {
+  }, w = () => {
     const a = (/* @__PURE__ */ new Date()).getTime(), n = new Date(a + 4 * 24 * 60 * 60 * 1e3).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
@@ -995,7 +997,7 @@
     /* HTML */
     ' <span class="trial_video">starting free 7-day trial</span> '
   );
-  w({ name: "Reverse trial flow", dev: "YK" }), l("reverse_trial", "Start experiment", "loaded"), v("exp_trial_flow");
+  x({ name: "Reverse trial flow", dev: "YK" }), l("reverse_trial", "Start experiment", "loaded"), v("exp_trial_flow");
   class z {
     constructor() {
       this.isAuth = !1, this.isFree = !0, this.init();
@@ -1052,7 +1054,7 @@
         e(".sfc-registrationProgress__back").style("font-size", "14px").style("text-transform", "lowercase");
       }), r(".sfc-registrationProgress__steps").then((i) => {
         i.style.display = "none";
-      }), await r(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", $), window.innerWidth > 768 ? (await r(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", x())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", x());
+      }), await r(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", $), window.innerWidth > 768 ? (await r(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", w())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", w());
       const t = await r(".button--primary.js-form-submit");
       t.innerText = "Start my 7-day free trial", t.style.textTransform = "capitalize", t.addEventListener("click", (i) => {
         l("exp_trial_flow_button_05", "Start my 7-day free trial", "click", "Payment information");
