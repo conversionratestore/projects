@@ -1,17 +1,17 @@
 (function() {
   "use strict";
-  const g = ({ name: i, dev: n }) => {
+  const g = ({ name: a, dev: n }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${n})`,
+      `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  function _(i) {
+  function _(a) {
     return new Promise((n) => {
-      if (document.querySelector(i))
-        return n(document.querySelector(i));
+      if (document.querySelector(a))
+        return n(document.querySelector(a));
       const e = new MutationObserver(() => {
-        document.querySelector(i) && (n(document.querySelector(i)), e.disconnect());
+        document.querySelector(a) && (n(document.querySelector(a)), e.disconnect());
       });
       e.observe(document.documentElement, {
         childList: !0,
@@ -423,6 +423,11 @@
     font-weight: 500;
     line-height: 27.58px;
   }
+
+  #courses .crs-courses__group--highlight .product__age {
+    background-color: #feedc7;
+    color: #3c3c3b;
+  }
   #courses .product__image {
     width: 50% !important;
     height: 100% !important;
@@ -535,13 +540,13 @@
     }
     async moveCourses() {
       await _('#courses .product[data-swiper-slide-index="12"]');
-      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), a = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), l = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), r = /* @__PURE__ */ new Set();
+      const n = document.querySelectorAll("#courses .product"), e = document.querySelector(".crs-courses__group#baby-sleep .crs-courses__group-list"), i = document.querySelector(".crs-courses__group#bundles .crs-courses__group-list"), c = document.querySelector(".crs-courses__group#toddler-sleep .crs-courses__group-list"), o = document.querySelector(".crs-courses__group#extras .crs-courses__group-list"), r = /* @__PURE__ */ new Set();
       n.forEach((s) => {
         const t = s.dataset.swiperSlideIndex;
         if (t && !r.has(t)) {
-          r.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(s)), (t === "8" || t === "12") && (a == null || a.appendChild(s)), (t === "3" || t === "4" || t === "5" || t === "6") && (l == null || l.appendChild(s)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(s));
-          const c = s == null ? void 0 : s.querySelector(".product__title a"), d = s == null ? void 0 : s.querySelector(".product__action a");
-          c && d && (d.href = c.href, d.textContent = "Learn More");
+          r.add(t), (t === "0" || t === "1" || t === "2") && (e == null || e.appendChild(s)), (t === "8" || t === "12") && (i == null || i.appendChild(s)), (t === "3" || t === "4" || t === "5" || t === "6") && (c == null || c.appendChild(s)), (t === "9" || t === "10" || t === "11") && (o == null || o.appendChild(s));
+          const l = s == null ? void 0 : s.querySelector(".product__title a"), d = s == null ? void 0 : s.querySelector(".product__action a");
+          l && d && (d.href = l.href, d.textContent = "Learn More");
         }
       });
     }
@@ -566,8 +571,11 @@
       n.insertAdjacentHTML("afterbegin", e);
     }
     changeCopy() {
-      const n = document.querySelector('#courses .product[data-swiper-slide-index="8"]'), e = n == null ? void 0 : n.querySelector(".product__age");
-      e && (e.textContent = "0-5 Years");
+      var r, s;
+      const n = document.querySelector('#courses .product[data-swiper-slide-index="8"]'), e = n == null ? void 0 : n.querySelector(".product__age"), i = n == null ? void 0 : n.querySelector(".product__title");
+      e && (e.textContent = "0-5 Years"), i && ((r = i.textContent) == null ? void 0 : r.trim()) === "Sleep Bundle Deal" && (i.textContent = "Sleep Bundle");
+      const c = document.querySelector('#courses .product[data-swiper-slide-index="12"]'), o = c == null ? void 0 : c.querySelector(".product__title");
+      o && ((s = o.textContent) == null ? void 0 : s.trim()) === "Toddler Bundle Deal" && (o.textContent = "Toddler Bundle");
     }
     setupSectionObservers() {
       const n = document.querySelectorAll(".crs-courses__group");
@@ -580,8 +588,8 @@
           const t = o.getAttribute("href");
           if (!t)
             return;
-          const c = document.querySelector(t);
-          (d = this.sectionObserver) == null || d.disconnect(), c == null || c.scrollIntoView({ behavior: "smooth", block: "start" }), setTimeout(() => {
+          const l = document.querySelector(t);
+          (d = this.sectionObserver) == null || d.disconnect(), l == null || l.scrollIntoView({ behavior: "smooth", block: "start" }), setTimeout(() => {
             n.forEach((p) => {
               var u;
               (u = this.sectionObserver) == null || u.observe(p);
@@ -589,24 +597,24 @@
           }, 1e3);
         });
       });
-      const l = window.innerWidth <= 768 ? 0.2 : 0.5;
+      const c = window.innerWidth <= 768 ? 0.2 : 0.5;
       this.sectionObserver = new IntersectionObserver(
         (o) => {
           o.forEach((r) => {
             const s = r.target.getAttribute("id"), t = document.querySelector(`#courses .tabs__nav li:has(a[href="#${s}"])`);
             if (r.isIntersecting) {
               e.forEach((p) => p.classList.remove("active")), t == null || t.classList.add("active");
-              const c = document.querySelector("#courses .tabs__nav"), d = t == null ? void 0 : t.querySelector("a");
-              if (c && d) {
-                const p = c.getBoundingClientRect(), u = d.getBoundingClientRect(), y = u.left - p.left + c.scrollLeft - p.width / 2 + u.width / 2;
-                c.scrollTo({ left: y, behavior: "smooth" });
+              const l = document.querySelector("#courses .tabs__nav"), d = t == null ? void 0 : t.querySelector("a");
+              if (l && d) {
+                const p = l.getBoundingClientRect(), u = d.getBoundingClientRect(), y = u.left - p.left + l.scrollLeft - p.width / 2 + u.width / 2;
+                l.scrollTo({ left: y, behavior: "smooth" });
               }
             } else
               t == null || t.classList.remove("active");
           });
         },
         {
-          threshold: [l]
+          threshold: [c]
         }
       ), n.forEach((o) => {
         var r;
@@ -619,20 +627,20 @@
         return;
       const e = document.createElement("div");
       e.classList.add("crs-sentinel"), e.style.position = "absolute", e.style.width = "100%", e.style.height = "1px", n.prepend(e);
-      const a = new IntersectionObserver(
-        ([l]) => {
-          n.classList.toggle("is-sticky", l.intersectionRatio < 1);
+      const i = new IntersectionObserver(
+        ([c]) => {
+          n.classList.toggle("is-sticky", c.intersectionRatio < 1);
         },
         { threshold: [1] }
       );
-      n && a.observe(e);
+      n && i.observe(e);
     }
     checkHeaderHeight() {
       const n = () => {
-        const e = document.querySelector("header"), a = document.querySelector("#courses .tabs__nav");
+        const e = document.querySelector("header"), i = document.querySelector("#courses .tabs__nav");
         if (e) {
-          const l = e.offsetHeight;
-          a == null || a.style.setProperty("--header-height", `${l}px`);
+          const c = e.offsetHeight;
+          i == null || i.style.setProperty("--header-height", `${c}px`);
         }
       };
       n(), window.addEventListener("resize", n), window.addEventListener("scroll", n);
@@ -644,14 +652,14 @@
   }
   const x = async () => {
     try {
-      const i = await fetch(
+      const a = await fetch(
         "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=50&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
-      ), n = await i.json();
-      if (!i.ok)
+      ), n = await a.json();
+      if (!a.ok)
         throw new Error(n.message || "Failed to fetch data");
       return [null, n.stats];
-    } catch (i) {
-      return [i, null];
+    } catch (a) {
+      return [a, null];
     }
   }, b = `@media (min-width: 981px) {
   .et_pb_column:has(h1) h2 {
@@ -835,7 +843,7 @@
         console.error(n);
         return;
       }
-      const a = e.review_count, o = (
+      const i = e.review_count, o = (
         /* HTML */
         `
       <div class="crs-reviews">
@@ -845,7 +853,7 @@
             ><img src="${h}/img/stars.webp" alt="" width="114" height="22" loading="lazy"
           /></span>
         </div>
-        <div class="crs-reviews__total">Based on ${a} reviews</div>
+        <div class="crs-reviews__total">Based on ${i} reviews</div>
       </div>
     `
       ), r = document.querySelector(".et_pb_module:has(h1)");
