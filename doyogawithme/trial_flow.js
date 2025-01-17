@@ -7,7 +7,7 @@
       event_desc: n,
       event_type: t,
       event_loc: i
-    }), _(`Event: ${a} | ${n} | ${t} | ${i}`, "success");
+    }), f(`Event: ${a} | ${n} | ${t} | ${i}`, "success");
   }, r = (a) => new Promise((n) => {
     const t = document.querySelector(a);
     t && n(t);
@@ -19,7 +19,7 @@
       childList: !0,
       subtree: !0
     });
-  }), x = ({ name: a, dev: n }) => {
+  }), w = ({ name: a, dev: n }) => {
     console.log(
       `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -83,7 +83,7 @@
             "view",
             t
           ), s.disconnect();
-        }, p) : (_("Element is not fully visible", "warn"), clearTimeout(d));
+        }, p) : (f("Element is not fully visible", "warn"), clearTimeout(d));
       },
       { threshold: [o] }
     ), typeof a == "string") {
@@ -91,7 +91,7 @@
       u && s.observe(u);
     } else
       s.observe(a);
-  }, _ = (a, n = "info") => {
+  }, f = (a, n = "info") => {
     let t;
     switch (n) {
       case "info":
@@ -525,6 +525,7 @@
 }
 .trial_popup .total_after {
   color: #555;
+  font-size: 16px;
 }
 .trial_popup .right_part {
   border-radius: 36px 36px 36px 160px;
@@ -782,6 +783,14 @@
   font-weight: 700 !important;
   line-height: 1 !important;
   text-align: center;
+}
+@media (max-width: 768px) {
+  .headline {
+    font-size: 22px !important;
+    text-transform: capitalize !important;
+    margin-bottom: 0 !important;
+    line-height: normal !important;
+  }
 }/*# sourceMappingURL=style.css.map */`, L = `<svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
 <path d="M-0.000556731 6.00002C-0.000556725 5.86052 0.0527608 5.72089 0.159261 5.61439L5.6138 0.159852C5.82693 -0.053284 6.17207 -0.053284 6.38507 0.159852C6.59807 0.372988 6.59821 0.718124 6.38507 0.931123L1.31617 6.00002L6.38507 11.0689C6.59821 11.2821 6.59821 11.6272 6.38507 11.8402C6.17193 12.0532 5.8268 12.0533 5.6138 11.8402L0.15926 6.38566C0.0527608 6.27916 -0.000556737 6.13952 -0.000556731 6.00002Z" fill="#007DB8"/>
 </svg>`, T = `<svg xmlns="http://www.w3.org/2000/svg" width="181" height="28" viewBox="0 0 181 28" fill="none">
@@ -799,7 +808,7 @@
 <path d="M98.6417 12.2732C97.642 12.5326 97.6102 12.5479 97.5626 13.0668C97.4991 13.8909 97.7054 14.074 98.4354 13.8604C99.6256 13.5246 100.927 13.4788 101.451 13.7383C102.022 14.013 102.133 14.2419 102.133 15.1423C102.133 15.8138 102.133 15.8138 101.704 15.7069C101.451 15.6306 100.721 15.5849 100.07 15.5849C98.721 15.6001 97.8482 15.9359 97.1659 16.7294C96.0868 17.9656 96.5946 20.0106 98.1815 20.7736C99.2606 21.3078 99.9906 21.262 101.292 20.621C102.292 20.1174 102.371 20.0869 102.561 20.331C102.672 20.4837 102.768 20.6668 102.768 20.7431C102.768 20.8041 103.037 20.8499 103.371 20.8194L103.958 20.7736L104.005 17.874C104.053 14.776 103.91 13.7688 103.371 13.0363C102.641 12.029 100.8 11.7391 98.6417 12.2732ZM101.942 16.9431C102.054 17.0041 102.133 17.4162 102.133 17.8588C102.133 18.5302 102.069 18.7134 101.704 19.0491C101.07 19.629 100.07 19.8732 99.4352 19.629C98.6576 19.3238 98.483 19.0644 98.483 18.2708C98.483 17.0499 99.0067 16.6989 100.641 16.7752C101.26 16.8057 101.847 16.882 101.942 16.9431Z" fill="#272727"/>
 <path d="M175.291 12.136C173.736 12.6243 172.593 13.6773 172.196 14.9898C171.673 16.7448 172.022 18.5761 173.117 19.6749C174.783 21.3689 177.132 21.5978 179.29 20.3006C179.972 19.8886 179.988 19.736 179.385 19.034L179.036 18.6372L178.163 19.0645C177.433 19.4155 177.116 19.4918 176.449 19.446C175.402 19.3544 174.434 18.7593 174.101 18.0115C173.593 16.8364 173.466 16.8974 177.163 16.8516L180.448 16.8058L180.496 15.997C180.575 14.5472 179.718 13.189 178.226 12.4259C177.544 12.0902 175.957 11.9223 175.291 12.136ZM177.671 13.9215C178.179 14.3488 178.623 15.0356 178.623 15.4323C178.623 15.6307 178.29 15.6613 176.243 15.6613C174.942 15.6613 173.862 15.6307 173.862 15.585C173.862 15.5544 173.974 15.234 174.116 14.8982C174.656 13.6163 176.624 13.0821 177.671 13.9215Z" fill="#272727"/>
 <path d="M127.363 16.5769V20.8652L128.284 20.8195L129.188 20.7737V16.5769V12.3801L128.284 12.3343L127.363 12.2885V16.5769Z" fill="#272727"/>
-</svg>`, f = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
+</svg>`, _ = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
 <path d="M1.41406 17.4515C1.41406 18.0239 1.79565 18.4055 2.36805 18.4055H9.40609V9.45947H1.41406V17.4515Z" fill="#039AE1"/>
 <path d="M10.5938 18.4055H17.6317C18.2041 18.4055 18.5857 18.0239 18.5857 17.4515V9.45947H10.5938V18.4055Z" fill="#039AE1"/>
 <path d="M0.458984 5.04823V7.31624C0.458984 7.88865 0.84057 8.27023 1.41297 8.27023H9.765V4.09424H1.41297C0.84057 4.09424 0.458984 4.47582 0.458984 5.04823Z" fill="#039AE1"/>
@@ -923,7 +932,7 @@
           <h3>How our trial works</h3>
           <ul>
             <li>
-              <span>${f}</span>
+              <span>${_}</span>
               <p><b>Today</b><span>Start your 7-Day free trial</span>. Enjoy the Premium experience. Cancel anytime!</p>
             </li>
             <li>
@@ -940,7 +949,7 @@
     </div>
   `
     );
-  }, w = () => {
+  }, x = () => {
     const a = (/* @__PURE__ */ new Date()).getTime(), n = new Date(a + 4 * 24 * 60 * 60 * 1e3).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
@@ -957,7 +966,7 @@
       <h3>How Our Trial Works</h3>
       <ul>
         <li>
-          <span>${f}</span>
+          <span>${_}</span>
           <p><b>Today</b><span>Start your 7-Day free trial</span>. Enjoy the Premium experience. Cancel anytime!</p>
         </li>
         <li>
@@ -985,8 +994,8 @@
     /* HTML */
     ' <span class="trial_video">starting free 7-day trial</span> '
   );
-  x({ name: "Reverse trial flow", dev: "YK" }), l("reverse_trial", "Start experiment", "loaded"), v("exp_trial_flow");
-  class V {
+  w({ name: "Reverse trial flow", dev: "YK" }), l("reverse_trial", "Start experiment", "loaded"), v("exp_trial_flow");
+  class z {
     constructor() {
       this.isAuth = !1, this.isFree = !0, this.init();
     }
@@ -1028,7 +1037,7 @@
       const n = await this.checkAuth();
       this.isAuth = n;
       const t = await r(".sfc-playablePreviewFunnel__overlay--actions h2");
-      t.innerHTML.includes("Premium") && (this.isFree = !1, t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Start your free trial to unlock this class.</h3>')), !this.isFree && this.isAuth && (e(".sfc-playablePreviewOverlayUpsell__upsellLink").style("display", "none"), e(".sfc-playablePreviewOverlayUpsell__upsellLink").elements[0].insertAdjacentHTML("afterend", S), e(".trial_video").on("click", () => {
+      t.innerHTML.includes("Premium") ? (this.isFree = !1, t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Start your free trial to unlock this class.</h3>')) : (t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Create account to start free trial.</h3>')), !this.isFree && this.isAuth && (e(".sfc-playablePreviewOverlayUpsell__upsellLink").style("display", "none"), e(".sfc-playablePreviewOverlayUpsell__upsellLink").elements[0].insertAdjacentHTML("afterend", S), e(".trial_video").on("click", () => {
         this.showPopup(), l("exp_trial_flow_button_07", "starting free 7-day trial", "click", "Premium video");
       })), e(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--google").on("click", (i) => {
         localStorage.setItem("signup", window.location.pathname + "?freetrial");
@@ -1042,7 +1051,7 @@
         e(".sfc-registrationProgress__back").style("font-size", "14px").style("text-transform", "lowercase");
       }), r(".sfc-registrationProgress__steps").then((i) => {
         i.style.display = "none";
-      }), await r(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", $), window.innerWidth > 768 ? (await r(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", w())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", w());
+      }), await r(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", $), window.innerWidth > 768 ? (await r(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", x())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", x());
       const t = await r(".button--primary.js-form-submit");
       t.innerText = "Start my 7-day free trial", t.style.textTransform = "capitalize", t.addEventListener("click", (i) => {
         l("exp_trial_flow_button_05", "Start my 7-day free trial", "click", "Payment information");
@@ -1114,6 +1123,6 @@
       );
     }
   }
-  new V();
+  new z();
 })();
 //# sourceMappingURL=index.js.map
