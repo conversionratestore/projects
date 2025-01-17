@@ -1,13 +1,13 @@
 (function() {
   "use strict";
-  const o = (a, n, t, i = "") => {
+  const l = (a, n, t, i = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: a,
       event_desc: n,
       event_type: t,
       event_loc: i
-    }), C(`Event: ${a} | ${n} | ${t} | ${i}`, "success");
+    }), _(`Event: ${a} | ${n} | ${t} | ${i}`, "success");
   }, r = (a) => new Promise((n) => {
     const t = document.querySelector(a);
     t && n(t);
@@ -31,13 +31,13 @@
     }
     on(n, t, i) {
       return typeof t == "function" && (i = t, t = ""), this.elements.forEach(function(p) {
-        p.addEventListener(n, function(l) {
+        p.addEventListener(n, function(o) {
           var s;
           if (t !== "") {
-            let d = (s = l.target) == null ? void 0 : s.closest(t);
-            d && (i == null || i.call(d, l));
+            let d = (s = o.target) == null ? void 0 : s.closest(t);
+            d && (i == null || i.call(d, o));
           } else
-            i == null || i.call(p, l);
+            i == null || i.call(p, o);
         });
       }), this;
     }
@@ -62,7 +62,7 @@
       }), this;
     }
     style(n, t) {
-      const i = n.split("-").map((p, l) => l === 0 ? p : p.charAt(0).toUpperCase() + p.slice(1)).join("");
+      const i = n.split("-").map((p, o) => o === 0 ? p : p.charAt(0).toUpperCase() + p.slice(1)).join("");
       return this.elements.forEach(function(p) {
         p.style[i] = t;
       }), this;
@@ -72,26 +72,26 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", a, "variant_1"));
     }, 1e3);
-  }, h = (a, n, t, i, p = 1e3, l = 0.5) => {
+  }, h = (a, n, t, i, p = 1e3, o = 0.5) => {
     let s, d;
     if (s = new IntersectionObserver(
       function(u) {
         u[0].isIntersecting === !0 ? d = setTimeout(() => {
-          o(
+          l(
             n,
             u[0].target.dataset.visible || i || "",
             "view",
             t
           ), s.disconnect();
-        }, p) : (C("Element is not fully visible", "warn"), clearTimeout(d));
+        }, p) : (_("Element is not fully visible", "warn"), clearTimeout(d));
       },
-      { threshold: [l] }
+      { threshold: [o] }
     ), typeof a == "string") {
       const u = document.querySelector(a);
       u && s.observe(u);
     } else
       s.observe(a);
-  }, C = (a, n = "info") => {
+  }, _ = (a, n = "info") => {
     let t;
     switch (n) {
       case "info":
@@ -159,7 +159,7 @@
 }
 
 .sfc-pricingTableLevel {
-  height: 318px;
+  height: 330px;
 }
 @media (max-width: 768px) {
   .sfc-pricingTableLevel {
@@ -168,7 +168,7 @@
 }
 
 .sfc-pricingTable__col:nth-child(2) .sfc-pricingTableLevel {
-  height: 349px;
+  height: 360px;
 }
 @media (max-width: 768px) {
   .sfc-pricingTable__col:nth-child(2) .sfc-pricingTableLevel {
@@ -185,6 +185,10 @@
     align-items: center;
     gap: 12px;
   }
+}
+
+.sfc-pricingTablePremium__cols .sfc-pricingTableLevel__derisk {
+  padding: 0 !important;
 }
 
 @media (max-width: 768px) {
@@ -314,6 +318,7 @@
   font-weight: 700;
   line-height: 44px;
   margin-bottom: 12px;
+  color: #272727;
 }
 .trial_popup .step1 h2 + p,
 .trial_popup .step2 h2 + p {
@@ -346,6 +351,8 @@
   gap: 13px;
   align-items: flex-start;
   font-size: 16px;
+  color: #555;
+  font-weight: 500;
 }
 @media (max-width: 768px) {
   .trial_popup .step1 ul li > span,
@@ -380,6 +387,7 @@
   line-height: 24px !important;
   font-size: 14px !important;
   text-align: center;
+  color: #555;
 }
 .trial_popup .step1 button + p b,
 .trial_popup .step1 a + p b,
@@ -443,6 +451,7 @@
   margin: 3px 0;
   font-size: 16px;
   line-height: 1;
+  color: #000;
 }
 .trial_popup .step1 .select_plan label .plan_block p:first-of-type,
 .trial_popup .step2 .select_plan label .plan_block p:first-of-type {
@@ -460,6 +469,10 @@
   background: #e9f6fc;
   color: #007db8;
   margin-left: 12px;
+}
+.trial_popup .step2 ul + p {
+  color: #272727;
+  font-weight: 500;
 }
 .trial_popup .steps_wrapper {
   display: flex;
@@ -505,6 +518,13 @@
 .trial_popup .total_after {
   display: flex;
   justify-content: space-between;
+  font-weight: 500;
+}
+.trial_popup .total_now {
+  color: #272727;
+}
+.trial_popup .total_after {
+  color: #555;
 }
 .trial_popup .right_part {
   border-radius: 36px 36px 36px 160px;
@@ -568,6 +588,7 @@
   line-height: 1;
   text-transform: capitalize;
   margin: 30px 0;
+  color: #272727;
 }
 @media (max-width: 768px) {
   .trial_popup .right_part h3 {
@@ -614,10 +635,11 @@
   display: block;
   font-size: 18px;
   margin-bottom: 8px;
+  color: #272727;
 }
 .trial_popup .right_part li p span {
-  font-weight: 700;
-  color: #007db8;
+  font-weight: 600;
+  color: #039ae1;
 }
 .trial_popup .right_part li:first-of-type > span {
   border: 1px solid #e6eff3;
@@ -684,8 +706,8 @@
 }
 .trial_works h3 {
   font-size: 25px;
-  font-weight: 600;
-  line-height: 1;
+  font-weight: 600 !important;
+  line-height: 1 !important;
   text-transform: capitalize;
   margin: 0 0 20px;
 }
@@ -719,21 +741,22 @@
 }
 .trial_works li p {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 24px;
   color: #555;
   margin: 0;
   text-transform: capitalize;
 }
 .trial_works li p b {
-  font-weight: 700;
+  font-weight: 600;
   display: block;
   font-size: 18px;
   margin-bottom: 8px;
+  color: #272727;
 }
 .trial_works li p span {
-  font-weight: 700;
-  color: #007db8;
+  font-weight: 600;
+  color: #039ae1;
 }
 .trial_works li:not(:last-child) > span::after {
   content: "";
@@ -751,6 +774,14 @@
   text-decoration: underline;
   cursor: pointer;
   font-weight: 700;
+}
+
+.headline {
+  color: #272727;
+  font-size: 30px;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */`, L = `<svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
 <path d="M-0.000556731 6.00002C-0.000556725 5.86052 0.0527608 5.72089 0.159261 5.61439L5.6138 0.159852C5.82693 -0.053284 6.17207 -0.053284 6.38507 0.159852C6.59807 0.372988 6.59821 0.718124 6.38507 0.931123L1.31617 6.00002L6.38507 11.0689C6.59821 11.2821 6.59821 11.6272 6.38507 11.8402C6.17193 12.0532 5.8268 12.0533 5.6138 11.8402L0.15926 6.38566C0.0527608 6.27916 -0.000556737 6.13952 -0.000556731 6.00002Z" fill="#007DB8"/>
 </svg>`, T = `<svg xmlns="http://www.w3.org/2000/svg" width="181" height="28" viewBox="0 0 181 28" fill="none">
@@ -768,13 +799,13 @@
 <path d="M98.6417 12.2732C97.642 12.5326 97.6102 12.5479 97.5626 13.0668C97.4991 13.8909 97.7054 14.074 98.4354 13.8604C99.6256 13.5246 100.927 13.4788 101.451 13.7383C102.022 14.013 102.133 14.2419 102.133 15.1423C102.133 15.8138 102.133 15.8138 101.704 15.7069C101.451 15.6306 100.721 15.5849 100.07 15.5849C98.721 15.6001 97.8482 15.9359 97.1659 16.7294C96.0868 17.9656 96.5946 20.0106 98.1815 20.7736C99.2606 21.3078 99.9906 21.262 101.292 20.621C102.292 20.1174 102.371 20.0869 102.561 20.331C102.672 20.4837 102.768 20.6668 102.768 20.7431C102.768 20.8041 103.037 20.8499 103.371 20.8194L103.958 20.7736L104.005 17.874C104.053 14.776 103.91 13.7688 103.371 13.0363C102.641 12.029 100.8 11.7391 98.6417 12.2732ZM101.942 16.9431C102.054 17.0041 102.133 17.4162 102.133 17.8588C102.133 18.5302 102.069 18.7134 101.704 19.0491C101.07 19.629 100.07 19.8732 99.4352 19.629C98.6576 19.3238 98.483 19.0644 98.483 18.2708C98.483 17.0499 99.0067 16.6989 100.641 16.7752C101.26 16.8057 101.847 16.882 101.942 16.9431Z" fill="#272727"/>
 <path d="M175.291 12.136C173.736 12.6243 172.593 13.6773 172.196 14.9898C171.673 16.7448 172.022 18.5761 173.117 19.6749C174.783 21.3689 177.132 21.5978 179.29 20.3006C179.972 19.8886 179.988 19.736 179.385 19.034L179.036 18.6372L178.163 19.0645C177.433 19.4155 177.116 19.4918 176.449 19.446C175.402 19.3544 174.434 18.7593 174.101 18.0115C173.593 16.8364 173.466 16.8974 177.163 16.8516L180.448 16.8058L180.496 15.997C180.575 14.5472 179.718 13.189 178.226 12.4259C177.544 12.0902 175.957 11.9223 175.291 12.136ZM177.671 13.9215C178.179 14.3488 178.623 15.0356 178.623 15.4323C178.623 15.6307 178.29 15.6613 176.243 15.6613C174.942 15.6613 173.862 15.6307 173.862 15.585C173.862 15.5544 173.974 15.234 174.116 14.8982C174.656 13.6163 176.624 13.0821 177.671 13.9215Z" fill="#272727"/>
 <path d="M127.363 16.5769V20.8652L128.284 20.8195L129.188 20.7737V16.5769V12.3801L128.284 12.3343L127.363 12.2885V16.5769Z" fill="#272727"/>
-</svg>`, _ = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
+</svg>`, f = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
 <path d="M1.41406 17.4515C1.41406 18.0239 1.79565 18.4055 2.36805 18.4055H9.40609V9.45947H1.41406V17.4515Z" fill="#039AE1"/>
 <path d="M10.5938 18.4055H17.6317C18.2041 18.4055 18.5857 18.0239 18.5857 17.4515V9.45947H10.5938V18.4055Z" fill="#039AE1"/>
 <path d="M0.458984 5.04823V7.31624C0.458984 7.88865 0.84057 8.27023 1.41297 8.27023H9.765V4.09424H1.41297C0.84057 4.09424 0.458984 4.47582 0.458984 5.04823Z" fill="#039AE1"/>
 <path d="M18.5857 4.09424H9.51367V8.27023H18.5857C19.1581 8.27023 19.5397 7.88865 19.5397 7.31624V5.04823C19.5397 4.47582 19.1581 4.09424 18.5857 4.09424Z" fill="#039AE1"/>
 <path d="M5.80166 4.22073L5.51546 3.93453C5.13388 3.55295 5.13388 2.98055 5.51546 2.59891C5.70628 2.4081 5.99248 2.31271 6.18325 2.31271C6.46945 2.31271 6.66026 2.4081 6.85103 2.59891L8.47285 4.22073H8.75905H11.144H11.4302L13.0521 2.59896C13.4336 2.21737 14.006 2.21737 14.3877 2.59896C14.7693 2.98055 14.7693 3.55295 14.3877 3.93458L14.1969 4.22078H16.4865C16.8681 3.17136 16.5819 2.02656 15.8187 1.26339C14.6739 0.118585 12.8613 0.118585 11.8119 1.26339L9.99929 2.98059L8.28208 1.26339C7.13728 0.118585 5.32469 0.118585 4.17989 1.26339C3.41663 2.02656 3.13043 3.17136 3.51206 4.22073H5.80166Z" fill="#039AE1"/>
-</svg>`, f = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+</svg>`, g = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
 <g clip-path="url(#clip0_82_408)">
 <path d="M17.838 14.1603C17.7673 14.0714 17.6979 13.9824 17.6298 13.8966C16.6931 12.7132 16.1264 11.9991 16.1264 8.64913C16.1264 6.9148 15.7291 5.49176 14.9461 4.42447C14.3688 3.63602 13.5883 3.0379 12.5596 2.59587C12.5464 2.58818 12.5346 2.57809 12.5247 2.56607C12.1547 1.27199 11.1422 0.405273 10.0003 0.405273C8.85835 0.405273 7.84628 1.27199 7.47628 2.56474C7.4664 2.57631 7.45474 2.58608 7.44179 2.59364C5.04126 3.62579 3.87463 5.60604 3.87463 8.64779C3.87463 11.9991 3.30877 12.7132 2.37121 13.8953C2.30308 13.9811 2.23368 14.0682 2.163 14.159C1.98043 14.3889 1.86475 14.6687 1.82967 14.9652C1.79458 15.2617 1.84155 15.5625 1.96502 15.8319C2.22772 16.41 2.78762 16.7689 3.42671 16.7689H16.5785C17.2147 16.7689 17.7707 16.4105 18.0343 15.835C18.1583 15.5655 18.2057 15.2645 18.1709 14.9677C18.1361 14.6708 18.0206 14.3906 17.838 14.1603Z" fill="#A8CCDC"/>
 <path d="M10.0005 20.4051C10.5564 20.4047 11.1018 20.2561 11.5788 19.9751C12.0559 19.6942 12.4468 19.2913 12.7101 18.8093C12.7225 18.7862 12.7287 18.7603 12.7279 18.7342C12.7272 18.7081 12.7196 18.6826 12.7059 18.6602C12.6922 18.6378 12.6728 18.6193 12.6497 18.6065C12.6266 18.5936 12.6005 18.5869 12.574 18.5869H7.42785C7.40127 18.5868 7.37513 18.5935 7.35196 18.6063C7.3288 18.6191 7.30939 18.6376 7.29564 18.66C7.28189 18.6824 7.27426 18.7079 7.2735 18.7341C7.27274 18.7602 7.27887 18.7861 7.29129 18.8093C7.55461 19.2912 7.94548 19.6941 8.42245 19.975C8.89943 20.256 9.44472 20.4046 10.0005 20.4051Z" fill="#A8CCDC"/>
@@ -784,7 +815,7 @@
 <rect width="20" height="20" fill="white" transform="translate(0 0.405273)"/>
 </clipPath>
 </defs>
-</svg>`, g = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17" fill="none">
+</svg>`, C = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17" fill="none">
 <path d="M1.89076 11.8502C1.46974 9.11357 1.04872 6.37699 0.627704 3.64034C0.534337 3.03369 1.22459 2.61994 1.71558 2.98822C3.02729 3.972 4.33893 4.95571 5.65064 5.93949C6.08252 6.26341 6.69782 6.158 6.99723 5.70881L10.2732 0.794748C10.6194 0.275449 11.3824 0.275449 11.7286 0.794748L15.0047 5.70881C15.3041 6.158 15.9194 6.26334 16.3513 5.93949C17.663 4.95571 18.9746 3.972 20.2863 2.98822C20.7773 2.61994 21.4676 3.03369 21.3743 3.64034C20.9532 6.37699 20.5322 9.11357 20.1112 11.8502H1.89076Z" fill="#A8CCDC"/>
 <path d="M19.1611 16.4053H2.84056C2.31593 16.4053 1.89062 15.98 1.89062 15.4554V13.3687H20.1111V15.4554C20.111 15.98 19.6857 16.4053 19.1611 16.4053Z" fill="#A8CCDC"/>
 </svg>`, c = `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
@@ -892,15 +923,15 @@
           <h3>How our trial works</h3>
           <ul>
             <li>
-              <span>${_}</span>
+              <span>${f}</span>
               <p><b>Today</b><span>Start your 7-Day free trial</span>. Enjoy the Premium experience. Cancel anytime!</p>
             </li>
             <li>
-              <span>${f}</span>
+              <span>${g}</span>
               <p><b>${t}</b>Get reminder 3 days before your trial ends. Cancel to switch to the free plan</p>
             </li>
             <li>
-              <span>${g}</span>
+              <span>${C}</span>
               <p><b>${i}</b>Your subscription starts unless<br />you cancel it.</p>
             </li>
           </ul>
@@ -926,16 +957,16 @@
       <h3>How Our Trial Works</h3>
       <ul>
         <li>
-          <span>${_}</span>
+          <span>${f}</span>
           <p><b>Today</b><span>Start your 7-Day free trial</span>. Enjoy the Premium experience. Cancel anytime!</p>
         </li>
         <li>
-          <span>${f}</span>
+          <span>${g}</span>
           <p><b>${n}</b>Get reminder 3 days before your trial ends. Cancel to switch to the free plan</p>
         </li>
         <li>
-          <span>${g}</span>
-          <p><b>${t}</b>Your subscription starts unless<br />you cancel it.</p>
+          <span>${C}</span>
+          <p><b>${t}</b>Your subscription starts unless you cancel it.</p>
         </li>
       </ul>
     </div>
@@ -954,7 +985,7 @@
     /* HTML */
     ' <span class="trial_video">starting free 7-day trial</span> '
   );
-  x({ name: "Reverse trial flow", dev: "YK" }), o("reverse_trial", "Start experiment", "loaded"), v("exp_trial_flow");
+  x({ name: "Reverse trial flow", dev: "YK" }), l("reverse_trial", "Start experiment", "loaded"), v("exp_trial_flow");
   class V {
     constructor() {
       this.isAuth = !1, this.isFree = !0, this.init();
@@ -987,7 +1018,7 @@
       const n = await this.checkAuth();
       this.isAuth = n, e(".sfc-upgradeBanner__cta").on("click", (t) => {
         if (t.preventDefault(), this.isAuth) {
-          e(".popup_wrapper").addClass("active"), o("exp_trial_flow_button_07", "starting free trial", "click", "Listing page");
+          e(".popup_wrapper").addClass("active"), l("exp_trial_flow_button_07", "starting free trial", "click", "Listing page");
           return;
         } else
           window.location.href = "/yogi/register?destination=" + window.location.pathname + "?freetrial";
@@ -995,8 +1026,10 @@
     }
     async videoPage() {
       const n = await this.checkAuth();
-      this.isAuth = n, (await r(".sfc-playablePreviewFunnel__overlay--actions h2")).innerHTML.includes("Premium") && (this.isFree = !1), !this.isFree && this.isAuth && (e(".sfc-playablePreviewOverlayUpsell__upsellLink").style("display", "none"), e(".sfc-playablePreviewOverlayUpsell__upsellLink").elements[0].insertAdjacentHTML("afterend", S), e(".trial_video").on("click", () => {
-        this.showPopup(), o("exp_trial_flow_button_07", "starting free 7-day trial", "click", "Premium video");
+      this.isAuth = n;
+      const t = await r(".sfc-playablePreviewFunnel__overlay--actions h2");
+      t.innerHTML.includes("Premium") && (this.isFree = !1, t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Start your free trial to unlock this class.</h3>')), !this.isFree && this.isAuth && (e(".sfc-playablePreviewOverlayUpsell__upsellLink").style("display", "none"), e(".sfc-playablePreviewOverlayUpsell__upsellLink").elements[0].insertAdjacentHTML("afterend", S), e(".trial_video").on("click", () => {
+        this.showPopup(), l("exp_trial_flow_button_07", "starting free 7-day trial", "click", "Premium video");
       })), e(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--google").on("click", (i) => {
         localStorage.setItem("signup", window.location.pathname + "?freetrial");
       }), await r(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--register"), e(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--register").on("click", (i) => {
@@ -1005,12 +1038,14 @@
     }
     async checkout() {
       if (!(await r(".order-total-line-value")).innerText.includes("$0.00")) return;
-      r(".sfc-registrationProgress__steps").then((i) => {
+      r(".sfc-registrationProgress__back").then(() => {
+        e(".sfc-registrationProgress__back").style("font-size", "14px").style("text-transform", "lowercase");
+      }), r(".sfc-registrationProgress__steps").then((i) => {
         i.style.display = "none";
       }), await r(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", $), window.innerWidth > 768 ? (await r(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", w())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", w());
       const t = await r(".button--primary.js-form-submit");
-      t.innerText = "Start my 7-day free trial", t.addEventListener("click", (i) => {
-        o("exp_trial_flow_button_05", "Start my 7-day free trial", "click", "Payment information");
+      t.innerText = "Start my 7-day free trial", t.style.textTransform = "capitalize", t.addEventListener("click", (i) => {
+        l("exp_trial_flow_button_05", "Start my 7-day free trial", "click", "Payment information");
       });
     }
     async checkAuth() {
@@ -1021,8 +1056,8 @@
       await r(".sfc-pricingTable__col:nth-child(3) .sfc-pricingTableLevel__pricing--paid");
       const n = e(".sfc-pricingTableLevel__pricing--paid").elements;
       n.length > 1 && n.forEach((t, i) => {
-        var l, s;
-        const p = ((s = (l = t.querySelector(".sfc-price__amt")) == null ? void 0 : l.textContent) == null ? void 0 : s.trim()) || "";
+        var o, s;
+        const p = ((s = (o = t.querySelector(".sfc-price__amt")) == null ? void 0 : o.textContent) == null ? void 0 : s.trim()) || "";
         t.style.display = "none", t.insertAdjacentHTML("afterend", m(p));
       }), e('.sfc-pricingTable__col [data-sfc-id="button"]').elements.forEach((t, i) => {
         i !== 0 && (t.innerText = "Start Free Trial", t.setAttribute("href", `/yogi/register?destination=/express-checkout/13${i === 1 ? 9 : 8}`));
@@ -1030,8 +1065,8 @@
     }
     async authorizedPlanUpdate() {
       await r(".sfc-pricingTablePremium__col:nth-child(2) .sfc-pricingTableLevel__pricing--paid"), e(".sfc-pricingTableLevel__pricing--paid").elements.forEach((t) => {
-        var p, l;
-        const i = ((l = (p = t.querySelector(".sfc-price__amt")) == null ? void 0 : p.textContent) == null ? void 0 : l.trim()) || "";
+        var p, o;
+        const i = ((o = (p = t.querySelector(".sfc-price__amt")) == null ? void 0 : p.textContent) == null ? void 0 : o.trim()) || "";
         t.style.display = "none", t.insertAdjacentHTML("afterend", m(i));
       }), e('.sfc-pricingTablePremium__col [data-sfc-id="button"]').elements.forEach((t, i) => {
         t.innerText = "Start Free Trial", t.setAttribute("href", `/yogi/register?destination=/express-checkout/13${i === 0 ? 8 : 9}`);
@@ -1040,25 +1075,25 @@
     async addPopup() {
       const n = await r(".c-button--cta.c-dropdownMenu__link");
       n && n.innerHTML.includes("Subscribe") && (n.innerHTML = "Start Free Trial", n.addEventListener("click", () => {
-        o("exp_trial_flow_button_06", "Start free trial", "click", "Header");
+        l("exp_trial_flow_button_06", "Start free trial", "click", "Header");
       })), n && n.innerHTML.includes("Sign Up") && n.addEventListener("click", (t) => {
         t.preventDefault(), window.location.href = "/yogi/register?destination=" + window.location.pathname + "?freetrial";
       }), window.location.search.includes("freetrial") && window.location.pathname.includes("/content/") && !document.querySelector(".sfc-playablePreviewFunnel__overlay--actions h2") ? document.body.insertAdjacentHTML("beforeend", b(!0)) : document.body.insertAdjacentHTML("beforeend", b()), e(".skip").on("click", () => {
-        e(".popup_wrapper").removeClass("active"), o(
+        e(".popup_wrapper").removeClass("active"), l(
           "exp_trial_flow_button_01",
           `Skip - ${e(".step1.active").elements.length > 0 ? "Step 1" : "Step 2"}`,
           "click",
           "Pop up start free trial"
         );
       }), e(".trial_popup .start_trial").on("click", () => {
-        e(".trial_popup .step1").removeClass("active"), e(".trial_popup .step2").addClass("active"), e(".step_block span:nth-child(2)").addClass("active"), e(".skip") && e(".back").removeClass("hide"), o("exp_trial_flow_button_02", "Start my 7-day free trial", "click", "Pop up start free trial");
+        e(".trial_popup .step1").removeClass("active"), e(".trial_popup .step2").addClass("active"), e(".step_block span:nth-child(2)").addClass("active"), e(".skip") && e(".back").removeClass("hide"), l("exp_trial_flow_button_02", "Start my 7-day free trial", "click", "Pop up start free trial");
       }), e(".trial_popup .back").on("click", () => {
-        e(".trial_popup .step1.active").elements.length > 0 ? (e(".popup_wrapper").removeClass("active"), o("exp_trial_flow_button_03", "Back - Step 1", "click", "Pop up start free trial")) : (e(".trial_popup .step2").removeClass("active"), e(".trial_popup .step1").addClass("active"), e(".step_block span:nth-child(2)").removeClass("active"), e(".skip") && e(".back").addClass("hide"), o("exp_trial_flow_button_03", "Back - Step 2", "click", "Pop up start free trial"));
+        e(".trial_popup .step1.active").elements.length > 0 ? (e(".popup_wrapper").removeClass("active"), l("exp_trial_flow_button_03", "Back - Step 1", "click", "Pop up start free trial")) : (e(".trial_popup .step2").removeClass("active"), e(".trial_popup .step1").addClass("active"), e(".step_block span:nth-child(2)").removeClass("active"), e(".skip").elements.length > 0 && e(".back").addClass("hide"), l("exp_trial_flow_button_03", "Back - Step 2", "click", "Pop up start free trial"));
       }), e(".trial_popup .select_plan input").on("change", (t) => {
         t.target.value === "monthly" ? e(".total_after span").elements[0].innerText = "$ 13.99" : e(".total_after span").elements[0].innerText = "$ 108.99";
       }), e(".to_checkout").on("click", () => {
         const t = e(".trial_popup .select_plan input:checked").elements[0].value;
-        o("exp_trial_flow_button_04", `Next - ${t}`, "click", "Pop up start free trial");
+        l("exp_trial_flow_button_04", `Next - ${t}`, "click", "Pop up start free trial");
       });
     }
     showPopup() {
