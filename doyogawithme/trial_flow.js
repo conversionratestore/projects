@@ -223,7 +223,8 @@
   }
 }
 .sfc-upgradeBanner {
-  max-width: 100% !important;
+  max-width: calc(100% - 36px) !important;
+  margin: 0 auto !important;
 }
 
 .sfc-pricingTable__col:not(:nth-child(1)) [data-sfc-id=button],
