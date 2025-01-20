@@ -985,7 +985,7 @@
     </div>
   `
     );
-  }, $ = (
+  }, S = (
     /* HTML */
     `
   <div class="checkout_steps_wrapper">
@@ -994,7 +994,7 @@
     <span></span>
   </div>
 `
-  ), S = (
+  ), $ = (
     /* HTML */
     ' <span class="trial_video">starting free 7-day trial</span> '
   );
@@ -1031,7 +1031,7 @@
       const n = await this.checkAuth();
       this.isAuth = n, e(".sfc-upgradeBanner__cta").on("click", (t) => {
         if (t.preventDefault(), this.isAuth) {
-          e(".popup_wrapper").addClass("active"), l("exp_trial_flow_button_07", "starting free trial", "click", "Listing page");
+          e(".popup_wrapper").addClass("active"), l("exp_trial_flow_button_08", "starting free trial", "click", "Listing page");
           return;
         } else
           window.location.href = "/yogi/register?destination=" + window.location.pathname + "?freetrial";
@@ -1041,7 +1041,7 @@
       const n = await this.checkAuth();
       this.isAuth = n;
       const t = await r(".sfc-playablePreviewFunnel__overlay--actions h2");
-      t.innerHTML.includes("Premium") ? (this.isFree = !1, t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Start your free trial to unlock this class.</h3>')) : (t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Create account to start free trial.</h3>')), !this.isFree && this.isAuth && (e(".sfc-playablePreviewOverlayUpsell__upsellLink").style("display", "none"), e(".sfc-playablePreviewOverlayUpsell__upsellLink").elements[0].insertAdjacentHTML("afterend", S), e(".trial_video").on("click", () => {
+      t.innerHTML.includes("Premium") ? (this.isFree = !1, t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Start your free trial to unlock this class.</h3>')) : (t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Create account to start free trial.</h3>')), !this.isFree && this.isAuth && (e(".sfc-playablePreviewOverlayUpsell__upsellLink").style("display", "none"), e(".sfc-playablePreviewOverlayUpsell__upsellLink").elements[0].insertAdjacentHTML("afterend", $), e(".trial_video").on("click", () => {
         this.showPopup(), l("exp_trial_flow_button_07", "starting free 7-day trial", "click", "Premium video");
       })), e(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--google").on("click", (i) => {
         localStorage.setItem("signup", window.location.pathname + "?freetrial");
@@ -1055,7 +1055,9 @@
         e(".sfc-registrationProgress__back").style("font-size", "14px").style("text-transform", "lowercase");
       }), r(".sfc-registrationProgress__steps").then((i) => {
         i.style.display = "none";
-      }), await r(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", $), window.innerWidth > 768 ? (await r(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", w())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", w());
+      }), await r(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", S), e(".sfc-registrationProgress__back").on("click", (i) => {
+        i.preventDefault(), window.location.href = localStorage.getItem("current_page") || "/become-a-subscriber";
+      }), window.innerWidth > 768 ? (await r(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", w())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", w());
       const t = await r(".button--primary.js-form-submit");
       t.innerText = "Start my 7-day free trial", t.style.textTransform = "capitalize", t.addEventListener("click", (i) => {
         l("exp_trial_flow_button_05", "Start my 7-day free trial", "click", "Payment information");
@@ -1103,10 +1105,10 @@
       }), e(".trial_popup .back").on("click", () => {
         e(".trial_popup .step1.active").elements.length > 0 ? (e(".popup_wrapper").removeClass("active"), l("exp_trial_flow_button_03", "Back - Step 1", "click", "Pop up start free trial")) : (e(".trial_popup .step2").removeClass("active"), e(".trial_popup .step1").addClass("active"), e(".step_block span:nth-child(2)").removeClass("active"), e(".skip").elements.length > 0 && e(".back").addClass("hide"), l("exp_trial_flow_button_03", "Back - Step 2", "click", "Pop up start free trial"));
       }), e(".trial_popup .select_plan input").on("change", (t) => {
-        t.target.value === "monthly" ? e(".total_after span").elements[0].innerText = "$ 13.99" : e(".total_after span").elements[0].innerText = "$ 108.99";
+        t.target.value === "monthly" ? (e(".total_after span").elements[0].innerText = "$ 13.99", e(".to_checkout").elements[0].setAttribute("href", "/yogi/register?destination=/express-checkout/138")) : (e(".total_after span").elements[0].innerText = "$ 108.99", e(".to_checkout").elements[0].setAttribute("href", "/yogi/register?destination=/express-checkout/139"));
       }), e(".to_checkout").on("click", () => {
         const t = e(".trial_popup .select_plan input:checked").elements[0].value;
-        l("exp_trial_flow_button_04", `Next - ${t}`, "click", "Pop up start free trial");
+        localStorage.setItem("current_page", window.location.pathname), l("exp_trial_flow_button_04", `Next - ${t}`, "click", "Pop up start free trial");
       });
     }
     showPopup() {
