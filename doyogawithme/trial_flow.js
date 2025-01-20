@@ -1038,6 +1038,7 @@
       });
     }
     async videoPage() {
+      this.listing();
       const n = await this.checkAuth();
       this.isAuth = n;
       const t = await r(".sfc-playablePreviewFunnel__overlay--actions h2");
