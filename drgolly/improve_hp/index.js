@@ -580,7 +580,7 @@
         </div>
         <div id="toddler-sleep" class="crs-courses__group">
           <div class="crs-courses__group-age">8 Months - 5 Years</div>
-          <div class="crs-courses__group-title">Toddler Sleep</div>
+          <div class="crs-courses__group-title">Toddler</div>
           <div class="crs-courses__group-list"></div>
         </div>
         <div id="extras" class="crs-courses__group">
@@ -645,7 +645,7 @@
     setupSectionObservers() {
       const n = document.querySelectorAll(".crs-courses__group"), e = document.querySelectorAll("#courses .tabs__nav li");
       document.querySelectorAll("#courses .tabs__nav li a").forEach((o, s) => {
-        s === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), s === 1 && (o.textContent = "Bundles", o.href = "#bundles"), s === 2 && (o.textContent = "Toddler Sleep", o.href = "#toddler-sleep"), s === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (i) => {
+        s === 0 && (o.textContent = "Baby Sleep", o.href = "#baby-sleep"), s === 1 && (o.textContent = "Bundles", o.href = "#bundles"), s === 2 && (o.textContent = "Toddler", o.href = "#toddler-sleep"), s === 3 && (o.textContent = "Extras", o.href = "#extras"), o.addEventListener("click", (i) => {
           var d;
           i.preventDefault();
           const t = o.getAttribute("href");
@@ -728,11 +728,14 @@
   const v = async () => {
     try {
       const a = await fetch(
-        "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=50&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
+        "https://api.reviews.io/timeline/data?type=store_review&store=www.drgolly.com&sort=date_desc&page=1&per_page=100&enable_avatars=false&include_subrating_breakdown=1&branch=&tag=&include_product_reviews=1&sku=&lang=en"
       ), n = await a.json();
       if (!a.ok)
         throw new Error(n.message || "Failed to fetch data");
-      return [null, n.stats];
+      return console.log(n), [null, {
+        average_rating: n.stats.average_rating,
+        review_count: n.stats.review_count
+      }];
     } catch (a) {
       return [a, null];
     }
@@ -842,6 +845,7 @@
   background-image: url('data:image/svg+xml,<svg width="23" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3 10.5a15 15 0 0 1-2.5 8.1l-2.1 2.8c-.3.2-.8.3-1 0L3 19.5a.7.7 0 0 1 0-.9l.4-.5a9 9 0 0 0 1.8-4.2c-1 0-2.3-.2-3-1.1-.8-1-1.2-2-1.2-3.2 0-1.2.5-2.2 1.4-3.2 1-1 2-1.4 3.3-1.4C7 5 8.1 5.5 9 6.6c1 1 1.4 2.3 1.4 3.9ZM21.7 10.5a15 15 0 0 1-2.6 8.1l-2 2.8c-.3.2-.8.3-1 0l-1.8-1.9a.7.7 0 0 1 0-.9l.4-.5a9 9 0 0 0 1.9-4.2c-1 0-2.3-.2-3.1-1.1-.7-1-1.2-2-1.2-3.2 0-1.2.5-2.2 1.5-3.2S15.8 5 17 5c1.2 0 2.3.5 3.1 1.6 1 1 1.5 2.3 1.5 3.9Z" fill="%2371C2BD"/></svg>');
   background-repeat: no-repeat;
   background-size: contain;
+  rotate: 180deg;
 }
 @media (max-width: 981px) {
   .post-2 .et_pb_section_1.et_pb_section:has(h1) {
@@ -910,7 +914,7 @@
         /* HTML */
         `
       <div class="crs-quote">
-        <div class="crs-quote__text">Feel so much more confident with my babies sleep and winding techniques!</div>
+        <div class="crs-quote__text">I feel so much more confident with my baby’s sleep and winding!</div>
       </div>
     `
       ), e = document.querySelector(".et_pb_section:has(h1)");
@@ -918,7 +922,7 @@
     }
     async addRating() {
       const [n, e] = await v();
-      if (n) {
+      if (console.log(e), n) {
         console.error(n);
         return;
       }
