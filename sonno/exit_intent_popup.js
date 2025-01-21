@@ -1599,13 +1599,15 @@
         });
       };
       if (n.length > 0)
-        r ? (a(I, "returningUsersWithProducts"), s(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), i("a.img_wrapper").addEventListener("click", () => {
-          o(
-            "exp_01_ei__popup6__product",
-            "Click on product",
-            "Click",
-            "Popup. Exit-intent. Returning user with products in basket"
-          );
+        r ? (a(I, "returningUsersWithProducts"), s(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), w(".img_wrapper").then((d) => {
+          i(".img_wrapper").addEventListener("click", () => {
+            o(
+              "exp_01_ei__popup6__product",
+              "Click on product",
+              "Click",
+              "Popup. Exit-intent. Returning user with products in basket"
+            );
+          });
         })) : (a(E, "newUsersWithProducts"), s(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), i("a.img_wrapper").addEventListener("click", () => {
           o(
             "exp_01_ei__popup4__product",
