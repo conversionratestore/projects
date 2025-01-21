@@ -250,7 +250,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 780px) {
   .crs-badges__list {
     justify-content: center;
   }
