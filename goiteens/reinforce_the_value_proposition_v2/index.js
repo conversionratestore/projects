@@ -168,7 +168,9 @@
   .crs-badges__list {
     flex-wrap: wrap;
     row-gap: 24px;
+    column-gap: 36px;
     justify-content: space-between;
+    width: 100%;
   }
   .crs-badges__item {
     width: 158px;
@@ -245,6 +247,12 @@
 
   .crs-badges__img-mob {
     display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .crs-badges__list {
+    justify-content: center;
   }
 }
 `;
