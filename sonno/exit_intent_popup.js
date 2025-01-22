@@ -8,17 +8,17 @@
       event_type: e,
       event_loc: n
     }), console.dir(`Event: ${p} | ${t} | ${e} | ${n}`);
-  }, v = ({ name: p, dev: t }) => {
+  }, k = ({ name: p, dev: t }) => {
     console.log(
       `%c EXP: ${p} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, h = (p) => document.querySelectorAll(p), i = (p) => document.querySelector(p), y = (p, t = "variant_1") => {
+  }, x = (p) => document.querySelectorAll(p), i = (p) => document.querySelector(p), C = (p, t = "variant_1") => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", p, t), console.log("set", p, t));
     }, 1e3);
   };
-  function w(p) {
+  function h(p) {
     return new Promise((t) => {
       if (document.querySelector(p))
         return t(document.querySelector(p));
@@ -32,7 +32,7 @@
       });
     });
   }
-  const k = function(p) {
+  const P = function(p) {
     p = p === void 0 ? {} : p;
     let t, e, n, r, a = (p == null ? void 0 : p.delay) || 50;
     function s() {
@@ -41,11 +41,11 @@
     return s(), function() {
       return e = window.scrollY, t != null && (r = e - t), t = e, clearTimeout(n), n = setTimeout(s, a), r;
     };
-  }(), C = (p) => {
+  }(), L = (p) => {
     var e;
     const t = `; ${document.cookie}`;
     return t.includes(`; ${p}=`) ? (e = t.split(`; ${p}=`).pop()) == null ? void 0 : e.split(";").shift() : (console.log("No cookie"), null);
-  }, u = "https://conversionratestore.github.io/projects/sonno/img/", _ = {
+  }, l = "https://conversionratestore.github.io/projects/sonno/img/", _ = {
     closeIcon: (
       /* HTML */
       `
@@ -207,7 +207,7 @@
   </defs>
 </svg>
   `
-  }, P = [
+  }, E = [
     {
       link: "https://sonno.co.uk/collections/divan-beds",
       img: "popup_img_5.webp",
@@ -229,7 +229,7 @@
       title: "Matrasses",
       buttonText: "Shop Now"
     }
-  ], L = (
+  ], S = (
     /* HTML */
     `
   <div class="first_order_discount first_var">
@@ -255,8 +255,8 @@
       </div>
     </div>
     <div class="img_wrapper">
-      <img src="${u}popup_img_1.webp" alt="photo" class="desk_var" />
-      <img src="${u}popup_img_1_mob.webp" alt="photo" class="mob_var" />
+      <img src="${l}popup_img_1.webp" alt="photo" class="desk_var" />
+      <img src="${l}popup_img_1_mob.webp" alt="photo" class="mob_var" />
     </div>
   </div>
   <div class="first_order_discount second_var is_hidden">
@@ -282,12 +282,12 @@
       </div>
     </div>
     <div class="img_wrapper">
-      <img src="${u}popup_img_1.webp" alt="photo" class="desk_var" />
-      <img src="${u}popup_img_1_mob.webp" alt="photo" class="mob_var" />
+      <img src="${l}popup_img_1.webp" alt="photo" class="desk_var" />
+      <img src="${l}popup_img_1_mob.webp" alt="photo" class="mob_var" />
     </div>
   </div>
 `
-  ), m = (p = !1, t = "", e = "", n = "", r = "", a = "", s = "") => (
+  ), g = (p = !1, t = "", e = "", n = "", r = "", a = "", s = "") => (
     /* HTML */
     `
     ${p ? (
@@ -311,7 +311,7 @@
                     <span class="old_price_txt">${n}</span>
                     <span class="price_txt">${r}</span>
                     <span class="save_txt">Save ${a}</span>
-                    <img class="img_label" src="${u}popup_img_9.webp" alt="photo" />
+                    <img class="img_label" src="${l}popup_img_9.webp" alt="photo" />
                   </div>
                 </div>
               </a>
@@ -334,7 +334,7 @@
             </div>
             <div class="body_popup">
               <div class="img_wrapper">
-                <img src="${u}popup_img_2.webp" alt="photo" />
+                <img src="${l}popup_img_2.webp" alt="photo" />
               </div>
               <div class="btn_wrapper">
                 <p>Discount will be applied on Checkout</p>
@@ -345,7 +345,7 @@
         `
     )}
   `
-  ), E = (
+  ), I = (
     /* HTML */
     `
   <div class="new_users_with_products exit_intent_popup">
@@ -373,6 +373,7 @@
       <div class="body_popup">
         <div class="products_wrapper">
           <ul class="products_list"></ul>
+          <span class="shadow"></span>
         </div>
         <div class="discount_code_wrapper">
           <p class="discount_code_title">Copy and Enter code at checkout</p>
@@ -387,11 +388,11 @@
       </div>
     </div>
     <div class="img_wrapper">
-      <img src="${u}popup_img_3.webp" alt="photo" class="desk_var" />
+      <img src="${l}popup_img_3.webp" alt="photo" class="desk_var" />
     </div>
   </div>
 `
-  ), S = (
+  ), $ = (
     /* HTML */
     `
   <div class="returning_users_w_o_products exit_intent_popup">
@@ -401,11 +402,11 @@
     </div>
     <div class="body_popup">
       <ul class="category_list">
-        ${P.map((p) => (
+        ${E.map((p) => (
       /* HTML */
       `
               <li class="category_item">
-                <img src="${u}${window.innerWidth >= 768 ? p.img : p.imgMob}" alt="photo" />
+                <img src="${l}${window.innerWidth >= 768 ? p.img : p.imgMob}" alt="photo" />
                 <div class="info_wrapper">
                   <h3>${p.title}</h3>
                   <a href="${p.link}" class="returning_users_w_o_products_shop_now_btn main_btn"
@@ -419,7 +420,7 @@
     </div>
   </div>
 `
-  ), I = (
+  ), N = (
     /* HTML */
     `
   <div class="returning_users_with_products exit_intent_popup">
@@ -431,6 +432,7 @@
       <div class="body_popup">
         <div class="products_wrapper">
           <ul class="products_list"></ul>
+          <span class="shadow"></span>
         </div>
         <div class="btn_wrapper">
           <div class="returning_users_with_products_checkout_btn main_btn">Checkout</div>
@@ -438,11 +440,11 @@
       </div>
     </div>
     <div class="img_wrapper">
-      <img src="${u}popup_img_8.webp" alt="photo" class="desk_var" />
+      <img src="${l}popup_img_8.webp" alt="photo" class="desk_var" />
     </div>
   </div>
 `
-  ), $ = (
+  ), T = (
     /* HTML */
     `
   <div class="new_popup_backdrop is_hidden">
@@ -452,9 +454,9 @@
     </div>
   </div>
 `
-  ), N = (p, t, e, n, r, a, s, d = !1) => {
-    const c = Math.floor(Math.random() * 10) + 1, l = Math.floor(Math.random() * 12) + 4;
-    return (
+  ), z = (p, t, e, n, r, a, s, d = !1) => {
+    const c = Math.floor(Math.random() * 10) + 1, w = Math.floor(Math.random() * 12) + 4;
+    return e.includes("Assembly") || e.includes("Removal") ? "" : (
       /* HTML */
       `
     <li class="products_item">
@@ -473,7 +475,7 @@
         /* HTML */
         `<div class="popular_products">
               ${_.peopleViewingIcon}
-              <p><span class="stock_txt">${l} people</span> are watching this product right now</p>
+              <p><span class="stock_txt">${w} people</span> are watching this product right now</p>
             </div>`
       ) : ""}
         <div class="product_all_info">
@@ -495,7 +497,7 @@
         /* HTML */
         `<div class="popular_products">
                   ${_.peopleViewingIcon}
-                  <p><span class="stock_txt">${l} people</span> are watching this product right now</p>
+                  <p><span class="stock_txt">${w} people</span> are watching this product right now</p>
                 </div>`
       ) : ""}
             <h3 class="item_title"><a href="${p}">${e}</a></h3>
@@ -513,7 +515,7 @@
         `<div class="popular_products">
             ${_.peopleViewingIcon}
             <p>
-              <b><span>${l}</span> people are viewing this product—</b>availability isn’t guaranteed.
+              <b><span>${w}</span> people are viewing this product—</b>availability isn’t guaranteed.
               Complete your purchase now!
             </p>
           </div>`
@@ -521,7 +523,7 @@
     </li>
   `
     );
-  }, T = `.new_popup_backdrop {
+  }, M = `.new_popup_backdrop {
   position: fixed;
   opacity: 1;
   top: 0;
@@ -559,7 +561,7 @@
   height: 30px;
   border-radius: 1111px;
   background: #fff;
-  z-index: 1;
+  z-index: 2;
   transition: all 0.8s ease 0s;
 }
 
@@ -612,7 +614,6 @@
 @media (max-width: 768px) {
   .header_popup .main_description {
     font-size: 12px;
-    font-weight: 400;
     line-height: 14px;
   }
 }
@@ -658,7 +659,7 @@
   height: 52px;
   padding: 4px 4px 4px 18px;
   border-radius: 8px;
-  border: 1px dashed #f89201;
+  border: 1px dashed #e00d46;
   background: #fcf4e8;
 }
 .discount_code_wrapper .discount_code_container.copied {
@@ -707,30 +708,48 @@
 }
 
 .products_wrapper {
+  position: relative;
   max-height: 364px;
-  overflow: auto;
 }
 @media (max-width: 768px) {
   .products_wrapper {
     max-height: 359px;
   }
 }
-.products_wrapper::-webkit-scrollbar {
-  width: 4px;
+.products_wrapper .shadow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  height: 45px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(30, 56, 81, 0) 0%, rgba(30, 56, 81, 0.24) 144.44%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
 }
-.products_wrapper::-webkit-scrollbar-track {
-  border-radius: 0;
-  background: transparent;
-}
-.products_wrapper::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  background: #b4c1cf;
+.products_wrapper .shadow.active {
+  opacity: 1;
 }
 .products_wrapper .products_list {
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-right: 8px;
+  height: 100%;
+  overflow: auto;
+  padding: 0 0 10px;
+}
+.products_wrapper .products_list::-webkit-scrollbar {
+  width: 4px;
+}
+.products_wrapper .products_list::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: transparent;
+}
+.products_wrapper .products_list::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #b4c1cf;
 }
 @media (max-width: 768px) {
   .products_wrapper .products_list {
@@ -932,7 +951,7 @@
   font-family: "Poppins", sans-serif;
   font-size: 13px;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 22px;
   margin: 0;
 }
 @media (max-width: 768px) {
@@ -1519,16 +1538,16 @@
 
 .needsclick.kl-private-reset-css-Xuajs1 {
   display: none !important;
-}/*# sourceMappingURL=main.css.map */`, z = window.innerWidth < 768 ? "mobile" : "desktop";
-  class M {
+}/*# sourceMappingURL=main.css.map */`, O = window.innerWidth < 768 ? "mobile" : "desktop";
+  class H {
     constructor(t) {
       this.device = t, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 10 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
     }
     init() {
-      v({ name: "Exit Intent Popup", dev: "SKh" }), y("exp_01_exit_intent"), document.head.insertAdjacentHTML("beforeend", `<style>${T}</style>`), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput();
+      k({ name: "Exit Intent Popup", dev: "SKh" }), C("exp_01_exit_intent"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput();
     }
     createPopup() {
-      i(".new_popup_backdrop") || i("body").insertAdjacentHTML("afterbegin", $);
+      i(".new_popup_backdrop") || i("body").insertAdjacentHTML("afterbegin", T);
     }
     checkSessionNumber() {
       const t = () => {
@@ -1544,15 +1563,15 @@
     }
     intentPopupTriggers() {
       localStorage.getItem("initUser") || this.getNewUser("_ga"), this.device === "mobile" && document.addEventListener("scroll", () => {
-        +k() < -150 && this.getItemsBasket("Scroll up (JS speed value: 150) - for any page");
+        +P() < -150 && this.getItemsBasket("Scroll up (JS speed value: 150) - for any page");
       }), this.device === "desktop" && document.addEventListener("mouseout", (t) => {
         t.relatedTarget || this.getItemsBasket("cursor moved out of the page frame");
       }), (window.location.href.match("/checkout") || window.location.href.match("/cart")) && (this.setupListeners(), this.resetTimer());
     }
     getNewUser(t) {
-      const e = C(t), n = () => {
-        localStorage.setItem("initUser", "true"), setTimeout(() => {
-          this.isPopupOpen() || (this.handleShowPopup(L, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), i(".new_popup_backdrop").setAttribute("popup", "firstOrderDiscount"));
+      const e = L(t), n = () => {
+        setTimeout(() => {
+          localStorage.setItem("initUser", "true"), !this.isPopupOpen() && (this.handleShowPopup(S, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), i(".new_popup_backdrop").setAttribute("popup", "firstOrderDiscount"));
         }, this.firstSessionTime);
       };
       if (!e)
@@ -1566,32 +1585,30 @@
       document.addEventListener("mousemove", () => this.resetTimer()), document.addEventListener("keydown", () => this.resetTimer()), this.device === "mobile" && (document.addEventListener("touchstart", () => this.resetTimer()), document.addEventListener("touchmove", () => this.resetTimer()));
     }
     resetTimer() {
-      this.timeoutId && clearTimeout(this.timeoutId), this.timeoutId = setTimeout(
-        () => this.getItemsBasket("In 60sec. at basket, checkout without any action"),
-        this.delayTime
-      );
+      this.timeoutId && clearTimeout(this.timeoutId), this.timeoutId = setTimeout(() => {
+        this.getItemsBasket("In 60sec. at basket, checkout without any action");
+      }, this.delayTime);
     }
     async getItemsBasket(t) {
       if (this.isPopupOpen()) return;
       const e = Date.now();
       if (this.lastPopupTime = Number(sessionStorage.getItem("lastPopupTime")) || 0, e - this.lastPopupTime < this.timeLag) return;
-      sessionStorage.setItem("lastPopupTime", e.toString());
       const n = await this.getCartCheckout(), r = Number(localStorage.getItem("session")) > 1, a = (d, c) => {
-        this.handleShowPopup(d, c, t, c);
+        this.handleShowPopup(d, c, t, c), sessionStorage.setItem("lastPopupTime", e.toString());
       }, s = (d, c) => {
-        d.forEach((l) => {
-          const { url: O, image: V, product_title: H, variant_title: W, presentment_price: x, quantity: g } = l, B = O, U = V, D = H, j = W, f = +x * +g, b = +x * +g, Z = f + b;
-          w(".products_list").then(() => {
+        d.forEach((w) => {
+          const { url: u, image: m, product_title: V, variant_title: W, presentment_price: f, quantity: b } = w, B = u, U = m, j = V, D = W, v = +f * +b, y = +f * +b, Z = v + y;
+          h(".products_list").then(() => {
             i(".products_list").insertAdjacentHTML(
               "beforeend",
-              N(
+              z(
                 B,
                 U,
-                D,
                 j,
+                D,
                 Z,
-                f,
-                b,
+                v,
+                y,
                 c
               )
             );
@@ -1599,7 +1616,7 @@
         });
       };
       if (n.length > 0)
-        r ? (a(I, "returningUsersWithProducts"), s(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), w(".img_wrapper").then((d) => {
+        r ? (a(N, "returningUsersWithProducts"), s(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), h(".img_wrapper").then((d) => {
           i(".img_wrapper").addEventListener("click", () => {
             o(
               "exp_01_ei__popup6__product",
@@ -1608,7 +1625,7 @@
               "Popup. Exit-intent. Returning user with products in basket"
             );
           });
-        })) : (a(E, "newUsersWithProducts"), s(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), i("a.img_wrapper").addEventListener("click", () => {
+        })) : (a(I, "newUsersWithProducts"), s(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), i("a.img_wrapper").addEventListener("click", () => {
           o(
             "exp_01_ei__popup4__product",
             "Click on product",
@@ -1617,11 +1634,11 @@
           );
         }));
       else if (r)
-        a(S, "returningUsersWOProducts"), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWOProducts");
+        a($, "returningUsersWOProducts"), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWOProducts");
       else {
         const d = sessionStorage.getItem("viewedItem") || "{}", c = JSON.parse(d);
         a(
-          d !== "{}" ? m(
+          d !== "{}" ? g(
             !0,
             c.imgProduct,
             c.titleProduct,
@@ -1629,7 +1646,7 @@
             c.priceProduct,
             c.saveTxtProduct,
             c.linkProduct
-          ) : m(),
+          ) : g(),
           "newUsersWOProducts"
         ), i(".new_popup_backdrop").setAttribute("popup", "newUsersWOProducts");
       }
@@ -1695,7 +1712,12 @@
           );
           break;
       }
-      w("#counter").then((l) => {
+      h(".products_wrapper .product_wrapper").then((w) => {
+        const u = i(".products_wrapper .products_list"), m = i(".products_wrapper .shadow");
+        u.scrollHeight > u.clientHeight && m.classList.add("active"), u.addEventListener("scroll", () => {
+          u.scrollHeight > u.clientHeight && u.scrollTop < u.scrollHeight - u.clientHeight ? m.classList.add("active") : m.classList.remove("active");
+        });
+      }), h("#counter").then((w) => {
         this.startCountdown();
       }), this.handleClosePopup();
     }
@@ -1768,8 +1790,8 @@
       }, 1e3);
     }
     copyDiscount() {
-      w("[data-discount]").then((t) => {
-        h("[data-discount]").forEach((e) => {
+      h("[data-discount]").then((t) => {
+        x("[data-discount]").forEach((e) => {
           e.addEventListener("click", (n) => {
             let r = n.currentTarget.dataset.discount;
             navigator.clipboard.writeText(r), n.currentTarget.innerHTML = `Copied! ${_.copyCheeckIcon}`, n.currentTarget.closest(".discount_code_container").classList.add("copied"), i("[popup]").getAttribute("popup") === "firstOrderDiscount" ? (o(
@@ -1792,9 +1814,7 @@
               "Discount code copied",
               "Visibility",
               "Popup. Exit-intent. New users with product in basket. One or more items"
-            )), setTimeout(() => {
-              e.innerHTML = `Copy ${_.copyIcon}`, e.closest(".discount_code_container").classList.contains("copied") && e.closest(".discount_code_container").classList.remove("copied");
-            }, 600);
+            ));
           });
         });
       });
@@ -1846,8 +1866,8 @@
       });
     }
     handlerClickInput() {
-      w("#emailNew").then((t) => {
-        h("#emailNew").forEach((e) => {
+      h("#emailNew").then((t) => {
+        x("#emailNew").forEach((e) => {
           e.addEventListener("input", (n) => {
             this.validateEmailForm(n.target);
           }), e.addEventListener("keyup", (n) => {
@@ -1881,7 +1901,7 @@
             })
           });
           if (!s.ok)
-            throw new Error(`Error: ${s.statusText}`);
+            throw t.closest("label").insertAdjacentHTML("afterend", '<span id="emailAddressError" class="error">Email already exists</span>'), new Error(`Error: ${s.statusText}`);
           i(".first_order_discount.first_var") && i(".first_order_discount.first_var").classList.add("is_hidden"), i(".first_order_discount.second_var").classList.contains("is_hidden") && (i(".first_order_discount.second_var").classList.remove("is_hidden"), o(
             "exp_01_ei__popup1_2__view",
             "Step 2. You are on the list!",
@@ -1911,7 +1931,7 @@
         const t = await fetch(window.location.pathname + ".js").then((c) => c.json());
         console.log(t);
         let e = t.featured_image, n = t.title, r = window.location.href, a = "", s = "", d = "";
-        await w('[x-data="product"] section.price-pro .text-primary.line-through').then(() => {
+        await h('[x-data="product"] section.price-pro .text-primary.line-through').then(() => {
           a = i('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? "", s = i('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? "", d = i('[x-data="product"] .bg-danger').textContent.split("SAVE ")[1] ?? "";
         }), sessionStorage.setItem(
           "viewedItem",
@@ -1927,6 +1947,6 @@
       }
     }
   }
-  new M(z);
+  new H(O);
 })();
 //# sourceMappingURL=index.js.map
