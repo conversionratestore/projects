@@ -1,31 +1,31 @@
 (function() {
   "use strict";
-  const o = (p, e, n, t = "") => {
+  const o = (p, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: p,
       event_desc: e,
-      event_type: n,
-      event_loc: t
-    }), console.dir(`Event: ${p} | ${e} | ${n} | ${t}`);
+      event_type: t,
+      event_loc: n
+    }), console.dir(`Event: ${p} | ${e} | ${t} | ${n}`);
   }, k = ({ name: p, dev: e }) => {
     console.log(
       `%c EXP: ${p} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   }, x = (p) => document.querySelectorAll(p), i = (p) => document.querySelector(p), C = (p, e = "variant_1") => {
-    let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", p, e), console.log("set", p, e));
+    let t = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", p, e), console.log("set", p, e));
     }, 1e3);
   };
   function w(p) {
     return new Promise((e) => {
       if (document.querySelector(p))
         return e(document.querySelector(p));
-      const n = new MutationObserver(() => {
-        document.querySelector(p) && (e(document.querySelector(p)), n.disconnect());
+      const t = new MutationObserver(() => {
+        document.querySelector(p) && (e(document.querySelector(p)), t.disconnect());
       });
-      n.observe(document.documentElement, {
+      t.observe(document.documentElement, {
         childList: !0,
         subtree: !0,
         characterData: !0
@@ -34,17 +34,17 @@
   }
   const P = function(p) {
     p = p === void 0 ? {} : p;
-    let e, n, t, r, a = (p == null ? void 0 : p.delay) || 50;
+    let e, t, n, r, a = (p == null ? void 0 : p.delay) || 50;
     function s() {
       e = null, r = 0;
     }
     return s(), function() {
-      return n = window.scrollY, e != null && (r = n - e), e = n, clearTimeout(t), t = setTimeout(s, a), r;
+      return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(s, a), r;
     };
   }(), L = (p) => {
-    var n;
+    var t;
     const e = `; ${document.cookie}`;
-    return e.includes(`; ${p}=`) ? (n = e.split(`; ${p}=`).pop()) == null ? void 0 : n.split(";").shift() : (console.log("No cookie"), null);
+    return e.includes(`; ${p}=`) ? (t = e.split(`; ${p}=`).pop()) == null ? void 0 : t.split(";").shift() : (console.log("No cookie"), null);
   }, l = "https://conversionratestore.github.io/projects/sonno/img/", _ = {
     closeIcon: (
       /* HTML */
@@ -287,7 +287,7 @@
     </div>
   </div>
 `
-  ), g = (p = !1, e = "", n = "", t = "", r = "", a = "", s = "") => (
+  ), g = (p = !1, e = "", t = "", n = "", r = "", a = "", s = "") => (
     /* HTML */
     `
     ${p ? (
@@ -306,9 +306,9 @@
                   <img src=${e} alt="photo" />
                 </div>
                 <div class="item_info" data-viewed="true">
-                  <h3>${n}</h3>
+                  <h3>${t}</h3>
                   <div class="price_wrapper">
-                    <span class="old_price_txt">${t}</span>
+                    <span class="old_price_txt">${n}</span>
                     <span class="price_txt">${r}</span>
                     <span class="save_txt">Save ${a}</span>
                     <img class="img_label" src="${l}popup_img_9.webp" alt="photo" />
@@ -454,9 +454,9 @@
     </div>
   </div>
 `
-  ), z = (p, e, n, t, r, a, s, d = !1) => {
+  ), z = (p, e, t, n, r, a, s, d = !1) => {
     const c = Math.floor(Math.random() * 10) + 1, h = Math.floor(Math.random() * 12) + 4;
-    return n.includes("Assembly") || n.includes("Removal") ? "" : (
+    return t.includes("Assembly") || t.includes("Removal") ? "" : (
       /* HTML */
       `
     <li class="products_item">
@@ -500,8 +500,8 @@
                   <p><span class="stock_txt">${h} people</span> are watching this product right now</p>
                 </div>`
       ) : ""}
-            <h3 class="item_title"><a href="${p}">${n}</a></h3>
-            ${t ? `<span class="item_descr">${t}</span>` : ""}
+            <h3 class="item_title"><a href="${p}">${t}</a></h3>
+            ${n ? `<span class="item_descr">${n}</span>` : ""}
             <div class="price_wrapper">
               <span class="old_price_txt">£${r}</span>
               <span class="price_txt">£${a}</span>
@@ -1551,14 +1551,14 @@
     }
     checkSessionNumber() {
       const e = () => {
-        let t = Number(localStorage.getItem("session"));
-        localStorage.setItem("session", (t + 1).toString()), sessionStorage.setItem("session", "1");
-      }, n = () => {
+        let n = Number(localStorage.getItem("session"));
+        localStorage.setItem("session", (n + 1).toString()), sessionStorage.setItem("session", "1");
+      }, t = () => {
         localStorage.setItem("session", "1"), sessionStorage.setItem("session", "1");
       };
       window.onload = () => {
-        const t = localStorage.getItem("session"), r = sessionStorage.getItem("session");
-        t && !r ? e() : t || n(), Number(localStorage.getItem("session"));
+        const n = localStorage.getItem("session"), r = sessionStorage.getItem("session");
+        n && !r ? e() : n || t(), Number(localStorage.getItem("session"));
       };
     }
     intentPopupTriggers() {
@@ -1571,19 +1571,20 @@
         });
       }
       this.device === "desktop" && document.addEventListener("mouseout", (e) => {
+        e.relatedTarget || this.getItemsBasket("cursor moved out of the page frame");
       }), (window.location.href.includes("/checkouts") || window.location.href.match("/cart")) && (this.setupListeners(), this.resetTimer());
     }
     getNewUser(e) {
-      const n = L(e), t = () => {
+      const t = L(e), n = () => {
         setTimeout(() => {
           localStorage.setItem("initUser", "true"), !this.isPopupOpen() && (this.handleShowPopup(S, "firstOrderDiscount", "firstOrderDiscount", "firstOrderDiscount"), i(".new_popup_backdrop").setAttribute("popup", "firstOrderDiscount"));
         }, this.firstSessionTime);
       };
-      if (!n)
-        t();
+      if (!t)
+        n();
       else {
-        const r = +(n.split(".").pop() + "000");
-        +/* @__PURE__ */ new Date() - +new Date(r) <= 5 * 60 * 1e3 && t();
+        const r = +(t.split(".").pop() + "000");
+        +/* @__PURE__ */ new Date() - +new Date(r) <= 5 * 60 * 1e3 && n();
       }
     }
     setupListeners() {
@@ -1596,19 +1597,19 @@
     }
     async getItemsBasket(e) {
       if (this.isPopupOpen()) return;
-      const n = Date.now();
-      if (this.lastPopupTime = Number(sessionStorage.getItem("lastPopupTime")) || 0, n - this.lastPopupTime < this.timeLag) return;
-      const t = await this.getCartCheckout(), r = Number(localStorage.getItem("session")) > 1, a = (d, c) => {
-        this.handleShowPopup(d, c, e, c), sessionStorage.setItem("lastPopupTime", n.toString());
+      const t = Date.now();
+      if (this.lastPopupTime = Number(sessionStorage.getItem("lastPopupTime")) || 0, t - this.lastPopupTime < this.timeLag) return;
+      const n = await this.getCartCheckout(), r = Number(localStorage.getItem("session")) > 1, a = (d, c) => {
+        this.handleShowPopup(d, c, e, c), sessionStorage.setItem("lastPopupTime", t.toString());
       }, s = (d, c) => {
         d.forEach((h) => {
-          const { url: u, image: m, product_title: V, variant_title: W, presentment_price: f, quantity: b } = h, U = u, B = m, j = V, D = W, v = +f * +b, y = +f * +b, Z = v + y;
+          const { url: u, image: m, product_title: V, variant_title: W, presentment_price: f, quantity: b } = h, B = u, U = m, j = V, D = W, v = +f * +b, y = +f * +b, Z = v + y;
           w(".products_list").then(() => {
             i(".products_list").insertAdjacentHTML(
               "beforeend",
               z(
-                U,
                 B,
+                U,
                 j,
                 D,
                 Z,
@@ -1620,8 +1621,8 @@
           });
         });
       };
-      if (t.length > 0)
-        r ? (a(N, "returningUsersWithProducts"), s(t, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), w(".img_wrapper").then((d) => {
+      if (n.length > 0)
+        r ? (a(N, "returningUsersWithProducts"), s(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), w(".img_wrapper").then((d) => {
           i(".img_wrapper").addEventListener("click", () => {
             o(
               "exp_01_ei__popup6__product",
@@ -1630,7 +1631,7 @@
               "Popup. Exit-intent. Returning user with products in basket"
             );
           });
-        })) : (a(I, "newUsersWithProducts"), s(t, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), await w("a.img_wrapper"), i("a.img_wrapper").addEventListener("click", () => {
+        })) : (a(I, "newUsersWithProducts"), s(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), await w("a.img_wrapper"), i("a.img_wrapper").addEventListener("click", () => {
           o(
             "exp_01_ei__popup4__product",
             "Click on product",
@@ -1660,10 +1661,10 @@
       var e;
       return ((e = i(".new_popup_content")) == null ? void 0 : e.children.length) > 0;
     }
-    handleShowPopup(e, n, t, r) {
-      if (sessionStorage.getItem(n) && n !== "firstOrderDiscount") return;
+    handleShowPopup(e, t, n, r) {
+      if (sessionStorage.getItem(t) && t !== "firstOrderDiscount") return;
       const s = i("body"), d = i(".new_popup_backdrop"), c = i(".new_popup .new_popup_content");
-      switch (d.classList.contains("is_hidden") && d.classList.remove("is_hidden"), s.style.overflow = "hidden", c.innerHTML = e, sessionStorage.setItem(n, "yes"), r) {
+      switch (d.classList.contains("is_hidden") && d.classList.remove("is_hidden"), s.style.overflow = "hidden", c.innerHTML = e, sessionStorage.setItem(t, "yes"), r) {
         case "firstOrderDiscount":
           o(
             "exp_01_ei__popup1_1__view",
@@ -1727,10 +1728,10 @@
       }), this.handleClosePopup();
     }
     handleClosePopup() {
-      const e = i("body"), n = i(".new_popup_backdrop"), t = i(".new_popup"), r = t.querySelectorAll('[data-popup="close"]'), a = i(["data-viewed"]);
+      const e = i("body"), t = i(".new_popup_backdrop"), n = i(".new_popup"), r = n.querySelectorAll('[data-popup="close"]'), a = i(["data-viewed"]);
       r.forEach((s) => {
         s.addEventListener("click", (d) => {
-          switch (n.classList.add("is_hidden"), e.style.overflow = "initial", setTimeout(() => {
+          switch (t.classList.add("is_hidden"), e.style.overflow = "initial", setTimeout(() => {
             i(".new_popup_content").innerHTML = "";
           }, 500), i("[popup]").getAttribute("popup")) {
             case "firstOrderDiscount":
@@ -1780,26 +1781,26 @@
               break;
           }
         });
-      }), n.addEventListener("click", (s) => {
-        s.target.matches(".new_popup_backdrop") && (n.classList.add("is_hidden"), e.style.overflow = "initial", setTimeout(() => {
+      }), t.addEventListener("click", (s) => {
+        s.target.matches(".new_popup_backdrop") && (t.classList.add("is_hidden"), e.style.overflow = "initial", setTimeout(() => {
           i(".new_popup_content").innerHTML = "";
         }, 500));
       });
     }
     startCountdown() {
       let e = 900;
-      const n = setInterval(() => {
+      const t = setInterval(() => {
         e--;
-        const t = Math.floor(e / 60), r = e % 60, a = i(".minutes_tens"), s = i(".minutes_ones"), d = i(".seconds_tens"), c = i(".seconds_ones");
-        a && (a.textContent = Math.floor(t / 10)), s && (s.textContent = t % 10), d && (d.textContent = Math.floor(r / 10)), c && (c.textContent = r % 10), e <= 0 && clearInterval(n);
+        const n = Math.floor(e / 60), r = e % 60, a = i(".minutes_tens"), s = i(".minutes_ones"), d = i(".seconds_tens"), c = i(".seconds_ones");
+        a && (a.textContent = Math.floor(n / 10)), s && (s.textContent = n % 10), d && (d.textContent = Math.floor(r / 10)), c && (c.textContent = r % 10), e <= 0 && clearInterval(t);
       }, 1e3);
     }
     copyDiscount() {
       w("[data-discount]").then((e) => {
-        x("[data-discount]").forEach((n) => {
-          n.addEventListener("click", (t) => {
-            let r = t.currentTarget.dataset.discount;
-            navigator.clipboard.writeText(r), t.currentTarget.innerHTML = `Copied! ${_.copyCheeckIcon}`, t.currentTarget.closest(".discount_code_container").classList.add("copied"), i("[popup]").getAttribute("popup") === "firstOrderDiscount" ? (o(
+        x("[data-discount]").forEach((t) => {
+          t.addEventListener("click", (n) => {
+            let r = n.currentTarget.dataset.discount;
+            navigator.clipboard.writeText(r), n.currentTarget.innerHTML = `Copied! ${_.copyCheeckIcon}`, n.currentTarget.closest(".discount_code_container").classList.add("copied"), i("[popup]").getAttribute("popup") === "firstOrderDiscount" ? (o(
               "exp_01_ei__popup1_2__copy",
               "Copy discount code",
               "Click",
@@ -1826,43 +1827,43 @@
     }
     handlerClickBtns() {
       document.addEventListener("click", (e) => {
-        const n = e.target;
-        if (n.matches(".first_order_get_discount_btn") && (o(
+        const t = e.target;
+        if (t.matches(".first_order_get_discount_btn") && (o(
           "exp_01_ei__popup1_1__get10",
           "Get 10% off",
           "Click",
           "Popup. Exit-intent. New users w/o product in basket. First order discount popup. Step 1"
-        ), this.validateEmailForm(i("#emailNew"), !0)), n.matches(".first_order_continue_shopping_btn") && o(
+        ), this.validateEmailForm(i("#emailNew"), !0)), t.matches(".first_order_continue_shopping_btn") && o(
           "exp_01_ei__popup1_2__continue",
           "Continue shopping",
           "Click",
           "Popup. Exit-intent. New users w/o product in basket. First order discount popup. Step 2"
-        ), n.matches(".divan_beds_shop_now_btn") && (o(
+        ), t.matches(".divan_beds_shop_now_btn") && (o(
           "exp_01_ei__popup3__shop_now",
           "Shop now",
           "Click",
           "Popup. Exit-intent. New users w/o product in basket. Not-viewed item"
-        ), this.getCoupon("NY20", "/collections/divan-beds")), n.matches(".active_product_shop_now_btn")) {
+        ), this.getCoupon("NY20", "/collections/divan-beds")), t.matches(".active_product_shop_now_btn")) {
           o(
             "exp_01_ei__popup2__shop_now",
             "Shop now",
             "Click",
             "Popup. Exit-intent. New users w/o product in basket. Viewed item"
           );
-          const t = i(".active_product_shop_now_btn").getAttribute("data-link").split("co.uk")[1];
-          this.getCoupon("NY20", t);
+          const n = i(".active_product_shop_now_btn").getAttribute("data-link").split("co.uk")[1];
+          this.getCoupon("NY20", n);
         }
-        n.matches(".new_users_with_products_checkout_btn") && (o(
+        t.matches(".new_users_with_products_checkout_btn") && (o(
           "exp_01_ei__popup4__checkout",
           "Checkout",
           "Click",
           "Popup. Exit-intent. New users with product in basket. One or more items"
-        ), this.getCoupon("NY20", "/checkout")), n.matches(".returning_users_w_o_products_shop_now_btn") && o(
-          `exp_01_ei__popup5__${n.previousElementSibling.textContent.replace(" ", "_").toLowerCase()}`,
-          n.previousElementSibling.textContent,
+        ), this.getCoupon("NY20", "/checkout")), t.matches(".returning_users_w_o_products_shop_now_btn") && o(
+          `exp_01_ei__popup5__${t.previousElementSibling.textContent.replace(" ", "_").toLowerCase()}`,
+          t.previousElementSibling.textContent,
           "Click",
           "Popup. Exit-intent. Returning user w/o product in basket"
-        ), n.matches(".returning_users_with_products_checkout_btn") && (o(
+        ), t.matches(".returning_users_with_products_checkout_btn") && (o(
           "exp_01_ei__popup6__checkout",
           "Checkout",
           "Click",
@@ -1872,12 +1873,12 @@
     }
     handlerClickInput() {
       w("#emailNew").then((e) => {
-        x("#emailNew").forEach((n) => {
-          n.addEventListener("input", (t) => {
-            this.validateEmailForm(t.target);
-          }), n.addEventListener("keyup", (t) => {
-            t.key === "Enter" && this.validateEmailForm(t.target);
-          }), n.addEventListener("change", (t) => {
+        x("#emailNew").forEach((t) => {
+          t.addEventListener("input", (n) => {
+            this.validateEmailForm(n.target);
+          }), t.addEventListener("keyup", (n) => {
+            n.key === "Enter" && this.validateEmailForm(n.target);
+          }), t.addEventListener("change", (n) => {
             o(
               "exp_01_ei__popup1_1__input",
               "Input. Your e-mail",
@@ -1888,13 +1889,13 @@
         });
       });
     }
-    async validateEmailForm(e, n = !1) {
+    async validateEmailForm(e, t = !1) {
       var a;
-      const t = i("#emailNew").value, r = t.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
+      const n = i("#emailNew").value, r = n.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
       if (e.getAttribute("name") === "emailNew" && (r === null ? i("#emailAddressError") || e.closest("label").insertAdjacentHTML(
         "afterend",
         '<span id="emailAddressError" class="error">Please Enter Valid Email Address</span>'
-      ) : (a = i("#emailAddressError")) == null || a.remove()), r !== null && n)
+      ) : (a = i("#emailAddressError")) == null || a.remove()), r !== null && t)
         try {
           const s = await fetch("https://conversionrate.top/api/sonno/user-register", {
             method: "POST",
@@ -1902,7 +1903,7 @@
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              email: t
+              email: n
             })
           });
           if (!s.ok)
@@ -1926,23 +1927,23 @@
         return console.error("Error:", e), [];
       }
     }
-    async getCoupon(e, n = "") {
-      console.log(n);
-      const t = window.location.pathname;
-      n === "/collections/divan-beds" || n === "/checkout" || n.includes("/products/") ? window.location.href = `/discount/${e}?redirect=${n}` : window.location.href = `/discount/${e}?redirect=${t}`;
+    async getCoupon(e, t = "") {
+      console.log(t);
+      const n = window.location.pathname;
+      t === "/collections/divan-beds" || t === "/checkout" || t.includes("/products/") ? window.location.href = `/discount/${e}?redirect=${t}` : window.location.href = `/discount/${e}?redirect=${n}`;
     }
     async checkProductPage() {
       if (window.location.pathname.includes("/products/")) {
         const e = await fetch(window.location.pathname + ".js").then((c) => c.json());
         console.log(e);
-        let n = e.featured_image, t = e.title, r = window.location.href, a = "", s = "", d = "";
+        let t = e.featured_image, n = e.title, r = window.location.href, a = "", s = "", d = "";
         await w('[x-data="product"] section.price-pro .text-primary.line-through').then(() => {
           a = i('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? "", s = i('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? "", d = i('[x-data="product"] .bg-danger').textContent.split("SAVE ")[1] ?? "";
         }), sessionStorage.setItem(
           "viewedItem",
           JSON.stringify({
-            imgProduct: n,
-            titleProduct: t,
+            imgProduct: t,
+            titleProduct: n,
             oldPriceProduct: a,
             priceProduct: s,
             saveTxtProduct: d,
