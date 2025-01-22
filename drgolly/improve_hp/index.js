@@ -33,8 +33,8 @@
     });
   }
   const h = "https://conversionratestore.github.io/projects/drgolly/improve_hp", x = `#main-content {
-  position: relative;
-  z-index: 2;
+  /* position: relative;
+  z-index: 2; */
 }
 #courses {
   z-index: 9999;
@@ -337,6 +337,11 @@
 
 :is(body:has(.is-sticky), body:has(.is-fixed)) .et_pb_section_1_tb_header {
   box-shadow: none;
+}
+
+footer {
+  position: relative;
+  z-index: 0;
 }
 
 @media (max-width: 981px) {
