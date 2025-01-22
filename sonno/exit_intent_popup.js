@@ -832,6 +832,8 @@
   width: 100%;
   height: 100%;
   border-radius: 8px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .products_wrapper .products_list .products_item .product_wrapper .product_all_info .item_info {
   width: 100%;
@@ -1088,9 +1090,20 @@
 }
 .first_order_discount .img_wrapper {
   max-width: 445px;
+  width: 50%;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .first_order_discount .img_wrapper {
+    width: 100%;
+    min-height: 240px;
+  }
 }
 .first_order_discount .img_wrapper img {
   width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 0 12px 12px 0;
 }
 @media (max-width: 768px) {
@@ -1138,6 +1151,8 @@
   border-radius: 8px 8px 0 0;
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   max-height: 191px;
 }
 @media (max-width: 768px) {
@@ -1401,12 +1416,21 @@
 }
 .new_users_with_products > .img_wrapper {
   max-width: 360px;
+  width: 40%;
+  flex-shrink: 0;
   border-radius: 0 12px 12px 0;
+}
+@media (max-width: 768px) {
+  .new_users_with_products > .img_wrapper {
+    width: 0;
+  }
 }
 .new_users_with_products > .img_wrapper img {
   width: 100%;
   border-radius: 0 12px 12px 0;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .returning_users_w_o_products {
@@ -1529,11 +1553,21 @@
 }
 .returning_users_with_products > .img_wrapper {
   max-width: 360px;
+  width: 40%;
+  flex-shrink: 0;
   border-radius: 0 12px 12px 0;
+}
+@media (max-width: 768px) {
+  .returning_users_with_products > .img_wrapper {
+    width: 0;
+  }
 }
 .returning_users_with_products > .img_wrapper img {
   border-radius: 0 12px 12px 0;
   width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .needsclick.kl-private-reset-css-Xuajs1 {
@@ -1603,14 +1637,14 @@
         this.handleShowPopup(d, c, e, c), sessionStorage.setItem("lastPopupTime", t.toString());
       }, s = (d, c) => {
         d.forEach((h) => {
-          const { url: u, image: m, product_title: V, variant_title: W, presentment_price: f, quantity: b } = h, B = u, U = m, j = V, D = W, v = +f * +b, y = +f * +b, Z = v + y;
+          const { url: u, image: m, product_title: V, variant_title: j, presentment_price: f, quantity: b } = h, W = u, B = m, U = V, D = j, v = +f * +b, y = +f * +b, Z = v + y;
           w(".products_list").then(() => {
             i(".products_list").insertAdjacentHTML(
               "beforeend",
               z(
+                W,
                 B,
                 U,
-                j,
                 D,
                 Z,
                 v,
