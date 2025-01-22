@@ -173,7 +173,8 @@
     width: 100%;
   }
   .crs-badges__item {
-    width: 158px;
+    max-width: 158px;
+    width: max-content;
     height: 160px;
     padding-top: 40px;
   }
@@ -203,6 +204,7 @@
 
   .crs-badges__item.item-2 {
     order: 3;
+    width: 160px;
     background-size: 140px 140px !important;
   }
 
@@ -219,7 +221,8 @@
 
   .crs-badges__item.item-3 {
     order: 4;
-    background-size: 158px 158px !important;
+    width: 138px;
+    background-size: 138px 138px !important;
   }
 
   .crs-badges__item.item-3 span {
@@ -253,6 +256,23 @@
 @media (max-width: 780px) {
   .crs-badges__list {
     justify-content: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .crs-badges__list {
+    justify-content: center;
+  }
+
+  .crs-badges__item {
+    max-width: 158px;
+    width: max-content;
+    height: 160px;
+    padding-top: 40px;
+  }
+
+  .crs-badges__item.item-2 {
+    width: 160px;
   }
 }
 `;
