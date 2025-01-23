@@ -35,11 +35,11 @@
   const P = function(p) {
     p = p === void 0 ? {} : p;
     let e, t, n, r, s = (p == null ? void 0 : p.delay) || 50;
-    function d() {
+    function c() {
       e = null, r = 0;
     }
-    return d(), function() {
-      return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(d, s), r;
+    return c(), function() {
+      return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(c, s), r;
     };
   }(), L = (p) => {
     var t;
@@ -277,7 +277,7 @@
           </div>
         </div>
         <div class="btn_wrapper">
-          <div class="first_order_continue_shopping_btn main_btn" data-popup="close">Continue Shopping</div>
+          <div class="first_order_continue_shopping_btn main_btn">Continue Shopping</div>
         </div>
       </div>
     </div>
@@ -287,7 +287,7 @@
     </div>
   </div>
 `
-  ), g = (p = !1, e = "", t = "", n = "", r = "", s = "", d = "") => (
+  ), g = (p = !1, e = "", t = "", n = "", r = "", s = "", c = "") => (
     /* HTML */
     `
     ${p ? (
@@ -301,7 +301,7 @@
               </h2>
             </div>
             <div class="body_popup">
-              <a href="${d}" class="item_wrapper">
+              <a href="${c}" class="item_wrapper">
                 <div class="img_wrapper">
                   <img src=${e} alt="photo" />
                 </div>
@@ -317,7 +317,7 @@
               </a>
               <div class="btn_wrapper">
                 <p>Discount will be applied on Checkout</p>
-                <div class="active_product_shop_now_btn main_btn" data-link="${d}">Shop Now</div>
+                <div class="active_product_shop_now_btn main_btn" data-link="${c}">Shop Now</div>
               </div>
             </div>
           </div>
@@ -454,8 +454,8 @@
     </div>
   </div>
 `
-  ), z = (p, e, t, n, r, s, d, a = !1) => {
-    const c = Math.floor(Math.random() * 10) + 1, h = Math.floor(Math.random() * 12) + 4;
+  ), z = (p, e, t, n, r, s, c, a = !1) => {
+    const d = Math.floor(Math.random() * 10) + 1, h = Math.floor(Math.random() * 12) + 4;
     return t.includes("Assembly") || t.includes("Removal") ? "" : (
       /* HTML */
       `
@@ -467,7 +467,7 @@
               ${_.exclamationPointIcon}
               <p>
                 We may run out of stock soon.
-                <span class="stock_txt"> Only <span class="stock_value">${c}</span> left </span>
+                <span class="stock_txt"> Only <span class="stock_value">${d}</span> left </span>
               </p>
             </div>`
       ) : ""}
@@ -489,7 +489,7 @@
                   ${_.exclamationPointIcon}
                   <p>
                     We may run out of stock soon.
-                    <span class="stock_txt"> Only <span class="stock_value">${c}</span> left </span>
+                    <span class="stock_txt"> Only <span class="stock_value">${d}</span> left </span>
                   </p>
                 </div>`
       ) : ""}
@@ -505,7 +505,7 @@
             <div class="price_wrapper">
               <span class="old_price_txt">£${r}</span>
               <span class="price_txt">£${s}</span>
-              <span class="save_txt">Save £${d}</span>
+              <span class="save_txt">Save £${c}</span>
             </div>
           </div>
         </div>
@@ -1633,32 +1633,32 @@
       if (this.isPopupOpen()) return;
       const t = Date.now();
       if (this.lastPopupTime = Number(sessionStorage.getItem("lastPopupTime")) || 0, t - this.lastPopupTime < this.timeLag) return;
-      const n = await this.getCartCheckout(), r = Number(localStorage.getItem("session")) > 1, s = (a, c) => {
-        this.handleShowPopup(a, c, e, c), sessionStorage.setItem("lastPopupTime", t.toString());
-      }, d = (a, c) => {
+      const n = await this.getCartCheckout(), r = Number(localStorage.getItem("session")) > 1, s = (a, d) => {
+        this.handleShowPopup(a, d, e, d), sessionStorage.setItem("lastPopupTime", t.toString());
+      }, c = (a, d) => {
         a.forEach((h) => {
-          const { url: u, image: m, product_title: V, variant_title: j, presentment_price: f, quantity: b } = h, W = u, B = m, U = V, D = j, v = +f * +b, y = +f * +b, Z = v + y;
+          const { url: u, image: m, product_title: V, variant_title: W, presentment_price: f, quantity: b } = h, j = u, U = m, B = V, D = W, v = +f * +b, y = +f * +b, Z = v + y;
           w(".products_list").then(() => {
             i(".products_list").insertAdjacentHTML(
               "beforeend",
               z(
-                W,
-                B,
+                j,
                 U,
+                B,
                 D,
                 Z,
                 v,
                 y,
-                c
+                d
               )
             );
           });
         });
       };
       if (n.length > 0)
-        r ? (s(N, "returningUsersWithProducts"), d(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), w(".img_wrapper").then((a) => {
-          x(".product_wrapper a").forEach((c) => {
-            c.addEventListener("click", () => {
+        r ? (s(N, "returningUsersWithProducts"), c(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), w(".img_wrapper").then((a) => {
+          x(".product_wrapper a").forEach((d) => {
+            d.addEventListener("click", () => {
               o(
                 "exp_01_ei__popup6__product",
                 "Click on product",
@@ -1667,7 +1667,7 @@
               );
             });
           });
-        })) : (s(I, "newUsersWithProducts"), d(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), await w("a.img_wrapper"), x(".product_wrapper a").forEach((a) => {
+        })) : (s(I, "newUsersWithProducts"), c(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), await w("a.img_wrapper"), x(".product_wrapper a").forEach((a) => {
           a.addEventListener("click", () => {
             o(
               "exp_01_ei__popup4__product",
@@ -1680,16 +1680,16 @@
       else if (r)
         s($, "returningUsersWOProducts"), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWOProducts");
       else {
-        const a = sessionStorage.getItem("viewedItem") || "{}", c = JSON.parse(a);
+        const a = sessionStorage.getItem("viewedItem") || "{}", d = JSON.parse(a);
         s(
           a !== "{}" ? g(
             !0,
-            c.imgProduct,
-            c.titleProduct,
-            c.oldPriceProduct,
-            c.priceProduct,
-            c.saveTxtProduct,
-            c.linkProduct
+            d.imgProduct,
+            d.titleProduct,
+            d.oldPriceProduct,
+            d.priceProduct,
+            d.saveTxtProduct,
+            d.linkProduct
           ) : g(),
           "newUsersWOProducts"
         ), i(".new_popup_backdrop").setAttribute("popup", "newUsersWOProducts");
@@ -1701,8 +1701,8 @@
     }
     handleShowPopup(e, t, n, r) {
       if (sessionStorage.getItem(t) && t !== "firstOrderDiscount") return;
-      const d = i("body"), a = i(".new_popup_backdrop"), c = i(".new_popup .new_popup_content");
-      switch (a.classList.contains("is_hidden") && a.classList.remove("is_hidden"), d.style.overflow = "hidden", c.innerHTML = e, sessionStorage.setItem(t, "yes"), r) {
+      const c = i("body"), a = i(".new_popup_backdrop"), d = i(".new_popup .new_popup_content");
+      switch (a.classList.contains("is_hidden") && a.classList.remove("is_hidden"), c.style.overflow = "hidden", d.innerHTML = e, sessionStorage.setItem(t, "yes"), r) {
         case "firstOrderDiscount":
           o(
             "exp_01_ei__popup1_1__view",
@@ -1769,7 +1769,7 @@
       console.log("handle close popup");
       const e = i("body"), t = i(".new_popup_backdrop");
       i(".new_popup").querySelectorAll('[data-popup="close"]').forEach((s) => {
-        s.addEventListener("click", (d) => {
+        s.addEventListener("click", (c) => {
           switch (t.classList.add("is_hidden"), e.style.overflow = "initial", setTimeout(() => {
             i(".new_popup_content").innerHTML = "";
           }, 500), i("[popup]").getAttribute("popup")) {
@@ -1821,17 +1821,64 @@
           }
         });
       }), t.addEventListener("click", (s) => {
-        s.target.matches(".new_popup_backdrop") && (t.classList.add("is_hidden"), e.style.overflow = "initial", setTimeout(() => {
-          i(".new_popup_content").innerHTML = "";
-        }, 500));
+        if (s.target.matches(".new_popup_backdrop"))
+          switch (t.classList.add("is_hidden"), e.style.overflow = "initial", setTimeout(() => {
+            i(".new_popup_content").innerHTML = "";
+          }, 500), i("[popup]").getAttribute("popup")) {
+            case "firstOrderDiscount":
+              o(
+                "exp_01_ei__popup1__close_bg",
+                "Close popup bg",
+                "Click",
+                "Popup. Exit-intent. New users w/o product in basket. First order discount popup"
+              );
+              break;
+            case "newUsersWOProducts":
+              (sessionStorage.getItem("viewedItem") || "{}") !== "{}" ? o(
+                "exp_01_ei__popup2__close_bg",
+                "Close popup bg",
+                "Click",
+                "Popup. Exit-intent. New users w/o product in basket. Viewed item"
+              ) : o(
+                "exp_01_ei__popup3__close_bg",
+                "Close popup bg",
+                "Click",
+                "Popup. Exit-intent. New users w/o product in basket. Not-viewed item"
+              );
+              break;
+            case "newUsersWithProducts":
+              o(
+                "exp_01_ei__popup4__close_bg",
+                "Close popup bg",
+                "Click",
+                "Popup. Exit-intent. New users with product in basket. One or more items"
+              );
+              break;
+            case "returningUsersWOProducts":
+              o(
+                "exp_01_ei__popup5__close_bg",
+                "Close popup bg",
+                "Click",
+                "Popup. Exit-intent. Returning user w/o product in basket"
+              );
+              break;
+            case "returningUsersWithProducts":
+              o(
+                "exp_01_ei__popup6__close_bg",
+                "Close popup bg",
+                "Click",
+                "Popup. Exit-intent. Returning user with products in basket"
+              );
+              break;
+          }
       });
     }
     startCountdown() {
       let e = 900;
       const t = setInterval(() => {
         e--;
-        const n = Math.floor(e / 60), r = e % 60, s = i(".minutes_tens"), d = i(".minutes_ones"), a = i(".seconds_tens"), c = i(".seconds_ones");
-        s && (s.textContent = Math.floor(n / 10)), d && (d.textContent = n % 10), a && (a.textContent = Math.floor(r / 10)), c && (c.textContent = r % 10), e <= 0 && clearInterval(t);
+        const n = Math.floor(e / 60), r = e % 60, s = i(".minutes_tens"), c = i(".minutes_ones"), a = i(".seconds_tens"), d = i(".seconds_ones");
+        s && (s.textContent = Math.floor(n / 10)), c && (c.textContent = n % 10), a && (a.textContent = Math.floor(r / 10)), d && (d.textContent = r % 10), e <= 0 && clearInterval(t);
       }, 1e3);
     }
     copyDiscount() {
@@ -1872,12 +1919,19 @@
           "Get 10% off",
           "Click",
           "Popup. Exit-intent. New users w/o product in basket. First order discount popup. Step 1"
-        ), this.validateEmailForm(i("#emailNew"), !0)), t.matches(".first_order_continue_shopping_btn") && o(
-          "exp_01_ei__popup1_2__continue",
-          "Continue shopping",
-          "Click",
-          "Popup. Exit-intent. New users w/o product in basket. First order discount popup. Step 2"
-        ), t.matches(".divan_beds_shop_now_btn") && (o(
+        ), this.validateEmailForm(i("#emailNew"), !0)), t.matches(".first_order_continue_shopping_btn")) {
+          o(
+            "exp_01_ei__popup1_2__continue",
+            "Continue shopping",
+            "Click",
+            "Popup. Exit-intent. New users w/o product in basket. First order discount popup. Step 2"
+          );
+          const n = i("body");
+          i(".new_popup_backdrop").classList.add("is_hidden"), n.style.overflow = "initial", setTimeout(() => {
+            i(".new_popup_content").innerHTML = "";
+          }, 500);
+        }
+        if (t.matches(".divan_beds_shop_now_btn") && (o(
           "exp_01_ei__popup3__shop_now",
           "Shop now",
           "Click",
@@ -1936,7 +1990,7 @@
         '<span id="emailAddressError" class="error">Please Enter Valid Email Address</span>'
       ) : (s = i("#emailAddressError")) == null || s.remove()), r !== null && t)
         try {
-          const d = await fetch("https://conversionrate.top/api/sonno/user-register", {
+          const c = await fetch("https://conversionrate.top/api/sonno/user-register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -1945,16 +1999,16 @@
               email: n
             })
           });
-          if (!d.ok)
-            throw e.closest("label").insertAdjacentHTML("afterend", '<span id="emailAddressError" class="error">Email already exists</span>'), new Error(`Error: ${d.statusText}`);
+          if (!c.ok)
+            throw e.closest("label").insertAdjacentHTML("afterend", '<span id="emailAddressError" class="error">Email already exists</span>'), new Error(`Error: ${c.statusText}`);
           i(".first_order_discount.first_var") && i(".first_order_discount.first_var").classList.add("is_hidden"), i(".first_order_discount.second_var").classList.contains("is_hidden") && (i(".first_order_discount.second_var").classList.remove("is_hidden"), o(
             "exp_01_ei__popup1_2__view",
             "Step 2. You are on the list!",
             "Visibility",
             "Popup. Exit-intent. New users w/o product in basket. First order discount popup. Step 2"
           ));
-        } catch (d) {
-          console.error("Klavio error:", d);
+        } catch (c) {
+          console.error("Klavio error:", c);
         }
     }
     async getCartCheckout() {
@@ -1973,18 +2027,15 @@
     }
     async checkProductPage() {
       if (window.location.pathname.includes("/products/")) {
-        const e = await fetch(window.location.pathname + ".js").then((c) => c.json());
-        console.log(e);
-        let t = e.featured_image, n = e.title, r = window.location.href, s = "", d = "", a = "";
-        await w('[x-data="product"] section.price-pro .text-primary.line-through').then(() => {
-          s = i('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? "", d = i('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? "", a = i('[x-data="product"] .bg-danger').textContent.split("SAVE ")[1] ?? "";
-        }), sessionStorage.setItem(
+        const e = await fetch(window.location.pathname + ".js").then((d) => d.json());
+        let t = e.featured_image, n = e.title, r = window.location.href, s = "", c = "", a = "";
+        await w('[x-data="product"] section.price-pro .text-primary.line-through'), await new Promise((d) => setTimeout(d, 2e3)), s = i('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? "", c = i('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? "", a = i('[x-data="product"] .bg-danger').textContent.split("SAVE ")[1] ?? "", sessionStorage.setItem(
           "viewedItem",
           JSON.stringify({
             imgProduct: t,
             titleProduct: n,
             oldPriceProduct: s,
-            priceProduct: d,
+            priceProduct: c,
             saveTxtProduct: a,
             linkProduct: r
           })
