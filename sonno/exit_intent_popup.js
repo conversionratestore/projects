@@ -236,7 +236,7 @@
     <div class="info_wrapper">
       <div class="header_popup">
         <h2 class="main_title">
-          <span class="accent_color_orange">Get 10% off </span> <br />
+          <span class="accent_color_orange">Get 20% off </span> <br />
           your first order now
         </h2>
         <p class="main_description">
@@ -250,7 +250,7 @@
           </label>
         </div>
         <div class="btn_wrapper">
-          <div class="first_order_get_discount_btn main_btn">Get 10% off</div>
+          <div class="first_order_get_discount_btn main_btn">Get 20% off</div>
         </div>
       </div>
     </div>
@@ -264,7 +264,7 @@
       <div class="header_popup">
         <h2 class="main_title">You are on the list!</h2>
         <p class="main_description">
-          Your <b>10% first order discount is ready</b> <br />
+          Your <b>20% first order discount is ready</b> <br />
           (no minimum spend, no exclusions)
         </p>
       </div>
@@ -297,7 +297,7 @@
             <div class="header_popup">
               <h2 class="main_title">
                 You recently viewed. <br />
-                Buy now and <span class="accent_color_orange">get 10% off!</span>
+                Buy now and <span class="accent_color_orange">get 20% off!</span>
               </h2>
             </div>
             <div class="body_popup">
@@ -328,7 +328,7 @@
           <div class="new_users_w_o_products exit_intent_popup">
             <div class="header_popup">
               <h2 class="main_title">
-                Get an <span class="accent_color_orange">extra 10% off</span> <br />
+                Get an <span class="accent_color_orange">extra 20% off</span> <br />
                 all Divan Beds
               </h2>
             </div>
@@ -353,7 +353,7 @@
       <div class="header_popup">
         <h2 class="main_title">
           Check out now and get <br />
-          <span class="accent_color_orange">10% off</span> your first order
+          <span class="accent_color_orange">20% off</span> your first order
         </h2>
         <p class="main_description">Your cart reserved for:</p>
         <div id="counter">
@@ -1706,7 +1706,7 @@
         case "firstOrderDiscount":
           o(
             "exp_01_ei__popup1_1__view",
-            "Step 1. Get 10% off your first order now",
+            "Step 1. Get 20% off your first order now",
             "Visibility",
             "Popup. Exit-intent. New users w/o product in basket. First order discount popup. Step 1"
           );
@@ -1722,7 +1722,7 @@
         case "newUsersWithProducts":
           o(
             "exp_01_ei__popup4__view",
-            "Check out now and get 10% off your first order",
+            "Check out now and get 20% off your first order",
             "Visibility",
             "Popup. Exit-intent. New users with product in basket. One or more items"
           );
@@ -1738,7 +1738,7 @@
         case "newUsersWOProducts":
           (sessionStorage.getItem("viewedItem") || "{}") !== "{}" ? (o(
             "exp_01_ei__popup2__view",
-            "You recently viewed. Buy now and get 10% off!",
+            "You recently viewed. Buy now and get 20% off!",
             "Visibility",
             "Popup. Exit-intent. New users w/o product in basket. Viewed item"
           ), i("a.item_wrapper").addEventListener("click", () => {
@@ -1750,7 +1750,7 @@
             );
           })) : o(
             "exp_01_ei__popup3__view",
-            "You recently viewed. Buy now and get 10% off!",
+            "You recently viewed. Buy now and get 20% off!",
             "Visibility",
             "Popup. Exit-intent. New users w/o product in basket. Not-viewed item"
           );
@@ -1916,7 +1916,7 @@
         const t = e.target;
         if (t.matches(".first_order_get_discount_btn") && (o(
           "exp_01_ei__popup1_1__get10",
-          "Get 10% off",
+          "Get 20% off",
           "Click",
           "Popup. Exit-intent. New users w/o product in basket. First order discount popup. Step 1"
         ), this.validateEmailForm(i("#emailNew"), !0)), t.matches(".first_order_continue_shopping_btn")) {
