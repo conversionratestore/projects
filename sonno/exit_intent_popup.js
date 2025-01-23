@@ -34,12 +34,12 @@
   }
   const P = function(p) {
     p = p === void 0 ? {} : p;
-    let e, t, n, r, a = (p == null ? void 0 : p.delay) || 50;
-    function s() {
+    let e, t, n, r, s = (p == null ? void 0 : p.delay) || 50;
+    function d() {
       e = null, r = 0;
     }
-    return s(), function() {
-      return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(s, a), r;
+    return d(), function() {
+      return t = window.scrollY, e != null && (r = t - e), e = t, clearTimeout(n), n = setTimeout(d, s), r;
     };
   }(), L = (p) => {
     var t;
@@ -287,7 +287,7 @@
     </div>
   </div>
 `
-  ), g = (p = !1, e = "", t = "", n = "", r = "", a = "", s = "") => (
+  ), g = (p = !1, e = "", t = "", n = "", r = "", s = "", d = "") => (
     /* HTML */
     `
     ${p ? (
@@ -301,7 +301,7 @@
               </h2>
             </div>
             <div class="body_popup">
-              <a href="${s}" class="item_wrapper">
+              <a href="${d}" class="item_wrapper">
                 <div class="img_wrapper">
                   <img src=${e} alt="photo" />
                 </div>
@@ -310,14 +310,14 @@
                   <div class="price_wrapper">
                     <span class="old_price_txt">${n}</span>
                     <span class="price_txt">${r}</span>
-                    <span class="save_txt">Save ${a}</span>
+                    <span class="save_txt">Save ${s}</span>
                     <img class="img_label" src="${l}popup_img_9.webp" alt="photo" />
                   </div>
                 </div>
               </a>
               <div class="btn_wrapper">
                 <p>Discount will be applied on Checkout</p>
-                <div class="active_product_shop_now_btn main_btn" data-link="${s}">Shop Now</div>
+                <div class="active_product_shop_now_btn main_btn" data-link="${d}">Shop Now</div>
               </div>
             </div>
           </div>
@@ -454,14 +454,14 @@
     </div>
   </div>
 `
-  ), z = (p, e, t, n, r, a, s, d = !1) => {
+  ), z = (p, e, t, n, r, s, d, a = !1) => {
     const c = Math.floor(Math.random() * 10) + 1, h = Math.floor(Math.random() * 12) + 4;
     return t.includes("Assembly") || t.includes("Removal") ? "" : (
       /* HTML */
       `
     <li class="products_item">
       <div class="product_wrapper">
-        ${window.innerWidth < 768 && !d ? (
+        ${window.innerWidth < 768 && !a ? (
         /* HTML */
         ` <div class="stock_wrapper">
               ${_.exclamationPointIcon}
@@ -471,7 +471,7 @@
               </p>
             </div>`
       ) : ""}
-        ${window.innerWidth < 768 && d ? (
+        ${window.innerWidth < 768 && a ? (
         /* HTML */
         `<div class="popular_products">
               ${_.peopleViewingIcon}
@@ -483,7 +483,7 @@
             <img src=${e} alt="photo" />
           </a>
           <div class="item_info">
-            ${window.innerWidth >= 768 && !d ? (
+            ${window.innerWidth >= 768 && !a ? (
         /* HTML */
         ` <div class="stock_wrapper">
                   ${_.exclamationPointIcon}
@@ -493,7 +493,7 @@
                   </p>
                 </div>`
       ) : ""}
-            ${window.innerWidth >= 768 && d ? (
+            ${window.innerWidth >= 768 && a ? (
         /* HTML */
         `<div class="popular_products">
                   ${_.peopleViewingIcon}
@@ -504,13 +504,13 @@
             ${n ? `<span class="item_descr">${n}</span>` : ""}
             <div class="price_wrapper">
               <span class="old_price_txt">£${r}</span>
-              <span class="price_txt">£${a}</span>
-              <span class="save_txt">Save £${s}</span>
+              <span class="price_txt">£${s}</span>
+              <span class="save_txt">Save £${d}</span>
             </div>
           </div>
         </div>
       </div>
-      ${d ? "" : (
+      ${a ? "" : (
         /* HTML */
         `<div class="popular_products">
             ${_.peopleViewingIcon}
@@ -1578,7 +1578,7 @@
       this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 10 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
     }
     init() {
-      k({ name: "Exit Intent Popup", dev: "SKh" }), C("exp_01_exit_intent"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput();
+      k({ name: "Exit Intent Popup", dev: "SKh" }), C("exp_01_exit_intent"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput(), this.handleClosePopup();
     }
     createPopup() {
       i(".new_popup_backdrop") || i("body").insertAdjacentHTML("afterbegin", T);
@@ -1633,10 +1633,10 @@
       if (this.isPopupOpen()) return;
       const t = Date.now();
       if (this.lastPopupTime = Number(sessionStorage.getItem("lastPopupTime")) || 0, t - this.lastPopupTime < this.timeLag) return;
-      const n = await this.getCartCheckout(), r = Number(localStorage.getItem("session")) > 1, a = (d, c) => {
-        this.handleShowPopup(d, c, e, c), sessionStorage.setItem("lastPopupTime", t.toString());
-      }, s = (d, c) => {
-        d.forEach((h) => {
+      const n = await this.getCartCheckout(), r = Number(localStorage.getItem("session")) > 1, s = (a, c) => {
+        this.handleShowPopup(a, c, e, c), sessionStorage.setItem("lastPopupTime", t.toString());
+      }, d = (a, c) => {
+        a.forEach((h) => {
           const { url: u, image: m, product_title: V, variant_title: j, presentment_price: f, quantity: b } = h, W = u, B = m, U = V, D = j, v = +f * +b, y = +f * +b, Z = v + y;
           w(".products_list").then(() => {
             i(".products_list").insertAdjacentHTML(
@@ -1656,29 +1656,33 @@
         });
       };
       if (n.length > 0)
-        r ? (a(N, "returningUsersWithProducts"), s(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), w(".img_wrapper").then((d) => {
-          i(".img_wrapper").addEventListener("click", () => {
+        r ? (s(N, "returningUsersWithProducts"), d(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), w(".img_wrapper").then((a) => {
+          x(".product_wrapper a").forEach((c) => {
+            c.addEventListener("click", () => {
+              o(
+                "exp_01_ei__popup6__product",
+                "Click on product",
+                "Click",
+                "Popup. Exit-intent. Returning user with products in basket"
+              );
+            });
+          });
+        })) : (s(I, "newUsersWithProducts"), d(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), await w("a.img_wrapper"), x(".product_wrapper a").forEach((a) => {
+          a.addEventListener("click", () => {
             o(
-              "exp_01_ei__popup6__product",
+              "exp_01_ei__popup4__product",
               "Click on product",
               "Click",
-              "Popup. Exit-intent. Returning user with products in basket"
+              "Popup. Exit-intent. New users with product in basket. One or more items"
             );
           });
-        })) : (a(I, "newUsersWithProducts"), s(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), await w("a.img_wrapper"), i("a.img_wrapper").addEventListener("click", () => {
-          o(
-            "exp_01_ei__popup4__product",
-            "Click on product",
-            "Click",
-            "Popup. Exit-intent. New users with product in basket. One or more items"
-          );
         }));
       else if (r)
-        a($, "returningUsersWOProducts"), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWOProducts");
+        s($, "returningUsersWOProducts"), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWOProducts");
       else {
-        const d = sessionStorage.getItem("viewedItem") || "{}", c = JSON.parse(d);
-        a(
-          d !== "{}" ? g(
+        const a = sessionStorage.getItem("viewedItem") || "{}", c = JSON.parse(a);
+        s(
+          a !== "{}" ? g(
             !0,
             c.imgProduct,
             c.titleProduct,
@@ -1697,8 +1701,8 @@
     }
     handleShowPopup(e, t, n, r) {
       if (sessionStorage.getItem(t) && t !== "firstOrderDiscount") return;
-      const s = i("body"), d = i(".new_popup_backdrop"), c = i(".new_popup .new_popup_content");
-      switch (d.classList.contains("is_hidden") && d.classList.remove("is_hidden"), s.style.overflow = "hidden", c.innerHTML = e, sessionStorage.setItem(t, "yes"), r) {
+      const d = i("body"), a = i(".new_popup_backdrop"), c = i(".new_popup .new_popup_content");
+      switch (a.classList.contains("is_hidden") && a.classList.remove("is_hidden"), d.style.overflow = "hidden", c.innerHTML = e, sessionStorage.setItem(t, "yes"), r) {
         case "firstOrderDiscount":
           o(
             "exp_01_ei__popup1_1__view",
@@ -1759,11 +1763,12 @@
         });
       }), w("#counter").then((h) => {
         this.startCountdown();
-      }), this.handleClosePopup();
+      });
     }
     handleClosePopup() {
-      const e = i("body"), t = i(".new_popup_backdrop"), n = i(".new_popup"), r = n.querySelectorAll('[data-popup="close"]'), a = i(["data-viewed"]);
-      r.forEach((s) => {
+      console.log("handle close popup");
+      const e = i("body"), t = i(".new_popup_backdrop");
+      i(".new_popup").querySelectorAll('[data-popup="close"]').forEach((s) => {
         s.addEventListener("click", (d) => {
           switch (t.classList.add("is_hidden"), e.style.overflow = "initial", setTimeout(() => {
             i(".new_popup_content").innerHTML = "";
@@ -1777,7 +1782,7 @@
               );
               break;
             case "newUsersWOProducts":
-              a ? o(
+              (sessionStorage.getItem("viewedItem") || "{}") !== "{}" ? o(
                 "exp_01_ei__popup2__close",
                 "Close popup",
                 "Click",
@@ -1825,8 +1830,8 @@
       let e = 900;
       const t = setInterval(() => {
         e--;
-        const n = Math.floor(e / 60), r = e % 60, a = i(".minutes_tens"), s = i(".minutes_ones"), d = i(".seconds_tens"), c = i(".seconds_ones");
-        a && (a.textContent = Math.floor(n / 10)), s && (s.textContent = n % 10), d && (d.textContent = Math.floor(r / 10)), c && (c.textContent = r % 10), e <= 0 && clearInterval(t);
+        const n = Math.floor(e / 60), r = e % 60, s = i(".minutes_tens"), d = i(".minutes_ones"), a = i(".seconds_tens"), c = i(".seconds_ones");
+        s && (s.textContent = Math.floor(n / 10)), d && (d.textContent = n % 10), a && (a.textContent = Math.floor(r / 10)), c && (c.textContent = r % 10), e <= 0 && clearInterval(t);
       }, 1e3);
     }
     copyDiscount() {
@@ -1924,14 +1929,14 @@
       });
     }
     async validateEmailForm(e, t = !1) {
-      var a;
+      var s;
       const n = i("#emailNew").value, r = n.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
       if (e.getAttribute("name") === "emailNew" && (r === null ? i("#emailAddressError") || e.closest("label").insertAdjacentHTML(
         "afterend",
         '<span id="emailAddressError" class="error">Please Enter Valid Email Address</span>'
-      ) : (a = i("#emailAddressError")) == null || a.remove()), r !== null && t)
+      ) : (s = i("#emailAddressError")) == null || s.remove()), r !== null && t)
         try {
-          const s = await fetch("https://conversionrate.top/api/sonno/user-register", {
+          const d = await fetch("https://conversionrate.top/api/sonno/user-register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -1940,16 +1945,16 @@
               email: n
             })
           });
-          if (!s.ok)
-            throw e.closest("label").insertAdjacentHTML("afterend", '<span id="emailAddressError" class="error">Email already exists</span>'), new Error(`Error: ${s.statusText}`);
+          if (!d.ok)
+            throw e.closest("label").insertAdjacentHTML("afterend", '<span id="emailAddressError" class="error">Email already exists</span>'), new Error(`Error: ${d.statusText}`);
           i(".first_order_discount.first_var") && i(".first_order_discount.first_var").classList.add("is_hidden"), i(".first_order_discount.second_var").classList.contains("is_hidden") && (i(".first_order_discount.second_var").classList.remove("is_hidden"), o(
             "exp_01_ei__popup1_2__view",
             "Step 2. You are on the list!",
             "Visibility",
             "Popup. Exit-intent. New users w/o product in basket. First order discount popup. Step 2"
           ));
-        } catch (s) {
-          console.error("Klavio error:", s);
+        } catch (d) {
+          console.error("Klavio error:", d);
         }
     }
     async getCartCheckout() {
@@ -1970,17 +1975,17 @@
       if (window.location.pathname.includes("/products/")) {
         const e = await fetch(window.location.pathname + ".js").then((c) => c.json());
         console.log(e);
-        let t = e.featured_image, n = e.title, r = window.location.href, a = "", s = "", d = "";
+        let t = e.featured_image, n = e.title, r = window.location.href, s = "", d = "", a = "";
         await w('[x-data="product"] section.price-pro .text-primary.line-through').then(() => {
-          a = i('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? "", s = i('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? "", d = i('[x-data="product"] .bg-danger').textContent.split("SAVE ")[1] ?? "";
+          s = i('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? "", d = i('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? "", a = i('[x-data="product"] .bg-danger').textContent.split("SAVE ")[1] ?? "";
         }), sessionStorage.setItem(
           "viewedItem",
           JSON.stringify({
             imgProduct: t,
             titleProduct: n,
-            oldPriceProduct: a,
-            priceProduct: s,
-            saveTxtProduct: d,
+            oldPriceProduct: s,
+            priceProduct: d,
+            saveTxtProduct: a,
             linkProduct: r
           })
         );
