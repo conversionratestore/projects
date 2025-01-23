@@ -640,7 +640,7 @@
 }
 
 .discount_code_wrapper {
-  margin-top: 12px;
+  margin-top: auto;
 }
 .discount_code_wrapper .discount_code_title {
   color: #1e3851;
@@ -1367,6 +1367,7 @@
 }
 .new_users_with_products .info_wrapper .body_popup .products_wrapper {
   max-height: 296px;
+  margin-bottom: 12px;
 }
 .new_users_with_products .info_wrapper .body_popup .products_wrapper .products_list .products_item .product_wrapper {
   padding: 12px 16px;
