@@ -262,6 +262,7 @@
 @media (max-width: 375px) {
   .crs-badges__list {
     justify-content: center;
+    column-gap: 24px;
   }
 
   .crs-badges__item {
