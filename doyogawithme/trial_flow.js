@@ -7,8 +7,8 @@
       event_desc: n,
       event_type: t,
       event_loc: i
-    }), f(`Event: ${a} | ${n} | ${t} | ${i}`, "success");
-  }, r = (a) => new Promise((n) => {
+    }), _(`Event: ${a} | ${n} | ${t} | ${i}`, "success");
+  }, o = (a) => new Promise((n) => {
     const t = document.querySelector(a);
     t && n(t);
     const i = new MutationObserver(() => {
@@ -31,13 +31,13 @@
     }
     on(n, t, i) {
       return typeof t == "function" && (i = t, t = ""), this.elements.forEach(function(p) {
-        p.addEventListener(n, function(o) {
+        p.addEventListener(n, function(r) {
           var s;
           if (t !== "") {
-            let d = (s = o.target) == null ? void 0 : s.closest(t);
-            d && (i == null || i.call(d, o));
+            let d = (s = r.target) == null ? void 0 : s.closest(t);
+            d && (i == null || i.call(d, r));
           } else
-            i == null || i.call(p, o);
+            i == null || i.call(p, r);
         });
       }), this;
     }
@@ -62,7 +62,7 @@
       }), this;
     }
     style(n, t) {
-      const i = n.split("-").map((p, o) => o === 0 ? p : p.charAt(0).toUpperCase() + p.slice(1)).join("");
+      const i = n.split("-").map((p, r) => r === 0 ? p : p.charAt(0).toUpperCase() + p.slice(1)).join("");
       return this.elements.forEach(function(p) {
         p.style[i] = t;
       }), this;
@@ -72,7 +72,7 @@
     let n = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", a, "variant_1"));
     }, 1e3);
-  }, h = (a, n, t, i, p = 1e3, o = 0.5) => {
+  }, h = (a, n, t, i, p = 1e3, r = 0.5) => {
     let s, d;
     if (s = new IntersectionObserver(
       function(u) {
@@ -83,15 +83,15 @@
             "view",
             t
           ), s.disconnect();
-        }, p) : (f("Element is not fully visible", "warn"), clearTimeout(d));
+        }, p) : (_("Element is not fully visible", "warn"), clearTimeout(d));
       },
-      { threshold: [o] }
+      { threshold: [r] }
     ), typeof a == "string") {
       const u = document.querySelector(a);
       u && s.observe(u);
     } else
       s.observe(a);
-  }, f = (a, n = "info") => {
+  }, _ = (a, n = "info") => {
     let t;
     switch (n) {
       case "info":
@@ -812,7 +812,7 @@
 <path d="M98.6417 12.2732C97.642 12.5326 97.6102 12.5479 97.5626 13.0668C97.4991 13.8909 97.7054 14.074 98.4354 13.8604C99.6256 13.5246 100.927 13.4788 101.451 13.7383C102.022 14.013 102.133 14.2419 102.133 15.1423C102.133 15.8138 102.133 15.8138 101.704 15.7069C101.451 15.6306 100.721 15.5849 100.07 15.5849C98.721 15.6001 97.8482 15.9359 97.1659 16.7294C96.0868 17.9656 96.5946 20.0106 98.1815 20.7736C99.2606 21.3078 99.9906 21.262 101.292 20.621C102.292 20.1174 102.371 20.0869 102.561 20.331C102.672 20.4837 102.768 20.6668 102.768 20.7431C102.768 20.8041 103.037 20.8499 103.371 20.8194L103.958 20.7736L104.005 17.874C104.053 14.776 103.91 13.7688 103.371 13.0363C102.641 12.029 100.8 11.7391 98.6417 12.2732ZM101.942 16.9431C102.054 17.0041 102.133 17.4162 102.133 17.8588C102.133 18.5302 102.069 18.7134 101.704 19.0491C101.07 19.629 100.07 19.8732 99.4352 19.629C98.6576 19.3238 98.483 19.0644 98.483 18.2708C98.483 17.0499 99.0067 16.6989 100.641 16.7752C101.26 16.8057 101.847 16.882 101.942 16.9431Z" fill="#272727"/>
 <path d="M175.291 12.136C173.736 12.6243 172.593 13.6773 172.196 14.9898C171.673 16.7448 172.022 18.5761 173.117 19.6749C174.783 21.3689 177.132 21.5978 179.29 20.3006C179.972 19.8886 179.988 19.736 179.385 19.034L179.036 18.6372L178.163 19.0645C177.433 19.4155 177.116 19.4918 176.449 19.446C175.402 19.3544 174.434 18.7593 174.101 18.0115C173.593 16.8364 173.466 16.8974 177.163 16.8516L180.448 16.8058L180.496 15.997C180.575 14.5472 179.718 13.189 178.226 12.4259C177.544 12.0902 175.957 11.9223 175.291 12.136ZM177.671 13.9215C178.179 14.3488 178.623 15.0356 178.623 15.4323C178.623 15.6307 178.29 15.6613 176.243 15.6613C174.942 15.6613 173.862 15.6307 173.862 15.585C173.862 15.5544 173.974 15.234 174.116 14.8982C174.656 13.6163 176.624 13.0821 177.671 13.9215Z" fill="#272727"/>
 <path d="M127.363 16.5769V20.8652L128.284 20.8195L129.188 20.7737V16.5769V12.3801L128.284 12.3343L127.363 12.2885V16.5769Z" fill="#272727"/>
-</svg>`, _ = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
+</svg>`, f = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
 <path d="M1.41406 17.4515C1.41406 18.0239 1.79565 18.4055 2.36805 18.4055H9.40609V9.45947H1.41406V17.4515Z" fill="#039AE1"/>
 <path d="M10.5938 18.4055H17.6317C18.2041 18.4055 18.5857 18.0239 18.5857 17.4515V9.45947H10.5938V18.4055Z" fill="#039AE1"/>
 <path d="M0.458984 5.04823V7.31624C0.458984 7.88865 0.84057 8.27023 1.41297 8.27023H9.765V4.09424H1.41297C0.84057 4.09424 0.458984 4.47582 0.458984 5.04823Z" fill="#039AE1"/>
@@ -846,14 +846,14 @@
       <p><b>${a}</b>/month</p>
     </div>
   `
-  ), H = (
+  ), P = (
     /* HTML */
     `
   <style>
     ${k}
   </style>
 `
-  ), P = (
+  ), H = (
     /* HTML */
     `
   <div class="step1 active">
@@ -871,9 +871,11 @@
     <p><b>${M}Cancel any time</b> We’ll send you reminder 3 days before your trial ends.</p>
   </div>
 `
-  ), A = (
-    /* HTML */
-    `
+  ), S = () => {
+    const a = window.drupalSettings.dywm_commerce_currencies.current_currency;
+    return (
+      /* HTML */
+      `
   <div class="step2">
     <h2>Start your free trial</h2>
     <ul>
@@ -888,7 +890,7 @@
         <span></span>
         <div class="plan_block">
           <p>Yearly</p>
-          <p>$ 9.08 / mo<span>save $59</span></p>
+          <p>${a === "USD" ? "$ 9.08" : "CA$ 12.33"} / mo<span>save ${a === "USD" ? "$59" : "CA$80"}</span></p>
         </div>
       </label>
       <label>
@@ -896,15 +898,16 @@
         <span></span>
         <div class="plan_block">
           <p>Monthly</p>
-          <p>$ 13.99 / mo</p>
+          <p>${a === "USD" ? "$ 13.99" : "CA$ 18.99"} / mo</p>
         </div>
     </div>
     <p class="total_now">Today you pay:<b>$ 0</b></p>
-    <p class="total_after">After 7 days: <span>$ 108.99</span></p>
+    <p class="total_after">After 7 days: <span>${a === "USD" ? "$ 108.99" : "CA$147.98"}</span></p>
     <a href='/yogi/register?destination=/express-checkout/139' class="btn to_checkout">Next</a>
   </div>
 `
-  ), b = (a) => {
+    );
+  }, b = (a) => {
     const n = (/* @__PURE__ */ new Date()).getTime(), t = new Date(n + 4 * 24 * 60 * 60 * 1e3).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
@@ -929,14 +932,14 @@
             </div>
             ${a ? '<span class="skip">skip</span>' : ""}
           </div>
-          <div className="content_wrapper">${P} ${A}</div>
+          <div className="content_wrapper">${H} ${S()}</div>
         </div>
         <div class="right_part">
           <div class="logo">${T}</div>
           <h3>How our trial works</h3>
           <ul>
             <li>
-              <span>${_}</span>
+              <span>${f}</span>
               <p><b>Today</b><span>Start your 7-Day free trial</span>. Enjoy the Premium experience. Cancel anytime!</p>
             </li>
             <li>
@@ -970,7 +973,7 @@
       <h3>How Our Trial Works</h3>
       <ul>
         <li>
-          <span>${_}</span>
+          <span>${f}</span>
           <p><b>Today</b><span>Start your 7-Day free trial</span>. Enjoy the Premium experience. Cancel anytime!</p>
         </li>
         <li>
@@ -985,7 +988,7 @@
     </div>
   `
     );
-  }, S = (
+  }, A = (
     /* HTML */
     `
   <div class="checkout_steps_wrapper">
@@ -1006,7 +1009,7 @@
     async init() {
       this.checkSignup();
       const n = window.location.pathname;
-      switch (await r("body"), document.body.insertAdjacentHTML("afterbegin", H), await this.addPopup(), n) {
+      switch (await o("body"), document.body.insertAdjacentHTML("afterbegin", P), await this.addPopup(), n) {
         case "/":
           this.home();
           break;
@@ -1027,7 +1030,7 @@
       this.isAuth = n, this.isAuth ? this.authorizedPlanUpdate() : this.unauthorizedPlanUpdate();
     }
     async listing() {
-      await r(".sfc-upgradeBanner__heading"), e(".sfc-upgradeBanner__heading").elements[0].innerHTML = 'Start Your Free 7-Day Trial for <span style="color:#007922">Unlimited Access</span>', e(".sfc-upgradeBanner__cta").elements[0].innerHTML = "Start Free Trial";
+      await o(".sfc-upgradeBanner__heading"), e(".sfc-upgradeBanner__heading").elements[0].innerHTML = 'Start Your Free 7-Day Trial for <span style="color:#007922">Unlimited Access</span>', e(".sfc-upgradeBanner__cta").elements[0].innerHTML = "Start Free Trial";
       const n = await this.checkAuth();
       this.isAuth = n, e(".sfc-upgradeBanner__cta").on("click", (t) => {
         if (t.preventDefault(), this.isAuth) {
@@ -1041,55 +1044,55 @@
       this.listing();
       const n = await this.checkAuth();
       this.isAuth = n;
-      const t = await r(".sfc-playablePreviewFunnel__overlay--actions h2");
+      const t = await o(".sfc-playablePreviewFunnel__overlay--actions h2");
       t.innerHTML.includes("Premium") ? (this.isFree = !1, t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Start your free trial to unlock this class.</h3>')) : (t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Create account to start free trial.</h3>')), !this.isFree && this.isAuth && (e(".sfc-playablePreviewOverlayUpsell__upsellLink").style("display", "none"), e(".sfc-playablePreviewOverlayUpsell__upsellLink").elements[0].insertAdjacentHTML("afterend", $), e(".trial_video").on("click", () => {
         this.showPopup(), l("exp_trial_flow_button_07", "starting free 7-day trial", "click", "Premium video");
       })), e(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--google").on("click", (i) => {
         localStorage.setItem("signup", window.location.pathname + "?freetrial");
-      }), await r(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--register"), e(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--register").on("click", (i) => {
+      }), await o(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--register"), e(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--register").on("click", (i) => {
         localStorage.setItem("signup", window.location.pathname + "?freetrial");
       });
     }
     async checkout() {
-      if (!(await r(".order-total-line-value")).innerText.includes("$0.00")) return;
-      r(".sfc-registrationProgress__back").then(() => {
+      if (!(await o(".order-total-line-value")).innerText.includes("$0.00")) return;
+      o(".sfc-registrationProgress__back").then(() => {
         e(".sfc-registrationProgress__back").style("font-size", "14px").style("text-transform", "lowercase");
-      }), r(".sfc-registrationProgress__steps").then((i) => {
+      }), o(".sfc-registrationProgress__steps").then((i) => {
         i.style.display = "none";
-      }), await r(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", S), e(".sfc-registrationProgress__back").on("click", (i) => {
+      }), await o(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", A), e(".sfc-registrationProgress__back").on("click", (i) => {
         i.preventDefault(), window.location.href = localStorage.getItem("current_page") || "/become-a-subscriber";
-      }), window.innerWidth > 768 ? (await r(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", w())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", w());
-      const t = await r(".button--primary.js-form-submit");
+      }), window.innerWidth > 768 ? (await o(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", w())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", w());
+      const t = await o(".button--primary.js-form-submit");
       t.innerText = "Start my 7-day free trial", t.style.textTransform = "capitalize", t.addEventListener("click", (i) => {
         l("exp_trial_flow_button_05", "Start my 7-day free trial", "click", "Payment information");
       });
     }
     async checkAuth() {
-      const n = await r(".c-button--cta.c-dropdownMenu__link");
+      const n = await o(".c-button--cta.c-dropdownMenu__link");
       return !!(n && (n.innerHTML.includes("Subscribe") || n.innerHTML.includes("Start Free Trial")));
     }
     async unauthorizedPlanUpdate() {
-      await r(".sfc-pricingTable__col:nth-child(3) .sfc-pricingTableLevel__pricing--paid");
+      await o(".sfc-pricingTable__col:nth-child(3) .sfc-pricingTableLevel__pricing--paid");
       const n = e(".sfc-pricingTableLevel__pricing--paid").elements;
       n.length > 1 && n.forEach((t, i) => {
-        var o, s;
-        const p = ((s = (o = t.querySelector(".sfc-price__amt")) == null ? void 0 : o.textContent) == null ? void 0 : s.trim()) || "";
+        var r, s;
+        const p = ((s = (r = t.querySelector(".sfc-price__amt")) == null ? void 0 : r.textContent) == null ? void 0 : s.trim()) || "";
         t.style.display = "none", t.insertAdjacentHTML("afterend", m(p));
       }), e('.sfc-pricingTable__col [data-sfc-id="button"]').elements.forEach((t, i) => {
         i !== 0 && (t.innerText = "Start Free Trial", t.setAttribute("href", `/yogi/register?destination=/express-checkout/13${i === 1 ? 9 : 8}`));
       });
     }
     async authorizedPlanUpdate() {
-      await r(".sfc-pricingTablePremium__col:nth-child(2) .sfc-pricingTableLevel__pricing--paid"), e(".sfc-pricingTableLevel__pricing--paid").elements.forEach((t) => {
-        var p, o;
-        const i = ((o = (p = t.querySelector(".sfc-price__amt")) == null ? void 0 : p.textContent) == null ? void 0 : o.trim()) || "";
+      await o(".sfc-pricingTablePremium__col:nth-child(2) .sfc-pricingTableLevel__pricing--paid"), e(".sfc-pricingTableLevel__pricing--paid").elements.forEach((t) => {
+        var p, r;
+        const i = ((r = (p = t.querySelector(".sfc-price__amt")) == null ? void 0 : p.textContent) == null ? void 0 : r.trim()) || "";
         t.style.display = "none", t.insertAdjacentHTML("afterend", m(i));
       }), e('.sfc-pricingTablePremium__col [data-sfc-id="button"]').elements.forEach((t, i) => {
         t.innerText = "Start Free Trial", t.setAttribute("href", `/yogi/register?destination=/express-checkout/13${i === 0 ? 8 : 9}`);
       });
     }
     async addPopup() {
-      const n = await r(".c-button--cta.c-dropdownMenu__link");
+      const n = await o(".c-button--cta.c-dropdownMenu__link");
       n && n.innerHTML.includes("Subscribe") && (n.innerHTML = "Start Free Trial", n.addEventListener("click", (t) => {
         t.preventDefault(), this.showPopup(), l("exp_trial_flow_button_06", "Start free trial", "click", "Header");
       })), n && n.innerHTML.includes("Sign Up") && n.addEventListener("click", (t) => {
@@ -1106,7 +1109,8 @@
       }), e(".trial_popup .back").on("click", () => {
         e(".trial_popup .step1.active").elements.length > 0 ? (e(".popup_wrapper").removeClass("active"), l("exp_trial_flow_button_03", "Back - Step 1", "click", "Pop up start free trial")) : (e(".trial_popup .step2").removeClass("active"), e(".trial_popup .step1").addClass("active"), e(".step_block span:nth-child(2)").removeClass("active"), e(".skip").elements.length > 0 && e(".back").addClass("hide"), l("exp_trial_flow_button_03", "Back - Step 2", "click", "Pop up start free trial"));
       }), e(".trial_popup .select_plan input").on("change", (t) => {
-        t.target.value === "monthly" ? (e(".total_after span").elements[0].innerText = "$ 13.99", e(".to_checkout").elements[0].setAttribute("href", "/yogi/register?destination=/express-checkout/138")) : (e(".total_after span").elements[0].innerText = "$ 108.99", e(".to_checkout").elements[0].setAttribute("href", "/yogi/register?destination=/express-checkout/139"));
+        const i = window.drupalSettings.dywm_commerce_currencies.current_currency, p = i === "USD" ? "$ 108.99" : "CA$ 147.98", r = i === "USD" ? "$ 13.99" : "CA$ 18.99";
+        t.target.value === "monthly" ? (e(".total_after span").elements[0].innerText = r, e(".to_checkout").elements[0].setAttribute("href", "/yogi/register?destination=/express-checkout/138")) : (e(".total_after span").elements[0].innerText = p, e(".to_checkout").elements[0].setAttribute("href", "/yogi/register?destination=/express-checkout/139"));
       }), e(".to_checkout").on("click", () => {
         const t = e(".trial_popup .select_plan input:checked").elements[0].value;
         localStorage.setItem("current_page", window.location.pathname), l("exp_trial_flow_button_04", `Next - ${t}`, "click", "Pop up start free trial");
