@@ -846,14 +846,14 @@
       <p><b>${a}</b>/month</p>
     </div>
   `
-  ), P = (
+  ), A = (
     /* HTML */
     `
   <style>
     ${k}
   </style>
 `
-  ), S = (
+  ), P = (
     /* HTML */
     `
   <div class="step1 active">
@@ -890,7 +890,7 @@
         <span></span>
         <div class="plan_block">
           <p>Yearly</p>
-          <p>${a === "USD" ? "$ 9.08" : "CA$ 12.33"} / mo<span>save ${a === "USD" ? "$59" : "CA$80"}</span></p>
+          <p>${a === "CAD" ? "CA$ 12.33" : "$ 9.08"} / mo<span>save ${a === "CAD" ? "CA$80" : "$59"}</span></p>
         </div>
       </label>
       <label>
@@ -898,11 +898,11 @@
         <span></span>
         <div class="plan_block">
           <p>Monthly</p>
-          <p>${a === "USD" ? "$ 13.99" : "CA$ 18.99"} / mo</p>
+          <p>${a === "CAD" ? "CA$ 18.99" : "$ 13.99"} / mo</p>
         </div>
     </div>
     <p class="total_now">Today you pay:<b>$ 0</b></p>
-    <p class="total_after">After 7 days: <span>${a === "USD" ? "$ 108.99" : "CA$147.98"}</span></p>
+    <p class="total_after">After 7 days: <span>${a === "CAD" ? "CA$ 147.98" : "$ 108.99"}</span></p>
     <a href='/yogi/register?destination=/express-checkout/139' class="btn to_checkout">Next</a>
   </div>
 `
@@ -932,7 +932,7 @@
             </div>
             ${a ? '<span class="skip">skip</span>' : ""}
           </div>
-          <div className="content_wrapper">${S} ${H()}</div>
+          <div className="content_wrapper">${P} ${H()}</div>
         </div>
         <div class="right_part">
           <div class="logo">${T}</div>
@@ -988,7 +988,7 @@
     </div>
   `
     );
-  }, A = (
+  }, $ = (
     /* HTML */
     `
   <div class="checkout_steps_wrapper">
@@ -997,7 +997,7 @@
     <span></span>
   </div>
 `
-  ), $ = (
+  ), S = (
     /* HTML */
     ' <span class="trial_video">starting free 7-day trial</span> '
   );
@@ -1009,7 +1009,7 @@
     async init() {
       this.checkSignup();
       const n = window.location.pathname;
-      switch (await o("body"), document.body.insertAdjacentHTML("afterbegin", P), await this.addPopup(), n) {
+      switch (await o("body"), document.body.insertAdjacentHTML("afterbegin", A), await this.addPopup(), n) {
         case "/":
           this.home();
           break;
@@ -1045,7 +1045,7 @@
       const n = await this.checkAuth();
       this.isAuth = n;
       const t = await o(".sfc-playablePreviewFunnel__overlay--actions h2");
-      t.innerHTML.includes("Premium") ? (this.isFree = !1, t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Start your free trial to unlock this class.</h3>')) : (t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Create account to start free trial.</h3>')), !this.isFree && this.isAuth && (e(".sfc-playablePreviewOverlayUpsell__upsellLink").style("display", "none"), e(".sfc-playablePreviewOverlayUpsell__upsellLink").elements[0].insertAdjacentHTML("afterend", $), e(".trial_video").on("click", () => {
+      t.innerHTML.includes("Premium") ? (this.isFree = !1, t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Start your free trial to unlock this class.</h3>')) : (t.style.display = "none", t.insertAdjacentHTML("afterend", '<h3 class="headline">Create account to start free trial.</h3>')), !this.isFree && this.isAuth && (e(".sfc-playablePreviewOverlayUpsell__upsellLink").style("display", "none"), e(".sfc-playablePreviewOverlayUpsell__upsellLink").elements[0].insertAdjacentHTML("afterend", S), e(".trial_video").on("click", () => {
         this.showPopup(), l("exp_trial_flow_button_07", "starting free 7-day trial", "click", "Premium video");
       })), e(".sfc-playablePreviewFunnel__overlay .sfc-playablePreviewFunnel__button--google").on("click", (i) => {
         localStorage.setItem("signup", window.location.pathname + "?freetrial");
@@ -1059,7 +1059,7 @@
         e(".sfc-registrationProgress__back").style("font-size", "14px").style("text-transform", "lowercase");
       }), o(".sfc-registrationProgress__steps").then((i) => {
         i.style.display = "none";
-      }), await o(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", A), e(".sfc-registrationProgress__back").on("click", (i) => {
+      }), await o(".sfc-registrationProgress__back"), e(".sfc-registrationProgress__back").elements[0].insertAdjacentHTML("afterend", $), e(".sfc-registrationProgress__back").on("click", (i) => {
         i.preventDefault(), window.location.href = localStorage.getItem("current_page") || "/become-a-subscriber";
       }), window.innerWidth > 768 ? (await o(".layout-region-checkout-derisk"), e(".layout-region-checkout-derisk").elements[0].insertAdjacentHTML("afterend", w())) : e(".layout-region.layout-region-checkout-main").elements[0].insertAdjacentHTML("beforebegin", w());
       const t = await o(".button--primary.js-form-submit");
@@ -1113,7 +1113,7 @@
       }), e(".trial_popup .back").on("click", () => {
         e(".trial_popup .step1.active").elements.length > 0 ? (e(".popup_wrapper").removeClass("active"), l("exp_trial_flow_button_03", "Back - Step 1", "click", "Pop up start free trial")) : (e(".trial_popup .step2").removeClass("active"), e(".trial_popup .step1").addClass("active"), e(".step_block span:nth-child(2)").removeClass("active"), e(".skip").elements.length > 0 && e(".back").addClass("hide"), l("exp_trial_flow_button_03", "Back - Step 2", "click", "Pop up start free trial"));
       }), e(".trial_popup .select_plan input").on("change", (t) => {
-        const i = window.drupalSettings.dywm_commerce_currencies.current_currency, p = i === "USD" ? "$ 108.99" : "CA$ 147.98", r = i === "USD" ? "$ 13.99" : "CA$ 18.99";
+        const i = window.drupalSettings.dywm_commerce_currencies.current_currency, p = i === "CAD" ? "CA$ 147.98" : "$ 108.99", r = i === "CAD" ? "CA$ 18.99" : "$ 13.99";
         t.target.value === "monthly" ? (e(".total_after span").elements[0].innerText = r, e(".to_checkout").elements[0].setAttribute("href", "/yogi/register?destination=/express-checkout/138")) : (e(".total_after span").elements[0].innerText = p, e(".to_checkout").elements[0].setAttribute("href", "/yogi/register?destination=/express-checkout/139"));
       }), e(".to_checkout").on("click", () => {
         const t = e(".trial_popup .select_plan input:checked").elements[0].value;
