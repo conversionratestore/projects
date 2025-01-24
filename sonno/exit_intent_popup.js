@@ -454,7 +454,7 @@
     </div>
   </div>
 `
-  ), z = (p, e, t, n, r, s, c, a = !1) => {
+  ), M = (p, e, t, n, r, s, c, a = !1) => {
     const d = Math.floor(Math.random() * 10) + 1, h = Math.floor(Math.random() * 12) + 4;
     return t.includes("Assembly") || t.includes("Removal") ? "" : (
       /* HTML */
@@ -523,7 +523,7 @@
     </li>
   `
     );
-  }, M = `.new_popup_backdrop {
+  }, z = `.new_popup_backdrop {
   position: fixed;
   opacity: 1;
   top: 0;
@@ -1579,7 +1579,7 @@
       this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 10 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
     }
     init() {
-      k({ name: "Exit Intent Popup", dev: "SKh" }), C("exp_01_exit_intent"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput(), this.handleClosePopup();
+      k({ name: "Exit Intent Popup", dev: "SKh" }), C("exp_01_exit_intent"), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput(), this.handleClosePopup();
     }
     createPopup() {
       i(".new_popup_backdrop") || i("body").insertAdjacentHTML("afterbegin", T);
@@ -1642,7 +1642,7 @@
           w(".products_list").then(() => {
             i(".products_list").insertAdjacentHTML(
               "beforeend",
-              z(
+              M(
                 j,
                 U,
                 B,
@@ -1737,7 +1737,7 @@
           );
           break;
         case "newUsersWOProducts":
-          (sessionStorage.getItem("viewedItem") || "{}") !== "{}" ? (o(
+          (sessionStorage.getItem("viewedItem") || "{}") !== "{}" ? (i(".item_info h3").textContent.includes("Mattress") && (i(".price_wrapper .img_label").style.display = "none"), o(
             "exp_01_ei__popup2__view",
             "You recently viewed. Buy now and get 20% off!",
             "Visibility",
