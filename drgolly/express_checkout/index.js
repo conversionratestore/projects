@@ -2180,6 +2180,10 @@ tr.coupon_item td {
   line-height: 22.4px; /* 172.308% */
 }
 
+.crs-rating__reviewio span {
+  white-space: nowrap;
+}
+
 @media screen and (max-width: 370px) {
   .crs-rating__right div:first-child {
     white-space: normal;
