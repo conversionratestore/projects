@@ -1096,7 +1096,7 @@
 @media (max-width: 768px) {
   .first_order_discount .img_wrapper {
     width: 100%;
-    min-height: 240px;
+    max-width: 100%;
   }
 }
 .first_order_discount .img_wrapper img {
