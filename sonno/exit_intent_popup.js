@@ -1576,7 +1576,7 @@
 }/*# sourceMappingURL=main.css.map */`, O = window.innerWidth < 768 ? "mobile" : "desktop";
   class H {
     constructor(e) {
-      this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 10 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
+      this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 4 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
     }
     init() {
       k({ name: "Exit Intent Popup", dev: "SKh" }), C("exp_01_exit_intent"), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput(), this.handleClosePopup();
