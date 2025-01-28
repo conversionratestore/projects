@@ -1574,6 +1574,7 @@
 .needsclick.kl-private-reset-css-Xuajs1 {
   display: none !important;
 }/*# sourceMappingURL=main.css.map */`, O = window.innerWidth < 768 ? "mobile" : "desktop";
+  o("reverse_trial", "Start experiment", "Experiment activated");
   class H {
     constructor(e) {
       this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 4 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
