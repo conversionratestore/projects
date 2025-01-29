@@ -18,7 +18,7 @@
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", p, e), console.log("set", p, e));
     }, 1e3);
   };
-  function w(p) {
+  function l(p) {
     return new Promise((e) => {
       if (document.querySelector(p))
         return e(document.querySelector(p));
@@ -45,7 +45,7 @@
     var t;
     const e = `; ${document.cookie}`;
     return e.includes(`; ${p}=`) ? (t = e.split(`; ${p}=`).pop()) == null ? void 0 : t.split(";").shift() : (console.log("No cookie"), null);
-  }, l = "https://conversionratestore.github.io/projects/sonno/img/", _ = {
+  }, w = "https://conversionratestore.github.io/projects/sonno/img/", _ = {
     closeIcon: (
       /* HTML */
       `
@@ -255,8 +255,8 @@
       </div>
     </div>
     <div class="img_wrapper">
-      <img src="${l}popup_img_1.webp" alt="photo" class="desk_var" />
-      <img src="${l}popup_img_1_mob.webp" alt="photo" class="mob_var" />
+      <img src="${w}popup_img_1.webp" alt="photo" class="desk_var" />
+      <img src="${w}popup_img_1_mob.webp" alt="photo" class="mob_var" />
     </div>
   </div>
   <div class="first_order_discount second_var is_hidden">
@@ -282,8 +282,8 @@
       </div>
     </div>
     <div class="img_wrapper">
-      <img src="${l}popup_img_1.webp" alt="photo" class="desk_var" />
-      <img src="${l}popup_img_1_mob.webp" alt="photo" class="mob_var" />
+      <img src="${w}popup_img_1.webp" alt="photo" class="desk_var" />
+      <img src="${w}popup_img_1_mob.webp" alt="photo" class="mob_var" />
     </div>
   </div>
 `
@@ -311,7 +311,7 @@
                     <span class="old_price_txt">${n}</span>
                     <span class="price_txt">${r}</span>
                     <span class="save_txt">Save ${s}</span>
-                    <img class="img_label" src="${l}popup_img_9.webp" alt="photo" />
+                    <img class="img_label" src="${w}popup_img_9.webp" alt="photo" />
                   </div>
                 </div>
               </a>
@@ -334,7 +334,7 @@
             </div>
             <div class="body_popup">
               <div class="img_wrapper">
-                <img src="${l}popup_img_2.webp" alt="photo" />
+                <img src="${w}popup_img_2.webp" alt="photo" />
               </div>
               <div class="btn_wrapper">
                 <p>Discount will be applied on Checkout</p>
@@ -388,7 +388,7 @@
       </div>
     </div>
     <div class="img_wrapper">
-      <img src="${l}popup_img_3.webp" alt="photo" class="desk_var" />
+      <img src="${w}popup_img_3.webp" alt="photo" class="desk_var" />
     </div>
   </div>
 `
@@ -406,7 +406,7 @@
       /* HTML */
       `
               <li class="category_item">
-                <img src="${l}${window.innerWidth >= 768 ? p.img : p.imgMob}" alt="photo" />
+                <img src="${w}${window.innerWidth >= 768 ? p.img : p.imgMob}" alt="photo" />
                 <div class="info_wrapper">
                   <h3>${p.title}</h3>
                   <a href="${p.link}" class="returning_users_w_o_products_shop_now_btn main_btn"
@@ -440,7 +440,7 @@
       </div>
     </div>
     <div class="img_wrapper">
-      <img src="${l}popup_img_8.webp" alt="photo" class="desk_var" />
+      <img src="${w}popup_img_8.webp" alt="photo" class="desk_var" />
     </div>
   </div>
 `
@@ -1580,7 +1580,9 @@
       this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 4 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
     }
     init() {
-      k({ name: "Exit Intent Popup", dev: "SKh" }), C("exp_01_exit_intent"), document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput(), this.handleClosePopup();
+      k({ name: "Exit Intent Popup", dev: "SKh" }), C("exp_01_exit_intent"), l("head").then(() => {
+        document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`);
+      }), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput(), this.handleClosePopup();
     }
     createPopup() {
       i(".new_popup_backdrop") || i("body").insertAdjacentHTML("afterbegin", T);
@@ -1640,7 +1642,7 @@
       }, c = (a, d) => {
         a.forEach((h) => {
           const { url: u, image: m, product_title: V, variant_title: W, presentment_price: f, quantity: b } = h, j = u, U = m, B = V, D = W, v = +f * +b, y = +f * +b, Z = v + y;
-          w(".products_list").then(() => {
+          l(".products_list").then(() => {
             i(".products_list").insertAdjacentHTML(
               "beforeend",
               M(
@@ -1658,7 +1660,7 @@
         });
       };
       if (n.length > 0)
-        r ? (s(N, "returningUsersWithProducts"), c(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), w(".img_wrapper").then((a) => {
+        r ? (s(N, "returningUsersWithProducts"), c(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), l(".img_wrapper").then((a) => {
           x(".product_wrapper a").forEach((d) => {
             d.addEventListener("click", () => {
               o(
@@ -1669,7 +1671,7 @@
               );
             });
           });
-        })) : (s(I, "newUsersWithProducts"), c(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), await w("a.img_wrapper"), x(".product_wrapper a").forEach((a) => {
+        })) : (s(I, "newUsersWithProducts"), c(n, !0), i(".new_popup_backdrop").setAttribute("popup", "newUsersWithProducts"), await l("a.img_wrapper"), x(".product_wrapper a").forEach((a) => {
           a.addEventListener("click", () => {
             o(
               "exp_01_ei__popup4__product",
@@ -1758,12 +1760,12 @@
           );
           break;
       }
-      w(".products_wrapper .product_wrapper").then((h) => {
+      l(".products_wrapper .product_wrapper").then((h) => {
         const u = i(".products_wrapper .products_list"), m = i(".products_wrapper .shadow");
         u.scrollHeight > u.clientHeight && m.classList.add("active"), u.addEventListener("scroll", () => {
           u.scrollHeight > u.clientHeight && u.scrollTop < u.scrollHeight - u.clientHeight ? m.classList.add("active") : m.classList.remove("active");
         });
-      }), w("#counter").then((h) => {
+      }), l("#counter").then((h) => {
         this.startCountdown();
       });
     }
@@ -1884,7 +1886,7 @@
       }, 1e3);
     }
     copyDiscount() {
-      w("[data-discount]").then((e) => {
+      l("[data-discount]").then((e) => {
         x("[data-discount]").forEach((t) => {
           t.addEventListener("click", (n) => {
             let r = n.currentTarget.dataset.discount;
@@ -1967,7 +1969,7 @@
       });
     }
     handlerClickInput() {
-      w("#emailNew").then((e) => {
+      l("#emailNew").then((e) => {
         x("#emailNew").forEach((t) => {
           t.addEventListener("input", (n) => {
             this.validateEmailForm(n.target);
@@ -2031,7 +2033,7 @@
       if (window.location.pathname.includes("/products/")) {
         const e = await fetch(window.location.pathname + ".js").then((d) => d.json());
         let t = e.featured_image, n = e.title, r = window.location.href, s = "", c = "", a = "";
-        await w('[x-data="product"] section.price-pro .text-primary.line-through'), await new Promise((d) => setTimeout(d, 2e3)), s = i('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? "", c = i('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? "", a = i('[x-data="product"] .bg-danger').textContent.split("SAVE ")[1] ?? "", sessionStorage.setItem(
+        await l('[x-data="product"] section.price-pro .text-primary.line-through'), await new Promise((d) => setTimeout(d, 2e3)), s = i('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? "", c = i('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? "", a = i('[x-data="product"] .bg-danger').textContent.split("SAVE ")[1] ?? "", sessionStorage.setItem(
           "viewedItem",
           JSON.stringify({
             imgProduct: t,
