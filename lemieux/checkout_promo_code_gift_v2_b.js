@@ -1,25 +1,25 @@
 (function() {
   "use strict";
-  const m = (r, n, t, c = "") => {
+  const m = (p, n, t, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: r,
+      event_name: p,
       event_desc: n,
       event_type: t,
-      event_loc: c
-    }), console.log(`Event: ${r} | ${n} | ${t} | ${c}`);
-  }, L = ({ name: r, dev: n }) => {
+      event_loc: a
+    }), console.log(`Event: ${p} | ${n} | ${t} | ${a}`);
+  }, L = ({ name: p, dev: n }) => {
     console.log(
-      `%c EXP: ${r} (DEV: ${n})`,
+      `%c EXP: ${p} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, o = (r) => document.querySelector(r);
-  function e(r) {
+  }, o = (p) => document.querySelector(p);
+  function e(p) {
     return new Promise((n) => {
-      if (document.querySelector(r))
-        return n(document.querySelector(r));
+      if (document.querySelector(p))
+        return n(document.querySelector(p));
       const t = new MutationObserver(() => {
-        document.querySelector(r) && (n(document.querySelector(r)), t.disconnect());
+        document.querySelector(p) && (n(document.querySelector(p)), t.disconnect());
       });
       t.observe(document.documentElement, {
         childList: !0,
@@ -301,8 +301,8 @@ checkout-account social-login > div p {
 }
 
 /* C TEST */
-
-/* checkout-account social-login {
+/* 
+checkout-account social-login {
   width: 100%;
 }
 checkout-account social-login > div {
@@ -335,10 +335,10 @@ checkout-account social-login .button__body i {
   margin: 0 !important;
 } */
 `;
-  (function(r, n, t, c, p, a) {
-    r.hj = r.hj || function() {
-      (r.hj.q = r.hj.q || []).push(arguments);
-    }, r._hjSettings = { hjid: 2667925, hjsv: 6 }, p = n.getElementsByTagName("head")[0], a = n.createElement("script"), a.async = !0, a.src = t + r._hjSettings.hjid + c + r._hjSettings.hjsv, p && p.appendChild(a);
+  (function(p, n, t, a, r, c) {
+    p.hj = p.hj || function() {
+      (p.hj.q = p.hj.q || []).push(arguments);
+    }, p._hjSettings = { hjid: 2667925, hjsv: 6 }, r = n.getElementsByTagName("head")[0], c = n.createElement("script"), c.async = !0, c.src = t + p._hjSettings.hjid + a + p._hjSettings.hjsv, r && r.appendChild(c);
   })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "exp_cart_page_step");
   class F {
     constructor() {
@@ -354,7 +354,7 @@ checkout-account social-login .button__body i {
       this.checkPage() === "checkout" && (setTimeout(() => {
         o('[zippyname="basketTab"] #mmWrapper > div') || e("#mmWrapper > div").then((n) => {
           e('[zippyname="basketTab"]').then((t) => {
-            e("mention-me-wrapper").then((c) => {
+            e("mention-me-wrapper").then((a) => {
               this.toggleElementBetweenContainers(
                 "#mmWrapper",
                 "mention-me-wrapper",
@@ -377,7 +377,7 @@ checkout-account social-login .button__body i {
         });
       }), o('[zippyname="basketTab"] coupon-form') || e("coupon-form").then((n) => {
         e('[zippyname="basketTab"]').then((t) => {
-          e("mention-me-wrapper").then((c) => {
+          e("mention-me-wrapper").then((a) => {
             this.toggleElementBetweenContainers("coupon-form", "mention-me-wrapper", "basket-view-totals");
           });
         });
@@ -397,28 +397,39 @@ checkout-account social-login .button__body i {
         const t = n.target;
         t.closest("button") && (this.changeCopyContact(), setTimeout(() => {
           this.changeCopyContact();
-        }, 2e3)), t.closest("checkout-step action") && (this.changeCopyContact(), setTimeout(() => {
-          this.changeCopyContact();
         }, 2e3));
+        const r = t.closest("checkout-step action");
+        r && (console.log("action", r), this.changeCopyContact(), setTimeout(() => {
+          this.changeCopyContact();
+        }, 2e3)), t.closest("action") && (o("checkout-form h4 price") || setTimeout(() => {
+          e("checkout-form h4 + div > span price").then((d) => {
+            this.toggleElementBetweenContainers(
+              "checkout-form h4 + div > span price",
+              "checkout-form h4 + div",
+              "checkout-form h4",
+              "beforeend"
+            );
+          });
+        }, 1e3));
       });
     }
     changeCopyContact() {
-      e("checkout-account ng-form h1 span").then((p) => {
-        const a = p;
-        a.textContent = "Contact";
+      e("checkout-account ng-form h1 span").then((r) => {
+        const c = r;
+        c.textContent = "Contact";
       });
       const n = document.querySelector("checkout-account ng-form h1 span");
-      n && (n.innerHTML = "Contact"), e("checkout-account ng-form h3 > span").then((p) => {
-        const a = p;
-        a.innerHTML = "Contact";
+      n && (n.innerHTML = "Contact"), e("checkout-account ng-form h3 > span").then((r) => {
+        const c = r;
+        c.innerHTML = "Contact";
       });
       const t = document.querySelector("checkout-account ng-form h3 > span");
-      t && (t.innerHTML = "Contact"), e("checkout-step h4 span").then((p) => {
-        const a = p;
-        a.innerHTML = "Contact";
+      t && (t.innerHTML = "Contact"), e("checkout-step h4 span").then((r) => {
+        const c = r;
+        c.innerHTML = "Contact";
       });
-      const c = document.querySelector("checkout-step h4 span");
-      c && (c.innerHTML = "Contact");
+      const a = document.querySelector("checkout-step h4 span");
+      a && (a.innerHTML = "Contact");
     }
     changeCopy() {
       e('[zippyclass="!ng-hide"]').then((n) => {
@@ -427,15 +438,15 @@ checkout-account social-login .button__body i {
       }), e('[zippyclass="ng-hide"]').then((n) => {
         const t = n;
         t.innerHTML = "Show bag summary";
-        const c = t.closest("button"), p = setTimeout(() => {
-          c == null || c.click(), t.classList.contains("ng-hide") && clearTimeout(p);
+        const a = t.closest("button"), r = setTimeout(() => {
+          a == null || a.click(), t.classList.contains("ng-hide") && clearTimeout(r);
         }, 1e3);
       });
     }
-    toggleElementBetweenContainers(n, t, c, p = "beforebegin") {
+    toggleElementBetweenContainers(n, t, a, r = "beforebegin") {
       var B;
-      const a = o(n), d = o(t), u = o(c), h = o('[zippyname="basketTab"] h4'), l = (B = o("#checkout-step-payment .bg-col-w.p-a-6")) == null ? void 0 : B.nextElementSibling;
-      if (!a || !d || !u)
+      const c = o(n), d = o(t), u = o(a), h = o('[zippyname="basketTab"] h4'), l = (B = o("#checkout-step-payment .bg-col-w.p-a-6")) == null ? void 0 : B.nextElementSibling;
+      if (!c || !d || !u)
         return;
       function j() {
         e('[zippyname="basketTab"] #mmWrapper').then((i) => {
@@ -494,7 +505,7 @@ checkout-account social-login .button__body i {
       function q() {
         o("#mmWrapper").removeEventListener("click", v);
       }
-      function P() {
+      function A() {
         e("coupon-form [zippyclass='is-open']").then((i) => {
           o("coupon-form [zippyclass='is-open']").removeEventListener("click", k);
         }), e("coupon-form input").then((i) => {
@@ -506,13 +517,13 @@ checkout-account social-login .button__body i {
           o("coupon-form button").removeEventListener("click", w);
         });
       }
-      function A() {
+      function P() {
         o("giftcards-form [zippyclass='is-open']").removeEventListener("click", z), o("giftcards-form input").removeEventListener("change", x), o("giftcards-form action.button").removeEventListener("click", _), o("giftcards-form action.button-1").removeEventListener("click", C);
       }
       function T(i) {
-        if (i.contains(a))
+        if (i.contains(c))
           return;
-        i.insertAdjacentElement(p, a), i === u ? (n === "#mmWrapper" && j(), n === "coupon-form" && M(), n === "giftcards-form" && W()) : (n === "#mmWrapper" && q(), n === "coupon-form" && P(), n === "giftcards-form" && A());
+        i.insertAdjacentElement(r, c), i === u ? (n === "#mmWrapper" && j(), n === "coupon-form" && M(), n === "giftcards-form" && W()) : (n === "#mmWrapper" && q(), n === "coupon-form" && A(), n === "giftcards-form" && P());
         const s = document.querySelector("#checkout-step-payment mention-me-wrapper"), f = document.querySelector("#checkout-step-payment coupon-form");
         s && f && s.after(f);
       }
@@ -525,7 +536,7 @@ checkout-account social-login .button__body i {
     }
     observePageChange() {
       this.observerNew = new MutationObserver((t) => {
-        t.forEach((c) => {
+        t.forEach((a) => {
           window.location.pathname !== this.lastPath && (this.device === "mobile" ? setTimeout(() => {
             this.initAllFunc();
           }, 2800) : this.initAllFunc(), this.lastPath = window.location.pathname);
@@ -555,8 +566,8 @@ checkout-account social-login .button__body i {
     constructor() {
       var n, t;
       this.observer = null, this.countryCode = (t = (n = window == null ? void 0 : window.autoInitData) == null ? void 0 : n.website) == null ? void 0 : t.websiteCode, this.basketButtonHandler = () => {
-        const c = () => {
-          this.country !== "other" && this.device === "desktop" && !location.href.includes("basket") && !location.href.includes("checkout") && this.waitForElementCustom('minibasket a[href*="/basket"]', (p) => {
+        const a = () => {
+          this.country !== "other" && this.device === "desktop" && !location.href.includes("basket") && !location.href.includes("checkout") && this.waitForElementCustom('minibasket a[href*="/basket"]', (r) => {
             var u;
             const d = (
               /* HTML */
@@ -564,13 +575,13 @@ checkout-account social-login .button__body i {
             ><span class="p1 col-w">Checkout securely</span></a
           >`
             );
-            p.outerHTML = d, (u = o('minibasket a[href*="/checkout"]')) == null || u.addEventListener("click", (h) => {
+            r.outerHTML = d, (u = o('minibasket a[href*="/checkout"]')) == null || u.addEventListener("click", (h) => {
               const l = document.querySelector('minibasket [aria-label="Close"]');
               localStorage.setItem("lastPdpHref", location.href), l && l.click();
             });
           });
         };
-        c(), this.pageChangeHandler(c);
+        a(), this.pageChangeHandler(a);
       }, this.country = this.countryCode === "base" ? "uk" : this.countryCode === "us" ? "us" : "other", this.device = window.innerWidth > 1100 ? "desktop" : "mobile", this.init();
     }
     init() {
@@ -584,17 +595,17 @@ checkout-account social-login .button__body i {
     }
     checkBasketPage() {
       function n() {
-        const c = setInterval(function() {
-          document.querySelectorAll("button").forEach((a) => {
+        const a = setInterval(function() {
+          document.querySelectorAll("button").forEach((c) => {
             var d;
-            if (a && ((d = a.textContent) != null && d.includes("Continue shopping"))) {
+            if (c && ((d = c.textContent) != null && d.includes("Continue shopping"))) {
               const u = localStorage.getItem("lastPdpHref"), h = (
                 /* HTML */
                 ` <a class="w-12 button-1 m-b m-t-2" href="${u}"
               ><span class="button__body">Continue shopping</span></a
             >`
               );
-              u && (a.outerHTML = h), clearInterval(c);
+              u && (c.outerHTML = h), clearInterval(a);
             }
           });
         }, 100);
@@ -606,20 +617,20 @@ checkout-account social-login .button__body i {
     }
     pageChangeHandler(n) {
       (function(t) {
-        const c = t.pushState, p = t.replaceState;
-        t.pushState = function(a) {
-          c.apply(t, arguments), n();
-        }, t.replaceState = function(a) {
-          p.apply(t, arguments), n();
-        }, window.addEventListener("popstate", function(a) {
+        const a = t.pushState, r = t.replaceState;
+        t.pushState = function(c) {
+          a.apply(t, arguments), n();
+        }, t.replaceState = function(c) {
+          r.apply(t, arguments), n();
+        }, window.addEventListener("popstate", function(c) {
           n();
         });
       })(window.history);
     }
     waitForElementCustom(n, t) {
-      this.observer && this.observer.disconnect(), this.observer = new MutationObserver((c, p) => {
-        const a = document.querySelector(n);
-        a && t(a);
+      this.observer && this.observer.disconnect(), this.observer = new MutationObserver((a, r) => {
+        const c = document.querySelector(n);
+        c && t(c);
       }), this.observer.observe(document.body, {
         childList: !0,
         subtree: !0,
