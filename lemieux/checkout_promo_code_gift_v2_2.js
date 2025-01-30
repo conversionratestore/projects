@@ -346,7 +346,7 @@ checkout-account social-login .button__body i {
     }
     initFunc() {
       L({
-        name: "Adding promo code and gift card options to the checkout (Second iteration С)",
+        name: "Adding promo code and gift card options to the checkout (Second iteration С.)",
         dev: "OS"
       }), o(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${S}</style>`), this.initAllFunc();
     }
