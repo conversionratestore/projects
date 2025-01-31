@@ -166,6 +166,17 @@ checkout-form
   > div:has(result p:not(:empty)):not(:has(validation:not(:empty))) {
   padding-bottom: 30px !important;
 }
+@media (max-width: 1100px) {
+  checkout-form
+  :is(coupon-form, giftcards-form)
+  form
+  [zippyclass='is-open']
+  + div
+  > div
+  > div:has(result p:not(:empty)):not(:has(validation:not(:empty))) {
+  padding-bottom: 8px !important;
+}
+}
 
 checkout-form
   :is(coupon-form, giftcards-form)
@@ -265,7 +276,7 @@ checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input
 @media (max-width: 1100px) {
   checkout-form coupon-form form [zippyclass='is-open'] + div > div > div input-wrap + div > div:has(result),
   checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input-wrap + div > result {
-    top: 125px;
+    position: static !important;
   }
 }
 checkout-form :is(giftcards-form, coupon-form) form [zippyclass='is-open'] + div > div > div input-wrap + div result p {
@@ -350,7 +361,7 @@ checkout-account social-login .button__body i {
     }
     initFunc() {
       B({
-        name: "Adding promo code and gift card options to the checkout (Second iteration С.)",
+        name: "Adding promo code and gift card options to the checkout (Second iteration C.)",
         dev: "OS"
       }), i(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${S}</style>`), this.initAllFunc();
     }
