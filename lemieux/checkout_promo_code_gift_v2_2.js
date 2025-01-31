@@ -382,17 +382,15 @@ checkout-account social-login .button__body i {
       }, 1e3), setTimeout(() => {
         i('[zippyname="basketTab"] giftcards-form') || o("giftcards-form").then((n) => {
           o('[zippyname="basketTab"]').then((t) => {
-            o("checkout-minibasket coupon-form").then(() => {
-              this.toggleElementBetweenContainers(
-                "giftcards-form",
-                "mention-me-wrapper",
-                "checkout-minibasket coupon-form",
-                "afterend"
-              );
-            });
+            this.toggleElementBetweenContainers(
+              "giftcards-form",
+              "mention-me-wrapper",
+              "checkout-minibasket",
+              "afterend"
+            );
           });
         });
-      }, 1500), i('[zippyname="basketTab"] coupon-form') || o("coupon-form").then((n) => {
+      }, 1e3), i('[zippyname="basketTab"] coupon-form') || o("coupon-form").then((n) => {
         o('[zippyname="basketTab"]').then((t) => {
           o("mention-me-wrapper").then((c) => {
             this.toggleElementBetweenContainers("coupon-form", "mention-me-wrapper", "basket-view-totals");
@@ -531,15 +529,18 @@ checkout-account social-login .button__body i {
         h && h.addEventListener("click", () => {
         });
         const B = document.querySelector('[zippyname="basketTab"] coupon-form'), S = document.querySelector('[zippyname="basketTab"] giftcards-form');
-        B && S && (console.log("after"), B.after(S));
+        B && S && B.after(S);
       }
-      const E = new IntersectionObserver((e) => {
-        e.forEach((s) => {
-          s.isIntersecting && (s.target === g ? T(d) : s.target === l && (console.log("container", u), T(u)));
-        });
-      }, {
-        threshold: 0.5
-      });
+      const E = new IntersectionObserver(
+        (e) => {
+          e.forEach((s) => {
+            s.isIntersecting && (s.target === g ? T(d) : s.target === l && T(u));
+          });
+        },
+        {
+          threshold: 0.5
+        }
+      );
       E.observe(g), E.observe(l);
     }
     observePageChange() {
