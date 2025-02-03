@@ -7,7 +7,7 @@
       event_desc: n,
       event_type: t,
       event_loc: i
-    }), _(`Event: ${a} | ${n} | ${t} | ${i}`, "success");
+    }), f(`Event: ${a} | ${n} | ${t} | ${i}`, "success");
   }, o = (a) => new Promise((n) => {
     const t = document.querySelector(a);
     t && n(t);
@@ -83,7 +83,7 @@
             "view",
             t
           ), s.disconnect();
-        }, p) : (_("Element is not fully visible", "warn"), clearTimeout(d));
+        }, p) : (f("Element is not fully visible", "warn"), clearTimeout(d));
       },
       { threshold: [r] }
     ), typeof a == "string") {
@@ -91,7 +91,7 @@
       u && s.observe(u);
     } else
       s.observe(a);
-  }, _ = (a, n = "info") => {
+  }, f = (a, n = "info") => {
     let t;
     switch (n) {
       case "info":
@@ -812,7 +812,7 @@
 <path d="M98.6417 12.2732C97.642 12.5326 97.6102 12.5479 97.5626 13.0668C97.4991 13.8909 97.7054 14.074 98.4354 13.8604C99.6256 13.5246 100.927 13.4788 101.451 13.7383C102.022 14.013 102.133 14.2419 102.133 15.1423C102.133 15.8138 102.133 15.8138 101.704 15.7069C101.451 15.6306 100.721 15.5849 100.07 15.5849C98.721 15.6001 97.8482 15.9359 97.1659 16.7294C96.0868 17.9656 96.5946 20.0106 98.1815 20.7736C99.2606 21.3078 99.9906 21.262 101.292 20.621C102.292 20.1174 102.371 20.0869 102.561 20.331C102.672 20.4837 102.768 20.6668 102.768 20.7431C102.768 20.8041 103.037 20.8499 103.371 20.8194L103.958 20.7736L104.005 17.874C104.053 14.776 103.91 13.7688 103.371 13.0363C102.641 12.029 100.8 11.7391 98.6417 12.2732ZM101.942 16.9431C102.054 17.0041 102.133 17.4162 102.133 17.8588C102.133 18.5302 102.069 18.7134 101.704 19.0491C101.07 19.629 100.07 19.8732 99.4352 19.629C98.6576 19.3238 98.483 19.0644 98.483 18.2708C98.483 17.0499 99.0067 16.6989 100.641 16.7752C101.26 16.8057 101.847 16.882 101.942 16.9431Z" fill="#272727"/>
 <path d="M175.291 12.136C173.736 12.6243 172.593 13.6773 172.196 14.9898C171.673 16.7448 172.022 18.5761 173.117 19.6749C174.783 21.3689 177.132 21.5978 179.29 20.3006C179.972 19.8886 179.988 19.736 179.385 19.034L179.036 18.6372L178.163 19.0645C177.433 19.4155 177.116 19.4918 176.449 19.446C175.402 19.3544 174.434 18.7593 174.101 18.0115C173.593 16.8364 173.466 16.8974 177.163 16.8516L180.448 16.8058L180.496 15.997C180.575 14.5472 179.718 13.189 178.226 12.4259C177.544 12.0902 175.957 11.9223 175.291 12.136ZM177.671 13.9215C178.179 14.3488 178.623 15.0356 178.623 15.4323C178.623 15.6307 178.29 15.6613 176.243 15.6613C174.942 15.6613 173.862 15.6307 173.862 15.585C173.862 15.5544 173.974 15.234 174.116 14.8982C174.656 13.6163 176.624 13.0821 177.671 13.9215Z" fill="#272727"/>
 <path d="M127.363 16.5769V20.8652L128.284 20.8195L129.188 20.7737V16.5769V12.3801L128.284 12.3343L127.363 12.2885V16.5769Z" fill="#272727"/>
-</svg>`, f = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
+</svg>`, _ = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
 <path d="M1.41406 17.4515C1.41406 18.0239 1.79565 18.4055 2.36805 18.4055H9.40609V9.45947H1.41406V17.4515Z" fill="#039AE1"/>
 <path d="M10.5938 18.4055H17.6317C18.2041 18.4055 18.5857 18.0239 18.5857 17.4515V9.45947H10.5938V18.4055Z" fill="#039AE1"/>
 <path d="M0.458984 5.04823V7.31624C0.458984 7.88865 0.84057 8.27023 1.41297 8.27023H9.765V4.09424H1.41297C0.84057 4.09424 0.458984 4.47582 0.458984 5.04823Z" fill="#039AE1"/>
@@ -828,7 +828,7 @@
 <rect width="20" height="20" fill="white" transform="translate(0 0.405273)"/>
 </clipPath>
 </defs>
-</svg>`, C = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17" fill="none">
+</svg>`, m = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17" fill="none">
 <path d="M1.89076 11.8502C1.46974 9.11357 1.04872 6.37699 0.627704 3.64034C0.534337 3.03369 1.22459 2.61994 1.71558 2.98822C3.02729 3.972 4.33893 4.95571 5.65064 5.93949C6.08252 6.26341 6.69782 6.158 6.99723 5.70881L10.2732 0.794748C10.6194 0.275449 11.3824 0.275449 11.7286 0.794748L15.0047 5.70881C15.3041 6.158 15.9194 6.26334 16.3513 5.93949C17.663 4.95571 18.9746 3.972 20.2863 2.98822C20.7773 2.61994 21.4676 3.03369 21.3743 3.64034C20.9532 6.37699 20.5322 9.11357 20.1112 11.8502H1.89076Z" fill="#A8CCDC"/>
 <path d="M19.1611 16.4053H2.84056C2.31593 16.4053 1.89062 15.98 1.89062 15.4554V13.3687H20.1111V15.4554C20.111 15.98 19.6857 16.4053 19.1611 16.4053Z" fill="#A8CCDC"/>
 </svg>`, c = `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
@@ -837,7 +837,7 @@
 <path d="M4.73987 20.4056H11.1321C11.5463 20.4056 11.8821 20.0698 11.8821 19.6556C11.8821 19.2415 11.5463 18.9056 11.1321 18.9056H4.73987C3.7804 18.9056 3 18.1285 3 17.1731V9.19702H17.666V10.4539C17.666 10.868 18.0018 11.2039 18.416 11.2039C18.8302 11.2039 19.166 10.868 19.166 10.4539V7.19824C19.166 5.41187 17.7125 3.95837 15.9261 3.95837H15.123V3.49219C15.123 3.078 14.7872 2.74219 14.373 2.74219C13.9589 2.74219 13.623 3.078 13.623 3.49219V3.95837H7.04114V3.49219C7.04114 3.078 6.70532 2.74219 6.29114 2.74219C5.87695 2.74219 5.54114 3.078 5.54114 3.49219V3.95837H4.73987C3.62311 3.95837 2.63649 4.52646 2.05376 5.38875C1.7043 5.90552 1.5 6.52808 1.5 7.19751V17.1731C1.5 18.9554 2.95349 20.4056 4.73987 20.4056ZM17.6642 7.69702H3V7.19824C3 6.95851 3.04871 6.73 3.13678 6.52203C3.40086 5.89893 4.01875 5.46057 4.73694 5.46057H5.54114V5.92896C5.54114 6.34314 5.87695 6.67896 6.29114 6.67896C6.70532 6.67896 7.04114 6.34314 7.04114 5.92896V5.46057H13.623V5.92896C13.623 6.34314 13.9589 6.67896 14.373 6.67896C14.7872 6.67896 15.123 6.34314 15.123 5.92896V5.46057H15.9276C16.8853 5.46057 17.6642 6.23987 17.6642 7.19751V7.69702Z" fill="#027DB8"/>
 <path d="M17.2933 11.8438C14.4208 11.8438 12.084 14.1805 12.084 17.0531C12.084 19.9257 14.4208 22.2628 17.2933 22.2628C20.1659 22.2628 22.5031 19.9257 22.5031 17.0531C22.5031 14.1805 20.1659 11.8438 17.2933 11.8438ZM13.584 17.0531C13.584 15.0078 15.248 13.3438 17.2933 13.3438C19.339 13.3438 21.0031 15.0078 21.0031 17.0531C21.0031 19.0988 19.339 20.7628 17.2933 20.7628C15.248 20.7628 13.584 19.0988 13.584 17.0531Z" fill="#027DB8"/>
 <path d="M18.9969 15.3447C18.704 15.0518 18.2294 15.0518 17.9364 15.3447L17.291 15.9902L16.6455 15.3447C16.3525 15.0518 15.8779 15.0518 15.585 15.3447C15.292 15.6377 15.292 16.1123 15.585 16.4053L16.2304 17.0507L15.585 17.6962C15.292 17.9891 15.292 18.4637 15.585 18.7567C15.7314 18.9032 15.9233 18.9764 16.1152 18.9764C16.3071 18.9764 16.499 18.9032 16.6455 18.7567L17.291 18.1113L17.9364 18.7567C18.0829 18.9032 18.2748 18.9764 18.4667 18.9764C18.6586 18.9764 18.8505 18.9032 18.9969 18.7567C19.2899 18.4637 19.2899 17.9891 18.9969 17.6962L18.3515 17.0507L18.9969 16.4053C19.2899 16.1123 19.2899 15.6377 18.9969 15.3447Z" fill="#027DB8"/>
-</svg>`, m = (a) => (
+</svg>`, C = (a) => (
     /* HTML */
     `
     <div class="crs_price_block">
@@ -939,7 +939,7 @@
           <h3>How our trial works</h3>
           <ul>
             <li>
-              <span>${f}</span>
+              <span>${_}</span>
               <p><b>Today</b><span>Start your 7-Day free trial</span>. Enjoy the Premium experience. Cancel anytime!</p>
             </li>
             <li>
@@ -947,7 +947,7 @@
               <p><b>${t}</b>Get reminder 3 days before your trial ends. Cancel to switch to the free plan</p>
             </li>
             <li>
-              <span>${C}</span>
+              <span>${m}</span>
               <p><b>${i}</b>Your subscription starts unless<br />you cancel it.</p>
             </li>
           </ul>
@@ -973,7 +973,7 @@
       <h3>How Our Trial Works</h3>
       <ul>
         <li>
-          <span>${f}</span>
+          <span>${_}</span>
           <p><b>Today</b><span>Start your 7-Day free trial</span>. Enjoy the Premium experience. Cancel anytime!</p>
         </li>
         <li>
@@ -981,7 +981,7 @@
           <p><b>${n}</b>Get reminder 3 days before your trial ends. Cancel to switch to the free plan</p>
         </li>
         <li>
-          <span>${C}</span>
+          <span>${m}</span>
           <p><b>${t}</b>Your subscription starts unless you cancel it.</p>
         </li>
       </ul>
@@ -1055,7 +1055,14 @@
     }
     async checkout() {
       if (!(await o(".order-total-line-value")).innerText.includes("$0.00")) return;
-      o(".sfc-registrationProgress__back").then(() => {
+      o("div.sfc-orderSummaryItemPrice__price").then((i) => {
+        var r;
+        const p = (r = e(".views-field-title .tablesaw-cell-content").elements[0].textContent) != null && r.includes("Monthly") ? "monthly" : "yearly";
+        i.innerHTML = p === "monthly" ? "$13.99" : "$108.99", e(".order-total-line-label").elements[0].innerHTML = "Today you pay", e("del.sfc-orderSummaryItemPrice__price").elements[0].style.display = p === "monthly" ? "none" : "inline", p === "monthly" ? (e(".sfc-orderSummaryItemPrice__highlight").elements[0].style.display = "none", e(".sfc-orderSummaryTotal__savings").elements[0].style.display = "none") : (e(".sfc-orderSummaryItemPrice__highlight").elements[0].innerHTML = "Just $9.08/month!", e(".sfc-orderSummaryTotal__savings").elements[0].innerHTML = "You save $58.89 (35% off)"), e(".order-total-line__total").elements[0].insertAdjacentHTML(
+          "afterend",
+          `<p class="total_after" style="width: 100%;display: flex;justify-content: space-between;margin: 0;">After 7 days: <span style="color: #A5A5A5;font-weight: 600;">$${p === "monthly" ? "13.99" : "108.99"}</span></p>`
+        );
+      }), o(".sfc-registrationProgress__back").then(() => {
         e(".sfc-registrationProgress__back").style("font-size", "14px").style("text-transform", "lowercase");
       }), o(".sfc-registrationProgress__steps").then((i) => {
         i.style.display = "none";
@@ -1079,7 +1086,7 @@
       n.length > 1 && n.forEach((t, i) => {
         var r, s;
         const p = ((s = (r = t.querySelector(".sfc-price__amt")) == null ? void 0 : r.textContent) == null ? void 0 : s.trim()) || "";
-        t.style.display = "none", t.insertAdjacentHTML("afterend", m(p));
+        t.style.display = "none", t.insertAdjacentHTML("afterend", C(p));
       }), e('.sfc-pricingTable__col [data-sfc-id="button"]').elements.forEach((t, i) => {
         i !== 0 && (t.innerText = "Start Free Trial", t.setAttribute("href", `/yogi/register?destination=/express-checkout/13${i === 1 ? 9 : 8}`));
       });
@@ -1088,7 +1095,7 @@
       await o(".sfc-pricingTablePremium__col:nth-child(2) .sfc-pricingTableLevel__pricing--paid"), e(".sfc-pricingTableLevel__pricing--paid").elements.forEach((t) => {
         var p, r;
         const i = ((r = (p = t.querySelector(".sfc-price__amt")) == null ? void 0 : p.textContent) == null ? void 0 : r.trim()) || "";
-        t.style.display = "none", t.insertAdjacentHTML("afterend", m(i));
+        t.style.display = "none", t.insertAdjacentHTML("afterend", C(i));
       }), e('.sfc-pricingTablePremium__col [data-sfc-id="button"]').elements.forEach((t, i) => {
         t.innerText = "Start Free Trial", t.setAttribute("href", `/yogi/register?destination=/express-checkout/13${i === 0 ? 8 : 9}`);
       });
