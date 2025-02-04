@@ -38,7 +38,7 @@
 [zippyname='basketTab'] coupon-form {
   margin-bottom: 12px;
 }
-[zippyname='basketTab'] giftcards-form + coupon-form  {
+[zippyname='basketTab'] giftcards-form + coupon-form {
   margin-bottom: 0 !important;
   margin-top: 12px !important;
 }
@@ -168,14 +168,14 @@ checkout-form
 }
 @media (max-width: 1100px) {
   checkout-form
-  :is(coupon-form, giftcards-form)
-  form
-  [zippyclass='is-open']
-  + div
-  > div
-  > div:has(result p:not(:empty)):not(:has(validation:not(:empty))) {
-  padding-bottom: 8px !important;
-}
+    :is(coupon-form, giftcards-form)
+    form
+    [zippyclass='is-open']
+    + div
+    > div
+    > div:has(result p:not(:empty)):not(:has(validation:not(:empty))) {
+    padding-bottom: 8px !important;
+  }
 }
 
 checkout-form
@@ -265,7 +265,8 @@ checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input
   position: relative;
 }
 checkout-form coupon-form form [zippyclass='is-open'] + div > div > div input-wrap + div > div:has(result),
-checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input-wrap + div > result {
+checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input-wrap + div > result,
+checkout-form coupon-form form [zippyclass='is-open'] + div > div > div input-wrap + div > div:has(p.ng-star-inserted){
   margin-top: 0 !important;
   position: absolute !important;
   top: 62px;
@@ -273,6 +274,9 @@ checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input
   z-index: 7;
 }
 
+checkout-form coupon-form form [zippyclass='is-open'] + div > div > div input-wrap + div > div:has(p.ng-star-inserted) {
+  display: none !important;
+}
 @media (max-width: 1100px) {
   checkout-form coupon-form form [zippyclass='is-open'] + div > div > div input-wrap + div > div:has(result),
   checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input-wrap + div > result {
@@ -444,7 +448,7 @@ checkout-account social-login .button__body i {
     }
     async toggleElementBetweenContainers(n, t, c, p = "beforebegin") {
       var B;
-      const a = i(n), d = await o(t), u = await o(c), h = await o('[zippyname="basketTab"] basket-view-totals'), g = (B = i("#checkout-step-payment .bg-col-w.p-a-6")) == null ? void 0 : B.nextElementSibling;
+      const a = i(n), d = await o(t), u = await o(c), l = await o('[zippyname="basketTab"] basket-view-totals'), g = (B = i("#checkout-step-payment .bg-col-w.p-a-6")) == null ? void 0 : B.nextElementSibling;
       if (!a || !d || !u)
         return;
       function M() {
@@ -525,23 +529,23 @@ checkout-account social-login .button__body i {
         e.insertAdjacentElement(p, a), e === u ? (n === "#mmWrapper" && M(), n === "coupon-form" && q(), n === "giftcards-form" && W()) : (n === "#mmWrapper" && A(), n === "coupon-form" && I(), n === "giftcards-form" && $());
         const s = document.querySelector("#checkout-step-payment mention-me-wrapper"), f = document.querySelector("#checkout-step-payment coupon-form");
         s && f && s.after(f);
-        const l = document.querySelector('[zippyname="basketTab"] button');
-        l && l.addEventListener("click", () => {
+        const h = document.querySelector('[zippyname="basketTab"] button');
+        h && h.addEventListener("click", () => {
         });
         const L = document.querySelector('[zippyname="basketTab"] coupon-form'), S = document.querySelector('[zippyname="basketTab"] giftcards-form');
-        L && S && (console.log("after"), L.after(S));
+        L && S && L.after(S);
       }
       const E = new IntersectionObserver(
         (e) => {
           e.forEach((s) => {
-            s.isIntersecting && (s.target === g ? T(d) : s.target === h && (console.log("container", u), T(u)));
+            s.isIntersecting && (s.target === g ? T(d) : s.target === l && T(u));
           });
         },
         {
           threshold: 0.5
         }
       );
-      E.observe(g), E.observe(h);
+      E.observe(g), E.observe(l);
     }
     observePageChange() {
       this.observerNew = new MutationObserver((t) => {
@@ -584,7 +588,7 @@ checkout-account social-login .button__body i {
             ><span class="p1 col-w">Checkout securely</span></a
           >`
             );
-            p.outerHTML = d, (u = i('minibasket a[href*="/checkout"]')) == null || u.addEventListener("click", (h) => {
+            p.outerHTML = d, (u = i('minibasket a[href*="/checkout"]')) == null || u.addEventListener("click", (l) => {
               const g = document.querySelector('minibasket [aria-label="Close"]');
               localStorage.setItem("lastPdpHref", location.href), g && g.click();
             });
@@ -608,13 +612,13 @@ checkout-account social-login .button__body i {
           document.querySelectorAll("button").forEach((a) => {
             var d;
             if (a && ((d = a.textContent) != null && d.includes("Continue shopping"))) {
-              const u = localStorage.getItem("lastPdpHref"), h = (
+              const u = localStorage.getItem("lastPdpHref"), l = (
                 /* HTML */
                 ` <a class="w-12 button-1 m-b m-t-2" href="${u}"
               ><span class="button__body">Continue shopping</span></a
             >`
               );
-              u && (a.outerHTML = h), clearInterval(c);
+              u && (a.outerHTML = l), clearInterval(c);
             }
           });
         }, 100);
