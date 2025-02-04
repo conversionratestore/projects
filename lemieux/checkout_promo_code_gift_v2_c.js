@@ -38,7 +38,7 @@
 [zippyname='basketTab'] coupon-form {
   margin-bottom: 12px;
 }
-[zippyname='basketTab'] giftcards-form + coupon-form  {
+[zippyname='basketTab'] giftcards-form + coupon-form {
   margin-bottom: 0 !important;
   margin-top: 12px !important;
 }
@@ -168,14 +168,14 @@ checkout-form
 }
 @media (max-width: 1100px) {
   checkout-form
-  :is(coupon-form, giftcards-form)
-  form
-  [zippyclass='is-open']
-  + div
-  > div
-  > div:has(result p:not(:empty)):not(:has(validation:not(:empty))) {
-  padding-bottom: 8px !important;
-}
+    :is(coupon-form, giftcards-form)
+    form
+    [zippyclass='is-open']
+    + div
+    > div
+    > div:has(result p:not(:empty)):not(:has(validation:not(:empty))) {
+    padding-bottom: 8px !important;
+  }
 }
 
 checkout-form
@@ -265,7 +265,8 @@ checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input
   position: relative;
 }
 checkout-form coupon-form form [zippyclass='is-open'] + div > div > div input-wrap + div > div:has(result),
-checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input-wrap + div > result {
+checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input-wrap + div > result,
+checkout-form coupon-form form [zippyclass='is-open'] + div > div > div input-wrap + div > div:has(p.ng-star-inserted){
   margin-top: 0 !important;
   position: absolute !important;
   top: 62px;
@@ -273,6 +274,9 @@ checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input
   z-index: 7;
 }
 
+checkout-form coupon-form form [zippyclass='is-open'] + div > div > div input-wrap + div > div:has(p.ng-star-inserted) {
+  display: none !important;
+}
 @media (max-width: 1100px) {
   checkout-form coupon-form form [zippyclass='is-open'] + div > div > div input-wrap + div > div:has(result),
   checkout-form giftcards-form form [zippyclass='is-open'] + div > div > div input-wrap + div > result {
