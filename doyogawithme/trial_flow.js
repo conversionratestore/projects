@@ -1054,8 +1054,9 @@
       });
     }
     async checkout() {
-      if (!(await o(".order-total-line-value")).innerText.includes("$0.00")) return;
-      const n = window.drupalSettings.dywm_commerce_currencies.current_currency, i = n === "CAD" ? "CA$147.97" : n === "EUR" ? "€105.10" : "$108.99", p = n === "CAD" ? "CA$18.98" : n === "EUR" ? "€13.48" : "$13.99", r = n === "CAD" ? "CA$12.33" : n === "EUR" ? "€8.76" : "$9.08", l = n === "CAD" ? "CA$79.90" : n === "EUR" ? "€56.66" : "$58.89";
+      const t = await o(".order-total-line-value");
+      if (!t.innerText.includes("$0.00") || !t.innerText.includes("€0.00")) return;
+      const n = window.drupalSettings.dywm_commerce_currencies.current_currency, i = n === "CAD" ? "CA$147.97" : n === "EUR" ? "€105.10" : "$108.99", p = n === "CAD" ? "CA$18.99" : n === "EUR" ? "€13.48" : "$13.99", r = n === "CAD" ? "CA$12.33" : n === "EUR" ? "€8.76" : "$9.08", l = n === "CAD" ? "CA$79.90" : n === "EUR" ? "€56.66" : "$58.89";
       o("div.sfc-orderSummaryItemPrice__price").then((s) => {
         var y;
         const h = (y = e(".views-field-title .tablesaw-cell-content").elements[0].textContent) != null && y.includes("Monthly") ? "monthly" : "yearly";
