@@ -1,19 +1,19 @@
 (function() {
   "use strict";
-  const m = (r, n, t, c = "") => {
+  const u = (r, n, t, a = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: r,
       event_desc: n,
       event_type: t,
-      event_loc: c
-    }), console.log(`Event: ${r} | ${n} | ${t} | ${c}`);
-  }, F = ({ name: r, dev: n }) => {
+      event_loc: a
+    }), console.log(`Event: ${r} | ${n} | ${t} | ${a}`);
+  }, j = ({ name: r, dev: n }) => {
     console.log(
       `%c EXP: ${r} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, i = (r) => document.querySelector(r);
+  }, e = (r) => document.querySelector(r);
   function o(r) {
     return new Promise((n) => {
       if (document.querySelector(r))
@@ -28,7 +28,7 @@
       });
     });
   }
-  const H = `[zippyname='basketTab'] coupon-form,
+  const P = `[zippyname='basketTab'] coupon-form,
 [zippyname='basketTab'] giftcards-form {
   background: #fff;
   padding: 0 !important;
@@ -354,26 +354,26 @@ checkout-account social-login .button__body i {
   margin: 0 !important;
 } */
 `;
-  (function(r, n, t, c, p, a) {
+  (function(r, n, t, a, p, c) {
     r.hj = r.hj || function() {
       (r.hj.q = r.hj.q || []).push(arguments);
-    }, r._hjSettings = { hjid: 2667925, hjsv: 6 }, p = n.getElementsByTagName("head")[0], a = n.createElement("script"), a.async = !0, a.src = t + r._hjSettings.hjid + c + r._hjSettings.hjsv, p && p.appendChild(a);
+    }, r._hjSettings = { hjid: 2667925, hjsv: 6 }, p = n.getElementsByTagName("head")[0], c = n.createElement("script"), c.async = !0, c.src = t + r._hjSettings.hjid + a + r._hjSettings.hjsv, p && p.appendChild(c);
   })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "exp_cart_page_step");
-  class j {
+  class M {
     constructor() {
       this.device = window.innerWidth > 1100 ? "desktop" : "mobile", this.observerNew = null, this.lastPath = window.location.pathname, this.initFunc(), this.observePageChange();
     }
     initFunc() {
-      F({
+      j({
         name: "Adding promo code and gift card options to the checkout (Second iteration B.)",
         dev: "OS"
-      }), i(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${H}</style>`), this.initAllFunc();
+      }), e(".crs_style") || document.head.insertAdjacentHTML("beforeend", `<style class="crs_style">${P}</style>`), this.initAllFunc();
     }
     initAllFunc() {
       this.checkPage() === "checkout" && (setTimeout(() => {
-        i('[zippyname="basketTab"] #mmWrapper > div') || o("#mmWrapper > div").then((n) => {
+        e('[zippyname="basketTab"] #mmWrapper > div') || o("#mmWrapper > div").then((n) => {
           o('[zippyname="basketTab"]').then((t) => {
-            o("mention-me-wrapper").then((c) => {
+            o("mention-me-wrapper").then((a) => {
               this.toggleElementBetweenContainers(
                 "#mmWrapper",
                 "mention-me-wrapper",
@@ -384,7 +384,7 @@ checkout-account social-login .button__body i {
           });
         });
       }, 1e3), setTimeout(() => {
-        i('[zippyname="basketTab"] giftcards-form') || o("giftcards-form").then((n) => {
+        e('[zippyname="basketTab"] giftcards-form') || o("giftcards-form").then((n) => {
           o('[zippyname="basketTab"]').then((t) => {
             this.toggleElementBetweenContainers(
               "giftcards-form",
@@ -394,9 +394,9 @@ checkout-account social-login .button__body i {
             );
           });
         });
-      }, 1e3), i('[zippyname="basketTab"] coupon-form') || o("coupon-form").then((n) => {
+      }, 1e3), e('[zippyname="basketTab"] coupon-form') || o("coupon-form").then((n) => {
         o('[zippyname="basketTab"]').then((t) => {
-          o("mention-me-wrapper").then((c) => {
+          o("mention-me-wrapper").then((a) => {
             this.toggleElementBetweenContainers("coupon-form", "mention-me-wrapper", "basket-view-totals");
           });
         });
@@ -418,21 +418,21 @@ checkout-account social-login .button__body i {
     }
     changeCopyContact() {
       o("checkout-account ng-form h1 span").then((p) => {
-        const a = p;
-        a.textContent = "Contact";
+        const c = p;
+        c.textContent = "Contact";
       });
       const n = document.querySelector("checkout-account ng-form h1 span");
       n && (n.innerHTML = "Contact"), o("checkout-account ng-form h3 > span").then((p) => {
-        const a = p;
-        a.innerHTML = "Contact";
+        const c = p;
+        c.innerHTML = "Contact";
       });
       const t = document.querySelector("checkout-account ng-form h3 > span");
       t && (t.innerHTML = "Contact"), o("checkout-step h4 span").then((p) => {
-        const a = p;
-        a.innerHTML = "Contact";
+        const c = p;
+        c.innerHTML = "Contact";
       });
-      const c = document.querySelector("checkout-step h4 span");
-      c && (c.innerHTML = "Contact");
+      const a = document.querySelector("checkout-step h4 span");
+      a && (a.innerHTML = "Contact");
     }
     changeCopy() {
       o('[zippyclass="!ng-hide"]').then((n) => {
@@ -441,115 +441,129 @@ checkout-account social-login .button__body i {
       }), o('[zippyclass="ng-hide"]').then((n) => {
         const t = n;
         t.innerHTML = "Show bag summary";
-        const c = t.closest("button"), p = setTimeout(() => {
-          c == null || c.click(), t.classList.contains("ng-hide") && clearTimeout(p);
+        const a = t.closest("button"), p = setTimeout(() => {
+          a == null || a.click(), t.classList.contains("ng-hide") && clearTimeout(p);
         }, 1e3);
       });
     }
-    async toggleElementBetweenContainers(n, t, c, p = "beforebegin") {
-      var B;
-      const a = i(n), d = await o(t), u = await o(c), l = await o('[zippyname="basketTab"] basket-view-totals'), g = (B = i("#checkout-step-payment .bg-col-w.p-a-6")) == null ? void 0 : B.nextElementSibling;
-      if (!a || !d || !u)
+    async toggleElementBetweenContainers(n, t, a, p = "beforebegin") {
+      var F;
+      const c = e(n), f = await o(t), d = await o(a), h = await o('[zippyname="basketTab"] basket-view-totals'), g = (F = e("#checkout-step-payment .bg-col-w.p-a-6")) == null ? void 0 : F.nextElementSibling;
+      if (!c || !f || !d)
         return;
-      function M() {
-        o('[zippyname="basketTab"] #mmWrapper').then((e) => {
-          i('[zippyname="basketTab"] #mmWrapper').addEventListener("click", v);
-        });
-      }
-      function q() {
-        o("[zippyname=basketTab] coupon-form [zippyclass='is-open']").then((e) => {
-          i("[zippyname=basketTab] coupon-form [zippyclass='is-open']").addEventListener("click", b);
-        }), o("[zippyname=basketTab] coupon-form input").then((e) => {
-          i("[zippyname=basketTab] coupon-form input").addEventListener("change", k);
-        }), o("[zippyname=basketTab] coupon-form action.button").then((e) => {
-          i("[zippyname=basketTab] coupon-form action.button").addEventListener("click", y);
-        }), o("[zippyname=basketTab] coupon-form button").then((e) => {
-          i("[zippyname=basketTab] coupon-form button").addEventListener("click", w);
-        });
-      }
       function W() {
-        o('[zippyname="basketTab"] giftcards-form').then((e) => {
-          i(`[zippyname="basketTab"] giftcards-form [zippyclass='is-open']`).addEventListener("click", z), o("[zippyname=basketTab] giftcards-form input").then((f) => {
-            i("[zippyname=basketTab] giftcards-form input").addEventListener("change", x);
-          }), o("[zippyname=basketTab] giftcards-form action.button").then((f) => {
-            i("[zippyname=basketTab] giftcards-form action.button").addEventListener("click", _);
-          }), o("[zippyname=basketTab] giftcards-form action.button-1").then((f) => {
-            i("[zippyname=basketTab] giftcards-form action.button-1").addEventListener("click", C);
+        o('[zippyname="basketTab"] #mmWrapper').then((i) => {
+          e('[zippyname="basketTab"] #mmWrapper').addEventListener("click", k);
+        });
+      }
+      function R() {
+        o("[zippyname=basketTab] coupon-form [zippyclass='is-open']").then((i) => {
+          e("[zippyname=basketTab] coupon-form [zippyclass='is-open']").addEventListener("click", y);
+        }), o("[zippyname=basketTab] coupon-form input").then((i) => {
+          e("[zippyname=basketTab] coupon-form input").addEventListener("change", w);
+        }), o("[zippyname=basketTab] coupon-form action.button").then((i) => {
+          e("[zippyname=basketTab] coupon-form action.button").addEventListener("click", z);
+        }), o("[zippyname=basketTab] coupon-form button").then((i) => {
+          e("[zippyname=basketTab] coupon-form button").addEventListener("click", x);
+        }), o("[zippyname=basketTab] coupon-form action.button-inline").then(() => {
+          e("[zippyname=basketTab] coupon-form action.button-inline").addEventListener("click", v);
+        });
+      }
+      function A() {
+        o('[zippyname="basketTab"] giftcards-form').then((i) => {
+          e(`[zippyname="basketTab"] giftcards-form [zippyclass='is-open']`).addEventListener("click", _), o("[zippyname=basketTab] giftcards-form input").then((m) => {
+            e("[zippyname=basketTab] giftcards-form input").addEventListener("change", C);
+          }), o("[zippyname=basketTab] giftcards-form action.button").then((m) => {
+            e("[zippyname=basketTab] giftcards-form action.button").addEventListener("click", T);
+          }), o("[zippyname=basketTab] giftcards-form action.button-1").then((m) => {
+            e("[zippyname=basketTab] giftcards-form action.button-1").addEventListener("click", E);
+          }), o("[zippyname=basketTab] giftcards-form action.button-inline").then(() => {
+            e("[zippyname=basketTab] giftcards-form action.button-inline").addEventListener("click", B);
           });
         });
       }
-      function v(e) {
-        m("exp_cart_page_cart_link_referred", "Been referred by a friend?", "click", "Bag summary");
+      function k(i) {
+        u("exp_cart_page_cart_link_referred", "Been referred by a friend?", "click", "Bag summary");
       }
-      function b(e) {
-        e.currentTarget.classList.contains("is-open") ? m("exp_cart_page_cart_promocode_open", "Have you got a promo code", "click", "Bag summary") : m("exp_cart_page_cart_promocode_close", "Have you got a promo code", "click", "Bag summary");
+      function y(i) {
+        i.currentTarget.classList.contains("is-open") ? u("exp_cart_page_cart_promocode_open", "Have you got a promo code", "click", "Bag summary") : u("exp_cart_page_cart_promocode_close", "Have you got a promo code", "click", "Bag summary");
       }
-      function k(e) {
-        m("exp_cart_page_cart_promocode_input", "Enter offer code", "input", "Bag summary");
+      function w(i) {
+        u("exp_cart_page_cart_promocode_input", "Enter offer code", "input", "Bag summary");
       }
-      function y(e) {
-        m("exp_cart_page_cart_promocode_apply", "Apply", "click", "Bag summary");
+      function z(i) {
+        u("exp_cart_page_cart_promocode_apply", "Apply", "click", "Bag summary"), o("[zippyname=basketTab] coupon-form action.button-inline").then(() => {
+          e("[zippyname=basketTab] coupon-form action.button-inline").addEventListener("click", v);
+        });
       }
-      function w(e) {
-        m("exp_cart_page_cart_promocode_close", "Cancel", "click", "Bag summary");
+      function x(i) {
+        u("exp_cart_page_cart_promocode_close", "Cancel", "click", "Bag summary");
       }
-      function z(e) {
-        e.currentTarget.classList.contains("is-open") ? m("exp_cart_page_cart_giftcode_open", "Have you got a gift card", "click", "Bag summary") : m("exp_cart_page_cart_giftcode_close", "Have you got a gift card", "click", "Bag summary");
+      function v(i) {
+        u("exp_cart_page_cart_remove_offer", "Remove Offer code", "click", "Step 1. Email");
       }
-      function x(e) {
-        m("exp_cart_page_cart_giftcode_input", "Enter a gift card", "input", "Bag summary");
+      function _(i) {
+        i.currentTarget.classList.contains("is-open") ? u("exp_cart_page_cart_giftcode_open", "Have you got a gift card", "click", "Bag summary") : u("exp_cart_page_cart_giftcode_close", "Have you got a gift card", "click", "Bag summary");
       }
-      function _(e) {
-        m("exp_cart_page_cart_giftcode_apply", "Apply", "click", "Bag summary");
+      function C(i) {
+        u("exp_cart_page_cart_giftcode_input", "Enter a gift card", "input", "Bag summary");
       }
-      function C(e) {
-        m("exp_cart_page_cart_giftcode_check", "Check balance", "click", "Bag summary");
+      function T(i) {
+        u("exp_cart_page_cart_giftcode_apply", "Apply", "click", "Bag summary"), o("[zippyname=basketTab] giftcards-form action.button-inline").then(() => {
+          e("[zippyname=basketTab] giftcards-form action.button-inline").addEventListener("click", B);
+        });
       }
-      function A() {
-        i("#mmWrapper").removeEventListener("click", v);
+      function E(i) {
+        u("exp_cart_page_cart_giftcode_check", "Check balance", "click", "Bag summary");
+      }
+      function B(i) {
+        u("exp_cart_page_cart_remove_gift", "Remove gift", "click", "Step 1. Email");
       }
       function I() {
-        o("coupon-form [zippyclass='is-open']").then((e) => {
-          i("coupon-form [zippyclass='is-open']").removeEventListener("click", b);
-        }), o("coupon-form input").then((e) => {
-          const s = i("coupon-form input");
-          s == null || s.removeEventListener("change", k);
-        }), o("coupon-form action.button").then((e) => {
-          i("coupon-form action.button").removeEventListener("click", y);
-        }), o("coupon-form button").then((e) => {
-          i("coupon-form button").removeEventListener("click", w);
-        });
+        e("#mmWrapper").removeEventListener("click", k);
       }
       function $() {
-        i("giftcards-form [zippyclass='is-open']").removeEventListener("click", z), i("giftcards-form input").removeEventListener("change", x), i("giftcards-form action.button").removeEventListener("click", _), i("giftcards-form action.button-1").removeEventListener("click", C);
+        o("coupon-form [zippyclass='is-open']").then((s) => {
+          e("coupon-form [zippyclass='is-open']").removeEventListener("click", y);
+        }), o("coupon-form input").then((s) => {
+          const m = e("coupon-form input");
+          m == null || m.removeEventListener("change", w);
+        }), o("coupon-form action.button").then((s) => {
+          e("coupon-form action.button").removeEventListener("click", z);
+        }), o("coupon-form button").then((s) => {
+          e("coupon-form button").removeEventListener("click", x);
+        }), e("[zippyname=basketTab] coupon-form action.button-inline").addEventListener("click", v);
       }
-      function T(e) {
-        if (e.contains(a))
+      function G() {
+        e("giftcards-form [zippyclass='is-open']").removeEventListener("click", _), e("giftcards-form input").removeEventListener("change", C), e("giftcards-form action.button").removeEventListener("click", T), e("giftcards-form action.button-1").removeEventListener("click", E), e("[zippyname=basketTab] giftcards-form action.button-inline").addEventListener("click", v);
+      }
+      function L(i) {
+        if (i.contains(c))
           return;
-        e.insertAdjacentElement(p, a), e === u ? (n === "#mmWrapper" && M(), n === "coupon-form" && q(), n === "giftcards-form" && W()) : (n === "#mmWrapper" && A(), n === "coupon-form" && I(), n === "giftcards-form" && $());
-        const s = document.querySelector("#checkout-step-payment mention-me-wrapper"), f = document.querySelector("#checkout-step-payment coupon-form");
-        s && f && s.after(f);
-        const h = document.querySelector('[zippyname="basketTab"] button');
-        h && h.addEventListener("click", () => {
+        i.insertAdjacentElement(p, c), i === d ? (n === "#mmWrapper" && W(), n === "coupon-form" && R(), n === "giftcards-form" && A()) : (n === "#mmWrapper" && I(), n === "coupon-form" && $(), n === "giftcards-form" && G());
+        const s = document.querySelector("#checkout-step-payment mention-me-wrapper"), m = document.querySelector("#checkout-step-payment coupon-form");
+        s && m && s.after(m);
+        const l = document.querySelector('[zippyname="basketTab"] button');
+        l && l.addEventListener("click", () => {
         });
-        const L = document.querySelector('[zippyname="basketTab"] coupon-form'), S = document.querySelector('[zippyname="basketTab"] giftcards-form');
-        L && S && L.after(S);
+        const b = document.querySelector('[zippyname="basketTab"] coupon-form'), H = document.querySelector('[zippyname="basketTab"] giftcards-form');
+        b && H && b.after(H);
       }
-      const E = new IntersectionObserver(
-        (e) => {
-          e.forEach((s) => {
-            s.isIntersecting && (s.target === g ? T(d) : s.target === l && T(u));
+      const S = new IntersectionObserver(
+        (i) => {
+          i.forEach((s) => {
+            s.isIntersecting && (s.target === g ? L(f) : s.target === h && L(d));
           });
         },
         {
           threshold: 0.5
         }
       );
-      E.observe(g), E.observe(l);
+      S.observe(g), S.observe(h);
     }
     observePageChange() {
       this.observerNew = new MutationObserver((t) => {
-        t.forEach((c) => {
+        t.forEach((a) => {
           window.location.pathname !== this.lastPath && (this.device === "mobile" ? setTimeout(() => {
             this.initAllFunc();
           }, 2800) : this.initAllFunc(), this.lastPath = window.location.pathname);
@@ -561,9 +575,9 @@ checkout-account social-login .button__body i {
     checkPage() {
       const n = window.location.href;
       switch (!0) {
-        case i("product-view-layout") !== null:
+        case e("product-view-layout") !== null:
           return "product";
-        case i("category-view-layout") !== null:
+        case e("category-view-layout") !== null:
           return "listing";
         case n.includes("/basket"):
           return "basket";
@@ -574,27 +588,27 @@ checkout-account social-login .button__body i {
       }
     }
   }
-  new j();
-  class P {
+  new M();
+  class q {
     constructor() {
       var n, t;
       this.observer = null, this.countryCode = (t = (n = window == null ? void 0 : window.autoInitData) == null ? void 0 : n.website) == null ? void 0 : t.websiteCode, this.basketButtonHandler = () => {
-        const c = () => {
+        const a = () => {
           this.country !== "other" && this.device === "desktop" && !location.href.includes("basket") && !location.href.includes("checkout") && this.waitForElementCustom('minibasket a[href*="/basket"]', (p) => {
-            var u;
-            const d = (
+            var d;
+            const f = (
               /* HTML */
               `<a class="w-12 p-r-0 p-l-0 button" href="${this.country === "us" ? "/us/checkout" : "/checkout"}"
             ><span class="p1 col-w">Checkout securely</span></a
           >`
             );
-            p.outerHTML = d, (u = i('minibasket a[href*="/checkout"]')) == null || u.addEventListener("click", (l) => {
+            p.outerHTML = f, (d = e('minibasket a[href*="/checkout"]')) == null || d.addEventListener("click", (h) => {
               const g = document.querySelector('minibasket [aria-label="Close"]');
               localStorage.setItem("lastPdpHref", location.href), g && g.click();
             });
           });
         };
-        c(), this.pageChangeHandler(c);
+        a(), this.pageChangeHandler(a);
       }, this.country = this.countryCode === "base" ? "uk" : this.countryCode === "us" ? "us" : "other", this.device = window.innerWidth > 1100 ? "desktop" : "mobile", this.init();
     }
     init() {
@@ -608,17 +622,17 @@ checkout-account social-login .button__body i {
     }
     checkBasketPage() {
       function n() {
-        const c = setInterval(function() {
-          document.querySelectorAll("button").forEach((a) => {
-            var d;
-            if (a && ((d = a.textContent) != null && d.includes("Continue shopping"))) {
-              const u = localStorage.getItem("lastPdpHref"), l = (
+        const a = setInterval(function() {
+          document.querySelectorAll("button").forEach((c) => {
+            var f;
+            if (c && ((f = c.textContent) != null && f.includes("Continue shopping"))) {
+              const d = localStorage.getItem("lastPdpHref"), h = (
                 /* HTML */
-                ` <a class="w-12 button-1 m-b m-t-2" href="${u}"
+                ` <a class="w-12 button-1 m-b m-t-2" href="${d}"
               ><span class="button__body">Continue shopping</span></a
             >`
               );
-              u && (a.outerHTML = l), clearInterval(c);
+              d && (c.outerHTML = h), clearInterval(a);
             }
           });
         }, 100);
@@ -630,20 +644,20 @@ checkout-account social-login .button__body i {
     }
     pageChangeHandler(n) {
       (function(t) {
-        const c = t.pushState, p = t.replaceState;
-        t.pushState = function(a) {
-          c.apply(t, arguments), n();
-        }, t.replaceState = function(a) {
+        const a = t.pushState, p = t.replaceState;
+        t.pushState = function(c) {
+          a.apply(t, arguments), n();
+        }, t.replaceState = function(c) {
           p.apply(t, arguments), n();
-        }, window.addEventListener("popstate", function(a) {
+        }, window.addEventListener("popstate", function(c) {
           n();
         });
       })(window.history);
     }
     waitForElementCustom(n, t) {
-      this.observer && this.observer.disconnect(), this.observer = new MutationObserver((c, p) => {
-        const a = document.querySelector(n);
-        a && t(a);
+      this.observer && this.observer.disconnect(), this.observer = new MutationObserver((a, p) => {
+        const c = document.querySelector(n);
+        c && t(c);
       }), this.observer.observe(document.body, {
         childList: !0,
         subtree: !0,
@@ -652,5 +666,5 @@ checkout-account social-login .button__body i {
       });
     }
   }
-  new P();
+  new q();
 })();
