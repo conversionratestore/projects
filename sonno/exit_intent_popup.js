@@ -272,8 +272,8 @@
         <div class="discount_code_wrapper">
           <p class="discount_code_title">Copy and Enter code at checkout</p>
           <div class="discount_code_container">
-            <span class="discount_code_txt">NY20</span>
-            <span data-discount="NY20">Copy ${_.copyIcon}</span>
+            <span class="discount_code_txt">LOVE20</span>
+            <span data-discount="LOVE20">Copy ${_.copyIcon}</span>
           </div>
         </div>
         <div class="btn_wrapper">
@@ -378,8 +378,8 @@
         <div class="discount_code_wrapper">
           <p class="discount_code_title">Copy and Enter code at checkout</p>
           <div class="discount_code_container">
-            <span class="discount_code_txt">NY20</span>
-            <span data-discount="NY20">Copy ${_.copyIcon}</span>
+            <span class="discount_code_txt">LOVE20</span>
+            <span data-discount="LOVE20">Copy ${_.copyIcon}</span>
           </div>
         </div>
         <div class="btn_wrapper">
@@ -420,7 +420,7 @@
     </div>
   </div>
 `
-  ), N = (
+  ), T = (
     /* HTML */
     `
   <div class="returning_users_with_products exit_intent_popup">
@@ -444,7 +444,7 @@
     </div>
   </div>
 `
-  ), T = (
+  ), N = (
     /* HTML */
     `
   <div class="new_popup_backdrop is_hidden">
@@ -454,7 +454,7 @@
     </div>
   </div>
 `
-  ), M = (p, e, t, n, r, s, c, a = !1) => {
+  ), O = (p, e, t, n, r, s, c, a = !1) => {
     const d = Math.floor(Math.random() * 10) + 1, h = Math.floor(Math.random() * 12) + 4;
     return t.includes("Assembly") || t.includes("Removal") ? "" : (
       /* HTML */
@@ -523,7 +523,7 @@
     </li>
   `
     );
-  }, z = `.new_popup_backdrop {
+  }, M = `.new_popup_backdrop {
   position: fixed;
   opacity: 1;
   top: 0;
@@ -1573,19 +1573,19 @@
 
 .needsclick.kl-private-reset-css-Xuajs1 {
   display: none !important;
-}/*# sourceMappingURL=main.css.map */`, O = window.innerWidth < 768 ? "mobile" : "desktop";
+}/*# sourceMappingURL=main.css.map */`, z = window.innerWidth < 768 ? "mobile" : "desktop";
   o("reverse_trial", "Start experiment", "Experiment activated");
-  class H {
+  class V {
     constructor(e) {
       this.device = e, this.timeoutId = null, this.delayTime = 6e4, this.firstSessionTime = 4 * 1e3, this.lastPopupTime = 0, this.timeLag = 3 * 60 * 1e3, this.active = !1, this.init();
     }
     init() {
       k({ name: "Exit Intent Popup", dev: "SKh" }), C("exp_01_exit_intent"), l("head").then(() => {
-        document.head.insertAdjacentHTML("beforeend", `<style>${z}</style>`);
+        document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`);
       }), this.checkProductPage(), this.createPopup(), this.checkSessionNumber(), this.intentPopupTriggers(), this.handlerClickBtns(), this.copyDiscount(), this.handlerClickInput(), this.handleClosePopup();
     }
     createPopup() {
-      i(".new_popup_backdrop") || i("body").insertAdjacentHTML("afterbegin", T);
+      i(".new_popup_backdrop") || i("body").insertAdjacentHTML("afterbegin", N);
     }
     checkSessionNumber() {
       const e = () => {
@@ -1641,11 +1641,11 @@
         this.handleShowPopup(a, d, e, d), sessionStorage.setItem("lastPopupTime", t.toString());
       }, c = (a, d) => {
         a.forEach((h) => {
-          const { url: u, image: m, product_title: V, variant_title: W, presentment_price: f, quantity: b } = h, j = u, U = m, B = V, D = W, v = +f * +b, y = +f * +b, Z = v + y;
+          const { url: u, image: m, product_title: H, variant_title: W, presentment_price: f, quantity: b } = h, j = u, U = m, B = H, D = W, v = +f * +b, y = +f * +b, Z = v + y;
           l(".products_list").then(() => {
             i(".products_list").insertAdjacentHTML(
               "beforeend",
-              M(
+              O(
                 j,
                 U,
                 B,
@@ -1660,7 +1660,7 @@
         });
       };
       if (n.length > 0)
-        r ? (s(N, "returningUsersWithProducts"), c(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), l(".img_wrapper").then((a) => {
+        r ? (s(T, "returningUsersWithProducts"), c(n, !1), i(".new_popup_backdrop").setAttribute("popup", "returningUsersWithProducts"), l(".img_wrapper").then((a) => {
           x(".product_wrapper a").forEach((d) => {
             d.addEventListener("click", () => {
               o(
@@ -1940,7 +1940,7 @@
           "Shop now",
           "Click",
           "Popup. Exit-intent. New users w/o product in basket. Not-viewed item"
-        ), this.getCoupon("NY20", "/collections/divan-beds")), t.matches(".active_product_shop_now_btn")) {
+        ), this.getCoupon("LOVE20", "/collections/divan-beds")), t.matches(".active_product_shop_now_btn")) {
           o(
             "exp_01_ei__popup2__shop_now",
             "Shop now",
@@ -1948,14 +1948,14 @@
             "Popup. Exit-intent. New users w/o product in basket. Viewed item"
           );
           const n = i(".active_product_shop_now_btn").getAttribute("data-link").split("co.uk")[1];
-          this.getCoupon("NY20", n);
+          this.getCoupon("LOVE20", n);
         }
         t.matches(".new_users_with_products_checkout_btn") && (o(
           "exp_01_ei__popup4__checkout",
           "Checkout",
           "Click",
           "Popup. Exit-intent. New users with product in basket. One or more items"
-        ), this.getCoupon("NY20", "/checkout")), t.matches(".returning_users_w_o_products_shop_now_btn") && o(
+        ), this.getCoupon("LOVE20", "/checkout")), t.matches(".returning_users_w_o_products_shop_now_btn") && o(
           `exp_01_ei__popup5__${t.previousElementSibling.textContent.replace(" ", "_").toLowerCase()}`,
           t.previousElementSibling.textContent,
           "Click",
@@ -2047,6 +2047,6 @@
       }
     }
   }
-  new H(O);
+  new V(z);
 })();
 //# sourceMappingURL=index.js.map
