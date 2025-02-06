@@ -358,7 +358,7 @@ checkout-account social-login .button__body i {
     c.hj = c.hj || function() {
       (c.hj.q = c.hj.q || []).push(arguments);
     }, c._hjSettings = { hjid: 2667925, hjsv: 6 }, s = n.getElementsByTagName("head")[0], a = n.createElement("script"), a.async = !0, a.src = t + c._hjSettings.hjid + r + c._hjSettings.hjsv, s && s.appendChild(a);
-  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "exp_cart_page_step");
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv="), window.hj("event", "exp_cart_page_step2");
   class M {
     constructor() {
       this.device = window.innerWidth > 1100 ? "desktop" : "mobile", this.observerNew = null, this.lastPath = window.location.pathname, this.initFunc(), this.observePageChange();
