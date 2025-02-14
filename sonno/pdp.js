@@ -1069,7 +1069,7 @@
 }
 
 .crs-variant-dialog__content .max-h-\\[360px\\] {
-  max-height: 75vh;
+  max-height: 75dvh;
 }
 
 .crs-variant-dialog .variant-switch-products {
@@ -1215,7 +1215,7 @@
 }
 
 .fixed.max-h-\\[70\\%\\]:has(:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal'])) {
-  max-height: 80vh;
+  max-height: 80dvh;
 }
 
 [x-show='slideOverOpenSide'] .relative.overflow-hidden {
@@ -1453,7 +1453,7 @@ div:has(> .crs-headboard__save) ul {
 
 .crs-mattress-dialog .ss-tabs + div {
   margin: 0;
-  height: calc(80vh - 150px);
+  height: calc(80dvh - 150px);
   padding: 0;
   overflow: hidden;
   overflow-y: auto;
