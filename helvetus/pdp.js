@@ -536,6 +536,78 @@ page-dots button[aria-current=true]::before {
   padding: 24px 20px;
 }
 
+.crs_customer_reviews {
+  padding: 24px 20px;
+  background: #f9f9f9;
+}
+.crs_customer_reviews h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+.crs_customer_reviews h2 + img + p {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 26px;
+}
+.crs_customer_reviews .rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.crs_customer_reviews a {
+  display: inline-flex;
+  justify-content: center;
+  padding: 10px;
+  background: #d4a442;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  margin: 20px 0 25px;
+  width: 100%;
+}
+.crs_customer_reviews ul {
+  margin-top: 20px;
+}
+.crs_customer_reviews li {
+  padding: 20px 0;
+}
+.crs_customer_reviews li p:first-of-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #7b7b7b;
+  margin-bottom: 12px;
+}
+.crs_customer_reviews li .user {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  color: #d4a442;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.crs_customer_reviews li .verified {
+  position: relative;
+  top: 5px;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.1;
+  color: #fff;
+  background: #d4a442;
+}
+.crs_customer_reviews li:not(:last-child) {
+  border-bottom: 1px solid rgba(212, 164, 66, 0.1);
+}
+
 .dark_bg {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -609,10 +681,10 @@ page-dots button[aria-current=true]::before {
 .crs_popup_returns.active {
   display: block;
 }/*# sourceMappingURL=style.css.map */`;
-  var u = {}, b = {}, x;
+  var g = {}, b = {}, v;
   function P() {
-    if (x) return b;
-    x = 1, Object.defineProperty(b, "__esModule", { value: !0 });
+    if (v) return b;
+    v = 1, Object.defineProperty(b, "__esModule", { value: !0 });
     function o(a, e) {
       return a.reduce((n, i) => {
         const c = String(i[e]);
@@ -621,10 +693,10 @@ page-dots button[aria-current=true]::before {
     }
     return b.default = o, b;
   }
-  var T = {}, w;
+  var T = {}, x;
   function B() {
-    if (w) return T;
-    w = 1, Object.defineProperty(T, "__esModule", { value: !0 });
+    if (x) return T;
+    x = 1, Object.defineProperty(T, "__esModule", { value: !0 });
     function o(a, e) {
       return a.replace(/{([^{}]*)}/g, (n, i) => {
         const c = e[i];
@@ -633,10 +705,10 @@ page-dots button[aria-current=true]::before {
     }
     return T.default = o, T;
   }
-  var A = {}, k;
+  var A = {}, w;
   function D() {
-    if (k) return A;
-    k = 1, Object.defineProperty(A, "__esModule", { value: !0 });
+    if (w) return A;
+    w = 1, Object.defineProperty(A, "__esModule", { value: !0 });
     const o = [
       {
         countryNameEn: "Andorra",
@@ -4713,34 +4785,34 @@ page-dots button[aria-current=true]::before {
     ];
     return A.default = o, A;
   }
-  var v;
+  var _;
   function F() {
-    if (v) return u;
-    v = 1;
-    var o = u.__importDefault || function(g) {
-      return g && g.__esModule ? g : { default: g };
+    if (_) return g;
+    _ = 1;
+    var o = g.__importDefault || function(f) {
+      return f && f.__esModule ? f : { default: f };
     };
-    Object.defineProperty(u, "__esModule", { value: !0 }), u.customList = u.customArray = u.findOne = u.filter = u.all = u.utils = void 0;
+    Object.defineProperty(g, "__esModule", { value: !0 }), g.customList = g.customArray = g.findOne = g.filter = g.all = g.utils = void 0;
     const a = o(P()), e = o(B()), n = o(D());
-    u.utils = {
+    g.utils = {
       groupBy: a.default
     };
     function i() {
       return n.default;
     }
-    u.all = i;
-    function c(g, s) {
-      return n.default.filter((m) => m[g] === s);
+    g.all = i;
+    function c(f, d) {
+      return n.default.filter((m) => m[f] === d);
     }
-    u.filter = c;
-    function r(g, s) {
-      return n.default.find((m) => m[g] === s);
+    g.filter = c;
+    function r(f, d) {
+      return n.default.find((m) => m[f] === d);
     }
-    u.findOne = r;
-    function f(g = {
+    g.findOne = r;
+    function s(f = {
       name: "{countryNameEn} ({countryCode})",
       value: "{countryCode}"
-    }, { sortBy: s, sortDataBy: m, filter: h } = {}) {
+    }, { sortBy: d, sortDataBy: m, filter: h } = {}) {
       const y = [];
       let C = n.default;
       if (typeof h == "function" && (C = C.filter(h)), m) {
@@ -4749,25 +4821,25 @@ page-dots button[aria-current=true]::before {
       }
       if (C.forEach((N) => {
         const L = {};
-        for (const p in g)
-          L[p] = (0, e.default)(g[p], N);
+        for (const p in f)
+          L[p] = (0, e.default)(f[p], N);
         y.push(L);
-      }), s && g[s]) {
+      }), d && f[d]) {
         const N = new Intl.Collator([], { sensitivity: "accent" });
-        y.sort((L, p) => N.compare(L[s], p[s]));
+        y.sort((L, p) => N.compare(L[d], p[d]));
       }
       return y;
     }
-    u.customArray = f;
-    function S(g = "countryCode", s = "{countryNameEn} ({countryCode})", { filter: m } = {}) {
+    g.customArray = s;
+    function S(f = "countryCode", d = "{countryNameEn} ({countryCode})", { filter: m } = {}) {
       const h = {};
       let y = n.default;
       return typeof m == "function" && (y = y.filter(m)), y.forEach((C) => {
-        const N = (0, e.default)(s, C);
-        h[String(C[g])] = N;
+        const N = (0, e.default)(d, C);
+        h[String(C[f])] = N;
       }), h;
     }
-    return u.customList = S, u;
+    return g.customList = S, g;
   }
   var R = F();
   const I = (o, a, e, n = "") => {
@@ -4778,7 +4850,7 @@ page-dots button[aria-current=true]::before {
       event_type: e,
       event_loc: n
     }), G(`Event: ${o} | ${a} | ${e} | ${n}`, "success");
-  }, l = (o) => new Promise((a) => {
+  }, u = (o) => new Promise((a) => {
     const e = document.querySelector(o);
     e && a(e);
     const n = new MutationObserver(() => {
@@ -4804,8 +4876,8 @@ page-dots button[aria-current=true]::before {
         i.addEventListener(a, function(c) {
           var r;
           if (e !== "") {
-            let f = (r = c.target) == null ? void 0 : r.closest(e);
-            f && (n == null || n.call(f, c));
+            let s = (r = c.target) == null ? void 0 : r.closest(e);
+            s && (n == null || n.call(s, c));
           } else
             n == null || n.call(i, c);
         });
@@ -4874,17 +4946,17 @@ page-dots button[aria-current=true]::before {
         break;
     }
     console.log(`%c>>> ${o}`, `${e} font-size: 16px; font-weight: 600`);
-  }, H = (o, a) => {
+  }, z = (o, a) => {
     o.style.transition = "height 500ms", o.style.height = "0", setTimeout(() => {
       o.style.display = "none";
     }, 500);
-  }, z = (o, a) => {
+  }, H = (o, a) => {
     o.style.transition = "height 500ms", o.style.overflow = "hidden", o.style.display = "block", o.style.height = "auto";
     const n = o.clientHeight;
     o.style.height = "0", setTimeout(() => {
       o.style.height = n + "px";
     }, 0);
-  }, d = "https://conversionratestore.github.io/projects/helvetus/img", _ = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+  }, l = "https://conversionratestore.github.io/projects/helvetus/img", k = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
 <g filter="url(#filter0_d_81_50)">
 <path d="M5.5 2L14.5 11M5.5 11L14.5 2" stroke="white" stroke-width="2.325" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/>
 </g>
@@ -4955,7 +5027,7 @@ page-dots button[aria-current=true]::before {
     /* HTML */
     `
   <div class="crs_reviews">
-    <span><img src="${d}/stars.svg" alt="stars" /> 4.9</span>
+    <span><img src="${l}/stars.svg" alt="stars" /> 4.9</span>
     <span>163 Reviews</span>
   </div>
 `
@@ -5015,20 +5087,20 @@ page-dots button[aria-current=true]::before {
       /* HTML */
       `
               <li>
-                <img src="${d}/lifetime.svg" alt="" />
+                <img src="${l}/lifetime.svg" alt="" />
                 <span>Lifetime warranty</span>
                 <button class="btn life_open">LEARN MORE</button>
               </li>
             `
     ) : ""}
         <li>
-          <img src="${d}/returns.svg" alt="" />
+          <img src="${l}/returns.svg" alt="" />
           <span>Hassle-Free Returns</span>
           <button class="btn returns_open">LEARN MORE</button>
         </li>
       </ul>
 
-      <img src="${d}/awards.webp" alt="awards" />
+      <img src="${l}/awards.webp" alt="awards" />
     </div>
   `
   ), Y = (o) => {
@@ -5084,7 +5156,7 @@ page-dots button[aria-current=true]::before {
         renowned for its rich watchmaking heritage, hosts some of the most prestigious brands in the industry at the
         famous Schwanenplatz.
       </p>
-      <img src="${d}/gc1.jpg" alt="gc1" />
+      <img src="${l}/gc1.jpg" alt="gc1" />
       <p>
         Our location in Lucerne not only keeps us at the forefront of the watch industry but also inspires us to uphold
         the tradition of high craftsmanship and quality. Helvetus embodies the spirit of this renowned city, delivering
@@ -5098,7 +5170,7 @@ page-dots button[aria-current=true]::before {
         accessories to enhance your timepiece. Our models are meticulously designed to fit your watch and wrist
         perfectly.
       </p>
-      <img src="${d}/gc2.jpg" alt="gc2" />
+      <img src="${l}/gc2.jpg" alt="gc2" />
       <p>
         At Helvetus, our collections are inspired and shaped by the feedback and needs of our valued customers. This
         customer-centric approach has been the cornerstone of our success, ensuring we consistently meet and exceed
@@ -5162,11 +5234,70 @@ page-dots button[aria-current=true]::before {
   ), ea = (
     /* HTML */
     `
+  <div class="crs_customer_reviews">
+    <h2>Customer reviews</h2>
+    <img src="${l}/reviews_stars.svg" alt="stars" />
+    <p>Based on 174 reviews</p>
+    <div class="rating">
+      <img src="${l}/5stars.png" alt="stars 5" />
+      <img src="${l}/4stars.png" alt="stars 4" />
+      <img src="${l}/3stars.png" alt="stars 3" />
+      <img src="${l}/2stars.png" alt="stars 2" />
+      <img src="${l}/1stars.png" alt="stars 1" />
+    </div>
+    <a href="/pages/reviews">Write a Store Review</a>
+    <img src="${l}/awards.webp" alt="awards" />
+    <ul>
+      <li>
+        <p>
+          <img src="${l}/stars.svg" alt="stars" />
+          <span>10/02/2025</span>
+        </p>
+        <p class="user">
+          <img src="${l}/avatar.png" alt="avatar" />
+          <span>Tushar Arora</span>
+          <span class="verified">Verified</span>
+        </p>
+        <p><b>Very impressed</b></p>
+        <p>Very good strap</p>
+      </li>
+      <li>
+        <p>
+          <img src="${l}/stars.svg" alt="stars" />
+          <span>02/02/2025</span>
+        </p>
+        <p class="user">
+          <img src="${l}/avatar.png" alt="avatar" />
+          <span>michele mangiucca </span>
+          <span class="verified">Verified</span>
+        </p>
+        <p><b>Great!</b></p>
+        <p>I am really satisfated</p>
+      </li>
+      <li>
+        <p>
+          <img src="${l}/stars.svg" alt="stars" />
+          <span>01/02/2025</span>
+        </p>
+        <p class="user">
+          <img src="${l}/avatar.png" alt="avatar" />
+          <span>Peter Looijen</span>
+          <span class="verified">Verified</span>
+        </p>
+        <p><b>Quality</b></p>
+        <p>Goof quality & fit…..correct shipment</p>
+      </li>
+    </ul>
+  </div>
+`
+  ), na = (
+    /* HTML */
+    `
   <div class="crs_popup_lifetime">
-    <span class="close">${_}</span>
-    <img src="${d}/popup_lifetime.webp" alt="lifetime" />
+    <span class="close">${k}</span>
+    <img src="${l}/popup_lifetime.webp" alt="lifetime" />
     <div class="icon_wrapper">
-      <img src="${d}/lifetime.svg" alt="" />
+      <img src="${l}/lifetime.svg" alt="" />
     </div>
     <h2>Lifetime Warranty:<br />A Promise of Timeless Quality</h2>
     <p>
@@ -5178,14 +5309,14 @@ page-dots button[aria-current=true]::before {
     <button>Close</button>
   </div>
 `
-  ), na = (
+  ), oa = (
     /* HTML */
     `
   <div class="crs_popup_returns">
-    <span class="close">${_}</span>
-    <img src="${d}/popup_return.webp" alt="returns" />
+    <span class="close">${k}</span>
+    <img src="${l}/popup_return.webp" alt="returns" />
     <div class="icon_wrapper">
-      <img src="${d}/returns.svg" alt="" />
+      <img src="${l}/returns.svg" alt="" />
     </div>
     <h2>Hassle-Free Returns</h2>
     <p>
@@ -5201,13 +5332,13 @@ page-dots button[aria-current=true]::before {
 `
   );
   U({ name: "Reverse trial flow", dev: "YK" }), I("reverse_trial", "Start experiment", "loaded");
-  const oa = R.customList("countryCode", "{countryNameEn}");
-  class ia {
+  const ia = R.customList("countryCode", "{countryNameEn}");
+  class ra {
     constructor() {
       this.init();
     }
     async init() {
-      await l("head"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), Promise.allSettled([
+      await u("head"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), Promise.allSettled([
         this.imgSliderUpdate(),
         this.reviewsAndDiscount(),
         this.addOnsBlock(),
@@ -5216,30 +5347,31 @@ page-dots button[aria-current=true]::before {
         this.greatChoice(),
         this.setInfoBlocks(),
         this.updateNewslater(),
-        this.updateAddToCartBtn()
+        this.updateAddToCartBtn(),
+        this.customerReviews()
       ]);
     }
     async imgSliderUpdate() {
-      (await l("product-gallery")).insertAdjacentHTML("afterbegin", j), t(".product-gallery__zoom button svg").elements[0].remove(), t(".product-gallery__zoom button").elements[0].insertAdjacentHTML("beforeend", K);
+      (await u("product-gallery")).insertAdjacentHTML("afterbegin", j), t(".product-gallery__zoom button svg").elements[0].remove(), t(".product-gallery__zoom button").elements[0].insertAdjacentHTML("beforeend", K);
     }
     async reviewsAndDiscount() {
-      const a = await l("h1"), e = await l(".product-info__price");
-      a.insertAdjacentHTML("afterend", W), l("div:not(.needsclick)>.needsclick[style]").then(() => {
+      const a = await u("h1"), e = await u(".product-info__price");
+      a.insertAdjacentHTML("afterend", W), u("div:not(.needsclick)>.needsclick[style]").then(() => {
         e.insertAdjacentHTML("afterend", q), $(".crs_discount_info .get_discount").on("click", function() {
           t("div:not(.needsclick)>.needsclick[style]>div>span").elements[0].click();
         });
       });
     }
     async addOnsBlock() {
-      const a = await l(".product-info__buy-buttons");
-      await l("product-recommendations .product-info__complementary-products .horizontal-product-list");
+      const a = await u(".product-info__buy-buttons");
+      await u("product-recommendations .product-info__complementary-products .horizontal-product-list");
       const e = [];
       t(
         "product-recommendations .product-info__complementary-products .horizontal-product-list .horizontal-product"
       ).each((n) => {
         console.log(n);
-        const i = n.find("img.horizontal-product__image").attr("src") || "", c = n.find("a").text() || "", r = n.find("a").attr("href"), f = n.find("sale-price").elements[0].childNodes[2].textContent || "", S = n.find("compare-at-price").elements[0].childNodes[2].textContent, g = n.find("form input[name=id]").attr("value") || "";
-        e.push({ img: i, title: c, price: S ? [f, S] : f, link: r, id: g });
+        const i = n.find("img.horizontal-product__image").attr("src") || "", c = n.find("a").text() || "", r = n.find("a").attr("href"), s = n.find("sale-price").elements[0].childNodes[2].textContent || "", S = n.find("compare-at-price").elements[0].childNodes[2].textContent, f = n.find("form input[name=id]").attr("value") || "";
+        e.push({ img: i, title: c, price: S ? [s, S] : s, link: r, id: f });
       }), a.insertAdjacentHTML("beforebegin", J(e)), t(".crs_addons .add_check button").on("click", function() {
         var i, c;
         const n = this.getAttribute("data-id");
@@ -5248,9 +5380,9 @@ page-dots button[aria-current=true]::before {
     }
     async moneyBackBlock() {
       var i, c, r;
-      const a = await l("h1");
+      const a = await u("h1");
       let e = !1;
-      (i = a.textContent) != null && i.toLowerCase().includes("rubber") && (e = !0), (await l(".product-info__buy-buttons")).insertAdjacentHTML("afterend", X(e)), document.body.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), (c = document.querySelector(".dark_bg")) == null || c.insertAdjacentHTML("beforeend", ea), (r = document.querySelector(".dark_bg")) == null || r.insertAdjacentHTML("beforeend", na), t(".life_open").on("click", function() {
+      (i = a.textContent) != null && i.toLowerCase().includes("rubber") && (e = !0), (await u(".product-info__buy-buttons")).insertAdjacentHTML("afterend", X(e)), document.body.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), (c = document.querySelector(".dark_bg")) == null || c.insertAdjacentHTML("beforeend", na), (r = document.querySelector(".dark_bg")) == null || r.insertAdjacentHTML("beforeend", oa), t(".life_open").on("click", function() {
         console.log("click life"), t(".dark_bg").addClass("active"), t(".crs_popup_lifetime").addClass("active");
       }), t(".returns_open").on("click", function() {
         t(".dark_bg").addClass("active"), t(".crs_popup_returns").addClass("active");
@@ -5259,37 +5391,40 @@ page-dots button[aria-current=true]::before {
       });
     }
     async shippingTimeBlock() {
-      (await l(".crs_money_back")).insertAdjacentHTML("afterend", Y(oa));
+      (await u(".crs_money_back")).insertAdjacentHTML("afterend", Y(ia));
     }
     async setInfoBlocks() {
-      (await l(".crs_shipping_time")).insertAdjacentHTML("afterend", aa), t(".crs_info_blocks li p:first-of-type").each((r) => {
+      (await u(".crs_shipping_time")).insertAdjacentHTML("afterend", aa), t(".crs_info_blocks li p:first-of-type").each((r) => {
         r.on("click", function() {
-          r.elements[0].classList.contains("active") ? (H(r.elements[0].nextElementSibling), r.elements[0].classList.remove("active")) : (z(r.elements[0].nextElementSibling), r.elements[0].classList.add("active"));
+          r.elements[0].classList.contains("active") ? (z(r.elements[0].nextElementSibling), r.elements[0].classList.remove("active")) : (H(r.elements[0].nextElementSibling), r.elements[0].classList.add("active"));
         });
-      }), await l(".product-info__description .prose");
+      }), await u(".product-info__description .prose");
       let e = "", n = "", i = "", c = 0;
       t(".product-info__description .prose p, .product-info__description .prose div").each((r) => {
-        (!r.text().toLowerCase().includes("details") || !r.text().toLowerCase().includes("excellence service")) && c === 0 && (e += r.text() + "<br>"), r.text().length > 100 && (c = 1), r.text().toLowerCase().includes("details") && c === 1 && r.elements[0].childNodes.forEach((f) => {
-          f.textContent.includes("Material") && (n = f.textContent.split(":")[1].trim()), f.textContent.includes("Size") && (i = f.textContent.split(":")[1].trim());
+        (!r.text().toLowerCase().includes("details") || !r.text().toLowerCase().includes("excellence service")) && c === 0 && (e += r.text() + "<br>"), r.text().length > 100 && (c = 1), r.text().toLowerCase().includes("details") && c === 1 && r.elements[0].childNodes.forEach((s) => {
+          s.textContent.includes("Material") && (n = s.textContent.split(":")[1].trim()), s.textContent.includes("Size") && (i = s.textContent.split(":")[1].trim());
         });
       }), t(".crs_info_blocks .about_product p:last-child").html(e), t(".crs_info_blocks .material p:last-child").text(n), t(".crs_info_blocks .size p:last-child").text(i);
     }
     async greatChoice() {
-      (await l(".shopify-section--product-recommendations")).insertAdjacentHTML("afterend", Q);
+      (await u(".shopify-section--product-recommendations")).insertAdjacentHTML("afterend", Q);
     }
     async updateNewslater() {
       var a;
-      await l(".footer__block--newsletter"), t(".footer__block--newsletter").find(".h3").text("Join Our Community").elements[0].insertAdjacentHTML("afterend", "<p>Sign up for 10% off your first order</p>"), t(".footer__block--newsletter").find("form").elements[0].insertAdjacentHTML("afterend", '<button class="crs_join">join now</button>'), t(".crs_join").on("click", function() {
+      await u(".footer__block--newsletter"), t(".footer__block--newsletter").find(".h3").text("Join Our Community").elements[0].insertAdjacentHTML("afterend", "<p>Sign up for 10% off your first order</p>"), t(".footer__block--newsletter").find("form").elements[0].insertAdjacentHTML("afterend", '<button class="crs_join">join now</button>'), t(".crs_join").on("click", function() {
         t(".footer__block--newsletter form .circle-chevron").elements[0].click();
-      }), await l(".footer__block.footer__block--menu .bold"), document.querySelectorAll(".footer__block.footer__block--menu .bold").forEach((e) => {
+      }), await u(".footer__block.footer__block--menu .bold"), document.querySelectorAll(".footer__block.footer__block--menu .bold").forEach((e) => {
         var n;
         (n = e.textContent) != null && n.toLowerCase().includes("shop") && (e.closest(".footer__block").style.display = "none");
-      }), await l(".footer .social-media"), (a = document.querySelector(".crs_join")) == null || a.after(document.querySelector(".footer .social-media"));
+      }), await u(".footer .social-media"), (a = document.querySelector(".crs_join")) == null || a.after(document.querySelector(".footer .social-media"));
     }
     async updateAddToCartBtn() {
-      (await l(".product-quick-add button")).insertAdjacentHTML("beforeend", O);
+      (await u(".product-quick-add button")).insertAdjacentHTML("beforeend", O);
+    }
+    async customerReviews() {
+      (await u(".crs_great_choice")).insertAdjacentHTML("afterend", ea);
     }
   }
-  new ia();
+  new ra();
 })();
 //# sourceMappingURL=index.js.map
