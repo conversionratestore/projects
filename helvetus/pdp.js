@@ -609,34 +609,34 @@ page-dots button[aria-current=true]::before {
 .crs_popup_returns.active {
   display: block;
 }/*# sourceMappingURL=style.css.map */`;
-  var l = {}, b = {}, w;
+  var u = {}, b = {}, x;
   function P() {
-    if (w) return b;
-    w = 1, Object.defineProperty(b, "__esModule", { value: !0 });
+    if (x) return b;
+    x = 1, Object.defineProperty(b, "__esModule", { value: !0 });
     function o(a, e) {
       return a.reduce((n, i) => {
-        const r = String(i[e]);
-        return n[r] || (n[r] = []), n[r].push(i), n;
+        const c = String(i[e]);
+        return n[c] || (n[c] = []), n[c].push(i), n;
       }, {});
     }
     return b.default = o, b;
   }
-  var T = {}, k;
+  var T = {}, w;
   function B() {
-    if (k) return T;
-    k = 1, Object.defineProperty(T, "__esModule", { value: !0 });
+    if (w) return T;
+    w = 1, Object.defineProperty(T, "__esModule", { value: !0 });
     function o(a, e) {
       return a.replace(/{([^{}]*)}/g, (n, i) => {
-        const r = e[i];
-        return typeof r == "string" || typeof r == "number" ? r.toString() : n;
+        const c = e[i];
+        return typeof c == "string" || typeof c == "number" ? c.toString() : n;
       });
     }
     return T.default = o, T;
   }
-  var A = {}, v;
+  var A = {}, k;
   function D() {
-    if (v) return A;
-    v = 1, Object.defineProperty(A, "__esModule", { value: !0 });
+    if (k) return A;
+    k = 1, Object.defineProperty(A, "__esModule", { value: !0 });
     const o = [
       {
         countryNameEn: "Andorra",
@@ -4713,61 +4713,61 @@ page-dots button[aria-current=true]::before {
     ];
     return A.default = o, A;
   }
-  var x;
+  var v;
   function F() {
-    if (x) return l;
-    x = 1;
-    var o = l.__importDefault || function(g) {
+    if (v) return u;
+    v = 1;
+    var o = u.__importDefault || function(g) {
       return g && g.__esModule ? g : { default: g };
     };
-    Object.defineProperty(l, "__esModule", { value: !0 }), l.customList = l.customArray = l.findOne = l.filter = l.all = l.utils = void 0;
+    Object.defineProperty(u, "__esModule", { value: !0 }), u.customList = u.customArray = u.findOne = u.filter = u.all = u.utils = void 0;
     const a = o(P()), e = o(B()), n = o(D());
-    l.utils = {
+    u.utils = {
       groupBy: a.default
     };
     function i() {
       return n.default;
     }
-    l.all = i;
-    function r(g, d) {
-      return n.default.filter((s) => s[g] === d);
+    u.all = i;
+    function c(g, s) {
+      return n.default.filter((m) => m[g] === s);
     }
-    l.filter = r;
-    function t(g, d) {
-      return n.default.find((s) => s[g] === d);
+    u.filter = c;
+    function r(g, s) {
+      return n.default.find((m) => m[g] === s);
     }
-    l.findOne = t;
-    function m(g = {
+    u.findOne = r;
+    function f(g = {
       name: "{countryNameEn} ({countryCode})",
       value: "{countryCode}"
-    }, { sortBy: d, sortDataBy: s, filter: h } = {}) {
+    }, { sortBy: s, sortDataBy: m, filter: h } = {}) {
       const y = [];
       let C = n.default;
-      if (typeof h == "function" && (C = C.filter(h)), s) {
+      if (typeof h == "function" && (C = C.filter(h)), m) {
         const N = new Intl.Collator([], { sensitivity: "accent" });
-        C.sort((L, p) => N.compare(L[s], p[s]));
+        C.sort((L, p) => N.compare(L[m], p[m]));
       }
       if (C.forEach((N) => {
         const L = {};
         for (const p in g)
           L[p] = (0, e.default)(g[p], N);
         y.push(L);
-      }), d && g[d]) {
+      }), s && g[s]) {
         const N = new Intl.Collator([], { sensitivity: "accent" });
-        y.sort((L, p) => N.compare(L[d], p[d]));
+        y.sort((L, p) => N.compare(L[s], p[s]));
       }
       return y;
     }
-    l.customArray = m;
-    function S(g = "countryCode", d = "{countryNameEn} ({countryCode})", { filter: s } = {}) {
+    u.customArray = f;
+    function S(g = "countryCode", s = "{countryNameEn} ({countryCode})", { filter: m } = {}) {
       const h = {};
       let y = n.default;
-      return typeof s == "function" && (y = y.filter(s)), y.forEach((C) => {
-        const N = (0, e.default)(d, C);
+      return typeof m == "function" && (y = y.filter(m)), y.forEach((C) => {
+        const N = (0, e.default)(s, C);
         h[String(C[g])] = N;
       }), h;
     }
-    return l.customList = S, l;
+    return u.customList = S, u;
   }
   var R = F();
   const I = (o, a, e, n = "") => {
@@ -4778,7 +4778,7 @@ page-dots button[aria-current=true]::before {
       event_type: e,
       event_loc: n
     }), G(`Event: ${o} | ${a} | ${e} | ${n}`, "success");
-  }, u = (o) => new Promise((a) => {
+  }, l = (o) => new Promise((a) => {
     const e = document.querySelector(o);
     e && a(e);
     const n = new MutationObserver(() => {
@@ -4801,13 +4801,13 @@ page-dots button[aria-current=true]::before {
     }
     on(a, e, n) {
       return typeof e == "function" && (n = e, e = ""), this.elements.forEach(function(i) {
-        i.addEventListener(a, function(r) {
-          var t;
+        i.addEventListener(a, function(c) {
+          var r;
           if (e !== "") {
-            let m = (t = r.target) == null ? void 0 : t.closest(e);
-            m && (n == null || n.call(m, r));
+            let f = (r = c.target) == null ? void 0 : r.closest(e);
+            f && (n == null || n.call(f, c));
           } else
-            n == null || n.call(i, r);
+            n == null || n.call(i, c);
         });
       }), this;
     }
@@ -4832,7 +4832,7 @@ page-dots button[aria-current=true]::before {
       return this;
     }
     style(a, e) {
-      const n = a.split("-").map((i, r) => r === 0 ? i : i.charAt(0).toUpperCase() + i.slice(1)).join("");
+      const n = a.split("-").map((i, c) => c === 0 ? i : i.charAt(0).toUpperCase() + i.slice(1)).join("");
       return this.elements.forEach(function(i) {
         i.style[n] = e;
       }), this;
@@ -4857,7 +4857,7 @@ page-dots button[aria-current=true]::before {
       }), this) : this.elements[0].innerHTML;
     }
   }
-  const c = (o) => new E(o), G = (o, a = "info") => {
+  const t = (o) => new E(o), G = (o, a = "info") => {
     let e;
     switch (a) {
       case "info":
@@ -4884,7 +4884,7 @@ page-dots button[aria-current=true]::before {
     o.style.height = "0", setTimeout(() => {
       o.style.height = n + "px";
     }, 0);
-  }, f = "https://conversionratestore.github.io/projects/helvetus/img", _ = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+  }, d = "https://conversionratestore.github.io/projects/helvetus/img", _ = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
 <g filter="url(#filter0_d_81_50)">
 <path d="M5.5 2L14.5 11M5.5 11L14.5 2" stroke="white" stroke-width="2.325" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/>
 </g>
@@ -4955,7 +4955,7 @@ page-dots button[aria-current=true]::before {
     /* HTML */
     `
   <div class="crs_reviews">
-    <span><img src="${f}/stars.svg" alt="stars" /> 4.9</span>
+    <span><img src="${d}/stars.svg" alt="stars" /> 4.9</span>
     <span>163 Reviews</span>
   </div>
 `
@@ -4973,27 +4973,27 @@ page-dots button[aria-current=true]::before {
       "October",
       "November",
       "December"
-    ], r = `${n[e.getDay()]}, ${i[e.getMonth()]} ${e.getDate()}`;
+    ], c = `${n[e.getDay()]}, ${i[e.getMonth()]} ${e.getDate()}`;
     return (
       /* HTML */
       `
     <div class="crs_addons">
       <ul>
-        ${o.map((t) => (
+        ${o.map((r) => (
         /* HTML */
         `
               <li>
                 <div class="img_wrapper">
-                  <img src="${t.img}" alt="${t.title}" />
+                  <img src="${r.img}" alt="${r.title}" />
                 </div>
                 <div class="info">
-                  <a href="${t.link}" target="_blank">${t.title}</a>
+                  <a href="${r.link}" target="_blank">${r.title}</a>
                 </div>
                 <div class="add_check">
                   <p>
-                    ${typeof t.price == "string" ? t.price : `<span>${t.price[1]}</span><span>${t.price[0]}</span>`}
+                    ${typeof r.price == "string" ? r.price : `<span>${r.price[1]}</span><span>${r.price[0]}</span>`}
                   </p>
-                  <button data-id="${t.id}">+ Add</button>
+                  <button data-id="${r.id}">+ Add</button>
                 </div>
               </li>
             `
@@ -5001,7 +5001,7 @@ page-dots button[aria-current=true]::before {
       </ul>
       <div class="delivery">
         <div class="icon_wrapper">${V}</div>
-        <p>Order now and get <span>FREE Global Express Delivery</span> before <span>${r}</span></p>
+        <p>Order now and get <span>FREE Global Express Delivery</span> before <span>${c}</span></p>
       </div>
     </div>
   `
@@ -5015,20 +5015,20 @@ page-dots button[aria-current=true]::before {
       /* HTML */
       `
               <li>
-                <img src="${f}/lifetime.svg" alt="" />
+                <img src="${d}/lifetime.svg" alt="" />
                 <span>Lifetime warranty</span>
                 <button class="btn life_open">LEARN MORE</button>
               </li>
             `
     ) : ""}
         <li>
-          <img src="${f}/returns.svg" alt="" />
+          <img src="${d}/returns.svg" alt="" />
           <span>Hassle-Free Returns</span>
           <button class="btn returns_open">LEARN MORE</button>
         </li>
       </ul>
 
-      <img src="${f}/awards.webp" alt="awards" />
+      <img src="${d}/awards.webp" alt="awards" />
     </div>
   `
   ), Y = (o) => {
@@ -5084,7 +5084,7 @@ page-dots button[aria-current=true]::before {
         renowned for its rich watchmaking heritage, hosts some of the most prestigious brands in the industry at the
         famous Schwanenplatz.
       </p>
-      <img src="${f}/gc1.jpg" alt="gc1" />
+      <img src="${d}/gc1.jpg" alt="gc1" />
       <p>
         Our location in Lucerne not only keeps us at the forefront of the watch industry but also inspires us to uphold
         the tradition of high craftsmanship and quality. Helvetus embodies the spirit of this renowned city, delivering
@@ -5098,7 +5098,7 @@ page-dots button[aria-current=true]::before {
         accessories to enhance your timepiece. Our models are meticulously designed to fit your watch and wrist
         perfectly.
       </p>
-      <img src="${f}/gc2.jpg" alt="gc2" />
+      <img src="${d}/gc2.jpg" alt="gc2" />
       <p>
         At Helvetus, our collections are inspired and shaped by the feedback and needs of our valued customers. This
         customer-centric approach has been the cornerstone of our success, ensuring we consistently meet and exceed
@@ -5164,9 +5164,9 @@ page-dots button[aria-current=true]::before {
     `
   <div class="crs_popup_lifetime">
     <span class="close">${_}</span>
-    <img src="${f}/popup_lifetime.webp" alt="lifetime" />
+    <img src="${d}/popup_lifetime.webp" alt="lifetime" />
     <div class="icon_wrapper">
-      <img src="${f}/lifetime.svg" alt="" />
+      <img src="${d}/lifetime.svg" alt="" />
     </div>
     <h2>Lifetime Warranty:<br />A Promise of Timeless Quality</h2>
     <p>
@@ -5183,9 +5183,9 @@ page-dots button[aria-current=true]::before {
     `
   <div class="crs_popup_returns">
     <span class="close">${_}</span>
-    <img src="${f}/popup_return.webp" alt="returns" />
+    <img src="${d}/popup_return.webp" alt="returns" />
     <div class="icon_wrapper">
-      <img src="${f}/returns.svg" alt="" />
+      <img src="${d}/returns.svg" alt="" />
     </div>
     <h2>Hassle-Free Returns</h2>
     <p>
@@ -5207,7 +5207,7 @@ page-dots button[aria-current=true]::before {
       this.init();
     }
     async init() {
-      await u("head"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), Promise.allSettled([
+      await l("head"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), Promise.allSettled([
         this.imgSliderUpdate(),
         this.reviewsAndDiscount(),
         this.addOnsBlock(),
@@ -5220,68 +5220,74 @@ page-dots button[aria-current=true]::before {
       ]);
     }
     async imgSliderUpdate() {
-      (await u("product-gallery")).insertAdjacentHTML("afterbegin", j), c(".product-gallery__zoom button svg").elements[0].remove(), c(".product-gallery__zoom button").elements[0].insertAdjacentHTML("beforeend", K);
+      (await l("product-gallery")).insertAdjacentHTML("afterbegin", j), t(".product-gallery__zoom button svg").elements[0].remove(), t(".product-gallery__zoom button").elements[0].insertAdjacentHTML("beforeend", K);
     }
     async reviewsAndDiscount() {
-      const a = await u("h1"), e = await u(".product-info__price");
-      a.insertAdjacentHTML("afterend", W), u("div:not(.needsclick)>.needsclick[style]").then(() => {
+      const a = await l("h1"), e = await l(".product-info__price");
+      a.insertAdjacentHTML("afterend", W), l("div:not(.needsclick)>.needsclick[style]").then(() => {
         e.insertAdjacentHTML("afterend", q), $(".crs_discount_info .get_discount").on("click", function() {
-          c("div:not(.needsclick)>.needsclick[style]>div>span").elements[0].click();
+          t("div:not(.needsclick)>.needsclick[style]>div>span").elements[0].click();
         });
       });
     }
     async addOnsBlock() {
-      const a = await u(".product-info__buy-buttons");
-      await u("product-recommendations .product-info__complementary-products .horizontal-product-list");
+      const a = await l(".product-info__buy-buttons");
+      await l("product-recommendations .product-info__complementary-products .horizontal-product-list");
       const e = [];
-      c(
+      t(
         "product-recommendations .product-info__complementary-products .horizontal-product-list .horizontal-product"
       ).each((n) => {
         console.log(n);
-        const i = n.find("img.horizontal-product__image").attr("src") || "", r = n.find("a").text() || "", t = n.find("a").attr("href"), m = n.find("sale-price").elements[0].childNodes[2].textContent || "", S = n.find("compare-at-price").elements[0].childNodes[2].textContent, g = n.find("form input[name=id]").attr("value") || "";
-        e.push({ img: i, title: r, price: S ? [m, S] : m, link: t, id: g });
-      }), a.insertAdjacentHTML("beforebegin", J(e)), c(".crs_addons .add_check button").on("click", function() {
-        var i, r;
+        const i = n.find("img.horizontal-product__image").attr("src") || "", c = n.find("a").text() || "", r = n.find("a").attr("href"), f = n.find("sale-price").elements[0].childNodes[2].textContent || "", S = n.find("compare-at-price").elements[0].childNodes[2].textContent, g = n.find("form input[name=id]").attr("value") || "";
+        e.push({ img: i, title: c, price: S ? [f, S] : f, link: r, id: g });
+      }), a.insertAdjacentHTML("beforebegin", J(e)), t(".crs_addons .add_check button").on("click", function() {
+        var i, c;
         const n = this.getAttribute("data-id");
-        (r = (i = c(`.horizontal-product input[value="${n}"]`).elements[0].closest("form")) == null ? void 0 : i.querySelector("button")) == null || r.click();
+        (c = (i = t(`.horizontal-product input[value="${n}"]`).elements[0].closest("form")) == null ? void 0 : i.querySelector("button")) == null || c.click();
       });
     }
     async moneyBackBlock() {
-      var i, r, t;
-      const a = await u("h1");
+      var i, c, r;
+      const a = await l("h1");
       let e = !1;
-      (i = a.textContent) != null && i.toLowerCase().includes("rubber") && (e = !0), (await u(".product-info__buy-buttons")).insertAdjacentHTML("afterend", X(e)), document.body.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), (r = document.querySelector(".dark_bg")) == null || r.insertAdjacentHTML("beforeend", ea), (t = document.querySelector(".dark_bg")) == null || t.insertAdjacentHTML("beforeend", na), c(".life_open").on("click", function() {
-        console.log("click life"), c(".dark_bg").addClass("active"), c(".crs_popup_lifetime").addClass("active");
-      }), c(".returns_open").on("click", function() {
-        c(".dark_bg").addClass("active"), c(".crs_popup_returns").addClass("active");
-      }), c(".dark_bg .close").on("click", function() {
-        c(".dark_bg").removeClass("active"), c(".crs_popup_lifetime").removeClass("active"), c(".crs_popup_returns").removeClass("active");
+      (i = a.textContent) != null && i.toLowerCase().includes("rubber") && (e = !0), (await l(".product-info__buy-buttons")).insertAdjacentHTML("afterend", X(e)), document.body.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), (c = document.querySelector(".dark_bg")) == null || c.insertAdjacentHTML("beforeend", ea), (r = document.querySelector(".dark_bg")) == null || r.insertAdjacentHTML("beforeend", na), t(".life_open").on("click", function() {
+        console.log("click life"), t(".dark_bg").addClass("active"), t(".crs_popup_lifetime").addClass("active");
+      }), t(".returns_open").on("click", function() {
+        t(".dark_bg").addClass("active"), t(".crs_popup_returns").addClass("active");
+      }), t(".dark_bg .close").on("click", function() {
+        t(".dark_bg").removeClass("active"), t(".crs_popup_lifetime").removeClass("active"), t(".crs_popup_returns").removeClass("active");
       });
     }
     async shippingTimeBlock() {
-      (await u(".crs_money_back")).insertAdjacentHTML("afterend", Y(oa));
+      (await l(".crs_money_back")).insertAdjacentHTML("afterend", Y(oa));
     }
     async setInfoBlocks() {
-      (await u(".crs_shipping_time")).insertAdjacentHTML("afterend", aa), c(".crs_info_blocks li p:first-of-type").each((e) => {
-        e.on("click", function() {
-          e.elements[0].classList.contains("active") ? (H(e.elements[0].nextElementSibling), e.elements[0].classList.remove("active")) : (z(e.elements[0].nextElementSibling), e.elements[0].classList.add("active"));
+      (await l(".crs_shipping_time")).insertAdjacentHTML("afterend", aa), t(".crs_info_blocks li p:first-of-type").each((r) => {
+        r.on("click", function() {
+          r.elements[0].classList.contains("active") ? (H(r.elements[0].nextElementSibling), r.elements[0].classList.remove("active")) : (z(r.elements[0].nextElementSibling), r.elements[0].classList.add("active"));
         });
-      });
+      }), await l(".product-info__description .prose");
+      let e = "", n = "", i = "", c = 0;
+      t(".product-info__description .prose p, .product-info__description .prose div").each((r) => {
+        (!r.text().toLowerCase().includes("details") || !r.text().toLowerCase().includes("excellence service")) && c === 0 && (e += r.text() + "<br>"), r.text().length > 100 && (c = 1), r.text().toLowerCase().includes("details") && c === 1 && r.elements[0].childNodes.forEach((f) => {
+          f.textContent.includes("Material") && (n = f.textContent.split(":")[1].trim()), f.textContent.includes("Size") && (i = f.textContent.split(":")[1].trim());
+        });
+      }), t(".crs_info_blocks .about_product p:last-child").html(e), t(".crs_info_blocks .material p:last-child").text(n), t(".crs_info_blocks .size p:last-child").text(i);
     }
     async greatChoice() {
-      (await u(".shopify-section--product-recommendations")).insertAdjacentHTML("afterend", Q);
+      (await l(".shopify-section--product-recommendations")).insertAdjacentHTML("afterend", Q);
     }
     async updateNewslater() {
       var a;
-      await u(".footer__block--newsletter"), c(".footer__block--newsletter").find(".h3").text("Join Our Community").elements[0].insertAdjacentHTML("afterend", "<p>Sign up for 10% off your first order</p>"), c(".footer__block--newsletter").find("form").elements[0].insertAdjacentHTML("afterend", '<button class="crs_join">join now</button>'), c(".crs_join").on("click", function() {
-        c(".footer__block--newsletter form .circle-chevron").elements[0].click();
-      }), await u(".footer__block.footer__block--menu .bold"), document.querySelectorAll(".footer__block.footer__block--menu .bold").forEach((e) => {
+      await l(".footer__block--newsletter"), t(".footer__block--newsletter").find(".h3").text("Join Our Community").elements[0].insertAdjacentHTML("afterend", "<p>Sign up for 10% off your first order</p>"), t(".footer__block--newsletter").find("form").elements[0].insertAdjacentHTML("afterend", '<button class="crs_join">join now</button>'), t(".crs_join").on("click", function() {
+        t(".footer__block--newsletter form .circle-chevron").elements[0].click();
+      }), await l(".footer__block.footer__block--menu .bold"), document.querySelectorAll(".footer__block.footer__block--menu .bold").forEach((e) => {
         var n;
         (n = e.textContent) != null && n.toLowerCase().includes("shop") && (e.closest(".footer__block").style.display = "none");
-      }), await u(".footer .social-media"), (a = document.querySelector(".crs_join")) == null || a.after(document.querySelector(".footer .social-media"));
+      }), await l(".footer .social-media"), (a = document.querySelector(".crs_join")) == null || a.after(document.querySelector(".footer .social-media"));
     }
     async updateAddToCartBtn() {
-      (await u(".product-quick-add button")).insertAdjacentHTML("beforeend", O);
+      (await l(".product-quick-add button")).insertAdjacentHTML("beforeend", O);
     }
   }
   new ia();
