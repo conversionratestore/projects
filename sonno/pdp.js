@@ -1,29 +1,29 @@
 (function() {
   "use strict";
-  const v = (m, t, n, e = "") => {
+  const f = (u, t, n, e = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: m,
+      event_name: u,
       event_desc: t,
       event_type: n,
       event_loc: e
-    }), console.log(`Event: ${m} | ${t} | ${n} | ${e}`);
-  }, C = ({ name: m, dev: t }) => {
+    }), console.log(`Event: ${u} | ${t} | ${n} | ${e}`);
+  }, C = ({ name: u, dev: t }) => {
     console.log(
-      `%c EXP: ${m} (DEV: ${t})`,
+      `%c EXP: ${u} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, L = (m) => {
+  }, L = (u) => {
     let t = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", m, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", u, "variant_1"));
     }, 1e3);
   };
-  function p(m) {
+  function h(u) {
     return new Promise((t) => {
-      if (document.querySelector(m))
-        return t(document.querySelector(m));
+      if (document.querySelector(u))
+        return t(document.querySelector(u));
       const n = new MutationObserver(() => {
-        document.querySelector(m) && (t(document.querySelector(m)), n.disconnect());
+        document.querySelector(u) && (t(document.querySelector(u)), n.disconnect());
       });
       n.observe(document.documentElement, {
         childList: !0,
@@ -244,7 +244,7 @@
       this.initStyles(), this.addNewDeliverySection(), this.changePriceElementPosition(), this.changeAboutPaymentPosition();
     }
     addNewDeliverySection() {
-      p(".footer-add-cart").then((t) => {
+      h(".footer-add-cart").then((t) => {
         var o;
         const n = t, i = (
           /* HTML */
@@ -259,15 +259,15 @@
       });
     }
     changePriceElementPosition() {
-      p(".price-pro").then((t) => {
-        p(".crs-delivery").then((n) => {
+      h(".price-pro").then((t) => {
+        h(".crs-delivery").then((n) => {
           const e = t, i = n;
           e && i && i.insertAdjacentElement("afterend", e);
         });
       });
     }
     changeAboutPaymentPosition() {
-      p(".about-payment-details").then((t) => {
+      h(".about-payment-details").then((t) => {
         const n = document.querySelector(".footer-add-cart"), e = t;
         e && n && n.insertAdjacentElement("afterend", e);
       });
@@ -277,7 +277,7 @@
       t.innerHTML = S, document.head.appendChild(t);
     }
   }
-  const E = `.crs-sticky {
+  const O = `.crs-sticky {
   position: fixed;
   display: none;
   bottom: 0;
@@ -531,7 +531,7 @@
   }
 }
 `;
-  class q {
+  class D {
     constructor() {
       this.sticky = null, this.init();
     }
@@ -539,9 +539,9 @@
       this.initStyles(), this.render(), this.fillProductData(), this.eventListeners(), this.showSticky();
     }
     render() {
-      p(".productGalleryLightbox li img").then((t) => {
-        var d, h, c, l;
-        const n = (d = document.querySelector("section.product-details p.leading-normal ")) == null ? void 0 : d.textContent, e = (h = document.querySelector('td[x-text="calculation.total"]')) == null ? void 0 : h.textContent, i = (c = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : c.textContent, o = (l = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : l.textContent, s = t, a = (
+      h(".productGalleryLightbox li img").then((t) => {
+        var d, l, c, p;
+        const n = (d = document.querySelector("section.product-details p.leading-normal ")) == null ? void 0 : d.textContent, e = (l = document.querySelector('td[x-text="calculation.total"]')) == null ? void 0 : l.textContent, i = (c = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : c.textContent, o = (p = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : p.textContent, s = t, a = (
           /* HTML */
           `
         <div class="crs-sticky">
@@ -582,7 +582,7 @@
       });
     }
     showSticky() {
-      p(".product-details .footer-add-cart button").then((t) => {
+      h(".product-details .footer-add-cart button").then((t) => {
         const n = t;
         n && new IntersectionObserver(
           (i) => {
@@ -597,17 +597,17 @@
       });
     }
     eventListeners() {
-      p('[data-button="to-options"]').then((t) => {
+      h('[data-button="to-options"]').then((t) => {
         document.querySelectorAll('[data-button="to-options"]').forEach((e) => {
           e.addEventListener("click", () => {
             const i = document.querySelector(".shopify-product-form");
-            i && (v("exp_pdp_imp__options_sticky", "Choose options", "click", "Sticky section"), i.scrollIntoView({ behavior: "smooth" }));
+            i && (f("exp_pdp_imp__options_sticky", "Choose options", "click", "Sticky section"), i.scrollIntoView({ behavior: "smooth" }));
           });
         });
-      }), p('[data-button="add-to-basket"]').then((t) => {
+      }), h('[data-button="add-to-basket"]').then((t) => {
         t.addEventListener("click", () => {
           const e = document.querySelector(".footer-add-cart button");
-          e && (e.click(), v("exp_pdp_imp__add_sticky", "Add to Basket", "click", "Sticky section"));
+          e && (e.click(), f("exp_pdp_imp__add_sticky", "Add to Basket", "click", "Sticky section"));
         });
       });
     }
@@ -621,28 +621,28 @@
           }
         });
       });
-      p(".productGalleryLightbox").then((i) => {
+      h(".productGalleryLightbox").then((i) => {
         n.observe(i, t);
       });
       const e = new MutationObserver((i) => {
         i.forEach((o) => {
-          var a, r, d, h, c, l;
+          var a, r, d, l, c, p;
           if (o.target.getAttribute("x-text") === "calculation.total") {
-            const g = (a = document.querySelector("section.price-pro > div")) == null ? void 0 : a.textContent, u = (r = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : r.textContent, f = (d = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : d.textContent, x = (h = this.sticky) == null ? void 0 : h.querySelector(".crs-sticky__product-price .current"), _ = (c = this.sticky) == null ? void 0 : c.querySelector(".crs-sticky__product-price .compare"), k = (l = this.sticky) == null ? void 0 : l.querySelector(".crs-sticky__product-price .save");
-            x && g && (x.textContent = g, _ && u && k && f && (_.textContent = u, k.textContent = f));
+            const g = (a = document.querySelector("section.price-pro > div")) == null ? void 0 : a.textContent, m = (r = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : r.textContent, v = (d = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : d.textContent, x = (l = this.sticky) == null ? void 0 : l.querySelector(".crs-sticky__product-price .current"), _ = (c = this.sticky) == null ? void 0 : c.querySelector(".crs-sticky__product-price .compare"), k = (p = this.sticky) == null ? void 0 : p.querySelector(".crs-sticky__product-price .save");
+            x && g && (x.textContent = g, _ && m && k && v && (_.textContent = m, k.textContent = v));
           }
         });
       });
-      p('td[x-text="calculation.total"]').then((i) => {
+      h('td[x-text="calculation.total"]').then((i) => {
         e.observe(i, t);
       });
     }
     initStyles() {
       const t = document.createElement("style");
-      t.innerHTML = E, document.head.appendChild(t);
+      t.innerHTML = O, document.head.appendChild(t);
     }
   }
-  const z = `@media (min-width: 768px) {
+  const E = `@media (min-width: 768px) {
   .variant-switch-items ul li.lg\\:block.hidden {
     display: none;
   }
@@ -686,15 +686,25 @@
   }
 }
 
+.crs-variant-dialog__content.crs-color {
+  max-height: 470px;
+  overflow-y: auto;
+}
+
+
+@media (min-width: 768px) {
+  .crs-variant-dialog__content.crs-color {
+    max-height: calc(100dvh - 100px);
+  }
+}
+
 .crs-color__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 10px;
-  max-height: 470px;
   padding: 0;
   margin: 0;
   list-style: none;
-  overflow-y: auto;
 }
 
 .crs-color__item {
@@ -723,7 +733,7 @@
   line-height: 14px;
 }
 `;
-  class O {
+  class q {
     constructor() {
       this.dialog = null, this.device = window.innerWidth < 768 ? b.mobile : b.desktop, this.init();
     }
@@ -757,7 +767,7 @@
       n && (this.dialog = n);
     }
     toggleColors() {
-      p('[x-text="getColorName(product)"]').then((t) => {
+      h('[x-text="getColorName(product)"]').then((t) => {
         document.querySelector('[x-text="getColorName(product)]');
         const n = t.closest("ul");
         if (n) {
@@ -780,7 +790,7 @@
       });
     }
     eventListeners() {
-      if (p(".crs-color__item").then((t) => {
+      if (h(".crs-color__item").then((t) => {
         const n = document.querySelector("#variant-color-products-dialog-list");
         n && n.addEventListener("click", (e) => {
           var s;
@@ -791,13 +801,13 @@
               return;
             document.querySelectorAll('[x-text="getColorName(product)"]').forEach((d) => {
               if (d.textContent === a) {
-                const h = d.closest("li");
-                if (h) {
-                  h.click();
+                const l = d.closest("li");
+                if (l) {
+                  l.click();
                   const c = document.querySelector(".crs-color__item--selected");
                   c == null || c.classList.remove("crs-color__item--selected"), o.classList.add("crs-color__item--selected"), setTimeout(() => {
-                    var l;
-                    (l = this.dialog) == null || l.close();
+                    var p;
+                    (p = this.dialog) == null || p.close();
                   }, 100);
                 }
               }
@@ -814,7 +824,7 @@
       }
     }
     showHiddenColorsOnDesktop() {
-      p(".shopify-product-form .lg\\:hidden:has(strong)").then((t) => {
+      h(".shopify-product-form .lg\\:hidden:has(strong)").then((t) => {
         const n = t;
         document.querySelector(".shopify-product-form .lg\\:hidden:has(strong)"), n && n.classList.remove("lg:hidden");
       });
@@ -831,10 +841,10 @@
     }
     initStyles() {
       const t = document.createElement("style");
-      t.innerHTML = z, document.head.appendChild(t);
+      t.innerHTML = E, document.head.appendChild(t);
     }
   }
-  const D = (
+  const z = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -935,7 +945,7 @@
 }
 
 .crs-variant-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(30, 56, 81, 0.70);
 }
 
 .crs-variant-dialog__close {
@@ -1071,11 +1081,18 @@
   font-weight: 600;
   line-height: 24px;
 }
-.w-screen:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide']) > div {
+.w-screen:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) > div {
   padding: 14px;
 }
 
-:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide']) button.absolute {
+:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']):is(.bg-black\\/60, .bg-black\\/20) {
+  background: rgba(30, 56, 81, 0.70);
+}
+:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) .bg-black {
+  background: rgba(30, 56, 81, 0.50);
+
+}
+:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) button.absolute {
   position: static;
   display: flex;
   margin: 0;
@@ -1087,18 +1104,24 @@
   background-position: center;
 }
 
-:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide']) .px-4:has(button.absolute) {
-  padding: 0;
+:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) .px-4:has(button.absolute) > div {
+  justify-content: flex-end;
 }
 
-:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide']) button.absolute svg {
+@media (min-width: 768px) {
+  :is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) .px-4:has(button.absolute)  {
+    padding-inline: 0;
+  }
+}
+
+:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) button.absolute svg {
   display: none;
 }
 
-:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide']) .absolute.mt-12 {
+:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) .absolute.mt-12 {
   margin-top: 14px;
 }
-:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide']) h3 {
+:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) h3 {
   position: sticky;
   top: 0;
   padding-bottom: 14px;
@@ -1111,11 +1134,11 @@
   text-align: left;
 }
 
-:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide']) h3 + p {
+:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) h3 + p {
   margin-top: 0;
 }
 
-:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide']) .h-full > .px-6 {
+:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) .h-full > .px-6 {
   padding: 0;
 }
 
@@ -1199,6 +1222,11 @@
   width: 15px;
   height: 15px;
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.25 8C0.25 6.01088 1.04018 4.10322 2.4467 2.6967C3.85322 1.29018 5.76088 0.5 7.75 0.5C9.73912 0.5 11.6468 1.29018 13.0533 2.6967C14.4598 4.10322 15.25 6.01088 15.25 8C15.25 9.98912 14.4598 11.8968 13.0533 13.3033C11.6468 14.7098 9.73912 15.5 7.75 15.5C5.76088 15.5 3.85322 14.7098 2.4467 13.3033C1.04018 11.8968 0.25 9.98912 0.25 8ZM7.322 11.21L11.64 5.812L10.86 5.188L7.178 9.789L4.57 7.616L3.93 8.384L7.322 11.21Z" fill="%233589DA"/></svg>');
+}
+
+div:has(> .crs-headboard__save) ul {
+  display: flex;
+  padding: 0;
 }
 
 .crs-headboard__save {
@@ -1503,7 +1531,7 @@
       title: "Choose Size",
       button: {
         title: "View Dimensions",
-        icon: D
+        icon: z
       }
     },
     storage: {
@@ -1586,26 +1614,22 @@
       (s = this.aborters) == null || s.push(o), !(!n || !e || !i) && (t ? (i == null || i.insertAdjacentElement("beforeend", n), i.querySelector(".variant-switch-products"), i.addEventListener(
         "click",
         (a) => {
-          var d, h, c, l, g, u;
-          const r = a.target;
-          if (r.closest("li") || r.closest(".crs-item-dimensional")) {
-            this.renderSizeItemsOnDialog(), setTimeout(() => {
-              this.closeDialog();
-            }, 500);
-            const f = (c = (h = (d = r.closest("li")) == null ? void 0 : d.querySelector('[x-text="item.value"]')) == null ? void 0 : h.textContent) == null ? void 0 : c.toLowerCase(), x = (u = (g = (l = r.closest(".crs-variant-dialog")) == null ? void 0 : l.querySelector("h3")) == null ? void 0 : g.textContent) == null ? void 0 : u.toLowerCase();
-            v("exp_pdp_imp__popup_option", `${f}`, "click", `${x}`);
-          }
+          var c, p, g, m, v, x;
+          const r = a.target, d = (g = (p = (c = r.closest("li")) == null ? void 0 : c.querySelector('[x-text="item.value"]')) == null ? void 0 : p.textContent) == null ? void 0 : g.toLowerCase(), l = (x = (v = (m = r.closest(".crs-variant-dialog")) == null ? void 0 : m.querySelector("h3")) == null ? void 0 : v.textContent) == null ? void 0 : x.toLowerCase();
+          (r.closest("li") || r.closest(".crs-item-dimensional")) && (this.renderSizeItemsOnDialog(), setTimeout(() => {
+            console.log("dialogTitle", l, l !== "Choose Headboard"), l != null && l.includes("headboard") || this.closeDialog();
+          }, 500), f("exp_pdp_imp__popup_option", `${d}`, "click", `${l}`));
         },
         { signal: o.signal }
       )) : (e == null || e.insertAdjacentElement("afterend", n), this.renderSizeDimension()));
     }
     eventListeners() {
-      if (p('[data-button="dimension"]').then((n) => {
+      if (h('[data-button="dimension"]').then((n) => {
         n.addEventListener("click", () => {
           const i = document.querySelector('[x-show*="Size"] span');
           i && i.click(), this.closeDialog();
         });
-      }), p('[data-button="basetype"]').then((n) => {
+      }), h('[data-button="basetype"]').then((n) => {
         n.addEventListener("click", () => {
           const i = document.querySelector('[x-show*="Base"] span');
           i && i.click(), this.closeDialog();
@@ -1617,13 +1641,13 @@
         var e, i;
         this.closeDialog();
         const n = (i = (e = this.dialog) == null ? void 0 : e.querySelector("h3")) == null ? void 0 : i.textContent;
-        v("exp_pdp_imp__popup_close", "Close", "click", `${n}`);
+        f("exp_pdp_imp__popup_close", "Close", "click", `${n}`);
       }), this.dialog.addEventListener("click", (n) => {
         n.target === this.dialog && this.closeDialog();
       });
     }
     changeDimensionDialog() {
-      p('[x-show="slideOverDimension"].w-screen').then((t) => {
+      h('[x-show="slideOverDimension"].w-screen').then((t) => {
         const n = t;
         n.insertAdjacentHTML(
           "afterbegin",
@@ -1638,7 +1662,7 @@
       });
     }
     changeOpenDialog() {
-      p('[x-show="slideOverOpen"].w-screen').then(() => {
+      h('[x-show="slideOverOpen"].w-screen').then(() => {
         document.querySelectorAll('[x-show="slideOverOpen"].w-screen').forEach((n) => {
           var e, i;
           if ((i = (e = n.querySelector("h3")) == null ? void 0 : e.textContent) != null && i.includes("Base Type")) {
@@ -1665,11 +1689,11 @@
         return;
       const e = document.createElement("button");
       e.textContent = "Save & Continue", e.classList.add("crs-headboard__save"), n.insertAdjacentElement("afterend", e), e.addEventListener("click", () => {
-        this.closeDialog(), v("exp_pdp_imp__save_button", "Save & continue", "click", "Choose Headboard");
+        this.closeDialog(), f("exp_pdp_imp__save_button", "Save & continue", "click", "Choose Headboard");
       });
     }
     changeBaseTypeDialog() {
-      p('[data-variant="baseType"] ul li svg').then((t) => {
+      h('[data-variant="baseType"] ul li svg').then((t) => {
         document.querySelectorAll('[data-variant="baseType"] ul li').forEach((e) => {
           const i = e.querySelector("div"), o = e == null ? void 0 : e.querySelector("svg"), s = e == null ? void 0 : e.querySelector("small");
           !i || !o || !s || (i.insertAdjacentElement("beforeend", o), i.insertAdjacentElement("beforeend", s));
@@ -1678,13 +1702,13 @@
     }
     changeMattressDialog() {
       document.querySelectorAll('[x-show="slideOverOpenSide"].w-screen').forEach((n) => {
-        var a, r, d, h;
+        var a, r, d, l;
         const e = n.querySelector("h3"), i = n;
         if ((a = e == null ? void 0 : e.textContent) != null && a.includes("Select Mattress and Save")) {
           i.classList.add("crs-mattress-dialog"), e.innerHTML = 'Choose Mattress <span style="color: #ED0006">GET 50% Off</span>';
           const c = i.querySelector("div:has(> .card-addons)");
           if (c) {
-            const l = (
+            const p = (
               /* HTML */
               `
             <div class="card-addons  added cursor-pointer hover:border-tertiary border-2 crs-no-mattress">
@@ -1699,12 +1723,12 @@
             </div>
           `
             );
-            (r = c.querySelector(".card-addons")) == null || r.insertAdjacentHTML("beforebegin", l);
+            (r = c.querySelector(".card-addons")) == null || r.insertAdjacentHTML("beforebegin", p);
           }
         }
         if ((d = e == null ? void 0 : e.textContent) != null && d.includes("Choose Mattress GET 50% Off")) {
-          const c = i.querySelector("div:has(> .card-addons)"), l = n.querySelector(".crs-no-mattress");
-          if (l && (l.remove(), c)) {
+          const c = i.querySelector("div:has(> .card-addons)"), p = n.querySelector(".crs-no-mattress");
+          if (p && (p.remove(), c)) {
             const g = (
               /* HTML */
               `
@@ -1720,28 +1744,28 @@
               </div>
             `
             );
-            (h = c.querySelector(".card-addons")) == null || h.insertAdjacentHTML("beforebegin", g);
+            (l = c.querySelector(".card-addons")) == null || l.insertAdjacentHTML("beforebegin", g);
           }
         }
         const o = new AbortController(), s = i.querySelector("button.absolute");
         s == null || s.addEventListener(
           "click",
           () => {
-            v("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
+            f("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress "), this.aborters.forEach((c) => {
+              c.abort();
+            });
           },
           {
             signal: o.signal
           }
         ), this.aborters.push(o), i == null || i.addEventListener("click", (c) => {
           var g;
-          const l = c.target;
-          if (l.closest(".crs-no-mattress") && (s == null || s.addEventListener("click", () => {
-            v("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
-          }), this.aborters.forEach((u) => {
-            u.abort();
-          }), s == null || s.click()), l.closest(".ss-tabs")) {
-            const u = i.querySelector("div:has(> .card-addons)"), f = n.querySelector(".crs-no-mattress");
-            if (f && (f.remove(), u)) {
+          const p = c.target;
+          if (p.closest(".crs-no-mattress") && (s == null || s.addEventListener("click", () => {
+            f("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
+          }), s == null || s.click()), p.closest(".ss-tabs")) {
+            const m = i.querySelector("div:has(> .card-addons)"), v = n.querySelector(".crs-no-mattress");
+            if (v && (v.remove(), m)) {
               const x = (
                 /* HTML */
                 `
@@ -1757,14 +1781,14 @@
                 </div>
               `
               );
-              (g = u.querySelector(".card-addons")) == null || g.insertAdjacentHTML("beforebegin", x);
+              (g = m.querySelector(".card-addons")) == null || g.insertAdjacentHTML("beforebegin", x);
             }
           }
         });
       });
     }
     addMattressChoosingOption() {
-      p(".variant-switch-items ul").then(() => {
+      h(".variant-switch-items ul").then(() => {
         if (document.querySelector(".variant-switch-items ul .crs-mattress"))
           return;
         const n = document.querySelector(".variant-switch-items ul");
@@ -1788,10 +1812,10 @@
         i == null || i.addEventListener("click", () => {
           this.changeMattressDialog(), document.querySelectorAll(".product-details .lg\\:block .card-addons").forEach((s) => {
             var a, r, d;
-            ((a = s.textContent) != null && a.includes("Add Mattress & Save") || s.querySelector('[x-if="selectedMattress"]')) && ((r = s.querySelector("button")) == null || r.click()), s.querySelector('[x-text*="selectedMattress"]') && ((d = s.querySelector(".card-button button")) == null || d.click(), p(".product-details .lg\\:block .card-addons").then(() => {
+            ((a = s.textContent) != null && a.includes("Add Mattress & Save") || s.querySelector('[x-if="selectedMattress"]')) && ((r = s.querySelector("button")) == null || r.click()), s.querySelector('[x-text*="selectedMattress"]') && ((d = s.querySelector(".card-button button")) == null || d.click(), h(".product-details .lg\\:block .card-addons").then(() => {
               document.querySelectorAll(".product-details .lg\\:block .card-addons").forEach((c) => {
-                var l, g;
-                ((l = c.textContent) != null && l.includes("Add Mattress & Save") || c.querySelector('[x-if="selectedMattress"]')) && ((g = c.querySelector("button")) == null || g.click());
+                var p, g;
+                ((p = c.textContent) != null && p.includes("Add Mattress & Save") || c.querySelector('[x-if="selectedMattress"]')) && ((g = c.querySelector("button")) == null || g.click());
               });
             }));
           });
@@ -1799,7 +1823,7 @@
       });
     }
     changePositionMattressItemOnDesktop() {
-      p(".product-details .lg\\:block .card-addons").then((t) => {
+      h(".product-details .lg\\:block .card-addons").then((t) => {
         const n = document.querySelector(".product-details .lg\\:block"), e = document.querySelector(".variant-switch-items ul"), i = document.querySelectorAll(".product-details .lg\\:block .card-addons");
         if (!e || !i)
           return;
@@ -1809,9 +1833,9 @@
         }), new MutationObserver((s) => {
           s.forEach((a) => {
             a.addedNodes.forEach((r) => {
-              var h, c;
+              var l, c;
               const d = r;
-              d.classList.contains("added") && ((h = d.textContent) != null && h.includes("Mattress")) && d.classList.add("crs-mattress--hidden"), (c = d.textContent) != null && c.includes("Add Mattress & Save") && d.classList.add("crs-mattress--hidden");
+              d.classList.contains("added") && ((l = d.textContent) != null && l.includes("Mattress")) && d.classList.add("crs-mattress--hidden"), (c = d.textContent) != null && c.includes("Add Mattress & Save") && d.classList.add("crs-mattress--hidden");
             });
           });
         }).observe(n, {
@@ -1820,21 +1844,21 @@
       });
     }
     renderSizeItemsOnDialog() {
-      p('[data-variant="size"] .variant-switch-products').then((t) => {
+      h('[data-variant="size"] .variant-switch-products').then((t) => {
         const n = t, e = document.querySelectorAll(".variant-switch-items ul li");
         e && e.forEach((i) => {
           var s, a;
           const o = i.querySelector('[x-text="option.name"]');
           if ((s = o == null ? void 0 : o.textContent) != null && s.toLowerCase().includes("headboard")) {
-            const d = o.nextElementSibling.textContent, h = (a = this.sizes) == null ? void 0 : a.filter((l) => d == null ? void 0 : d.includes(l.headboard)), c = n.querySelectorAll("ul li");
-            c == null || c.forEach((l) => {
-              const g = l.querySelector('[x-text="item.value"]');
-              h == null || h.forEach((u) => {
-                (g == null ? void 0 : g.textContent) === u.size && g.insertAdjacentHTML(
+            const d = o.nextElementSibling.textContent, l = (a = this.sizes) == null ? void 0 : a.filter((p) => d == null ? void 0 : d.includes(p.headboard)), c = n.querySelectorAll("ul li");
+            c == null || c.forEach((p) => {
+              const g = p.querySelector('[x-text="item.value"]');
+              l == null || l.forEach((m) => {
+                (g == null ? void 0 : g.textContent) === m.size && g.insertAdjacentHTML(
                   "beforeend",
                   /* HTML */
                   `<div class="crs-item-dimensional">
-                    W: ${u.dimensions.width} L: ${u.dimensions.length} H: ${u.dimensions.height}
+                    W: ${m.dimensions.width} L: ${m.dimensions.length} H: ${m.dimensions.height}
                   </div>`
                 );
               });
@@ -1844,7 +1868,7 @@
       });
     }
     renderSizeDimension() {
-      this.device === b.desktop && p(".variant-switch-items ul li").then(() => {
+      this.device === b.desktop && h(".variant-switch-items ul li").then(() => {
         const t = () => {
           if (!this.sizes)
             return;
@@ -1855,9 +1879,9 @@
               return;
             if ((((a = o.textContent) == null ? void 0 : a.toLowerCase()) || "").includes("size")) {
               const r = o.nextElementSibling, d = () => {
-                var u, f;
-                const c = (r.textContent || "").replace(/\s*\([^)]*\)/, "").trim(), l = ((u = document.querySelector('[x-html*="headboard"]')) == null ? void 0 : u.textContent) || "", g = (f = this.sizes) == null ? void 0 : f.find(
-                  (x) => l.includes(x.headboard) && x.size === c
+                var m, v;
+                const c = (r.textContent || "").replace(/\s*\([^)]*\)/, "").trim(), p = ((m = document.querySelector('[x-html*="headboard"]')) == null ? void 0 : m.textContent) || "", g = (v = this.sizes) == null ? void 0 : v.find(
+                  (x) => p.includes(x.headboard) && x.size === c
                 );
                 if (g) {
                   const x = (
@@ -1947,25 +1971,25 @@
 `;
   class A {
     constructor() {
-      this.variantSwitchPopup = new T(), this.variantColorPopup = new O(), this.init();
+      this.variantSwitchPopup = new T(), this.variantColorPopup = new q(), this.init();
     }
     init() {
       this.initStyles(), this.eventsListeners();
     }
     eventsListeners() {
-      p(".variant-switch-items").then((t) => {
+      h(".variant-switch-items").then((t) => {
         t.addEventListener("click", (n) => {
           var i, o, s;
           const e = n.target;
           if (e.closest("li")) {
             const a = (s = (o = (i = e.closest("li")) == null ? void 0 : i.querySelector(".text-primary")) == null ? void 0 : o.textContent) == null ? void 0 : s.toLowerCase(), r = a === "size" ? "size" : a === "storage" ? "storage" : a === "headboard" ? "headboard" : a === "base type" ? "baseType" : "";
-            this.variantSwitchPopup.openDialog(r), v("exp_pdp_imp__option", `${a}`, "click", "Select Option");
+            this.variantSwitchPopup.openDialog(r), f("exp_pdp_imp__option", `${a}`, "click", "Select Option");
           }
         });
-      }), p('[x-text="selectedProduct"]').then((t) => {
+      }), h('[x-text="selectedProduct"]').then((t) => {
         document.querySelectorAll('[x-text="selectedProduct"]').forEach((e) => {
           e.parentElement.addEventListener("click", () => {
-            this.variantColorPopup.openDialog(), v("exp_pdp_imp__option", "color", "click", "Select Option");
+            this.variantColorPopup.openDialog(), f("exp_pdp_imp__option", "color", "click", "Select Option");
           });
         });
       });
@@ -1984,7 +2008,7 @@
       this.init();
     }
     async init() {
-      await p('#MainContent[x-data="product"]') && (new A(), new q(), new M());
+      await h('#MainContent[x-data="product"]') && (new A(), new D(), new M());
     }
   }
   new B();
