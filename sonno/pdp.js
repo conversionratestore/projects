@@ -13,6 +13,10 @@
       `%c EXP: ${m} (DEV: ${t})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
+  }, L = (m) => {
+    let t = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", m, "variant_1"));
+    }, 1e3);
   };
   function p(m) {
     return new Promise((t) => {
@@ -31,7 +35,7 @@
   const b = {
     mobile: "mobile",
     desktop: "desktop"
-  }, w = "https://conversionratestore.github.io/projects/sonno", L = `@media (min-width: 768px) {
+  }, w = "https://conversionratestore.github.io/projects/sonno", S = `@media (min-width: 768px) {
   .product-info > div:has(h1) {
     display: flex;
     flex-direction: column;
@@ -232,7 +236,7 @@
   line-height: 24px;
 }
 `;
-  class S {
+  class M {
     constructor() {
       this.device = window.innerWidth < 768 ? b.mobile : b.desktop, this.init();
     }
@@ -270,10 +274,10 @@
     }
     initStyles() {
       const t = document.createElement("style");
-      t.innerHTML = L, document.head.appendChild(t);
+      t.innerHTML = S, document.head.appendChild(t);
     }
   }
-  const M = `.crs-sticky {
+  const E = `.crs-sticky {
   position: fixed;
   display: none;
   bottom: 0;
@@ -527,7 +531,7 @@
   }
 }
 `;
-  class E {
+  class q {
     constructor() {
       this.sticky = null, this.init();
     }
@@ -635,10 +639,10 @@
     }
     initStyles() {
       const t = document.createElement("style");
-      t.innerHTML = M, document.head.appendChild(t);
+      t.innerHTML = E, document.head.appendChild(t);
     }
   }
-  const q = `@media (min-width: 768px) {
+  const z = `@media (min-width: 768px) {
   .variant-switch-items ul li.lg\\:block.hidden {
     display: none;
   }
@@ -719,7 +723,7 @@
   line-height: 14px;
 }
 `;
-  class z {
+  class O {
     constructor() {
       this.dialog = null, this.device = window.innerWidth < 768 ? b.mobile : b.desktop, this.init();
     }
@@ -827,10 +831,10 @@
     }
     initStyles() {
       const t = document.createElement("style");
-      t.innerHTML = q, document.head.appendChild(t);
+      t.innerHTML = z, document.head.appendChild(t);
     }
   }
-  const O = (
+  const D = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -854,7 +858,7 @@
     fill="#1E3851"
   />
 </svg>  `
-  ), D = `.variant-switch {
+  ), H = `.variant-switch {
   padding-bottom: 0;
 }
 
@@ -1499,7 +1503,7 @@
       title: "Choose Size",
       button: {
         title: "View Dimensions",
-        icon: O
+        icon: D
       }
     },
     storage: {
@@ -1512,7 +1516,7 @@
       title: "Choose Base Type"
     }
   };
-  class H {
+  class T {
     constructor() {
       this.dialog = null, this.device = window.innerWidth < 768 ? b.mobile : b.desktop, this.sizes = null, this.aborters = [], this.init();
     }
@@ -1897,10 +1901,10 @@
     }
     initStyles() {
       const t = document.createElement("style");
-      t.innerHTML = D, document.head.appendChild(t);
+      t.innerHTML = H, document.head.appendChild(t);
     }
   }
-  const T = `.variant-switch-items ul {
+  const P = `.variant-switch-items ul {
   grid-template-columns: 1fr;
 }
 
@@ -1941,9 +1945,9 @@
   line-height: 20px;
 }
 `;
-  class P {
+  class A {
     constructor() {
-      this.variantSwitchPopup = new H(), this.variantColorPopup = new z(), this.init();
+      this.variantSwitchPopup = new T(), this.variantColorPopup = new O(), this.init();
     }
     init() {
       this.initStyles(), this.eventsListeners();
@@ -1968,20 +1972,20 @@
     }
     initStyles() {
       const t = document.createElement("style");
-      t.innerHTML = T, document.head.appendChild(t);
+      t.innerHTML = P, document.head.appendChild(t);
     }
   }
   C({
-    name: "pdp",
+    name: "Focus on increasing the perceived value of the product on PDP",
     dev: "OS"
-  });
-  class A {
+  }), L("exp_01_exit_intent");
+  class B {
     constructor() {
       this.init();
     }
     async init() {
-      await p('#MainContent[x-data="product"]') && (new P(), new E(), new S());
+      await p('#MainContent[x-data="product"]') && (new A(), new q(), new M());
     }
   }
-  new A();
+  new B();
 })();
