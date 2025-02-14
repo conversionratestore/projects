@@ -18,7 +18,7 @@
       typeof window.clarity == "function" && (clearInterval(t), window.clarity("set", u, "variant_1"));
     }, 1e3);
   };
-  function h(u) {
+  function p(u) {
     return new Promise((t) => {
       if (document.querySelector(u))
         return t(document.querySelector(u));
@@ -35,7 +35,13 @@
   const b = {
     mobile: "mobile",
     desktop: "desktop"
-  }, w = "https://conversionratestore.github.io/projects/sonno", S = `@media (min-width: 768px) {
+  }, w = "https://conversionratestore.github.io/projects/sonno", S = `@media (max-width: 767px) {
+  .product-details .mb-\\[26px\\]:has(p.text-primary) {
+    margin-bottom: 8px;
+  }
+}
+
+@media (min-width: 768px) {
   .product-info > div:has(h1) {
     display: flex;
     flex-direction: column;
@@ -169,6 +175,10 @@
   padding: 0;
 }
 
+.about-payment-details .item-details:last-child {
+  border: none;
+}
+
 @media (min-width: 768px) {
   .app-sonno-cc {
     display: none;
@@ -244,7 +254,7 @@
       this.initStyles(), this.addNewDeliverySection(), this.changePriceElementPosition(), this.changeAboutPaymentPosition();
     }
     addNewDeliverySection() {
-      h(".footer-add-cart").then((t) => {
+      p(".footer-add-cart").then((t) => {
         var o;
         const n = t, i = (
           /* HTML */
@@ -259,15 +269,15 @@
       });
     }
     changePriceElementPosition() {
-      h(".price-pro").then((t) => {
-        h(".crs-delivery").then((n) => {
+      p(".price-pro").then((t) => {
+        p(".crs-delivery").then((n) => {
           const e = t, i = n;
           e && i && i.insertAdjacentElement("afterend", e);
         });
       });
     }
     changeAboutPaymentPosition() {
-      h(".about-payment-details").then((t) => {
+      p(".about-payment-details").then((t) => {
         const n = document.querySelector(".footer-add-cart"), e = t;
         e && n && n.insertAdjacentElement("afterend", e);
       });
@@ -539,9 +549,9 @@
       this.initStyles(), this.render(), this.fillProductData(), this.eventListeners(), this.showSticky();
     }
     render() {
-      h(".productGalleryLightbox li img").then((t) => {
-        var d, l, c, p;
-        const n = (d = document.querySelector("section.product-details p.leading-normal ")) == null ? void 0 : d.textContent, e = (l = document.querySelector('td[x-text="calculation.total"]')) == null ? void 0 : l.textContent, i = (c = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : c.textContent, o = (p = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : p.textContent, s = t, a = (
+      p(".productGalleryLightbox li img").then((t) => {
+        var d, h, c, l;
+        const n = (d = document.querySelector("section.product-details p.leading-normal ")) == null ? void 0 : d.textContent, e = (h = document.querySelector('td[x-text="calculation.total"]')) == null ? void 0 : h.textContent, i = (c = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : c.textContent, o = (l = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : l.textContent, s = t, a = (
           /* HTML */
           `
         <div class="crs-sticky">
@@ -582,7 +592,7 @@
       });
     }
     showSticky() {
-      h(".product-details .footer-add-cart button").then((t) => {
+      p(".product-details .footer-add-cart button").then((t) => {
         const n = t;
         n && new IntersectionObserver(
           (i) => {
@@ -597,14 +607,14 @@
       });
     }
     eventListeners() {
-      h('[data-button="to-options"]').then((t) => {
+      p('[data-button="to-options"]').then((t) => {
         document.querySelectorAll('[data-button="to-options"]').forEach((e) => {
           e.addEventListener("click", () => {
             const i = document.querySelector(".shopify-product-form");
             i && (f("exp_pdp_imp__options_sticky", "Choose options", "click", "Sticky section"), i.scrollIntoView({ behavior: "smooth" }));
           });
         });
-      }), h('[data-button="add-to-basket"]').then((t) => {
+      }), p('[data-button="add-to-basket"]').then((t) => {
         t.addEventListener("click", () => {
           const e = document.querySelector(".footer-add-cart button");
           e && (e.click(), f("exp_pdp_imp__add_sticky", "Add to Basket", "click", "Sticky section"));
@@ -621,19 +631,19 @@
           }
         });
       });
-      h(".productGalleryLightbox").then((i) => {
+      p(".productGalleryLightbox").then((i) => {
         n.observe(i, t);
       });
       const e = new MutationObserver((i) => {
         i.forEach((o) => {
-          var a, r, d, l, c, p;
+          var a, r, d, h, c, l;
           if (o.target.getAttribute("x-text") === "calculation.total") {
-            const g = (a = document.querySelector("section.price-pro > div")) == null ? void 0 : a.textContent, m = (r = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : r.textContent, v = (d = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : d.textContent, x = (l = this.sticky) == null ? void 0 : l.querySelector(".crs-sticky__product-price .current"), _ = (c = this.sticky) == null ? void 0 : c.querySelector(".crs-sticky__product-price .compare"), k = (p = this.sticky) == null ? void 0 : p.querySelector(".crs-sticky__product-price .save");
+            const g = (a = document.querySelector("section.price-pro > div")) == null ? void 0 : a.textContent, m = (r = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : r.textContent, v = (d = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : d.textContent, x = (h = this.sticky) == null ? void 0 : h.querySelector(".crs-sticky__product-price .current"), _ = (c = this.sticky) == null ? void 0 : c.querySelector(".crs-sticky__product-price .compare"), k = (l = this.sticky) == null ? void 0 : l.querySelector(".crs-sticky__product-price .save");
             x && g && (x.textContent = g, _ && m && k && v && (_.textContent = m, k.textContent = v));
           }
         });
       });
-      h('td[x-text="calculation.total"]').then((i) => {
+      p('td[x-text="calculation.total"]').then((i) => {
         e.observe(i, t);
       });
     }
@@ -691,7 +701,6 @@
   overflow-y: auto;
 }
 
-
 @media (min-width: 768px) {
   .crs-variant-dialog__content.crs-color {
     max-height: calc(100dvh - 100px);
@@ -732,6 +741,18 @@
   font-weight: 500;
   line-height: 14px;
 }
+
+.crs-colors--desktop ul li {
+  width: 86px;
+  height: 115px;
+}
+
+@media (min-width: 768px) {
+  .crs-colors--desktop ul li {
+    width: 97px;
+    height: 102px;
+  }
+}
 `;
   class q {
     constructor() {
@@ -767,7 +788,7 @@
       n && (this.dialog = n);
     }
     toggleColors() {
-      h('[x-text="getColorName(product)"]').then((t) => {
+      p('[x-text="getColorName(product)"]').then((t) => {
         document.querySelector('[x-text="getColorName(product)]');
         const n = t.closest("ul");
         if (n) {
@@ -790,7 +811,7 @@
       });
     }
     eventListeners() {
-      if (h(".crs-color__item").then((t) => {
+      if (p(".crs-color__item").then((t) => {
         const n = document.querySelector("#variant-color-products-dialog-list");
         n && n.addEventListener("click", (e) => {
           var s;
@@ -801,13 +822,13 @@
               return;
             document.querySelectorAll('[x-text="getColorName(product)"]').forEach((d) => {
               if (d.textContent === a) {
-                const l = d.closest("li");
-                if (l) {
-                  l.click();
+                const h = d.closest("li");
+                if (h) {
+                  h.click();
                   const c = document.querySelector(".crs-color__item--selected");
                   c == null || c.classList.remove("crs-color__item--selected"), o.classList.add("crs-color__item--selected"), setTimeout(() => {
-                    var p;
-                    (p = this.dialog) == null || p.close();
+                    var l;
+                    (l = this.dialog) == null || l.close();
                   }, 100);
                 }
               }
@@ -824,9 +845,9 @@
       }
     }
     showHiddenColorsOnDesktop() {
-      h(".shopify-product-form .lg\\:hidden:has(strong)").then((t) => {
+      p(".shopify-product-form .lg\\:hidden:has(strong)").then((t) => {
         const n = t;
-        document.querySelector(".shopify-product-form .lg\\:hidden:has(strong)"), n && n.classList.remove("lg:hidden");
+        document.querySelector(".shopify-product-form .lg\\:hidden:has(strong)"), n && (n.classList.remove("lg:hidden"), n.classList.add("crs-colors--desktop"));
       });
     }
     openDialog() {
@@ -1324,7 +1345,7 @@ div:has(> .crs-headboard__save) ul {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .variant-switch + div .card-addons:first-of-type {
     display: none;
   }
@@ -1614,22 +1635,22 @@ div:has(> .crs-headboard__save) ul {
       (s = this.aborters) == null || s.push(o), !(!n || !e || !i) && (t ? (i == null || i.insertAdjacentElement("beforeend", n), i.querySelector(".variant-switch-products"), i.addEventListener(
         "click",
         (a) => {
-          var c, p, g, m, v, x;
-          const r = a.target, d = (g = (p = (c = r.closest("li")) == null ? void 0 : c.querySelector('[x-text="item.value"]')) == null ? void 0 : p.textContent) == null ? void 0 : g.toLowerCase(), l = (x = (v = (m = r.closest(".crs-variant-dialog")) == null ? void 0 : m.querySelector("h3")) == null ? void 0 : v.textContent) == null ? void 0 : x.toLowerCase();
+          var c, l, g, m, v, x;
+          const r = a.target, d = (g = (l = (c = r.closest("li")) == null ? void 0 : c.querySelector('[x-text="item.value"]')) == null ? void 0 : l.textContent) == null ? void 0 : g.toLowerCase(), h = (x = (v = (m = r.closest(".crs-variant-dialog")) == null ? void 0 : m.querySelector("h3")) == null ? void 0 : v.textContent) == null ? void 0 : x.toLowerCase();
           (r.closest("li") || r.closest(".crs-item-dimensional")) && (this.renderSizeItemsOnDialog(), setTimeout(() => {
-            console.log("dialogTitle", l, l !== "Choose Headboard"), l != null && l.includes("headboard") || this.closeDialog();
-          }, 500), f("exp_pdp_imp__popup_option", `${d}`, "click", `${l}`));
+            h != null && h.includes("headboard") || this.closeDialog();
+          }, 500), f("exp_pdp_imp__popup_option", `${d}`, "click", `${h}`));
         },
         { signal: o.signal }
       )) : (e == null || e.insertAdjacentElement("afterend", n), this.renderSizeDimension()));
     }
     eventListeners() {
-      if (h('[data-button="dimension"]').then((n) => {
+      if (p('[data-button="dimension"]').then((n) => {
         n.addEventListener("click", () => {
           const i = document.querySelector('[x-show*="Size"] span');
           i && i.click(), this.closeDialog();
         });
-      }), h('[data-button="basetype"]').then((n) => {
+      }), p('[data-button="basetype"]').then((n) => {
         n.addEventListener("click", () => {
           const i = document.querySelector('[x-show*="Base"] span');
           i && i.click(), this.closeDialog();
@@ -1647,7 +1668,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     changeDimensionDialog() {
-      h('[x-show="slideOverDimension"].w-screen').then((t) => {
+      p('[x-show="slideOverDimension"].w-screen').then((t) => {
         const n = t;
         n.insertAdjacentHTML(
           "afterbegin",
@@ -1662,7 +1683,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     changeOpenDialog() {
-      h('[x-show="slideOverOpen"].w-screen').then(() => {
+      p('[x-show="slideOverOpen"].w-screen').then(() => {
         document.querySelectorAll('[x-show="slideOverOpen"].w-screen').forEach((n) => {
           var e, i;
           if ((i = (e = n.querySelector("h3")) == null ? void 0 : e.textContent) != null && i.includes("Base Type")) {
@@ -1693,7 +1714,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     changeBaseTypeDialog() {
-      h('[data-variant="baseType"] ul li svg').then((t) => {
+      p('[data-variant="baseType"] ul li svg').then((t) => {
         document.querySelectorAll('[data-variant="baseType"] ul li').forEach((e) => {
           const i = e.querySelector("div"), o = e == null ? void 0 : e.querySelector("svg"), s = e == null ? void 0 : e.querySelector("small");
           !i || !o || !s || (i.insertAdjacentElement("beforeend", o), i.insertAdjacentElement("beforeend", s));
@@ -1702,13 +1723,13 @@ div:has(> .crs-headboard__save) ul {
     }
     changeMattressDialog() {
       document.querySelectorAll('[x-show="slideOverOpenSide"].w-screen').forEach((n) => {
-        var a, r, d, l;
+        var a, r, d, h;
         const e = n.querySelector("h3"), i = n;
         if ((a = e == null ? void 0 : e.textContent) != null && a.includes("Select Mattress and Save")) {
           i.classList.add("crs-mattress-dialog"), e.innerHTML = 'Choose Mattress <span style="color: #ED0006">GET 50% Off</span>';
           const c = i.querySelector("div:has(> .card-addons)");
           if (c) {
-            const p = (
+            const l = (
               /* HTML */
               `
             <div class="card-addons  added cursor-pointer hover:border-tertiary border-2 crs-no-mattress">
@@ -1723,12 +1744,12 @@ div:has(> .crs-headboard__save) ul {
             </div>
           `
             );
-            (r = c.querySelector(".card-addons")) == null || r.insertAdjacentHTML("beforebegin", p);
+            (r = c.querySelector(".card-addons")) == null || r.insertAdjacentHTML("beforebegin", l);
           }
         }
         if ((d = e == null ? void 0 : e.textContent) != null && d.includes("Choose Mattress GET 50% Off")) {
-          const c = i.querySelector("div:has(> .card-addons)"), p = n.querySelector(".crs-no-mattress");
-          if (p && (p.remove(), c)) {
+          const c = i.querySelector("div:has(> .card-addons)"), l = n.querySelector(".crs-no-mattress");
+          if (l && (l.remove(), c)) {
             const g = (
               /* HTML */
               `
@@ -1744,7 +1765,7 @@ div:has(> .crs-headboard__save) ul {
               </div>
             `
             );
-            (l = c.querySelector(".card-addons")) == null || l.insertAdjacentHTML("beforebegin", g);
+            (h = c.querySelector(".card-addons")) == null || h.insertAdjacentHTML("beforebegin", g);
           }
         }
         const o = new AbortController(), s = i.querySelector("button.absolute");
@@ -1760,10 +1781,10 @@ div:has(> .crs-headboard__save) ul {
           }
         ), this.aborters.push(o), i == null || i.addEventListener("click", (c) => {
           var g;
-          const p = c.target;
-          if (p.closest(".crs-no-mattress") && (s == null || s.addEventListener("click", () => {
+          const l = c.target;
+          if (l.closest(".crs-no-mattress") && (s == null || s.addEventListener("click", () => {
             f("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
-          }), s == null || s.click()), p.closest(".ss-tabs")) {
+          }), s == null || s.click()), l.closest(".ss-tabs")) {
             const m = i.querySelector("div:has(> .card-addons)"), v = n.querySelector(".crs-no-mattress");
             if (v && (v.remove(), m)) {
               const x = (
@@ -1788,7 +1809,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     addMattressChoosingOption() {
-      h(".variant-switch-items ul").then(() => {
+      p(".variant-switch-items ul").then(() => {
         if (document.querySelector(".variant-switch-items ul .crs-mattress"))
           return;
         const n = document.querySelector(".variant-switch-items ul");
@@ -1812,10 +1833,10 @@ div:has(> .crs-headboard__save) ul {
         i == null || i.addEventListener("click", () => {
           this.changeMattressDialog(), document.querySelectorAll(".product-details .lg\\:block .card-addons").forEach((s) => {
             var a, r, d;
-            ((a = s.textContent) != null && a.includes("Add Mattress & Save") || s.querySelector('[x-if="selectedMattress"]')) && ((r = s.querySelector("button")) == null || r.click()), s.querySelector('[x-text*="selectedMattress"]') && ((d = s.querySelector(".card-button button")) == null || d.click(), h(".product-details .lg\\:block .card-addons").then(() => {
+            ((a = s.textContent) != null && a.includes("Add Mattress & Save") || s.querySelector('[x-if="selectedMattress"]')) && ((r = s.querySelector("button")) == null || r.click()), s.querySelector('[x-text*="selectedMattress"]') && ((d = s.querySelector(".card-button button")) == null || d.click(), p(".product-details .lg\\:block .card-addons").then(() => {
               document.querySelectorAll(".product-details .lg\\:block .card-addons").forEach((c) => {
-                var p, g;
-                ((p = c.textContent) != null && p.includes("Add Mattress & Save") || c.querySelector('[x-if="selectedMattress"]')) && ((g = c.querySelector("button")) == null || g.click());
+                var l, g;
+                ((l = c.textContent) != null && l.includes("Add Mattress & Save") || c.querySelector('[x-if="selectedMattress"]')) && ((g = c.querySelector("button")) == null || g.click());
               });
             }));
           });
@@ -1823,7 +1844,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     changePositionMattressItemOnDesktop() {
-      h(".product-details .lg\\:block .card-addons").then((t) => {
+      p(".product-details .lg\\:block .card-addons").then((t) => {
         const n = document.querySelector(".product-details .lg\\:block"), e = document.querySelector(".variant-switch-items ul"), i = document.querySelectorAll(".product-details .lg\\:block .card-addons");
         if (!e || !i)
           return;
@@ -1833,9 +1854,9 @@ div:has(> .crs-headboard__save) ul {
         }), new MutationObserver((s) => {
           s.forEach((a) => {
             a.addedNodes.forEach((r) => {
-              var l, c;
+              var h, c;
               const d = r;
-              d.classList.contains("added") && ((l = d.textContent) != null && l.includes("Mattress")) && d.classList.add("crs-mattress--hidden"), (c = d.textContent) != null && c.includes("Add Mattress & Save") && d.classList.add("crs-mattress--hidden");
+              d.classList.contains("added") && ((h = d.textContent) != null && h.includes("Mattress")) && d.classList.add("crs-mattress--hidden"), (c = d.textContent) != null && c.includes("Add Mattress & Save") && d.classList.add("crs-mattress--hidden");
             });
           });
         }).observe(n, {
@@ -1844,16 +1865,16 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     renderSizeItemsOnDialog() {
-      h('[data-variant="size"] .variant-switch-products').then((t) => {
+      p('[data-variant="size"] .variant-switch-products').then((t) => {
         const n = t, e = document.querySelectorAll(".variant-switch-items ul li");
         e && e.forEach((i) => {
           var s, a;
           const o = i.querySelector('[x-text="option.name"]');
           if ((s = o == null ? void 0 : o.textContent) != null && s.toLowerCase().includes("headboard")) {
-            const d = o.nextElementSibling.textContent, l = (a = this.sizes) == null ? void 0 : a.filter((p) => d == null ? void 0 : d.includes(p.headboard)), c = n.querySelectorAll("ul li");
-            c == null || c.forEach((p) => {
-              const g = p.querySelector('[x-text="item.value"]');
-              l == null || l.forEach((m) => {
+            const d = o.nextElementSibling.textContent, h = (a = this.sizes) == null ? void 0 : a.filter((l) => d == null ? void 0 : d.includes(l.headboard)), c = n.querySelectorAll("ul li");
+            c == null || c.forEach((l) => {
+              const g = l.querySelector('[x-text="item.value"]');
+              h == null || h.forEach((m) => {
                 (g == null ? void 0 : g.textContent) === m.size && g.insertAdjacentHTML(
                   "beforeend",
                   /* HTML */
@@ -1868,7 +1889,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     renderSizeDimension() {
-      this.device === b.desktop && h(".variant-switch-items ul li").then(() => {
+      this.device === b.desktop && p(".variant-switch-items ul li").then(() => {
         const t = () => {
           if (!this.sizes)
             return;
@@ -1880,8 +1901,8 @@ div:has(> .crs-headboard__save) ul {
             if ((((a = o.textContent) == null ? void 0 : a.toLowerCase()) || "").includes("size")) {
               const r = o.nextElementSibling, d = () => {
                 var m, v;
-                const c = (r.textContent || "").replace(/\s*\([^)]*\)/, "").trim(), p = ((m = document.querySelector('[x-html*="headboard"]')) == null ? void 0 : m.textContent) || "", g = (v = this.sizes) == null ? void 0 : v.find(
-                  (x) => p.includes(x.headboard) && x.size === c
+                const c = (r.textContent || "").replace(/\s*\([^)]*\)/, "").trim(), l = ((m = document.querySelector('[x-html*="headboard"]')) == null ? void 0 : m.textContent) || "", g = (v = this.sizes) == null ? void 0 : v.find(
+                  (x) => l.includes(x.headboard) && x.size === c
                 );
                 if (g) {
                   const x = (
@@ -1938,6 +1959,12 @@ div:has(> .crs-headboard__save) ul {
   border-right: none;
 }
 
+@media (min-width: 768px) {
+  .variant-switch-items ul li:nth-of-type(2) {
+    border-top: 1px solid #dbdbdb;
+  }
+}
+
 .variant-switch-items ul li div svg {
   display: none;
 }
@@ -1967,8 +1994,12 @@ div:has(> .crs-headboard__save) ul {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
+  min-height: auto;
 }
-`;
+
+.variant-switch-items ul li div > div:not([x-text='option.name']):not(.text-primary) br {
+  display: none;
+}`;
   class A {
     constructor() {
       this.variantSwitchPopup = new T(), this.variantColorPopup = new q(), this.init();
@@ -1977,7 +2008,7 @@ div:has(> .crs-headboard__save) ul {
       this.initStyles(), this.eventsListeners();
     }
     eventsListeners() {
-      h(".variant-switch-items").then((t) => {
+      p(".variant-switch-items").then((t) => {
         t.addEventListener("click", (n) => {
           var i, o, s;
           const e = n.target;
@@ -1986,7 +2017,7 @@ div:has(> .crs-headboard__save) ul {
             this.variantSwitchPopup.openDialog(r), f("exp_pdp_imp__option", `${a}`, "click", "Select Option");
           }
         });
-      }), h('[x-text="selectedProduct"]').then((t) => {
+      }), p('[x-text="selectedProduct"]').then((t) => {
         document.querySelectorAll('[x-text="selectedProduct"]').forEach((e) => {
           e.parentElement.addEventListener("click", () => {
             this.variantColorPopup.openDialog(), f("exp_pdp_imp__option", "color", "click", "Select Option");
@@ -2008,7 +2039,7 @@ div:has(> .crs-headboard__save) ul {
       this.init();
     }
     async init() {
-      await h('#MainContent[x-data="product"]') && (new A(), new D(), new M());
+      await p('#MainContent[x-data="product"]') && (new A(), new D(), new M());
     }
   }
   new B();
