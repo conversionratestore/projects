@@ -1021,6 +1021,10 @@
   margin-top: 14px;
 }
 
+.crs-variant-dialog__content .max-h-\\[360px\\] {
+  max-height: 75vh;
+}
+
 .crs-variant-dialog .variant-switch-products {
   margin-top: 14px;
   padding: 0;
@@ -1161,6 +1165,10 @@
 
 :is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal']) .h-full > .px-6 {
   padding: 0;
+}
+
+.fixed.max-h-\\[70\\%\\]:has(:is([x-show='slideOverDimension'], [x-show='slideOverOpen'], [x-show='slideOverOpenSide'], [x-show='showDivanModal'])) {
+  max-height: 80vh;
 }
 
 [x-show='slideOverOpenSide'] .relative.overflow-hidden {
@@ -1398,7 +1406,7 @@ div:has(> .crs-headboard__save) ul {
 
 .crs-mattress-dialog .ss-tabs + div {
   margin: 0;
-  height: 300px;
+  height: calc(80vh - 150px);
   padding: 0;
   overflow: hidden;
   overflow-y: auto;
