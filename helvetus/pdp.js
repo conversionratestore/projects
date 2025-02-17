@@ -41,11 +41,20 @@ div:not(.needsclick) > .needsclick[style] * {
   pointer-events: none !important;
 }
 
+footer x-popover {
+  left: 0 !important;
+  right: auto !important;
+}
+
 product-gallery {
   position: relative;
 }
 
 @media (max-width: 768px) {
+  product-quick-add.down {
+    bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
   .product-gallery__zoom {
     bottom: 16px;
     top: auto;
@@ -876,29 +885,29 @@ product-gallery {
 .crs_popup_returns p b {
   display: inline;
 }/*# sourceMappingURL=style.css.map */`;
-  var s = {}, x = {}, v;
+  var s = {}, w = {}, v;
   function F() {
-    if (v) return x;
-    v = 1, Object.defineProperty(x, "__esModule", { value: !0 });
+    if (v) return w;
+    v = 1, Object.defineProperty(w, "__esModule", { value: !0 });
     function o(a, e) {
       return a.reduce((n, r) => {
         const c = String(r[e]);
         return n[c] || (n[c] = []), n[c].push(r), n;
       }, {});
     }
-    return x.default = o, x;
+    return w.default = o, w;
   }
-  var w = {}, S;
+  var x = {}, S;
   function R() {
-    if (S) return w;
-    S = 1, Object.defineProperty(w, "__esModule", { value: !0 });
+    if (S) return x;
+    S = 1, Object.defineProperty(x, "__esModule", { value: !0 });
     function o(a, e) {
       return a.replace(/{([^{}]*)}/g, (n, r) => {
         const c = e[r];
         return typeof c == "string" || typeof c == "number" ? c.toString() : n;
       });
     }
-    return w.default = o, w;
+    return x.default = o, x;
   }
   var A = {}, k;
   function I() {
@@ -5008,36 +5017,36 @@ product-gallery {
       name: "{countryNameEn} ({countryCode})",
       value: "{countryCode}"
     }, { sortBy: m, sortDataBy: y, filter: T } = {}) {
-      const N = [];
-      let p = n.default;
-      if (typeof T == "function" && (p = p.filter(T)), y) {
-        const L = new Intl.Collator([], { sensitivity: "accent" });
-        p.sort((h, b) => L.compare(h[y], b[y]));
+      const p = [];
+      let L = n.default;
+      if (typeof T == "function" && (L = L.filter(T)), y) {
+        const E = new Intl.Collator([], { sensitivity: "accent" });
+        L.sort((h, b) => E.compare(h[y], b[y]));
       }
-      if (p.forEach((L) => {
+      if (L.forEach((E) => {
         const h = {};
         for (const b in d)
-          h[b] = (0, e.default)(d[b], L);
-        N.push(h);
+          h[b] = (0, e.default)(d[b], E);
+        p.push(h);
       }), m && d[m]) {
-        const L = new Intl.Collator([], { sensitivity: "accent" });
-        N.sort((h, b) => L.compare(h[m], b[m]));
+        const E = new Intl.Collator([], { sensitivity: "accent" });
+        p.sort((h, b) => E.compare(h[m], b[m]));
       }
-      return N;
+      return p;
     }
     s.customArray = g;
     function f(d = "countryCode", m = "{countryNameEn} ({countryCode})", { filter: y } = {}) {
       const T = {};
-      let N = n.default;
-      return typeof y == "function" && (N = N.filter(y)), N.forEach((p) => {
-        const L = (0, e.default)(m, p);
-        T[String(p[d])] = L;
+      let p = n.default;
+      return typeof y == "function" && (p = p.filter(y)), p.forEach((L) => {
+        const E = (0, e.default)(m, L);
+        T[String(L[d])] = E;
       }), T;
     }
     return s.customList = f, s;
   }
   var z = U();
-  const E = (o, a, e, n = "") => {
+  const C = (o, a, e, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: o,
@@ -5128,12 +5137,12 @@ product-gallery {
     let a = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(a), window.clarity("set", o, "variant_1"));
     }, 1e3);
-  }, C = (o, a, e, n, r = 1e3, c = 0.5) => {
+  }, N = (o, a, e, n, r = 1e3, c = 0.5) => {
     let i, g;
     if (i = new IntersectionObserver(
       function(f) {
         f[0].isIntersecting === !0 ? g = setTimeout(() => {
-          E(
+          C(
             a,
             f[0].target.dataset.visible || n || "",
             "view",
@@ -5583,7 +5592,7 @@ product-gallery {
   </div>
 `
   );
-  H("new_pdp"), G({ name: "Reverse trial flow", dev: "YK" }), E("reverse_trial", "Start experiment", "loaded");
+  H("new_pdp"), G({ name: "Reverse trial flow", dev: "YK" }), C("reverse_trial", "Start experiment", "loaded");
   const ca = z.customList("countryCode", "{countryNameEn}");
   class ta {
     constructor() {
@@ -5605,7 +5614,9 @@ product-gallery {
       ]);
     }
     async imgSliderUpdate() {
-      (await l("product-gallery")).insertAdjacentHTML("afterbegin", W), t(".product-gallery__zoom button svg").elements[0].remove(), t(".product-gallery__zoom button").elements[0].insertAdjacentHTML("beforeend", j);
+      (await l("product-gallery")).insertAdjacentHTML("afterbegin", W), t(".product-gallery__zoom button svg").elements[0].remove(), t(".product-gallery__zoom button").elements[0].insertAdjacentHTML("beforeend", j), await l("#closeDiv button"), await l(".product-quick-add"), t("#closeDiv button").on("click", function() {
+        t(".product-quick-add").addClass("down");
+      });
     }
     async reviewsAndDiscount() {
       var n;
@@ -5631,7 +5642,7 @@ product-gallery {
       }), a.insertAdjacentHTML("beforebegin", Y(e)), t(".crs_addons .add_check button").on("click", function() {
         var c, i, g;
         const n = this.getAttribute("data-id"), r = (c = e.find((f) => f.id === n)) == null ? void 0 : c.title;
-        (g = (i = t(`.horizontal-product input[value="${n}"]`).elements[0].closest("form")) == null ? void 0 : i.querySelector("button")) == null || g.click(), E("exp_pdp__click_01", "Add - " + r, "click", "Product info");
+        (g = (i = t(`.horizontal-product input[value="${n}"]`).elements[0].closest("form")) == null ? void 0 : i.querySelector("button")) == null || g.click(), C("exp_pdp__click_01", "Add - " + r, "click", "Product info");
       });
     }
     async moneyBackBlock() {
@@ -5641,9 +5652,9 @@ product-gallery {
       (r = a.textContent) != null && r.toLowerCase().includes("rubber") && (e = !0), (await l(".product-info__buy-buttons")).insertAdjacentHTML("afterend", Q(e)), document.body.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), (c = document.querySelector(".dark_bg")) == null || c.insertAdjacentHTML("beforeend", ia), (i = document.querySelector(".dark_bg")) == null || i.insertAdjacentHTML("beforeend", ra), (g = document.querySelector(".dark_bg")) == null || g.addEventListener("click", function(f) {
         f.target === this && (t(".dark_bg").removeClass("active"), t(".crs_popup_lifetime").removeClass("active"), t(".crs_popup_returns").removeClass("active"));
       }), t(".life_open").on("click", function() {
-        console.log("click life"), t(".dark_bg").addClass("active"), t(".crs_popup_lifetime").addClass("active"), E("exp_pdp__click_02", "Learn more - Lifetime warranty", "click", "Product info");
+        console.log("click life"), t(".dark_bg").addClass("active"), t(".crs_popup_lifetime").addClass("active"), C("exp_pdp__click_02", "Learn more - Lifetime warranty", "click", "Product info");
       }), t(".returns_open").on("click", function() {
-        t(".dark_bg").addClass("active"), t(".crs_popup_returns").addClass("active"), E("exp_pdp__click_02", "Learn more - Returns", "click", "Product info");
+        t(".dark_bg").addClass("active"), t(".crs_popup_returns").addClass("active"), C("exp_pdp__click_02", "Learn more - Returns", "click", "Product info");
       }), t(".dark_bg .close").on("click", function() {
         t(".dark_bg").removeClass("active"), t(".crs_popup_lifetime").removeClass("active"), t(".crs_popup_returns").removeClass("active");
       });
@@ -5654,7 +5665,7 @@ product-gallery {
     async setInfoBlocks() {
       (await l(".crs_shipping_time")).insertAdjacentHTML("afterend", na), t(".crs_info_blocks li p:first-of-type").each((i) => {
         i.on("click", function() {
-          i.elements[0].classList.contains("active") ? (V(i.elements[0].nextElementSibling), i.elements[0].classList.remove("active")) : (Z(i.elements[0].nextElementSibling), i.elements[0].classList.add("active"), E("exp_pdp__click_03", i.text(), "click", "Dropdown"));
+          i.elements[0].classList.contains("active") ? (V(i.elements[0].nextElementSibling), i.elements[0].classList.remove("active"), C("exp_pdp__click_03", "close - " + i.text(), "click", "Dropdown")) : (Z(i.elements[0].nextElementSibling), i.elements[0].classList.add("active"), C("exp_pdp__click_03", "open - " + i.text(), "click", "Dropdown"));
         });
       }), await l(".product-info__description .prose");
       let e = "", n = "", r = "", c = 0;
@@ -5683,7 +5694,7 @@ product-gallery {
       (await l(".crs_great_choice")).insertAdjacentHTML("afterend", oa);
     }
     async setViewEvents() {
-      await l(".crs_addons"), await l(".crs_money_back"), await l(".crs_shipping_time"), await l(".crs_info_blocks"), await l(".crs_great_choice"), await l(".crs_customer_reviews"), C(".crs_addons", "exp_pdp__view_01", "View - Add-ons"), C(".crs_money_back", "exp_pdp__view_02", "View - Money back"), C(".crs_shipping_time", "exp_pdp__view_03", "View - Shipping time"), C(".crs_info_blocks", "exp_pdp__view_04", "View - Info blocks"), C(".crs_great_choice .part1", "exp_pdp__view_05", "View - Great choice part1"), C(".crs_great_choice .part2", "exp_pdp__view_05", "View - Great choice part2"), C(".crs_customer_reviews", "exp_pdp__view_06", "View - Reviews");
+      await l(".crs_addons"), await l(".crs_money_back"), await l(".crs_shipping_time"), await l(".crs_info_blocks"), await l(".crs_great_choice"), await l(".crs_customer_reviews"), N(".crs_addons", "exp_pdp__view_01", "View - Add-ons"), N(".crs_money_back", "exp_pdp__view_02", "View - Money back"), N(".crs_shipping_time", "exp_pdp__view_03", "View - Shipping time"), N(".crs_info_blocks", "exp_pdp__view_04", "View - Info blocks"), N(".crs_great_choice .part1", "exp_pdp__view_05", "View - Great choice part1"), N(".crs_great_choice .part2", "exp_pdp__view_05", "View - Great choice part2"), N(".crs_customer_reviews", "exp_pdp__view_06", "View - Reviews");
     }
   }
   new ta();
