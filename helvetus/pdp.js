@@ -1,6 +1,24 @@
 (function() {
   "use strict";
-  const M = `[data-app-block-banners] [data-banner],
+  const M = `.desktop {
+  display: none;
+}
+@media (min-width: 769px) {
+  .desktop {
+    display: block;
+  }
+}
+
+.mobile {
+  display: block;
+}
+@media (min-width: 769px) {
+  .mobile {
+    display: none;
+  }
+}
+
+[data-app-block-banners] [data-banner],
 #trust-badge-content-div,
 product-recommendations.block,
 .product-info__separator,
@@ -10,6 +28,11 @@ product-recommendations.block,
   display: none !important;
 }
 
+@media (min-width: 769px) {
+  .footer__block-list {
+    margin-top: 30px;
+  }
+}
 div:not(.needsclick) > .needsclick[style] {
   opacity: 0;
   pointer-events: none !important;
@@ -22,16 +45,51 @@ product-gallery {
   position: relative;
 }
 
-.product-gallery__zoom {
-  bottom: 16px;
-  top: auto;
+@media (max-width: 768px) {
+  .product-gallery__zoom {
+    bottom: 16px;
+    top: auto;
+  }
+  .product-gallery__zoom button {
+    background: unset;
+    border: unset;
+    box-shadow: unset;
+  }
+  page-dots {
+    justify-content: center;
+    display: flex !important;
+    padding: 5px 0;
+    gap: 15px !important;
+  }
+  page-dots button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #000 !important;
+    position: relative;
+  }
+  page-dots button img {
+    display: none;
+  }
+  page-dots button::after {
+    display: none;
+  }
+  page-dots button::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s;
+  }
+  page-dots button[aria-current=true]::before {
+    border: 1px solid #000;
+  }
 }
-.product-gallery__zoom button {
-  background: unset;
-  border: unset;
-  box-shadow: unset;
-}
-
 .product-info h1 {
   margin-top: -10px;
 }
@@ -118,41 +176,15 @@ product-gallery {
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
+  padding: 10px 15px;
+  background: #fff;
+  border-radius: 20px;
 }
-
-page-dots {
-  justify-content: center;
-  display: flex !important;
-  padding: 5px 0;
-  gap: 15px !important;
-}
-page-dots button {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #000 !important;
-  position: relative;
-}
-page-dots button img {
-  display: none;
-}
-page-dots button::after {
-  display: none;
-}
-page-dots button::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 1px solid #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.3s;
-}
-page-dots button[aria-current=true]::before {
-  border: 1px solid #000;
+@media (min-width: 769px) {
+  .crs_img_label {
+    left: 135px;
+    gap: 8px;
+  }
 }
 
 .crs_reviews {
@@ -161,6 +193,11 @@ page-dots button[aria-current=true]::before {
   padding-bottom: 24px;
   margin: 8px 0 24px;
   position: relative;
+}
+@media (min-width: 769px) {
+  .crs_reviews {
+    margin: 0;
+  }
 }
 .crs_reviews::after {
   position: absolute;
@@ -172,6 +209,11 @@ page-dots button[aria-current=true]::before {
   box-shadow: 0px 1px 0px 0px #fff;
   bottom: 0;
   left: 0;
+}
+@media (min-width: 769px) {
+  .crs_reviews::after {
+    display: none;
+  }
 }
 .crs_reviews span:first-child {
   font-size: 14px;
@@ -191,6 +233,7 @@ page-dots button[aria-current=true]::before {
   margin: 16px 0 24px;
   padding-bottom: 24px;
   position: relative;
+  cursor: pointer;
 }
 .crs_discount_info::after {
   position: absolute;
@@ -219,6 +262,11 @@ page-dots button[aria-current=true]::before {
   margin: 24px 0;
   padding: 24px 0 0;
   position: relative;
+}
+@media (min-width: 769px) {
+  .crs_addons {
+    margin-bottom: 0;
+  }
 }
 .crs_addons::before {
   content: "";
@@ -263,10 +311,22 @@ page-dots button[aria-current=true]::before {
   line-height: 23px;
   color: #333;
 }
+@media (min-width: 769px) {
+  .crs_addons ul li .info a {
+    font-size: 14px;
+  }
+}
 .crs_addons ul li .add_check {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-left: auto;
+}
+@media (min-width: 769px) {
+  .crs_addons ul li .add_check {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 .crs_addons ul li .add_check p {
   display: flex;
@@ -278,10 +338,21 @@ page-dots button[aria-current=true]::before {
   line-height: 1;
   margin-bottom: 12px;
 }
+@media (min-width: 769px) {
+  .crs_addons ul li .add_check p {
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+}
 .crs_addons ul li .add_check p span:first-child {
   color: #646464;
   font-size: 10px;
   text-decoration: line-through;
+}
+@media (min-width: 769px) {
+  .crs_addons ul li .add_check p span:first-child {
+    font-size: 14px;
+  }
 }
 .crs_addons ul li .add_check button {
   display: inline-flex;
@@ -292,12 +363,23 @@ page-dots button[aria-current=true]::before {
   font-size: 11px;
   font-weight: 700;
 }
+@media (min-width: 769px) {
+  .crs_addons ul li .add_check button {
+    margin-left: 16px;
+  }
+}
 .crs_addons .delivery {
   margin: 14px 0;
   padding: 10px;
   display: flex;
   gap: 15px;
   align-items: center;
+}
+@media (min-width: 769px) {
+  .crs_addons .delivery {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 }
 .crs_addons .delivery p {
   font-size: 14px;
@@ -393,10 +475,24 @@ page-dots button[aria-current=true]::before {
   flex-direction: column;
   gap: 8px;
 }
+@media (min-width: 769px) {
+  .crs_shipping_time ul {
+    flex-direction: row;
+    gap: 8px;
+  }
+}
 .crs_shipping_time ul li {
   display: flex;
   gap: 10px;
   position: relative;
+  width: calc((100% - 16px) / 3);
+}
+@media (min-width: 769px) {
+  .crs_shipping_time ul li {
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 0;
+  }
 }
 .crs_shipping_time ul li span {
   position: relative;
@@ -407,6 +503,11 @@ page-dots button[aria-current=true]::before {
   border-radius: 50%;
   background: #000;
   border: 8px solid #fada97;
+}
+@media (min-width: 769px) {
+  .crs_shipping_time ul li span {
+    order: 5;
+  }
 }
 .crs_shipping_time ul li:not(:first-of-type) span {
   border: 8px solid #dcdcdc;
@@ -420,6 +521,7 @@ page-dots button[aria-current=true]::before {
   font-weight: 500;
   line-height: 1.25;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 .crs_shipping_time ul li div p:nth-of-type(2) {
   font-size: 14px;
@@ -445,6 +547,14 @@ page-dots button[aria-current=true]::before {
   z-index: 0;
   border-radius: 10px;
 }
+@media (min-width: 769px) {
+  .crs_shipping_time ul li::before {
+    width: 100%;
+    height: 12px;
+    bottom: 6px;
+    left: 0;
+  }
+}
 .crs_shipping_time ul li:first-of-type::after {
   position: absolute;
   content: "";
@@ -454,6 +564,15 @@ page-dots button[aria-current=true]::before {
   left: 6px;
   background: #fada97;
   border-radius: 10px 10px 0 0;
+}
+@media (min-width: 769px) {
+  .crs_shipping_time ul li:first-of-type::after {
+    width: 60%;
+    height: 12px;
+    bottom: 6px;
+    left: 0;
+    border-radius: 10px;
+  }
 }
 
 .crs_info_blocks {
@@ -532,8 +651,30 @@ page-dots button[aria-current=true]::before {
   border-radius: 6px;
   margin: 24px auto;
 }
-.crs_great_choice div {
+.crs_great_choice > div {
   padding: 24px 20px;
+}
+@media (min-width: 769px) {
+  .crs_great_choice h3 {
+    font-size: 48px;
+    line-height: 54px;
+  }
+  .crs_great_choice p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 24px;
+  }
+  .crs_great_choice > div {
+    display: flex;
+    align-items: center;
+    gap: 114px;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1100px;
+  }
+  .crs_great_choice > div > * {
+    width: 50%;
+  }
 }
 
 .crs_customer_reviews {
@@ -547,7 +688,7 @@ page-dots button[aria-current=true]::before {
   line-height: 1.2;
   margin-bottom: 32px;
 }
-.crs_customer_reviews h2 + img + p {
+.crs_customer_reviews .top_info img + p {
   text-align: center;
   font-size: 14px;
   line-height: 1.4;
@@ -607,6 +748,24 @@ page-dots button[aria-current=true]::before {
 .crs_customer_reviews li:not(:last-child) {
   border-bottom: 1px solid rgba(212, 164, 66, 0.1);
 }
+@media (min-width: 769px) {
+  .crs_customer_reviews .top_info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .crs_customer_reviews .top_info > * {
+    width: 33.3333333333%;
+    padding: 0 60px;
+  }
+  .crs_customer_reviews .top_info + img {
+    width: 480px;
+    margin: 16px auto;
+  }
+  .crs_customer_reviews ul {
+    padding: 0 48px;
+  }
+}
 
 .dark_bg {
   background: rgba(0, 0, 0, 0.5);
@@ -635,7 +794,6 @@ page-dots button[aria-current=true]::before {
   width: 80%;
   max-width: 335px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  position: relative;
   overflow: hidden;
   display: none;
 }
@@ -671,20 +829,44 @@ page-dots button[aria-current=true]::before {
   text-align: center;
 }
 .crs_popup_lifetime p,
-.crs_popup_returns p {
+.crs_popup_lifetime ul,
+.crs_popup_returns p,
+.crs_popup_returns ul {
   font-size: 14px;
   line-height: 24px;
   color: rgba(0, 0, 0, 0.7);
-  padding: 0 25px 32px;
+  padding: 0 25px;
+}
+.crs_popup_lifetime ul,
+.crs_popup_returns ul {
+  padding-left: 40px;
+  margin: 20px 0;
+}
+.crs_popup_lifetime p b,
+.crs_popup_returns p b {
+  display: block;
+  margin-bottom: 15px;
+}
+.crs_popup_lifetime ul li,
+.crs_popup_returns ul li {
+  list-style: disc;
+}
+.crs_popup_lifetime p:last-of-type,
+.crs_popup_returns p:last-of-type {
+  padding-bottom: 35px;
 }
 .crs_popup_lifetime.active,
 .crs_popup_returns.active {
   display: block;
+}
+
+.crs_popup_returns p b {
+  display: inline;
 }/*# sourceMappingURL=style.css.map */`;
-  var g = {}, b = {}, v;
+  var g = {}, b = {}, _;
   function P() {
-    if (v) return b;
-    v = 1, Object.defineProperty(b, "__esModule", { value: !0 });
+    if (_) return b;
+    _ = 1, Object.defineProperty(b, "__esModule", { value: !0 });
     function o(a, e) {
       return a.reduce((n, i) => {
         const c = String(i[e]);
@@ -693,10 +875,10 @@ page-dots button[aria-current=true]::before {
     }
     return b.default = o, b;
   }
-  var T = {}, x;
+  var T = {}, w;
   function B() {
-    if (x) return T;
-    x = 1, Object.defineProperty(T, "__esModule", { value: !0 });
+    if (w) return T;
+    w = 1, Object.defineProperty(T, "__esModule", { value: !0 });
     function o(a, e) {
       return a.replace(/{([^{}]*)}/g, (n, i) => {
         const c = e[i];
@@ -705,10 +887,10 @@ page-dots button[aria-current=true]::before {
     }
     return T.default = o, T;
   }
-  var A = {}, w;
+  var A = {}, S;
   function D() {
-    if (w) return A;
-    w = 1, Object.defineProperty(A, "__esModule", { value: !0 });
+    if (S) return A;
+    S = 1, Object.defineProperty(A, "__esModule", { value: !0 });
     const o = [
       {
         countryNameEn: "Andorra",
@@ -4785,12 +4967,12 @@ page-dots button[aria-current=true]::before {
     ];
     return A.default = o, A;
   }
-  var _;
+  var v;
   function F() {
-    if (_) return g;
-    _ = 1;
-    var o = g.__importDefault || function(f) {
-      return f && f.__esModule ? f : { default: f };
+    if (v) return g;
+    v = 1;
+    var o = g.__importDefault || function(s) {
+      return s && s.__esModule ? s : { default: s };
     };
     Object.defineProperty(g, "__esModule", { value: !0 }), g.customList = g.customArray = g.findOne = g.filter = g.all = g.utils = void 0;
     const a = o(P()), e = o(B()), n = o(D());
@@ -4801,45 +4983,45 @@ page-dots button[aria-current=true]::before {
       return n.default;
     }
     g.all = i;
-    function c(f, d) {
-      return n.default.filter((m) => m[f] === d);
+    function c(s, f) {
+      return n.default.filter((m) => m[s] === f);
     }
     g.filter = c;
-    function r(f, d) {
-      return n.default.find((m) => m[f] === d);
+    function r(s, f) {
+      return n.default.find((m) => m[s] === f);
     }
     g.findOne = r;
-    function s(f = {
+    function d(s = {
       name: "{countryNameEn} ({countryCode})",
       value: "{countryCode}"
-    }, { sortBy: d, sortDataBy: m, filter: h } = {}) {
+    }, { sortBy: f, sortDataBy: m, filter: h } = {}) {
       const y = [];
       let C = n.default;
       if (typeof h == "function" && (C = C.filter(h)), m) {
         const N = new Intl.Collator([], { sensitivity: "accent" });
-        C.sort((L, p) => N.compare(L[m], p[m]));
+        C.sort((p, L) => N.compare(p[m], L[m]));
       }
       if (C.forEach((N) => {
-        const L = {};
-        for (const p in f)
-          L[p] = (0, e.default)(f[p], N);
-        y.push(L);
-      }), d && f[d]) {
+        const p = {};
+        for (const L in s)
+          p[L] = (0, e.default)(s[L], N);
+        y.push(p);
+      }), f && s[f]) {
         const N = new Intl.Collator([], { sensitivity: "accent" });
-        y.sort((L, p) => N.compare(L[d], p[d]));
+        y.sort((p, L) => N.compare(p[f], L[f]));
       }
       return y;
     }
-    g.customArray = s;
-    function S(f = "countryCode", d = "{countryNameEn} ({countryCode})", { filter: m } = {}) {
+    g.customArray = d;
+    function x(s = "countryCode", f = "{countryNameEn} ({countryCode})", { filter: m } = {}) {
       const h = {};
       let y = n.default;
       return typeof m == "function" && (y = y.filter(m)), y.forEach((C) => {
-        const N = (0, e.default)(d, C);
-        h[String(C[f])] = N;
+        const N = (0, e.default)(f, C);
+        h[String(C[s])] = N;
       }), h;
     }
-    return g.customList = S, g;
+    return g.customList = x, g;
   }
   var R = F();
   const I = (o, a, e, n = "") => {
@@ -4849,7 +5031,7 @@ page-dots button[aria-current=true]::before {
       event_desc: a,
       event_type: e,
       event_loc: n
-    }), G(`Event: ${o} | ${a} | ${e} | ${n}`, "success");
+    }), z(`Event: ${o} | ${a} | ${e} | ${n}`, "success");
   }, u = (o) => new Promise((a) => {
     const e = document.querySelector(o);
     e && a(e);
@@ -4876,8 +5058,8 @@ page-dots button[aria-current=true]::before {
         i.addEventListener(a, function(c) {
           var r;
           if (e !== "") {
-            let s = (r = c.target) == null ? void 0 : r.closest(e);
-            s && (n == null || n.call(s, c));
+            let d = (r = c.target) == null ? void 0 : r.closest(e);
+            d && (n == null || n.call(d, c));
           } else
             n == null || n.call(i, c);
         });
@@ -4929,7 +5111,7 @@ page-dots button[aria-current=true]::before {
       }), this) : this.elements[0].innerHTML;
     }
   }
-  const t = (o) => new E(o), G = (o, a = "info") => {
+  const t = (o) => new E(o), z = (o, a = "info") => {
     let e;
     switch (a) {
       case "info":
@@ -4946,11 +5128,11 @@ page-dots button[aria-current=true]::before {
         break;
     }
     console.log(`%c>>> ${o}`, `${e} font-size: 16px; font-weight: 600`);
-  }, z = (o, a) => {
+  }, H = (o, a) => {
     o.style.transition = "height 500ms", o.style.height = "0", setTimeout(() => {
       o.style.display = "none";
     }, 500);
-  }, H = (o, a) => {
+  }, G = (o, a) => {
     o.style.transition = "height 500ms", o.style.overflow = "hidden", o.style.display = "block", o.style.height = "auto";
     const n = o.clientHeight;
     o.style.height = "0", setTimeout(() => {
@@ -5078,21 +5260,23 @@ page-dots button[aria-current=true]::before {
     </div>
   `
     );
-  }, X = (o) => (
-    /* HTML */
-    `
+  }, X = (o) => {
+    const a = window.innerWidth < 768;
+    return (
+      /* HTML */
+      `
     <div class="crs_money_back">
       <ul>
         ${o ? (
-      /* HTML */
-      `
+        /* HTML */
+        `
               <li>
                 <img src="${l}/lifetime.svg" alt="" />
                 <span>Lifetime warranty</span>
                 <button class="btn life_open">LEARN MORE</button>
               </li>
             `
-    ) : ""}
+      ) : ""}
         <li>
           <img src="${l}/returns.svg" alt="" />
           <span>Hassle-Free Returns</span>
@@ -5100,10 +5284,11 @@ page-dots button[aria-current=true]::before {
         </li>
       </ul>
 
-      <img src="${l}/awards.webp" alt="awards" />
+      <img src="${l}/${a ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
     </div>
   `
-  ), Y = (o) => {
+    );
+  }, Y = (o) => {
     const a = window.Shopify.country, e = (/* @__PURE__ */ new Date()).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }), n = new Date((/* @__PURE__ */ new Date()).getTime() + (a === "CH" ? 2 : 7) * 24 * 60 * 60 * 1e3).toLocaleDateString(
       "en-US",
       { month: "short", day: "numeric", year: "numeric" }
@@ -5150,28 +5335,46 @@ page-dots button[aria-current=true]::before {
     `
   <div class="crs_great_choice">
     <div class="part1">
-      <h3>Swiss Brilliance</h3>
-      <p>
-        Helvetus is proudly based in Lucerne, the heart of Switzerland's luxury watch industry. This picturesque city,
-        renowned for its rich watchmaking heritage, hosts some of the most prestigious brands in the industry at the
-        famous Schwanenplatz.
-      </p>
-      <img src="${l}/gc1.jpg" alt="gc1" />
-      <p>
+      <div>
+        <h3>Swiss Brilliance</h3>
+        <p>
+          Helvetus is proudly based in Lucerne, the heart of Switzerland's luxury watch industry. This picturesque city,
+          renowned for its rich watchmaking heritage, hosts some of the most prestigious brands in the industry at the
+          famous Schwanenplatz.
+        </p>
+        <p class="desktop">
+          Our location in Lucerne not only keeps us at the forefront of the watch industry but also inspires us to
+          uphold the tradition of high craftsmanship and quality. Helvetus embodies the spirit of this renowned city,
+          delivering watch straps that reflect its legacy of luxury and precision.
+        </p>
+      </div>
+      <div>
+        <img src="${l}/gc1.jpg" alt="gc1" />
+      </div>
+      <p class="mobile">
         Our location in Lucerne not only keeps us at the forefront of the watch industry but also inspires us to uphold
         the tradition of high craftsmanship and quality. Helvetus embodies the spirit of this renowned city, delivering
         watch straps that reflect its legacy of luxury and precision.
       </p>
     </div>
     <div class="part2">
-      <h3>The Helvetus Story</h3>
-      <p>
-        Helvetus® is Switzerland's No. 1 aftermarket watch strap brand, offering a wide variety of watch straps and
-        accessories to enhance your timepiece. Our models are meticulously designed to fit your watch and wrist
-        perfectly.
-      </p>
-      <img src="${l}/gc2.jpg" alt="gc2" />
-      <p>
+      <div>
+        <h3>The Helvetus Story</h3>
+        <p>
+          Helvetus® is Switzerland's No. 1 aftermarket watch strap brand, offering a wide variety of watch straps and
+          accessories to enhance your timepiece. Our models are meticulously designed to fit your watch and wrist
+          perfectly.
+        </p>
+        <p class="desktop">
+          At Helvetus, our collections are inspired and shaped by the feedback and needs of our valued customers. This
+          customer-centric approach has been the cornerstone of our success, ensuring we consistently meet and exceed
+          expectations.
+        </p>
+      </div>
+      <div>
+        <img src="${l}/gc2.jpg" alt="gc2" />
+      </div>
+      <p class="mobile">
         At Helvetus, our collections are inspired and shaped by the feedback and needs of our valued customers. This
         customer-centric approach has been the cornerstone of our success, ensuring we consistently meet and exceed
         expectations.
@@ -5236,17 +5439,23 @@ page-dots button[aria-current=true]::before {
     `
   <div class="crs_customer_reviews">
     <h2>Customer reviews</h2>
-    <img src="${l}/reviews_stars.svg" alt="stars" />
-    <p>Based on 174 reviews</p>
-    <div class="rating">
-      <img src="${l}/5stars.png" alt="stars 5" />
-      <img src="${l}/4stars.png" alt="stars 4" />
-      <img src="${l}/3stars.png" alt="stars 3" />
-      <img src="${l}/2stars.png" alt="stars 2" />
-      <img src="${l}/1stars.png" alt="stars 1" />
+    <div class="top_info">
+      <div>
+        <img src="${l}/reviews_stars.svg" alt="stars" />
+        <p>Based on 174 reviews</p>
+      </div>
+      <div class="rating">
+        <img src="${l}/5stars.png" alt="stars 5" />
+        <img src="${l}/4stars.png" alt="stars 4" />
+        <img src="${l}/3stars.png" alt="stars 3" />
+        <img src="${l}/2stars.png" alt="stars 2" />
+        <img src="${l}/1stars.png" alt="stars 1" />
+      </div>
+      <div>
+        <a href="/pages/reviews">Write a Store Review</a>
+      </div>
     </div>
-    <a href="/pages/reviews">Write a Store Review</a>
-    <img src="${l}/awards.webp" alt="awards" />
+    <img src="${l}/${window.innerWidth < 768 ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
     <ul>
       <li>
         <p>
@@ -5302,11 +5511,16 @@ page-dots button[aria-current=true]::before {
     <h2>Lifetime Warranty:<br />A Promise of Timeless Quality</h2>
     <p>
       We at Helvetus provide you with the highest quality watch straps. Thanks to our promise we are confident to offer
-      youLifetime Warranty on all our Rubber Straps and limited warranty to other material items.<br /><br />Lifetime
-      Warranty on all Rubber Straps of Helvetus Limited Warranty on all other material products Continue shopping with
-      confidence, here at Helvetus Greetings from Lucerne
+      you Lifetime Warranty on all our Rubber Straps and limited warranty to other material items.
     </p>
-    <button>Close</button>
+    <ul>
+      <li>Lifetime Warranty on all Rubber Straps of Helvetus</li>
+      <li>Limited Warranty on all other material products</li>
+    </ul>
+    <p>
+      <b>Continue shopping with confidence, here at Helvetus</b>
+      <span>Greetings from Lucerne</span>
+    </p>
   </div>
 `
   ), oa = (
@@ -5321,11 +5535,13 @@ page-dots button[aria-current=true]::before {
     <h2>Hassle-Free Returns</h2>
     <p>
       As a valued customer of Helvetus, you have the right to return your ordered item within 14 days of receipt. Our
-      team is here to assist you throughout the return process.<br /><br />Effortless Strap Exchange Want to exchange
-      your ordered Helvetus item for another? No problem! We are here to help you find the perfect strap. Our team is
-      dedicated to ensuring you receive the right product that meets your expectations.<br /><br /><b>Contact Us:</b>
+      team is here to assist you throughout the return process.<br /><br />
+      Effortless Strap Exchange<br />
+      Want to exchange your ordered Helvetus item for another? No problem! We are here to help you find the perfect
+      strap. Our team is dedicated to ensuring you receive the right product that meets your expectations.<br /><br />
+      <b>Contact Us:</b>
       Questions about returns? Reach out to our Customer Services team.<br /><a href="mailto:contact@helvetus.com"
-        >contact@helvetus.com</a
+        ><b>contact@helvetus.com</b></a
       >
     </p>
   </div>
@@ -5335,7 +5551,7 @@ page-dots button[aria-current=true]::before {
   const ia = R.customList("countryCode", "{countryNameEn}");
   class ra {
     constructor() {
-      this.init();
+      this.mobile = window.innerWidth < 768, this.init();
     }
     async init() {
       await u("head"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), Promise.allSettled([
@@ -5356,7 +5572,7 @@ page-dots button[aria-current=true]::before {
     }
     async reviewsAndDiscount() {
       const a = await u("h1"), e = await u(".product-info__price");
-      a.insertAdjacentHTML("afterend", W), u("div:not(.needsclick)>.needsclick[style]").then(() => {
+      a.insertAdjacentHTML(this.mobile ? "afterend" : "beforebegin", W), u("div:not(.needsclick)>.needsclick[style]").then(() => {
         e.insertAdjacentHTML("afterend", q), $(".crs_discount_info .get_discount").on("click", function() {
           t("div:not(.needsclick)>.needsclick[style]>div>span").elements[0].click();
         });
@@ -5370,8 +5586,8 @@ page-dots button[aria-current=true]::before {
         "product-recommendations .product-info__complementary-products .horizontal-product-list .horizontal-product"
       ).each((n) => {
         console.log(n);
-        const i = n.find("img.horizontal-product__image").attr("src") || "", c = n.find("a").text() || "", r = n.find("a").attr("href"), s = n.find("sale-price").elements[0].childNodes[2].textContent || "", S = n.find("compare-at-price").elements[0].childNodes[2].textContent, f = n.find("form input[name=id]").attr("value") || "";
-        e.push({ img: i, title: c, price: S ? [s, S] : s, link: r, id: f });
+        const i = n.find("img.horizontal-product__image").attr("src") || "", c = n.find("a").text() || "", r = n.find("a").attr("href"), d = n.find("sale-price").elements[0].childNodes[2].textContent || "", x = n.find("compare-at-price").elements[0].childNodes[2].textContent, s = n.find("form input[name=id]").attr("value") || "";
+        e.push({ img: i, title: c, price: x ? [d, x] : d, link: r, id: s });
       }), a.insertAdjacentHTML("beforebegin", J(e)), t(".crs_addons .add_check button").on("click", function() {
         var i, c;
         const n = this.getAttribute("data-id");
@@ -5396,13 +5612,13 @@ page-dots button[aria-current=true]::before {
     async setInfoBlocks() {
       (await u(".crs_shipping_time")).insertAdjacentHTML("afterend", aa), t(".crs_info_blocks li p:first-of-type").each((r) => {
         r.on("click", function() {
-          r.elements[0].classList.contains("active") ? (z(r.elements[0].nextElementSibling), r.elements[0].classList.remove("active")) : (H(r.elements[0].nextElementSibling), r.elements[0].classList.add("active"));
+          r.elements[0].classList.contains("active") ? (H(r.elements[0].nextElementSibling), r.elements[0].classList.remove("active")) : (G(r.elements[0].nextElementSibling), r.elements[0].classList.add("active"));
         });
       }), await u(".product-info__description .prose");
       let e = "", n = "", i = "", c = 0;
       t(".product-info__description .prose p, .product-info__description .prose div").each((r) => {
-        (!r.text().toLowerCase().includes("details") || !r.text().toLowerCase().includes("excellence service")) && c === 0 && (e += r.text() + "<br>"), r.text().length > 100 && (c = 1), r.text().toLowerCase().includes("details") && c === 1 && r.elements[0].childNodes.forEach((s) => {
-          s.textContent.includes("Material") && (n = s.textContent.split(":")[1].trim()), s.textContent.includes("Size") && (i = s.textContent.split(":")[1].trim());
+        (!r.text().toLowerCase().includes("details") || !r.text().toLowerCase().includes("excellence service")) && c === 0 && (e += r.text() + "<br>"), r.text().length > 100 && (c = 1), r.text().toLowerCase().includes("details") && c === 1 && r.elements[0].childNodes.forEach((d) => {
+          d.textContent.includes("Material") && (n = d.textContent.split(":")[1].trim()), d.textContent.includes("Size") && (i = d.textContent.split(":")[1].trim());
         });
       }), t(".crs_info_blocks .about_product p:last-child").html(e), t(".crs_info_blocks .material p:last-child").text(n), t(".crs_info_blocks .size p:last-child").text(i);
     }
@@ -5415,7 +5631,7 @@ page-dots button[aria-current=true]::before {
         t(".footer__block--newsletter form .circle-chevron").elements[0].click();
       }), await u(".footer__block.footer__block--menu .bold"), document.querySelectorAll(".footer__block.footer__block--menu .bold").forEach((e) => {
         var n;
-        (n = e.textContent) != null && n.toLowerCase().includes("shop") && (e.closest(".footer__block").style.display = "none");
+        (n = e.textContent) != null && n.toLowerCase().includes("shop") && window.innerWidth < 768 && (e.closest(".footer__block").style.display = "none");
       }), await u(".footer .social-media"), (a = document.querySelector(".crs_join")) == null || a.after(document.querySelector(".footer .social-media"));
     }
     async updateAddToCartBtn() {
