@@ -203,7 +203,7 @@ product-gallery {
 
 .crs_img_label {
   position: absolute;
-  z-index: 5;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 6px;
