@@ -907,35 +907,35 @@ product-gallery {
 .crs_popup_returns p b {
   display: inline;
 }/*# sourceMappingURL=style.css.map */`;
-  var s = {}, w = {}, v;
+  var d = {}, w = {}, v;
   function R() {
     if (v) return w;
     v = 1, Object.defineProperty(w, "__esModule", { value: !0 });
-    function i(a, e) {
+    function o(a, e) {
       return a.reduce((n, r) => {
         const c = String(r[e]);
         return n[c] || (n[c] = []), n[c].push(r), n;
       }, {});
     }
-    return w.default = i, w;
+    return w.default = o, w;
   }
   var x = {}, S;
   function I() {
     if (S) return x;
     S = 1, Object.defineProperty(x, "__esModule", { value: !0 });
-    function i(a, e) {
+    function o(a, e) {
       return a.replace(/{([^{}]*)}/g, (n, r) => {
         const c = e[r];
         return typeof c == "string" || typeof c == "number" ? c.toString() : n;
       });
     }
-    return x.default = i, x;
+    return x.default = o, x;
   }
   var A = {}, k;
   function U() {
     if (k) return A;
     k = 1, Object.defineProperty(A, "__esModule", { value: !0 });
-    const i = [
+    const o = [
       {
         countryNameEn: "Andorra",
         countryNameLocal: "Andorra",
@@ -5009,33 +5009,33 @@ product-gallery {
         flag: "🇧🇶"
       }
     ];
-    return A.default = i, A;
+    return A.default = o, A;
   }
   var M;
   function z() {
-    if (M) return s;
+    if (M) return d;
     M = 1;
-    var i = s.__importDefault || function(f) {
+    var o = d.__importDefault || function(f) {
       return f && f.__esModule ? f : { default: f };
     };
-    Object.defineProperty(s, "__esModule", { value: !0 }), s.customList = s.customArray = s.findOne = s.filter = s.all = s.utils = void 0;
-    const a = i(R()), e = i(I()), n = i(U());
-    s.utils = {
+    Object.defineProperty(d, "__esModule", { value: !0 }), d.customList = d.customArray = d.findOne = d.filter = d.all = d.utils = void 0;
+    const a = o(R()), e = o(I()), n = o(U());
+    d.utils = {
       groupBy: a.default
     };
     function r() {
       return n.default;
     }
-    s.all = r;
+    d.all = r;
     function c(f, m) {
       return n.default.filter((y) => y[f] === m);
     }
-    s.filter = c;
-    function o(f, m) {
+    d.filter = c;
+    function i(f, m) {
       return n.default.find((y) => y[f] === m);
     }
-    s.findOne = o;
-    function u(f = {
+    d.findOne = i;
+    function g(f = {
       name: "{countryNameEn} ({countryCode})",
       value: "{countryCode}"
     }, { sortBy: m, sortDataBy: y, filter: T } = {}) {
@@ -5056,8 +5056,8 @@ product-gallery {
       }
       return p;
     }
-    s.customArray = u;
-    function d(f = "countryCode", m = "{countryNameEn} ({countryCode})", { filter: y } = {}) {
+    d.customArray = g;
+    function s(f = "countryCode", m = "{countryNameEn} ({countryCode})", { filter: y } = {}) {
       const T = {};
       let p = n.default;
       return typeof y == "function" && (p = p.filter(y)), p.forEach((L) => {
@@ -5065,31 +5065,31 @@ product-gallery {
         T[String(L[f])] = E;
       }), T;
     }
-    return s.customList = d, s;
+    return d.customList = s, d;
   }
   var H = z();
-  const C = (i, a, e, n = "") => {
+  const C = (o, a, e, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: i,
+      event_name: o,
       event_desc: a,
       event_type: e,
       event_loc: n
-    }), P(`Event: ${i} | ${a} | ${e} | ${n}`, "success");
-  }, l = (i) => new Promise((a) => {
-    const e = document.querySelector(i);
+    }), P(`Event: ${o} | ${a} | ${e} | ${n}`, "success");
+  }, l = (o) => new Promise((a) => {
+    const e = document.querySelector(o);
     e && a(e);
     const n = new MutationObserver(() => {
-      const r = document.querySelector(i);
+      const r = document.querySelector(o);
       r && (a(r), n.disconnect());
     });
     n.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), G = ({ name: i, dev: a }) => {
+  }), G = ({ name: o, dev: a }) => {
     console.log(
-      `%c EXP: ${i} (DEV: ${a})`,
+      `%c EXP: ${o} (DEV: ${a})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
@@ -5100,10 +5100,10 @@ product-gallery {
     on(a, e, n) {
       return typeof e == "function" && (n = e, e = ""), this.elements.forEach(function(r) {
         r.addEventListener(a, function(c) {
-          var o;
+          var i;
           if (e !== "") {
-            let u = (o = c.target) == null ? void 0 : o.closest(e);
-            u && (n == null || n.call(u, c));
+            let g = (i = c.target) == null ? void 0 : i.closest(e);
+            g && (n == null || n.call(g, c));
           } else
             n == null || n.call(r, c);
         });
@@ -5155,30 +5155,30 @@ product-gallery {
       }), this) : this.elements[0].innerHTML;
     }
   }
-  const t = (i) => new _(i), V = (i) => {
+  const t = (o) => new _(o), V = (o) => {
     let a = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(a), window.clarity("set", i, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(a), window.clarity("set", o, "variant_1"));
     }, 1e3);
-  }, N = (i, a, e, n, r = 1e3, c = 0.5) => {
-    let o, u;
-    if (o = new IntersectionObserver(
-      function(d) {
-        d[0].isIntersecting === !0 ? u = setTimeout(() => {
+  }, N = (o, a, e, n, r = 1e3, c = 0.5) => {
+    let i, g;
+    if (i = new IntersectionObserver(
+      function(s) {
+        s[0].isIntersecting === !0 ? g = setTimeout(() => {
           C(
             a,
-            d[0].target.dataset.visible || n || "",
+            s[0].target.dataset.visible || n || "",
             "view",
             e
-          ), o.disconnect();
-        }, r) : (P("Element is not fully visible", "warn"), clearTimeout(u));
+          ), i.disconnect();
+        }, r) : (P("Element is not fully visible", "warn"), clearTimeout(g));
       },
       { threshold: [c] }
-    ), typeof i == "string") {
-      const d = document.querySelector(i);
-      d && o.observe(d);
+    ), typeof o == "string") {
+      const s = document.querySelector(o);
+      s && i.observe(s);
     } else
-      o.observe(i);
-  }, P = (i, a = "info") => {
+      i.observe(o);
+  }, P = (o, a = "info") => {
     let e;
     switch (a) {
       case "info":
@@ -5194,18 +5194,18 @@ product-gallery {
         e = "color: #2ecc71;";
         break;
     }
-    console.log(`%c>>> ${i}`, `${e} font-size: 16px; font-weight: 600`);
-  }, Z = (i, a) => {
-    i.style.transition = "height 500ms", i.style.height = "0", setTimeout(() => {
-      i.style.display = "none";
+    console.log(`%c>>> ${o}`, `${e} font-size: 16px; font-weight: 600`);
+  }, Z = (o, a) => {
+    o.style.transition = "height 500ms", o.style.height = "0", setTimeout(() => {
+      o.style.display = "none";
     }, 500);
-  }, K = (i, a) => {
-    i.style.transition = "height 500ms", i.style.overflow = "hidden", i.style.display = "block", i.style.height = "auto";
-    const n = i.clientHeight;
-    i.style.height = "0", setTimeout(() => {
-      i.style.height = n + "px";
+  }, K = (o, a) => {
+    o.style.transition = "height 500ms", o.style.overflow = "hidden", o.style.display = "block", o.style.height = "auto";
+    const n = o.clientHeight;
+    o.style.height = "0", setTimeout(() => {
+      o.style.height = n + "px";
     }, 0);
-  }, g = "https://conversionratestore.github.io/projects/helvetus/img", B = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+  }, u = "https://conversionratestore.github.io/projects/helvetus/img", B = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
 <g filter="url(#filter0_d_81_50)">
 <path d="M5.5 2L14.5 11M5.5 11L14.5 2" stroke="white" stroke-width="2.325" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/>
 </g>
@@ -5276,11 +5276,11 @@ product-gallery {
     /* HTML */
     `
   <div class="crs_reviews">
-    <span><img src="${g}/stars.svg" alt="stars" /> 4.9</span>
+    <span><img src="${u}/stars.svg" alt="stars" /> 4.9</span>
     <span>163 Reviews</span>
   </div>
 `
-  ), Y = (i) => {
+  ), Y = (o) => {
     const a = (/* @__PURE__ */ new Date()).getTime(), e = new Date(a + 7 * 24 * 60 * 60 * 1e3), n = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], r = [
       "January",
       "February",
@@ -5300,21 +5300,21 @@ product-gallery {
       `
     <div class="crs_addons">
       <ul>
-        ${i.map((o) => (
+        ${o.map((i) => (
         /* HTML */
         `
               <li>
                 <div class="img_wrapper">
-                  <img src="${o.img}" alt="${o.title}" />
+                  <img src="${i.img}" alt="${i.title}" />
                 </div>
                 <div class="info">
-                  <a href="${o.link}" target="_blank">${o.title}</a>
+                  <a href="${i.link}" target="_blank">${i.title}</a>
                 </div>
                 <div class="add_check">
                   <p>
-                    ${typeof o.price == "string" ? o.price : `<span>${o.price[1]}</span><span>${o.price[0]}</span>`}
+                    ${typeof i.price == "string" ? i.price : `<span>${i.price[1]}</span><span>${i.price[0]}</span>`}
                   </p>
-                  <button data-id="${o.id}">+&nbsp;Add</button>
+                  <button data-id="${i.id}">+&nbsp;Add</button>
                 </div>
               </li>
             `
@@ -5327,35 +5327,35 @@ product-gallery {
     </div>
   `
     );
-  }, Q = (i) => {
+  }, Q = (o) => {
     const a = window.innerWidth < 768;
     return (
       /* HTML */
       `
     <div class="crs_money_back">
       <ul>
-        ${i ? (
+        ${o ? (
         /* HTML */
         `
               <li>
-                <img src="${g}/lifetime.svg" alt="" />
+                <img src="${u}/lifetime.svg" alt="" />
                 <span>Lifetime warranty</span>
                 <button class="btn life_open">Learn More</button>
               </li>
             `
       ) : ""}
         <li>
-          <img src="${g}/returns.svg" alt="" />
+          <img src="${u}/returns.svg" alt="" />
           <span>Hassle-Free Returns</span>
           <button class="btn returns_open">Learn More</button>
         </li>
       </ul>
 
-      <img src="${g}/${a ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
+      <img src="${u}/${a ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
     </div>
   `
     );
-  }, aa = (i) => {
+  }, aa = (o) => {
     const a = window.Shopify.country, e = (/* @__PURE__ */ new Date()).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }), n = new Date((/* @__PURE__ */ new Date()).getTime() + (a === "CH" ? 2 : 7) * 24 * 60 * 60 * 1e3).toLocaleDateString(
       "en-US",
       { month: "short", day: "numeric", year: "numeric" }
@@ -5367,7 +5367,7 @@ product-gallery {
       `
     <div class="crs_shipping_time">
       <h3>Estimate shipping period</h3>
-      <p>Ship to: <span>${i[a]}</span></p>
+      <p>Ship to: <span>${o[a]}</span></p>
       <ul>
         <li>
           <span></span>
@@ -5416,7 +5416,7 @@ product-gallery {
         </p>
       </div>
       <div>
-        <img src="${g}/gc1.jpg" alt="gc1" />
+        <img src="${u}/gc1.jpg" alt="gc1" />
       </div>
       <p class="mobile">
         Our location in Lucerne not only keeps us at the forefront of the watch industry but also inspires us to uphold
@@ -5439,7 +5439,7 @@ product-gallery {
         </p>
       </div>
       <div>
-        <img src="${g}/gc2.jpg" alt="gc2" />
+        <img src="${u}/gc2.jpg" alt="gc2" />
       </div>
       <p class="mobile">
         At Helvetus, our collections are inspired and shaped by the feedback and needs of our valued customers. This
@@ -5508,29 +5508,29 @@ product-gallery {
     <h2>Customer reviews</h2>
     <div class="top_info">
       <div>
-        <img src="${g}/reviews_stars.svg" alt="stars" />
+        <img src="${u}/reviews_stars.svg" alt="stars" />
         <p>Based on 174 reviews</p>
       </div>
       <div class="rating">
-        <img src="${g}/5stars.png" alt="stars 5" />
-        <img src="${g}/4stars.png" alt="stars 4" />
-        <img src="${g}/3stars.png" alt="stars 3" />
-        <img src="${g}/2stars.png" alt="stars 2" />
-        <img src="${g}/1stars.png" alt="stars 1" />
+        <img src="${u}/5stars.png" alt="stars 5" />
+        <img src="${u}/4stars.png" alt="stars 4" />
+        <img src="${u}/3stars.png" alt="stars 3" />
+        <img src="${u}/2stars.png" alt="stars 2" />
+        <img src="${u}/1stars.png" alt="stars 1" />
       </div>
       <div>
         <a href="/pages/reviews">Write a Store Review</a>
       </div>
     </div>
-    <img src="${g}/${window.innerWidth < 768 ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
+    <img src="${u}/${window.innerWidth < 768 ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
     <ul>
       <li>
         <p>
-          <img src="${g}/stars.svg" alt="stars" />
+          <img src="${u}/stars.svg" alt="stars" />
           <span>10/02/2025</span>
         </p>
         <p class="user">
-          <img src="${g}/avatar.png" alt="avatar" />
+          <img src="${u}/avatar.png" alt="avatar" />
           <span>Tushar Arora</span>
           <span class="verified">Verified</span>
         </p>
@@ -5539,11 +5539,11 @@ product-gallery {
       </li>
       <li>
         <p>
-          <img src="${g}/stars.svg" alt="stars" />
+          <img src="${u}/stars.svg" alt="stars" />
           <span>02/02/2025</span>
         </p>
         <p class="user">
-          <img src="${g}/avatar.png" alt="avatar" />
+          <img src="${u}/avatar.png" alt="avatar" />
           <span>michele mangiucca </span>
           <span class="verified">Verified</span>
         </p>
@@ -5552,11 +5552,11 @@ product-gallery {
       </li>
       <li>
         <p>
-          <img src="${g}/stars.svg" alt="stars" />
+          <img src="${u}/stars.svg" alt="stars" />
           <span>01/02/2025</span>
         </p>
         <p class="user">
-          <img src="${g}/avatar.png" alt="avatar" />
+          <img src="${u}/avatar.png" alt="avatar" />
           <span>Peter Looijen</span>
           <span class="verified">Verified</span>
         </p>
@@ -5571,9 +5571,9 @@ product-gallery {
     `
   <div class="crs_popup_lifetime">
     <span class="close">${B}</span>
-    <img src="${g}/popup_lifetime.webp" alt="lifetime" />
+    <img src="${u}/popup_lifetime.webp" alt="lifetime" />
     <div class="icon_wrapper">
-      <img src="${g}/lifetime.svg" alt="" />
+      <img src="${u}/lifetime.svg" alt="" />
     </div>
     <h2>Lifetime Warranty:<br />A Promise of Timeless Quality</h2>
     <p>
@@ -5595,9 +5595,9 @@ product-gallery {
     `
   <div class="crs_popup_returns">
     <span class="close">${B}</span>
-    <img src="${g}/popup_return.webp" alt="returns" />
+    <img src="${u}/popup_return.webp" alt="returns" />
     <div class="icon_wrapper">
-      <img src="${g}/returns.svg" alt="" />
+      <img src="${u}/returns.svg" alt="" />
     </div>
     <h2>Hassle-Free Returns</h2>
     <p>
@@ -5637,16 +5637,17 @@ product-gallery {
       ]);
     }
     async imgSliderUpdate() {
-      var r, c;
-      const a = await l("h1"), e = await fetch(window.location.pathname + ".json").then((o) => o.json()), n = await l("product-gallery");
+      var r;
+      const a = await l("h1"), e = await fetch(window.location.pathname + ".json").then((c) => c.json()), n = await l("product-gallery");
       if ((r = a.textContent) != null && r.toLowerCase().includes("rubber") && n.insertAdjacentHTML("afterbegin", D), t(".product-gallery__zoom button svg").elements[0].remove(), t(".product-gallery__zoom button").elements[0].insertAdjacentHTML("beforeend", q), await l("#closeDiv button"), await l(".product-quick-add"), t("#closeDiv button").on("click", function() {
         t(".product-quick-add").addClass("down");
-      }), window.innerWidth > 768 && ((c = a.textContent) != null && c.toLowerCase().includes("rubber"))) {
-        const o = e.product.images;
-        t("product-gallery").elements[0].insertAdjacentHTML("beforebegin", '<div class="crs_images"></div>'), o.forEach((u, d) => {
+      }), window.innerWidth > 768) {
+        const c = e.product.images;
+        t("product-gallery").elements[0].insertAdjacentHTML("beforebegin", '<div class="crs_images"></div>'), c.forEach((i, g) => {
+          var s;
           t(".crs_images").elements[0].insertAdjacentHTML(
             "beforeend",
-            `<div>${D}<img src="${u.src}" alt="${u.alt}" data-index="${d}"><div>`
+            `<div>${(s = a.textContent) != null && s.toLowerCase().includes("rubber") ? D : ""}<img src="${i.src}" alt="${i.alt}" data-index="${g}"><div>`
           );
         });
       }
@@ -5670,20 +5671,20 @@ product-gallery {
       t(
         "product-recommendations .product-info__complementary-products .horizontal-product-list .horizontal-product"
       ).each((n) => {
-        const r = n.find("img.horizontal-product__image").attr("src") || "", c = n.find("a").text() || "", o = n.find("a").attr("href"), u = n.find("sale-price").elements[0].childNodes[2].textContent || "", d = n.find("compare-at-price").elements[0].childNodes[2].textContent, f = n.find("form input[name=id]").attr("value") || "";
-        e.push({ img: r, title: c, price: d ? [u, d] : u, link: o, id: f });
+        const r = n.find("img.horizontal-product__image").attr("src") || "", c = n.find("a").text() || "", i = n.find("a").attr("href"), g = n.find("sale-price").elements[0].childNodes[2].textContent || "", s = n.find("compare-at-price").elements[0].childNodes[2].textContent, f = n.find("form input[name=id]").attr("value") || "";
+        e.push({ img: r, title: c, price: s ? [g, s] : g, link: i, id: f });
       }), a.insertAdjacentHTML("beforebegin", Y(e)), t(".crs_addons .add_check button").on("click", function() {
-        var c, o, u;
-        const n = this.getAttribute("data-id"), r = (c = e.find((d) => d.id === n)) == null ? void 0 : c.title;
-        (u = (o = t(`.horizontal-product input[value="${n}"]`).elements[0].closest("form")) == null ? void 0 : o.querySelector("button")) == null || u.click(), C("exp_pdp__click_01", "Add - " + r, "click", "Product info");
+        var c, i, g;
+        const n = this.getAttribute("data-id"), r = (c = e.find((s) => s.id === n)) == null ? void 0 : c.title;
+        (g = (i = t(`.horizontal-product input[value="${n}"]`).elements[0].closest("form")) == null ? void 0 : i.querySelector("button")) == null || g.click(), C("exp_pdp__click_01", "Add - " + r, "click", "Product info");
       });
     }
     async moneyBackBlock() {
-      var r, c, o, u;
+      var r, c, i, g;
       const a = await l("h1");
       let e = !1;
-      (r = a.textContent) != null && r.toLowerCase().includes("rubber") && (e = !0), (await l(".product-info__buy-buttons")).insertAdjacentHTML("afterend", Q(e)), document.body.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), (c = document.querySelector(".dark_bg")) == null || c.insertAdjacentHTML("beforeend", ia), (o = document.querySelector(".dark_bg")) == null || o.insertAdjacentHTML("beforeend", ra), (u = document.querySelector(".dark_bg")) == null || u.addEventListener("click", function(d) {
-        d.target === this && (t(".dark_bg").removeClass("active"), t(".crs_popup_lifetime").removeClass("active"), t(".crs_popup_returns").removeClass("active"));
+      (r = a.textContent) != null && r.toLowerCase().includes("rubber") && (e = !0), (await l(".product-info__buy-buttons")).insertAdjacentHTML("afterend", Q(e)), document.body.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), (c = document.querySelector(".dark_bg")) == null || c.insertAdjacentHTML("beforeend", ia), (i = document.querySelector(".dark_bg")) == null || i.insertAdjacentHTML("beforeend", ra), (g = document.querySelector(".dark_bg")) == null || g.addEventListener("click", function(s) {
+        s.target === this && (t(".dark_bg").removeClass("active"), t(".crs_popup_lifetime").removeClass("active"), t(".crs_popup_returns").removeClass("active"));
       }), t(".life_open").on("click", function() {
         console.log("click life"), t(".dark_bg").addClass("active"), t(".crs_popup_lifetime").addClass("active"), C("exp_pdp__click_02", "Learn more - Lifetime warranty", "click", "Product info");
       }), t(".returns_open").on("click", function() {
@@ -5696,15 +5697,15 @@ product-gallery {
       (await l(".crs_money_back")).insertAdjacentHTML("afterend", aa(ca));
     }
     async setInfoBlocks() {
-      (await l(".crs_shipping_time")).insertAdjacentHTML("afterend", na), t(".crs_info_blocks li p:first-of-type").each((o) => {
-        o.on("click", function() {
-          o.elements[0].classList.contains("active") ? (Z(o.elements[0].nextElementSibling), o.elements[0].classList.remove("active"), C("exp_pdp__click_03", "close - " + o.text(), "click", "Dropdown")) : (K(o.elements[0].nextElementSibling), o.elements[0].classList.add("active"), C("exp_pdp__click_03", "open - " + o.text(), "click", "Dropdown"));
+      (await l(".crs_shipping_time")).insertAdjacentHTML("afterend", na), t(".crs_info_blocks li p:first-of-type").each((i) => {
+        i.on("click", function() {
+          i.elements[0].classList.contains("active") ? (Z(i.elements[0].nextElementSibling), i.elements[0].classList.remove("active"), C("exp_pdp__click_03", "close - " + i.text(), "click", "Dropdown")) : (K(i.elements[0].nextElementSibling), i.elements[0].classList.add("active"), C("exp_pdp__click_03", "open - " + i.text(), "click", "Dropdown"));
         });
       }), await l(".product-info__description .prose");
       let e = "", n = "", r = "", c = 0;
-      t(".product-info__description .prose p, .product-info__description .prose div").each((o) => {
-        (!o.text().toLowerCase().includes("details") || !o.text().toLowerCase().includes("excellence service")) && c === 0 && (e += o.text() + "<br>"), o.text().length > 100 && (c = 1), o.text().toLowerCase().includes("details") && c === 1 && o.elements[0].childNodes.forEach((u) => {
-          u.textContent.includes("Material") && (n = u.textContent.split(":")[1].trim()), u.textContent.includes("Size") && (r = u.textContent.split(":")[1].trim());
+      t(".product-info__description .prose p, .product-info__description .prose div").each((i) => {
+        (!i.text().toLowerCase().includes("details") || !i.text().toLowerCase().includes("excellence service")) && c === 0 && (e += i.text() + "<br>"), i.text().length > 100 && (c = 1), i.text().toLowerCase().includes("details") && c === 1 && i.elements[0].childNodes.forEach((g) => {
+          g.textContent.includes("Material") && (n = g.textContent.split(":")[1].trim()), g.textContent.includes("Size") && (r = g.textContent.split(":")[1].trim());
         });
       }), t(".crs_info_blocks .about_product p:last-child").html(e), t(".crs_info_blocks .material p:last-child").text(n), t(".crs_info_blocks .size p:last-child").text(r);
     }
