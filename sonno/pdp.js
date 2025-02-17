@@ -1837,6 +1837,7 @@ div:has(> .crs-headboard__save) ul {
   font-style: normal;
   font-weight: 600;
   line-height: 24px; /* 171.429% */
+  white-space: nowrap;
 }
 
 .crs-headboard-btn {
