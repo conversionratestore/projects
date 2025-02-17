@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const M = `.desktop {
+  const D = `.desktop {
   display: none;
 }
 @media (min-width: 769px) {
@@ -154,6 +154,11 @@ product-gallery {
 .product-quick-add {
   padding: 0 0 19px;
 }
+@media (min-width: 769px) {
+  .product-quick-add {
+    padding: 1rem;
+  }
+}
 .product-quick-add button {
   border-radius: 0;
   position: relative;
@@ -171,8 +176,8 @@ product-gallery {
   display: flex;
   align-items: center;
   gap: 6px;
-  top: 25px;
-  left: 10px;
+  top: 16px;
+  left: 0;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
@@ -294,6 +299,7 @@ product-gallery {
   height: 64px;
   border-radius: 4px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 .crs_addons ul li .img_wrapper img {
   width: 100%;
@@ -409,6 +415,9 @@ product-gallery {
   align-items: center;
   position: relative;
 }
+.crs_money_back ul li span {
+  text-transform: uppercase;
+}
 .crs_money_back ul li:not(:last-child)::after {
   position: absolute;
   content: "";
@@ -485,10 +494,10 @@ product-gallery {
   display: flex;
   gap: 10px;
   position: relative;
-  width: calc((100% - 16px) / 3);
 }
 @media (min-width: 769px) {
   .crs_shipping_time ul li {
+    width: calc((100% - 16px) / 3);
     justify-content: flex-end;
     flex-direction: column;
     gap: 0;
@@ -602,6 +611,7 @@ product-gallery {
   color: #333;
   line-height: 18px;
   position: relative;
+  cursor: pointer;
 }
 .crs_info_blocks ul li p:first-of-type::after {
   position: absolute;
@@ -658,11 +668,13 @@ product-gallery {
   .crs_great_choice h3 {
     font-size: 48px;
     line-height: 54px;
+    text-align: left;
   }
   .crs_great_choice p {
     font-size: 16px;
     line-height: 1.6;
     margin-top: 24px;
+    text-align: left;
   }
   .crs_great_choice > div {
     display: flex;
@@ -807,6 +819,7 @@ product-gallery {
   justify-content: center;
   width: 21px;
   height: 21px;
+  cursor: pointer;
 }
 .crs_popup_lifetime .icon_wrapper,
 .crs_popup_returns .icon_wrapper {
@@ -863,34 +876,34 @@ product-gallery {
 .crs_popup_returns p b {
   display: inline;
 }/*# sourceMappingURL=style.css.map */`;
-  var g = {}, b = {}, _;
-  function P() {
-    if (_) return b;
-    _ = 1, Object.defineProperty(b, "__esModule", { value: !0 });
+  var s = {}, x = {}, v;
+  function F() {
+    if (v) return x;
+    v = 1, Object.defineProperty(x, "__esModule", { value: !0 });
     function o(a, e) {
-      return a.reduce((n, i) => {
-        const c = String(i[e]);
-        return n[c] || (n[c] = []), n[c].push(i), n;
+      return a.reduce((n, r) => {
+        const c = String(r[e]);
+        return n[c] || (n[c] = []), n[c].push(r), n;
       }, {});
     }
-    return b.default = o, b;
+    return x.default = o, x;
   }
-  var T = {}, w;
-  function B() {
-    if (w) return T;
-    w = 1, Object.defineProperty(T, "__esModule", { value: !0 });
+  var w = {}, S;
+  function R() {
+    if (S) return w;
+    S = 1, Object.defineProperty(w, "__esModule", { value: !0 });
     function o(a, e) {
-      return a.replace(/{([^{}]*)}/g, (n, i) => {
-        const c = e[i];
+      return a.replace(/{([^{}]*)}/g, (n, r) => {
+        const c = e[r];
         return typeof c == "string" || typeof c == "number" ? c.toString() : n;
       });
     }
-    return T.default = o, T;
+    return w.default = o, w;
   }
-  var A = {}, S;
-  function D() {
-    if (S) return A;
-    S = 1, Object.defineProperty(A, "__esModule", { value: !0 });
+  var A = {}, k;
+  function I() {
+    if (k) return A;
+    k = 1, Object.defineProperty(A, "__esModule", { value: !0 });
     const o = [
       {
         countryNameEn: "Andorra",
@@ -4967,101 +4980,101 @@ product-gallery {
     ];
     return A.default = o, A;
   }
-  var v;
-  function F() {
-    if (v) return g;
-    v = 1;
-    var o = g.__importDefault || function(s) {
-      return s && s.__esModule ? s : { default: s };
+  var M;
+  function U() {
+    if (M) return s;
+    M = 1;
+    var o = s.__importDefault || function(d) {
+      return d && d.__esModule ? d : { default: d };
     };
-    Object.defineProperty(g, "__esModule", { value: !0 }), g.customList = g.customArray = g.findOne = g.filter = g.all = g.utils = void 0;
-    const a = o(P()), e = o(B()), n = o(D());
-    g.utils = {
+    Object.defineProperty(s, "__esModule", { value: !0 }), s.customList = s.customArray = s.findOne = s.filter = s.all = s.utils = void 0;
+    const a = o(F()), e = o(R()), n = o(I());
+    s.utils = {
       groupBy: a.default
     };
-    function i() {
+    function r() {
       return n.default;
     }
-    g.all = i;
-    function c(s, f) {
-      return n.default.filter((m) => m[s] === f);
+    s.all = r;
+    function c(d, m) {
+      return n.default.filter((y) => y[d] === m);
     }
-    g.filter = c;
-    function r(s, f) {
-      return n.default.find((m) => m[s] === f);
+    s.filter = c;
+    function i(d, m) {
+      return n.default.find((y) => y[d] === m);
     }
-    g.findOne = r;
-    function d(s = {
+    s.findOne = i;
+    function g(d = {
       name: "{countryNameEn} ({countryCode})",
       value: "{countryCode}"
-    }, { sortBy: f, sortDataBy: m, filter: h } = {}) {
-      const y = [];
-      let C = n.default;
-      if (typeof h == "function" && (C = C.filter(h)), m) {
-        const N = new Intl.Collator([], { sensitivity: "accent" });
-        C.sort((p, L) => N.compare(p[m], L[m]));
+    }, { sortBy: m, sortDataBy: y, filter: T } = {}) {
+      const N = [];
+      let p = n.default;
+      if (typeof T == "function" && (p = p.filter(T)), y) {
+        const L = new Intl.Collator([], { sensitivity: "accent" });
+        p.sort((h, b) => L.compare(h[y], b[y]));
       }
-      if (C.forEach((N) => {
-        const p = {};
-        for (const L in s)
-          p[L] = (0, e.default)(s[L], N);
-        y.push(p);
-      }), f && s[f]) {
-        const N = new Intl.Collator([], { sensitivity: "accent" });
-        y.sort((p, L) => N.compare(p[f], L[f]));
+      if (p.forEach((L) => {
+        const h = {};
+        for (const b in d)
+          h[b] = (0, e.default)(d[b], L);
+        N.push(h);
+      }), m && d[m]) {
+        const L = new Intl.Collator([], { sensitivity: "accent" });
+        N.sort((h, b) => L.compare(h[m], b[m]));
       }
-      return y;
+      return N;
     }
-    g.customArray = d;
-    function x(s = "countryCode", f = "{countryNameEn} ({countryCode})", { filter: m } = {}) {
-      const h = {};
-      let y = n.default;
-      return typeof m == "function" && (y = y.filter(m)), y.forEach((C) => {
-        const N = (0, e.default)(f, C);
-        h[String(C[s])] = N;
-      }), h;
+    s.customArray = g;
+    function f(d = "countryCode", m = "{countryNameEn} ({countryCode})", { filter: y } = {}) {
+      const T = {};
+      let N = n.default;
+      return typeof y == "function" && (N = N.filter(y)), N.forEach((p) => {
+        const L = (0, e.default)(m, p);
+        T[String(p[d])] = L;
+      }), T;
     }
-    return g.customList = x, g;
+    return s.customList = f, s;
   }
-  var R = F();
-  const I = (o, a, e, n = "") => {
+  var z = U();
+  const E = (o, a, e, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: o,
       event_desc: a,
       event_type: e,
       event_loc: n
-    }), z(`Event: ${o} | ${a} | ${e} | ${n}`, "success");
-  }, u = (o) => new Promise((a) => {
+    }), P(`Event: ${o} | ${a} | ${e} | ${n}`, "success");
+  }, l = (o) => new Promise((a) => {
     const e = document.querySelector(o);
     e && a(e);
     const n = new MutationObserver(() => {
-      const i = document.querySelector(o);
-      i && (a(i), n.disconnect());
+      const r = document.querySelector(o);
+      r && (a(r), n.disconnect());
     });
     n.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), U = ({ name: o, dev: a }) => {
+  }), G = ({ name: o, dev: a }) => {
     console.log(
       `%c EXP: ${o} (DEV: ${a})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  class E {
+  class _ {
     constructor(a) {
-      this.elements = a instanceof E ? this.elements = a.elements : typeof a == "string" ? Array.from(document.querySelectorAll(a)) : a instanceof Element ? [a] : Array.isArray(a) ? a : Array.from(a);
+      this.elements = a instanceof _ ? this.elements = a.elements : typeof a == "string" ? Array.from(document.querySelectorAll(a)) : a instanceof Element ? [a] : Array.isArray(a) ? a : Array.from(a);
     }
     on(a, e, n) {
-      return typeof e == "function" && (n = e, e = ""), this.elements.forEach(function(i) {
-        i.addEventListener(a, function(c) {
-          var r;
+      return typeof e == "function" && (n = e, e = ""), this.elements.forEach(function(r) {
+        r.addEventListener(a, function(c) {
+          var i;
           if (e !== "") {
-            let d = (r = c.target) == null ? void 0 : r.closest(e);
-            d && (n == null || n.call(d, c));
+            let g = (i = c.target) == null ? void 0 : i.closest(e);
+            g && (n == null || n.call(g, c));
           } else
-            n == null || n.call(i, c);
+            n == null || n.call(r, c);
         });
       }), this;
     }
@@ -5082,18 +5095,18 @@ product-gallery {
     }
     each(a) {
       for (let e of this.elements)
-        a(new E(e), this.elements.indexOf(e));
+        a(new _(e), this.elements.indexOf(e));
       return this;
     }
     style(a, e) {
-      const n = a.split("-").map((i, c) => c === 0 ? i : i.charAt(0).toUpperCase() + i.slice(1)).join("");
-      return this.elements.forEach(function(i) {
-        i.style[n] = e;
+      const n = a.split("-").map((r, c) => c === 0 ? r : r.charAt(0).toUpperCase() + r.slice(1)).join("");
+      return this.elements.forEach(function(r) {
+        r.style[n] = e;
       }), this;
     }
     find(a) {
       const e = this.elements.map((n) => Array.from(n.querySelectorAll(a)));
-      return new E(e.flat());
+      return new _(e.flat());
     }
     attr(a, e) {
       return e ? (this.elements.forEach(function(n) {
@@ -5111,7 +5124,30 @@ product-gallery {
       }), this) : this.elements[0].innerHTML;
     }
   }
-  const t = (o) => new E(o), z = (o, a = "info") => {
+  const t = (o) => new _(o), H = (o) => {
+    let a = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(a), window.clarity("set", o, "variant_1"));
+    }, 1e3);
+  }, C = (o, a, e, n, r = 1e3, c = 0.5) => {
+    let i, g;
+    if (i = new IntersectionObserver(
+      function(f) {
+        f[0].isIntersecting === !0 ? g = setTimeout(() => {
+          E(
+            a,
+            f[0].target.dataset.visible || n || "",
+            "view",
+            e
+          ), i.disconnect();
+        }, r) : (P("Element is not fully visible", "warn"), clearTimeout(g));
+      },
+      { threshold: [c] }
+    ), typeof o == "string") {
+      const f = document.querySelector(o);
+      f && i.observe(f);
+    } else
+      i.observe(o);
+  }, P = (o, a = "info") => {
     let e;
     switch (a) {
       case "info":
@@ -5128,17 +5164,17 @@ product-gallery {
         break;
     }
     console.log(`%c>>> ${o}`, `${e} font-size: 16px; font-weight: 600`);
-  }, H = (o, a) => {
+  }, V = (o, a) => {
     o.style.transition = "height 500ms", o.style.height = "0", setTimeout(() => {
       o.style.display = "none";
     }, 500);
-  }, G = (o, a) => {
+  }, Z = (o, a) => {
     o.style.transition = "height 500ms", o.style.overflow = "hidden", o.style.display = "block", o.style.height = "auto";
     const n = o.clientHeight;
     o.style.height = "0", setTimeout(() => {
       o.style.height = n + "px";
     }, 0);
-  }, l = "https://conversionratestore.github.io/projects/helvetus/img", k = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+  }, u = "https://conversionratestore.github.io/projects/helvetus/img", B = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
 <g filter="url(#filter0_d_81_50)">
 <path d="M5.5 2L14.5 11M5.5 11L14.5 2" stroke="white" stroke-width="2.325" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/>
 </g>
@@ -5154,7 +5190,7 @@ product-gallery {
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_81_50" result="shape"/>
 </filter>
 </defs>
-</svg>`, V = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
+</svg>`, K = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
 <g clip-path="url(#clip0_7_841)">
 <path d="M21.1471 16.837C19.2009 16.837 17.6177 18.4203 17.6177 20.3665C17.6177 22.3126 19.2009 23.8959 21.1471 23.8959C23.0936 23.8959 24.6765 22.3126 24.6765 20.3665C24.6765 18.4203 23.0933 16.837 21.1471 16.837ZM21.1471 22.1312C20.1739 22.1312 19.3824 21.3397 19.3824 20.3665C19.3824 19.3932 20.1739 18.6017 21.1471 18.6017C22.1203 18.6017 22.9118 19.3932 22.9118 20.3665C22.9118 21.3397 22.1203 22.1312 21.1471 22.1312Z" fill="black"/>
 <path d="M9.08802 16.837C7.14185 16.837 5.55859 18.4203 5.55859 20.3665C5.55859 22.3126 7.14185 23.8959 9.08802 23.8959C11.0342 23.8959 12.6174 22.3126 12.6174 20.3665C12.6174 18.4203 11.0342 16.837 9.08802 16.837ZM9.08802 22.1312C8.1148 22.1312 7.3233 21.3397 7.3233 20.3665C7.3233 19.3932 8.1148 18.6017 9.08802 18.6017C10.061 18.6017 10.8527 19.3932 10.8527 20.3665C10.8527 21.3397 10.0612 22.1312 9.08802 22.1312Z" fill="black"/>
@@ -5171,7 +5207,7 @@ product-gallery {
 <rect width="28" height="28" fill="white" transform="translate(0 0.189941)"/>
 </clipPath>
 </defs>
-</svg>`, Z = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="13" viewBox="0 0 26 13" fill="none">
+</svg>`, O = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="13" viewBox="0 0 26 13" fill="none">
 <mask id="path-1-inside-1_55_8541" fill="white">
 <path d="M19.6406 0.330383C17.9932 0.330383 16.5049 1.01007 15.4404 2.10431L14.7 2.86542C14.3223 3.25363 14.3223 3.87196 14.7 4.26013L14.8388 4.40279C15.2315 4.80632 15.8798 4.80626 16.2724 4.40265L17.0166 3.63751C17.6821 2.95343 18.6128 2.52765 19.6406 2.52765C21.6597 2.52765 23.3027 4.17072 23.3027 6.19025C23.3027 8.20929 21.6597 9.85236 19.6406 9.85236C18.6128 9.85236 17.6821 9.42658 17.0166 8.74201C11.2775 2.8424 10.5681 2.11305 10.5596 2.10431C9.49512 1.01007 8.00684 0.330383 6.35938 0.330383C3.12354 0.330383 0.5 2.95392 0.5 6.19025C0.5 9.42609 3.12354 12.0496 6.35938 12.0496C8.00684 12.0496 9.49512 11.3699 10.5596 10.2757L11.3 9.51458C11.6777 9.12638 11.6777 8.50805 11.3 8.11988L11.161 7.9771C10.7684 7.57361 10.1203 7.57361 9.72764 7.97712L8.9834 8.74201C8.31787 9.42658 7.38721 9.85236 6.35938 9.85236C4.34033 9.85236 2.69727 8.20929 2.69727 6.19025C2.69727 4.17072 4.34033 2.52765 6.35938 2.52765C7.38721 2.52765 8.31787 2.95343 8.9834 3.63751C9.23491 3.89611 15.3801 10.2137 15.4404 10.2757C16.5049 11.3699 17.9932 12.0496 19.6406 12.0496C22.8765 12.0496 25.5 9.42609 25.5 6.19025C25.5 2.95392 22.8765 0.330383 19.6406 0.330383Z"/>
 </mask>
@@ -5183,7 +5219,7 @@ product-gallery {
 <stop offset="1" stop-color="#D2920F"/>
 </linearGradient>
 </defs>
-</svg>`, K = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="21" viewBox="0 0 18 21" fill="none">
+</svg>`, j = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="21" viewBox="0 0 18 21" fill="none">
 <g clip-path="url(#clip0_2_569)">
 <path d="M8.4292 12.1627C8.4292 12.2017 8.41943 12.244 8.3999 12.2896C8.38037 12.3352 8.35758 12.3775 8.33154 12.4166L4.62061 16.108L6.22217 17.7291C6.28727 17.7942 6.33936 17.869 6.37842 17.9537C6.41748 18.0383 6.43701 18.1262 6.43701 18.2173C6.43701 18.4127 6.36865 18.5819 6.23193 18.7252C6.09521 18.8684 5.9292 18.94 5.73389 18.94H0.733887C0.538574 18.94 0.369303 18.8684 0.226074 18.7252C0.082845 18.5819 0.0112305 18.4127 0.0112305 18.2173V13.2173C0.0112305 13.022 0.082845 12.856 0.226074 12.7193C0.369303 12.5826 0.538574 12.5142 0.733887 12.5142C0.825033 12.5142 0.912923 12.5338 0.997559 12.5728C1.08219 12.6119 1.15706 12.664 1.22217 12.7291L2.84326 14.3306L6.53467 10.6197C6.57373 10.5936 6.61605 10.5709 6.66162 10.5513C6.70719 10.5318 6.74951 10.522 6.78857 10.522C6.84066 10.522 6.88949 10.5318 6.93506 10.5513C6.98063 10.5709 7.02295 10.5936 7.06201 10.6197L8.33154 11.8892C8.35758 11.9283 8.38037 11.9706 8.3999 12.0162C8.41943 12.0617 8.4292 12.1106 8.4292 12.1627ZM17.1597 2.51422V7.51422C17.1597 7.70953 17.0881 7.87555 16.9448 8.01227C16.8016 8.14899 16.6323 8.21735 16.437 8.21735C16.3459 8.21735 16.258 8.20107 16.1733 8.16852C16.0887 8.13597 16.0073 8.08714 15.9292 8.02203L14.3276 6.40094L10.6167 10.1119C10.5907 10.1509 10.5549 10.1802 10.5093 10.1998C10.4637 10.2193 10.4149 10.2291 10.3628 10.2291C10.3237 10.2291 10.2814 10.2193 10.2358 10.1998C10.1903 10.1802 10.1479 10.1509 10.1089 10.1119L8.83936 8.84235C8.80029 8.80328 8.771 8.76097 8.75146 8.71539C8.73193 8.66982 8.72217 8.6275 8.72217 8.58844C8.72217 8.53636 8.73193 8.48753 8.75146 8.44196C8.771 8.39638 8.80029 8.36058 8.83936 8.33453L12.5503 4.6236L10.9292 3.02203C10.8641 2.94391 10.8153 2.86253 10.7827 2.77789C10.7502 2.69326 10.7339 2.60537 10.7339 2.51422C10.7339 2.31891 10.8022 2.14964 10.939 2.00641C11.0757 1.86318 11.2417 1.79156 11.437 1.79156H16.437C16.6323 1.79156 16.8016 1.86318 16.9448 2.00641C17.0881 2.14964 17.1597 2.31891 17.1597 2.51422Z" fill="#2F2F2F"/>
 </g>
@@ -5192,29 +5228,29 @@ product-gallery {
 <rect width="17.1714" height="20" fill="white" transform="matrix(1 0 0 -1 0 20.19)"/>
 </clipPath>
 </defs>
-</svg>`, O = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+</svg>`, q = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
 <path d="M9.18179 18.454C9.18756 18.577 9.16833 18.6998 9.12525 18.8151C9.08217 18.9304 9.01614 19.0358 8.93117 19.1249C8.84619 19.2139 8.74403 19.2848 8.63087 19.3332C8.5177 19.3817 8.39589 19.4066 8.27279 19.4066C8.1497 19.4066 8.02789 19.3817 7.91472 19.3332C7.80156 19.2848 7.6994 19.2139 7.61442 19.1249C7.52944 19.0358 7.46342 18.9304 7.42034 18.8151C7.37726 18.6998 7.35802 18.577 7.36379 18.454C7.37476 18.2203 7.47532 17.9998 7.64459 17.8383C7.81386 17.6768 8.03883 17.5866 8.27279 17.5866C8.50676 17.5866 8.73173 17.6768 8.901 17.8383C9.07027 17.9998 9.17083 18.2203 9.18179 18.454ZM16.4538 18.454C16.4596 18.577 16.4403 18.6998 16.3972 18.8151C16.3542 18.9304 16.2881 19.0358 16.2032 19.1249C16.1182 19.2139 16.016 19.2848 15.9029 19.3332C15.7897 19.3817 15.6679 19.4066 15.5448 19.4066C15.4217 19.4066 15.2999 19.3817 15.1867 19.3332C15.0736 19.2848 14.9714 19.2139 14.8864 19.1249C14.8014 19.0358 14.7354 18.9304 14.6923 18.8151C14.6493 18.6998 14.63 18.577 14.6358 18.454C14.6436 18.218 14.7429 17.9943 14.9126 17.8301C15.0823 17.6659 15.3092 17.5742 15.5453 17.5742C15.7814 17.5742 16.0083 17.6659 16.178 17.8301C16.3477 17.9943 16.446 18.218 16.4538 18.454Z" fill="white"/>
 <path d="M5.336 6.636H21L17.364 14.818H6.909L4.636 3H1M9.182 18.454C9.18777 18.577 9.16853 18.6998 9.12545 18.8151C9.08238 18.9304 9.01635 19.0358 8.93137 19.1249C8.8464 19.2139 8.74424 19.2848 8.63107 19.3332C8.51791 19.3817 8.39609 19.4067 8.273 19.4067C8.14991 19.4067 8.02809 19.3817 7.91493 19.3332C7.80176 19.2848 7.6996 19.2139 7.61463 19.1249C7.52965 19.0358 7.46363 18.9304 7.42055 18.8151C7.37747 18.6998 7.35823 18.577 7.364 18.454C7.37497 18.2203 7.47552 17.9998 7.64479 17.8383C7.81406 17.6768 8.03904 17.5866 8.273 17.5866C8.50696 17.5866 8.73194 17.6768 8.90121 17.8383C9.07048 17.9998 9.17103 18.2203 9.182 18.454ZM16.454 18.454C16.4598 18.577 16.4405 18.6998 16.3975 18.8151C16.3544 18.9304 16.2883 19.0358 16.2034 19.1249C16.1184 19.2139 16.0162 19.2848 15.9031 19.3332C15.7899 19.3817 15.6681 19.4067 15.545 19.4067C15.4219 19.4067 15.3001 19.3817 15.1869 19.3332C15.0738 19.2848 14.9716 19.2139 14.8866 19.1249C14.8016 19.0358 14.7356 18.9304 14.6925 18.8151C14.6495 18.6998 14.6302 18.577 14.636 18.454C14.6438 18.218 14.7431 17.9943 14.9128 17.8301C15.0825 17.6659 15.3094 17.5742 15.5455 17.5742C15.7816 17.5742 16.0085 17.6659 16.1782 17.8301C16.3479 17.9943 16.4462 18.218 16.454 18.454Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`, j = (
+</svg>`, W = (
     /* HTML */
-    ` <div class="crs_img_label">${Z} LIFETIME warranty</div> `
-  ), q = (
+    ` <div class="crs_img_label">${O} LIFETIME warranty</div> `
+  ), J = (
     /* HTML */
     `
   <div class="crs_discount_info">
     <div class="get_discount">Get a 10% Discount</div>
   </div>
 `
-  ), W = (
+  ), X = (
     /* HTML */
     `
   <div class="crs_reviews">
-    <span><img src="${l}/stars.svg" alt="stars" /> 4.9</span>
+    <span><img src="${u}/stars.svg" alt="stars" /> 4.9</span>
     <span>163 Reviews</span>
   </div>
 `
-  ), J = (o) => {
-    const a = (/* @__PURE__ */ new Date()).getTime(), e = new Date(a + 7 * 24 * 60 * 60 * 1e3), n = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], i = [
+  ), Y = (o) => {
+    const a = (/* @__PURE__ */ new Date()).getTime(), e = new Date(a + 7 * 24 * 60 * 60 * 1e3), n = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], r = [
       "January",
       "February",
       "March",
@@ -5227,40 +5263,40 @@ product-gallery {
       "October",
       "November",
       "December"
-    ], c = `${n[e.getDay()]}, ${i[e.getMonth()]} ${e.getDate()}`;
+    ], c = `${n[e.getDay()]}, ${r[e.getMonth()]} ${e.getDate()}`;
     return (
       /* HTML */
       `
     <div class="crs_addons">
       <ul>
-        ${o.map((r) => (
+        ${o.map((i) => (
         /* HTML */
         `
               <li>
                 <div class="img_wrapper">
-                  <img src="${r.img}" alt="${r.title}" />
+                  <img src="${i.img}" alt="${i.title}" />
                 </div>
                 <div class="info">
-                  <a href="${r.link}" target="_blank">${r.title}</a>
+                  <a href="${i.link}" target="_blank">${i.title}</a>
                 </div>
                 <div class="add_check">
                   <p>
-                    ${typeof r.price == "string" ? r.price : `<span>${r.price[1]}</span><span>${r.price[0]}</span>`}
+                    ${typeof i.price == "string" ? i.price : `<span>${i.price[1]}</span><span>${i.price[0]}</span>`}
                   </p>
-                  <button data-id="${r.id}">+ Add</button>
+                  <button data-id="${i.id}">+&nbsp;Add</button>
                 </div>
               </li>
             `
       )).join("")}
       </ul>
       <div class="delivery">
-        <div class="icon_wrapper">${V}</div>
+        <div class="icon_wrapper">${K}</div>
         <p>Order now and get <span>FREE Global Express Delivery</span> before <span>${c}</span></p>
       </div>
     </div>
   `
     );
-  }, X = (o) => {
+  }, Q = (o) => {
     const a = window.innerWidth < 768;
     return (
       /* HTML */
@@ -5271,28 +5307,28 @@ product-gallery {
         /* HTML */
         `
               <li>
-                <img src="${l}/lifetime.svg" alt="" />
+                <img src="${u}/lifetime.svg" alt="" />
                 <span>Lifetime warranty</span>
-                <button class="btn life_open">LEARN MORE</button>
+                <button class="btn life_open">Learn More</button>
               </li>
             `
       ) : ""}
         <li>
-          <img src="${l}/returns.svg" alt="" />
+          <img src="${u}/returns.svg" alt="" />
           <span>Hassle-Free Returns</span>
-          <button class="btn returns_open">LEARN MORE</button>
+          <button class="btn returns_open">Learn More</button>
         </li>
       </ul>
 
-      <img src="${l}/${a ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
+      <img src="${u}/${a ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
     </div>
   `
     );
-  }, Y = (o) => {
+  }, aa = (o) => {
     const a = window.Shopify.country, e = (/* @__PURE__ */ new Date()).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }), n = new Date((/* @__PURE__ */ new Date()).getTime() + (a === "CH" ? 2 : 7) * 24 * 60 * 60 * 1e3).toLocaleDateString(
       "en-US",
       { month: "short", day: "numeric", year: "numeric" }
-    ), i = new Date(
+    ), r = new Date(
       (/* @__PURE__ */ new Date()).getTime() + (14 + (a === "CH" ? 2 : 7)) * 24 * 60 * 60 * 1e3
     ).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
     return (
@@ -5323,14 +5359,14 @@ product-gallery {
           <div>
             <p>Hassle-free money-back guarantee</p>
             <p>14 days after purchase</p>
-            <p>${i}</p>
+            <p>${r}</p>
           </div>
         </li>
       </ul>
     </div>
   `
     );
-  }, Q = (
+  }, ea = (
     /* HTML */
     `
   <div class="crs_great_choice">
@@ -5349,7 +5385,7 @@ product-gallery {
         </p>
       </div>
       <div>
-        <img src="${l}/gc1.jpg" alt="gc1" />
+        <img src="${u}/gc1.jpg" alt="gc1" />
       </div>
       <p class="mobile">
         Our location in Lucerne not only keeps us at the forefront of the watch industry but also inspires us to uphold
@@ -5372,7 +5408,7 @@ product-gallery {
         </p>
       </div>
       <div>
-        <img src="${l}/gc2.jpg" alt="gc2" />
+        <img src="${u}/gc2.jpg" alt="gc2" />
       </div>
       <p class="mobile">
         At Helvetus, our collections are inspired and shaped by the feedback and needs of our valued customers. This
@@ -5382,7 +5418,7 @@ product-gallery {
     </div>
   </div>
 `
-  ), aa = (
+  ), na = (
     /* HTML */
     `
   <div class="crs_info_blocks">
@@ -5434,36 +5470,36 @@ product-gallery {
     </ul>
   </div>
 `
-  ), ea = (
+  ), oa = (
     /* HTML */
     `
   <div class="crs_customer_reviews">
     <h2>Customer reviews</h2>
     <div class="top_info">
       <div>
-        <img src="${l}/reviews_stars.svg" alt="stars" />
+        <img src="${u}/reviews_stars.svg" alt="stars" />
         <p>Based on 174 reviews</p>
       </div>
       <div class="rating">
-        <img src="${l}/5stars.png" alt="stars 5" />
-        <img src="${l}/4stars.png" alt="stars 4" />
-        <img src="${l}/3stars.png" alt="stars 3" />
-        <img src="${l}/2stars.png" alt="stars 2" />
-        <img src="${l}/1stars.png" alt="stars 1" />
+        <img src="${u}/5stars.png" alt="stars 5" />
+        <img src="${u}/4stars.png" alt="stars 4" />
+        <img src="${u}/3stars.png" alt="stars 3" />
+        <img src="${u}/2stars.png" alt="stars 2" />
+        <img src="${u}/1stars.png" alt="stars 1" />
       </div>
       <div>
         <a href="/pages/reviews">Write a Store Review</a>
       </div>
     </div>
-    <img src="${l}/${window.innerWidth < 768 ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
+    <img src="${u}/${window.innerWidth < 768 ? "awards.webp" : "awards_desktop.png"}" alt="awards" />
     <ul>
       <li>
         <p>
-          <img src="${l}/stars.svg" alt="stars" />
+          <img src="${u}/stars.svg" alt="stars" />
           <span>10/02/2025</span>
         </p>
         <p class="user">
-          <img src="${l}/avatar.png" alt="avatar" />
+          <img src="${u}/avatar.png" alt="avatar" />
           <span>Tushar Arora</span>
           <span class="verified">Verified</span>
         </p>
@@ -5472,11 +5508,11 @@ product-gallery {
       </li>
       <li>
         <p>
-          <img src="${l}/stars.svg" alt="stars" />
+          <img src="${u}/stars.svg" alt="stars" />
           <span>02/02/2025</span>
         </p>
         <p class="user">
-          <img src="${l}/avatar.png" alt="avatar" />
+          <img src="${u}/avatar.png" alt="avatar" />
           <span>michele mangiucca </span>
           <span class="verified">Verified</span>
         </p>
@@ -5485,11 +5521,11 @@ product-gallery {
       </li>
       <li>
         <p>
-          <img src="${l}/stars.svg" alt="stars" />
+          <img src="${u}/stars.svg" alt="stars" />
           <span>01/02/2025</span>
         </p>
         <p class="user">
-          <img src="${l}/avatar.png" alt="avatar" />
+          <img src="${u}/avatar.png" alt="avatar" />
           <span>Peter Looijen</span>
           <span class="verified">Verified</span>
         </p>
@@ -5499,14 +5535,14 @@ product-gallery {
     </ul>
   </div>
 `
-  ), na = (
+  ), ia = (
     /* HTML */
     `
   <div class="crs_popup_lifetime">
-    <span class="close">${k}</span>
-    <img src="${l}/popup_lifetime.webp" alt="lifetime" />
+    <span class="close">${B}</span>
+    <img src="${u}/popup_lifetime.webp" alt="lifetime" />
     <div class="icon_wrapper">
-      <img src="${l}/lifetime.svg" alt="" />
+      <img src="${u}/lifetime.svg" alt="" />
     </div>
     <h2>Lifetime Warranty:<br />A Promise of Timeless Quality</h2>
     <p>
@@ -5523,14 +5559,14 @@ product-gallery {
     </p>
   </div>
 `
-  ), oa = (
+  ), ra = (
     /* HTML */
     `
   <div class="crs_popup_returns">
-    <span class="close">${k}</span>
-    <img src="${l}/popup_return.webp" alt="returns" />
+    <span class="close">${B}</span>
+    <img src="${u}/popup_return.webp" alt="returns" />
     <div class="icon_wrapper">
-      <img src="${l}/returns.svg" alt="" />
+      <img src="${u}/returns.svg" alt="" />
     </div>
     <h2>Hassle-Free Returns</h2>
     <p>
@@ -5547,14 +5583,14 @@ product-gallery {
   </div>
 `
   );
-  U({ name: "Reverse trial flow", dev: "YK" }), I("reverse_trial", "Start experiment", "loaded");
-  const ia = R.customList("countryCode", "{countryNameEn}");
-  class ra {
+  H("new_pdp"), G({ name: "Reverse trial flow", dev: "YK" }), E("reverse_trial", "Start experiment", "loaded");
+  const ca = z.customList("countryCode", "{countryNameEn}");
+  class ta {
     constructor() {
       this.mobile = window.innerWidth < 768, this.init();
     }
     async init() {
-      await u("head"), document.head.insertAdjacentHTML("beforeend", `<style>${M}</style>`), Promise.allSettled([
+      await l("head"), document.head.insertAdjacentHTML("beforeend", `<style>${D}</style>`), Promise.allSettled([
         this.imgSliderUpdate(),
         this.reviewsAndDiscount(),
         this.addOnsBlock(),
@@ -5564,83 +5600,92 @@ product-gallery {
         this.setInfoBlocks(),
         this.updateNewslater(),
         this.updateAddToCartBtn(),
-        this.customerReviews()
+        this.customerReviews(),
+        this.setViewEvents()
       ]);
     }
     async imgSliderUpdate() {
-      (await u("product-gallery")).insertAdjacentHTML("afterbegin", j), t(".product-gallery__zoom button svg").elements[0].remove(), t(".product-gallery__zoom button").elements[0].insertAdjacentHTML("beforeend", K);
+      (await l("product-gallery")).insertAdjacentHTML("afterbegin", W), t(".product-gallery__zoom button svg").elements[0].remove(), t(".product-gallery__zoom button").elements[0].insertAdjacentHTML("beforeend", j);
     }
     async reviewsAndDiscount() {
-      const a = await u("h1"), e = await u(".product-info__price");
-      a.insertAdjacentHTML(this.mobile ? "afterend" : "beforebegin", W), u("div:not(.needsclick)>.needsclick[style]").then(() => {
-        e.insertAdjacentHTML("afterend", q), $(".crs_discount_info .get_discount").on("click", function() {
+      var n;
+      const a = await l("h1"), e = await l(".product-info__price");
+      a.insertAdjacentHTML(this.mobile ? "afterend" : "beforebegin", X), (n = a.textContent) != null && n.toLowerCase().includes("rubber") && a.insertAdjacentHTML(
+        "afterend",
+        '<p style="font-size: 14px; text-transform:uppercase; margin: 8px 0;">Premium Rubber (allergy free)</p>'
+      ), l("div:not(.needsclick)>.needsclick[style]").then(() => {
+        e.insertAdjacentHTML("afterend", J), $(".crs_discount_info .get_discount").on("click", function() {
           t("div:not(.needsclick)>.needsclick[style]>div>span").elements[0].click();
         });
       });
     }
     async addOnsBlock() {
-      const a = await u(".product-info__buy-buttons");
-      await u("product-recommendations .product-info__complementary-products .horizontal-product-list");
+      const a = await l(".product-info__buy-buttons");
+      await l("product-recommendations .product-info__complementary-products .horizontal-product-list");
       const e = [];
       t(
         "product-recommendations .product-info__complementary-products .horizontal-product-list .horizontal-product"
       ).each((n) => {
-        console.log(n);
-        const i = n.find("img.horizontal-product__image").attr("src") || "", c = n.find("a").text() || "", r = n.find("a").attr("href"), d = n.find("sale-price").elements[0].childNodes[2].textContent || "", x = n.find("compare-at-price").elements[0].childNodes[2].textContent, s = n.find("form input[name=id]").attr("value") || "";
-        e.push({ img: i, title: c, price: x ? [d, x] : d, link: r, id: s });
-      }), a.insertAdjacentHTML("beforebegin", J(e)), t(".crs_addons .add_check button").on("click", function() {
-        var i, c;
-        const n = this.getAttribute("data-id");
-        (c = (i = t(`.horizontal-product input[value="${n}"]`).elements[0].closest("form")) == null ? void 0 : i.querySelector("button")) == null || c.click();
+        const r = n.find("img.horizontal-product__image").attr("src") || "", c = n.find("a").text() || "", i = n.find("a").attr("href"), g = n.find("sale-price").elements[0].childNodes[2].textContent || "", f = n.find("compare-at-price").elements[0].childNodes[2].textContent, d = n.find("form input[name=id]").attr("value") || "";
+        e.push({ img: r, title: c, price: f ? [g, f] : g, link: i, id: d });
+      }), a.insertAdjacentHTML("beforebegin", Y(e)), t(".crs_addons .add_check button").on("click", function() {
+        var c, i, g;
+        const n = this.getAttribute("data-id"), r = (c = e.find((f) => f.id === n)) == null ? void 0 : c.title;
+        (g = (i = t(`.horizontal-product input[value="${n}"]`).elements[0].closest("form")) == null ? void 0 : i.querySelector("button")) == null || g.click(), E("exp_pdp__click_01", "Add - " + r, "click", "Product info");
       });
     }
     async moneyBackBlock() {
-      var i, c, r;
-      const a = await u("h1");
+      var r, c, i, g;
+      const a = await l("h1");
       let e = !1;
-      (i = a.textContent) != null && i.toLowerCase().includes("rubber") && (e = !0), (await u(".product-info__buy-buttons")).insertAdjacentHTML("afterend", X(e)), document.body.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), (c = document.querySelector(".dark_bg")) == null || c.insertAdjacentHTML("beforeend", na), (r = document.querySelector(".dark_bg")) == null || r.insertAdjacentHTML("beforeend", oa), t(".life_open").on("click", function() {
-        console.log("click life"), t(".dark_bg").addClass("active"), t(".crs_popup_lifetime").addClass("active");
+      (r = a.textContent) != null && r.toLowerCase().includes("rubber") && (e = !0), (await l(".product-info__buy-buttons")).insertAdjacentHTML("afterend", Q(e)), document.body.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), (c = document.querySelector(".dark_bg")) == null || c.insertAdjacentHTML("beforeend", ia), (i = document.querySelector(".dark_bg")) == null || i.insertAdjacentHTML("beforeend", ra), (g = document.querySelector(".dark_bg")) == null || g.addEventListener("click", function(f) {
+        f.target === this && (t(".dark_bg").removeClass("active"), t(".crs_popup_lifetime").removeClass("active"), t(".crs_popup_returns").removeClass("active"));
+      }), t(".life_open").on("click", function() {
+        console.log("click life"), t(".dark_bg").addClass("active"), t(".crs_popup_lifetime").addClass("active"), E("exp_pdp__click_02", "Learn more - Lifetime warranty", "click", "Product info");
       }), t(".returns_open").on("click", function() {
-        t(".dark_bg").addClass("active"), t(".crs_popup_returns").addClass("active");
+        t(".dark_bg").addClass("active"), t(".crs_popup_returns").addClass("active"), E("exp_pdp__click_02", "Learn more - Returns", "click", "Product info");
       }), t(".dark_bg .close").on("click", function() {
         t(".dark_bg").removeClass("active"), t(".crs_popup_lifetime").removeClass("active"), t(".crs_popup_returns").removeClass("active");
       });
     }
     async shippingTimeBlock() {
-      (await u(".crs_money_back")).insertAdjacentHTML("afterend", Y(ia));
+      (await l(".crs_money_back")).insertAdjacentHTML("afterend", aa(ca));
     }
     async setInfoBlocks() {
-      (await u(".crs_shipping_time")).insertAdjacentHTML("afterend", aa), t(".crs_info_blocks li p:first-of-type").each((r) => {
-        r.on("click", function() {
-          r.elements[0].classList.contains("active") ? (H(r.elements[0].nextElementSibling), r.elements[0].classList.remove("active")) : (G(r.elements[0].nextElementSibling), r.elements[0].classList.add("active"));
+      (await l(".crs_shipping_time")).insertAdjacentHTML("afterend", na), t(".crs_info_blocks li p:first-of-type").each((i) => {
+        i.on("click", function() {
+          i.elements[0].classList.contains("active") ? (V(i.elements[0].nextElementSibling), i.elements[0].classList.remove("active")) : (Z(i.elements[0].nextElementSibling), i.elements[0].classList.add("active"), E("exp_pdp__click_03", i.text(), "click", "Dropdown"));
         });
-      }), await u(".product-info__description .prose");
-      let e = "", n = "", i = "", c = 0;
-      t(".product-info__description .prose p, .product-info__description .prose div").each((r) => {
-        (!r.text().toLowerCase().includes("details") || !r.text().toLowerCase().includes("excellence service")) && c === 0 && (e += r.text() + "<br>"), r.text().length > 100 && (c = 1), r.text().toLowerCase().includes("details") && c === 1 && r.elements[0].childNodes.forEach((d) => {
-          d.textContent.includes("Material") && (n = d.textContent.split(":")[1].trim()), d.textContent.includes("Size") && (i = d.textContent.split(":")[1].trim());
+      }), await l(".product-info__description .prose");
+      let e = "", n = "", r = "", c = 0;
+      t(".product-info__description .prose p, .product-info__description .prose div").each((i) => {
+        (!i.text().toLowerCase().includes("details") || !i.text().toLowerCase().includes("excellence service")) && c === 0 && (e += i.text() + "<br>"), i.text().length > 100 && (c = 1), i.text().toLowerCase().includes("details") && c === 1 && i.elements[0].childNodes.forEach((g) => {
+          g.textContent.includes("Material") && (n = g.textContent.split(":")[1].trim()), g.textContent.includes("Size") && (r = g.textContent.split(":")[1].trim());
         });
-      }), t(".crs_info_blocks .about_product p:last-child").html(e), t(".crs_info_blocks .material p:last-child").text(n), t(".crs_info_blocks .size p:last-child").text(i);
+      }), t(".crs_info_blocks .about_product p:last-child").html(e), t(".crs_info_blocks .material p:last-child").text(n), t(".crs_info_blocks .size p:last-child").text(r);
     }
     async greatChoice() {
-      (await u(".shopify-section--product-recommendations")).insertAdjacentHTML("afterend", Q);
+      (await l(".shopify-section--product-recommendations")).insertAdjacentHTML("afterend", ea);
     }
     async updateNewslater() {
       var a;
-      await u(".footer__block--newsletter"), t(".footer__block--newsletter").find(".h3").text("Join Our Community").elements[0].insertAdjacentHTML("afterend", "<p>Sign up for 10% off your first order</p>"), t(".footer__block--newsletter").find("form").elements[0].insertAdjacentHTML("afterend", '<button class="crs_join">join now</button>'), t(".crs_join").on("click", function() {
+      await l(".footer__block--newsletter"), t(".footer__block--newsletter").find(".h3").text("Join Our Community").elements[0].insertAdjacentHTML("afterend", "<p>Sign up for 10% off your first order</p>"), t(".footer__block--newsletter").find("form").elements[0].insertAdjacentHTML("afterend", '<button class="crs_join">join now</button>'), t(".crs_join").on("click", function() {
         t(".footer__block--newsletter form .circle-chevron").elements[0].click();
-      }), await u(".footer__block.footer__block--menu .bold"), document.querySelectorAll(".footer__block.footer__block--menu .bold").forEach((e) => {
+      }), await l(".footer__block.footer__block--menu .bold"), document.querySelectorAll(".footer__block.footer__block--menu .bold").forEach((e) => {
         var n;
         (n = e.textContent) != null && n.toLowerCase().includes("shop") && window.innerWidth < 768 && (e.closest(".footer__block").style.display = "none");
-      }), await u(".footer .social-media"), (a = document.querySelector(".crs_join")) == null || a.after(document.querySelector(".footer .social-media"));
+      }), await l(".footer .social-media"), (a = document.querySelector(".crs_join")) == null || a.after(document.querySelector(".footer .social-media"));
     }
     async updateAddToCartBtn() {
-      (await u(".product-quick-add button")).insertAdjacentHTML("beforeend", O);
+      (await l(".product-quick-add button")).insertAdjacentHTML("beforeend", q);
     }
     async customerReviews() {
-      (await u(".crs_great_choice")).insertAdjacentHTML("afterend", ea);
+      (await l(".crs_great_choice")).insertAdjacentHTML("afterend", oa);
+    }
+    async setViewEvents() {
+      await l(".crs_addons"), await l(".crs_money_back"), await l(".crs_shipping_time"), await l(".crs_info_blocks"), await l(".crs_great_choice"), await l(".crs_customer_reviews"), C(".crs_addons", "exp_pdp__view_01", "View - Add-ons"), C(".crs_money_back", "exp_pdp__view_02", "View - Money back"), C(".crs_shipping_time", "exp_pdp__view_03", "View - Shipping time"), C(".crs_info_blocks", "exp_pdp__view_04", "View - Info blocks"), C(".crs_great_choice .part1", "exp_pdp__view_05", "View - Great choice part1"), C(".crs_great_choice .part2", "exp_pdp__view_05", "View - Great choice part2"), C(".crs_customer_reviews", "exp_pdp__view_06", "View - Reviews");
     }
   }
-  new ra();
+  new ta();
 })();
 //# sourceMappingURL=index.js.map
