@@ -2099,14 +2099,17 @@ div:has(> .crs-headboard__save) ul {
         const o = document.querySelector('[data-variant="headboard"]');
         if (!o)
           return;
-        const n = o.querySelector("ul"), e = n == null ? void 0 : n.querySelectorAll("li");
-        if (!n || n.querySelector(".crs-headboard-item"))
+        const n = o.querySelector("ul");
+        if (!n)
           return;
-        e == null || e.forEach((i) => {
-          var u, c, l, m;
-          if ((u = i.previousElementSibling) != null && u.classList.contains("crs-headboard-item"))
-            return;
-          const r = (c = i.querySelector("svg")) == null ? void 0 : c.cloneNode(!0), a = (l = i.querySelector(['[x-text="item.value"]'])) == null ? void 0 : l.textContent, d = (m = i.querySelector(['[x-text="item.value"] + div'])) == null ? void 0 : m.textContent, p = (
+        n.querySelector(".crs-headboard-item") && n.querySelectorAll(".crs-headboard-item").forEach((i) => {
+          var r;
+          return (r = i.closest("li")) == null ? void 0 : r.remove();
+        });
+        const t = n == null ? void 0 : n.querySelectorAll("li");
+        console.log("headboardItems", t), t == null || t.forEach((i) => {
+          var u, c, l;
+          const r = (u = i.querySelector("svg")) == null ? void 0 : u.cloneNode(!0), a = (c = i.querySelector(['[x-text="item.value"]'])) == null ? void 0 : c.textContent, d = (l = i.querySelector(['[x-text="item.value"] + div'])) == null ? void 0 : l.textContent, p = (
             /* HTML */
             `<li>
           <div class="crs-headboard-item ${i.querySelector(".border-tertiary") ? "crs-headboard-item--active" : ""}">
