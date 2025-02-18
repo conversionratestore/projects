@@ -35,7 +35,8 @@
   const C = {
     mobile: "mobile",
     desktop: "desktop"
-  }, S = "https://conversionratestore.github.io/projects/sonno", z = `body:has(dialog[open]), body.is-dialog-open {
+  }, S = "https://conversionratestore.github.io/projects/sonno", z = `body:has(dialog[open]),
+body.is-dialog-open {
   overflow: hidden;
   position: fixed;
 }
@@ -145,7 +146,7 @@
 }
 
 @media (min-width: 768px) {
-  .price-pro:not(:has(#variant-mattress)) > div:last-child{
+  .price-pro:not(:has(#variant-mattress)) > div:last-child {
     grid-column: 3 / 4;
     margin-left: auto;
     padding-inline: 24px;
@@ -260,7 +261,7 @@
   font-weight: 600;
   line-height: 24px; /* 171.429% */
 }
-.card-addons .card-button .border-btn {
+.card-addons .card-button .border-btn:not(.no-border) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -275,7 +276,33 @@
   line-height: 24px;
 }
 
-.crs-chosen-option, .crs-chosen-option > *  {
+.card-addons .card-button .border-btn.no-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 34px;
+  color: #3589da;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+
+@media (max-width: 768px) {
+  .card-addons .card-button .border-btn.no-border {
+    font-size: 14px;
+    padding: 0;
+  }
+}
+.crs-chosen-option,
+.crs-chosen-option > * {
   display: flex;
   gap: 6px;
   color: #374151 !important;
@@ -1487,7 +1514,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px 15px;
-  z-index: 9999
+  z-index: 9999;
 }
 
 [data-variant='headboard'] div > hr {
@@ -1707,6 +1734,15 @@ div:has(> .crs-headboard__save) ul {
   display: none; /* Chrome, Safari, Opera */
 }
 
+.crs-mattress-dialog .ss-tabs li a:hover {
+  color: inherit;
+  background: inherit;
+}
+
+.crs-mattress-dialog .ss-tabs li a.active {
+  background-color: rgb(30 56 81 / var(--tw-bg-opacity));
+  color: #fff;
+}
 .crs-mattress-dialog .ss-tabs + div {
   margin: 0;
   height: calc(80dvh - 150px);
@@ -1976,7 +2012,6 @@ div:has(> .crs-headboard__save) ul {
     transform: translateY(0);
     font-size: 14px !important;
     right: 24px;
-
   }
 }
 
@@ -1993,7 +2028,7 @@ div:has(> .crs-headboard__save) ul {
 @media (max-width: 1000px) {
   .crs-mattress-price {
     flex-direction: column;
-    align-items: flex-start!important;
+    align-items: flex-start !important;
     top: 6px;
     right: 24px;
     transform: translateY(0);
@@ -2734,7 +2769,7 @@ div:has(> .crs-headboard__save) ul {
                   `
                 <div class="crs-mattress-price">
                   <div class="old">${y == null ? void 0 : y.toLocaleLowerCase()}</div>
-                  <div class="new">${v == null ? void 0 : v.toLocaleLowerCase()}</div>
+                  <div class="new">+${v == null ? void 0 : v.toLocaleLowerCase()}</div>
                 </div>
               `
                 );
@@ -2922,7 +2957,7 @@ div:has(> .crs-headboard__save) ul {
 .variant-switch-items ul li div > div:not([x-text='option.name']):not(.text-primary) br {
   display: none;
 }`;
-  class B {
+  class j {
     constructor() {
       this.variantSwitchPopup = new $(), this.variantColorPopup = new A(), this.init();
     }
@@ -2956,13 +2991,13 @@ div:has(> .crs-headboard__save) ul {
     name: "Focus on increasing the perceived value of the product on PDP",
     dev: "OS"
   }), O("exp_01_exit_intent");
-  class j {
+  class B {
     constructor() {
       this.init();
     }
     async init() {
-      await m('#MainContent[x-data="product"]') && (new B(), new E(), new q());
+      await m('#MainContent[x-data="product"]') && (new j(), new E(), new q());
     }
   }
-  new j();
+  new B();
 })();
