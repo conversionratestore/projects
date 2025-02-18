@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const y = (f, i, n, e = "") => {
+  const w = (f, i, n, e = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: f,
@@ -35,7 +35,7 @@
   const C = {
     mobile: "mobile",
     desktop: "desktop"
-  }, S = "https://conversionratestore.github.io/projects/sonno", q = `body:has(dialog[open]), body.is-dialog-open {
+  }, S = "https://conversionratestore.github.io/projects/sonno", z = `body:has(dialog[open]), body.is-dialog-open {
   overflow: hidden;
   position: fixed;
 }
@@ -296,7 +296,7 @@
   background-position: center;
 }
 `;
-  class z {
+  class q {
     constructor() {
       this.device = window.innerWidth < 768 ? C.mobile : C.desktop, this.init();
     }
@@ -356,7 +356,7 @@
     }
     initStyles() {
       const i = document.createElement("style");
-      i.innerHTML = q, document.head.appendChild(i);
+      i.innerHTML = z, document.head.appendChild(i);
     }
   }
   const D = `.crs-sticky {
@@ -693,13 +693,13 @@
         document.querySelectorAll('[data-button="to-options"]').forEach((e) => {
           e.addEventListener("click", () => {
             const t = document.querySelector(".shopify-product-form");
-            t && (y("exp_pdp_imp__options_sticky", "Choose options", "click", "Sticky section"), t.scrollIntoView({ behavior: "smooth" }));
+            t && (w("exp_pdp_imp__options_sticky", "Choose options", "click", "Sticky section"), t.scrollIntoView({ behavior: "smooth" }));
           });
         });
       }), m('[data-button="add-to-basket"]').then((i) => {
         i.addEventListener("click", () => {
           const e = document.querySelector(".footer-add-cart button");
-          e && (e.click(), y("exp_pdp_imp__add_sticky", "Add to Basket", "click", "Sticky section"));
+          e && (e.click(), w("exp_pdp_imp__add_sticky", "Add to Basket", "click", "Sticky section"));
         });
       });
     }
@@ -2361,8 +2361,8 @@ div:has(> .crs-headboard__save) ul {
               }), c.setAttribute("data-selected", "true"), t.forEach((_) => {
                 _.value === u && (_.selected = !0);
               });
-              const v = document.querySelector(".crs-mattress-size__chosen"), w = document.querySelector(".crs-mattress-size__size");
-              w && b && (w.innerHTML = "&middot; " + b), v && x && (v.textContent = x), this.closeDialog();
+              const v = document.querySelector(".crs-mattress-size__chosen"), y = document.querySelector(".crs-mattress-size__size");
+              y && b && (y.innerHTML = "&middot; " + b), v && x && (v.textContent = x), w("exp_pdp_imp__popup_option", `${x}`, "click", "Choose size"), this.closeDialog();
             }
           });
         }
@@ -2378,7 +2378,7 @@ div:has(> .crs-headboard__save) ul {
           const a = r.target, d = ((c = (g = (h = a.closest("li")) == null ? void 0 : h.querySelector('[x-text="item.value"]')) == null ? void 0 : g.textContent) == null ? void 0 : c.toLowerCase()) || ((u = (p = a.closest("li")) == null ? void 0 : p.querySelector(".crs-headboard-item__title")) == null ? void 0 : u.textContent), l = (v = (b = (x = a.closest(".crs-variant-dialog")) == null ? void 0 : x.querySelector("h3")) == null ? void 0 : b.textContent) == null ? void 0 : v.toLowerCase();
           (a.closest("li") || a.closest(".crs-item-dimensional")) && (this.renderSizeItemsOnDialog(), setTimeout(() => {
             l != null && l.includes("headboard") || this.closeDialog();
-          }, 500), y("exp_pdp_imp__popup_option", `${d}`, "click", `${l}`));
+          }, 500), w("exp_pdp_imp__popup_option", `${d}`, "click", `${l}`));
         },
         { signal: o.signal }
       )) : (e == null || e.insertAdjacentElement("afterend", n), this.renderSizeDimension()));
@@ -2406,7 +2406,7 @@ div:has(> .crs-headboard__save) ul {
         var e, t;
         this.closeDialog();
         const n = (t = (e = this.dialog) == null ? void 0 : e.querySelector("h3")) == null ? void 0 : t.textContent;
-        y("exp_pdp_imp__popup_close", "Close", "click", `${n}`);
+        w("exp_pdp_imp__popup_close", "Close", "click", `${n}`);
       }), this.dialog.addEventListener("click", (n) => {
         n.target === this.dialog && this.closeDialog();
       });
@@ -2545,7 +2545,7 @@ div:has(> .crs-headboard__save) ul {
           const r = o.nextElementSibling;
           r == null || r.click();
         }
-        this.closeDialog(), y("exp_pdp_imp__save_button", "Save & continue", "click", "Choose Headboard");
+        this.closeDialog(), w("exp_pdp_imp__save_button", "Save & continue", "click", "Choose Headboard");
       });
     }
     changeBaseTypeDialog() {
@@ -2607,7 +2607,7 @@ div:has(> .crs-headboard__save) ul {
         s == null || s.addEventListener(
           "click",
           () => {
-            y("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress "), this.aborters.forEach((c) => {
+            w("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress "), this.aborters.forEach((c) => {
               c.abort();
             });
           },
@@ -2631,14 +2631,14 @@ div:has(> .crs-headboard__save) ul {
             var u, x, b;
             const p = c.target;
             if (p.closest(".crs-no-mattress") && (s == null || s.addEventListener("click", () => {
-              y("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
+              w("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
             }), s == null || s.click()), p !== t && !t.contains(p) && (s == null || s.click()), p.closest(".card-addons") && !p.closest("button")) {
-              const v = t.querySelector(".card-button button"), w = (x = (u = p.closest(".card-addons")) == null ? void 0 : u.querySelector(".title-card")) == null ? void 0 : x.textContent;
-              y("exp_pdp_imp__popup_option", `${w}`, "click", "Choose Mattress"), v && (v == null || v.click());
+              const v = t.querySelector(".card-button button"), y = (x = (u = p.closest(".card-addons")) == null ? void 0 : u.querySelector(".title-card")) == null ? void 0 : x.textContent;
+              w("exp_pdp_imp__popup_option", `${y}`, "click", "Choose Mattress"), v && (v == null || v.click());
             }
             if (p.closest(".ss-tabs")) {
-              const v = t.querySelector("div:has(> .card-addons)"), w = n.querySelector(".crs-no-mattress");
-              if (w && (w.remove(), v)) {
+              const v = t.querySelector("div:has(> .card-addons)"), y = n.querySelector(".crs-no-mattress");
+              if (y && (y.remove(), v)) {
                 const _ = (
                   /* HTML */
                   `
@@ -2725,13 +2725,13 @@ div:has(> .crs-headboard__save) ul {
               const d = a;
               if (d.classList.contains("added") && ((l = d.textContent) != null && l.includes("Mattress"))) {
                 d.classList.add("crs-mattress--hidden");
-                const b = (h = d.querySelector(".title-card")) == null ? void 0 : h.textContent, v = (g = d.querySelector(".price label")) == null ? void 0 : g.textContent, w = (c = d.querySelector(".price span")) == null ? void 0 : c.textContent, _ = document.querySelector("#crs-chosen-mattress");
+                const b = (h = d.querySelector(".title-card")) == null ? void 0 : h.textContent, v = (g = d.querySelector(".price label")) == null ? void 0 : g.textContent, y = (c = d.querySelector(".price span")) == null ? void 0 : c.textContent, _ = document.querySelector("#crs-chosen-mattress");
                 (p = document.querySelector(".crs-mattress-price")) == null || p.remove();
                 const Z = (
                   /* HTML */
                   `
                 <div class="crs-mattress-price">
-                  <div class="old">${w == null ? void 0 : w.toLocaleLowerCase()}</div>
+                  <div class="old">${y == null ? void 0 : y.toLocaleLowerCase()}</div>
                   <div class="new">${v == null ? void 0 : v.toLocaleLowerCase()}</div>
                 </div>
               `
@@ -2934,13 +2934,13 @@ div:has(> .crs-headboard__save) ul {
           const e = n.target;
           if (e.closest("li")) {
             const r = (s = (o = (t = e.closest("li")) == null ? void 0 : t.querySelector(".text-primary")) == null ? void 0 : o.textContent) == null ? void 0 : s.toLowerCase(), a = r === "size" ? "size" : r === "storage" ? "storage" : r === "headboard" ? "headboard" : r === "base type" ? "baseType" : "";
-            this.variantSwitchPopup.openDialog(a), y("exp_pdp_imp__option", `${r}`, "click", "Select Option");
+            this.variantSwitchPopup.openDialog(a), w("exp_pdp_imp__option", `${r}`, "click", "Select Option");
           }
         });
       }), m('[x-text="selectedProduct"]').then((i) => {
         document.querySelectorAll('[x-text="selectedProduct"]').forEach((e) => {
           e.parentElement.addEventListener("click", () => {
-            this.variantColorPopup.openDialog(), y("exp_pdp_imp__option", "color", "click", "Select Option");
+            this.variantColorPopup.openDialog(), w("exp_pdp_imp__option", "color", "click", "Select Option");
           });
         });
       });
@@ -2959,7 +2959,7 @@ div:has(> .crs-headboard__save) ul {
       this.init();
     }
     async init() {
-      await m('#MainContent[x-data="product"]') && (new B(), new E(), new z());
+      await m('#MainContent[x-data="product"]') && (new B(), new E(), new q());
     }
   }
   new j();
