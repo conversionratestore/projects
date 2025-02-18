@@ -368,7 +368,7 @@
   padding: 0 14px 14px;
   border-top: 1px solid #dbdbdb;
   background: #fff;
-  z-index: 999;
+  z-index: 98;
 }
 
 @media (min-width: 768px) {
@@ -1436,7 +1436,9 @@
   padding: 0;
   padding-right: 5px;
 }
-
+[x-show='detailsMattress'] .overflow-auto {
+  padding-right: 5px;
+}
 .fixed.max-h-\\[70\\%\\]:has(
     :is(
         [x-show='slideOverDimension'],
@@ -1485,6 +1487,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px 15px;
+  z-index: 9999
 }
 
 [data-variant='headboard'] div > hr {
@@ -1963,9 +1966,8 @@ div:has(> .crs-headboard__save) ul {
 :is(.crs-name-dimensional, .crs-name-storage, .crs-name-headboard, .crs-name-base) .price {
   display: block;
   position: absolute;
-  top: 50%;
+  top: 13px;
   right: 34px;
-  transform: translateY(-50%);
 }
 
 @media (max-width: 768px) {
@@ -1983,9 +1985,9 @@ div:has(> .crs-headboard__save) ul {
   align-items: center !important;
   gap: 12px !important;
   position: absolute;
-  top: 50%;
+  top: 13px;
+
   right: 34px;
-  transform: translateY(-50%);
 }
 
 @media (max-width: 1000px) {
