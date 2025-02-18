@@ -1973,6 +1973,8 @@ div:has(> .crs-headboard__save) ul {
     top: 16px;
     transform: translateY(0);
     font-size: 14px !important;
+    right: 24px;
+
   }
 }
 
@@ -1989,8 +1991,9 @@ div:has(> .crs-headboard__save) ul {
 @media (max-width: 1000px) {
   .crs-mattress-price {
     flex-direction: column;
-    align-items: flex-end !important;
+    align-items: flex-start!important;
     top: 6px;
+    right: 24px;
     transform: translateY(0);
     gap: 0 !important;
   }
