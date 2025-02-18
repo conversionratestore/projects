@@ -2793,8 +2793,9 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     renderSizeItemsOnDialog() {
-      m('[data-variant="size"] .variant-switch-products').then((i) => {
+      m('[data-variant="size"] .variant-switch-products').then(async (i) => {
         var s;
+        await m(".crs-name-dimensional"), await m('[data-type="base-type"]');
         const n = i;
         if (!document.querySelectorAll(".variant-switch-items ul li"))
           return;
