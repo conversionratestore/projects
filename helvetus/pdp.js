@@ -5199,7 +5199,7 @@ product-gallery {
     i.style.transition = "height 500ms", i.style.height = "0", setTimeout(() => {
       i.style.display = "none";
     }, 500);
-  }, O = (i, a) => {
+  }, K = (i, a) => {
     i.style.transition = "height 500ms", i.style.overflow = "hidden", i.style.display = "block", i.style.height = "auto";
     const n = i.clientHeight;
     i.style.height = "0", setTimeout(() => {
@@ -5221,7 +5221,7 @@ product-gallery {
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_81_50" result="shape"/>
 </filter>
 </defs>
-</svg>`, K = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
+</svg>`, O = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
 <g clip-path="url(#clip0_7_841)">
 <path d="M21.1471 16.837C19.2009 16.837 17.6177 18.4203 17.6177 20.3665C17.6177 22.3126 19.2009 23.8959 21.1471 23.8959C23.0936 23.8959 24.6765 22.3126 24.6765 20.3665C24.6765 18.4203 23.0933 16.837 21.1471 16.837ZM21.1471 22.1312C20.1739 22.1312 19.3824 21.3397 19.3824 20.3665C19.3824 19.3932 20.1739 18.6017 21.1471 18.6017C22.1203 18.6017 22.9118 19.3932 22.9118 20.3665C22.9118 21.3397 22.1203 22.1312 21.1471 22.1312Z" fill="black"/>
 <path d="M9.08802 16.837C7.14185 16.837 5.55859 18.4203 5.55859 20.3665C5.55859 22.3126 7.14185 23.8959 9.08802 23.8959C11.0342 23.8959 12.6174 22.3126 12.6174 20.3665C12.6174 18.4203 11.0342 16.837 9.08802 16.837ZM9.08802 22.1312C8.1148 22.1312 7.3233 21.3397 7.3233 20.3665C7.3233 19.3932 8.1148 18.6017 9.08802 18.6017C10.061 18.6017 10.8527 19.3932 10.8527 20.3665C10.8527 21.3397 10.0612 22.1312 9.08802 22.1312Z" fill="black"/>
@@ -5321,7 +5321,7 @@ product-gallery {
       )).join("")}
       </ul>
       <div class="delivery">
-        <div class="icon_wrapper">${K}</div>
+        <div class="icon_wrapper">${O}</div>
         <p>Order now and get <span>FREE Global Express Delivery</span> before <span>${c}</span></p>
       </div>
     </div>
@@ -5469,7 +5469,6 @@ product-gallery {
       <li class="service">
         <p>The Helvetus Excellence Service (included)</p>
         <p>
-          <b>Our Promise</b><br />
           <b>Lifetime Warranty</b><br />
           At Helvetus, we are committed to providing the highest quality watch straps. With this promise, we confidently
           offer a Lifetime Warranty on all our rubber straps and a limited warranty on other material items.<br />
@@ -5479,8 +5478,8 @@ product-gallery {
           exchange experience because your satisfaction is our priority at Helvetus, Lucerne.<br />
           <a href="https://www.helvetus.com/pages/returns-exchanges">Read the detailed terms</a><br />
           <b>Worldwide Shipping</b><br />
-          OOrder from anywhere and enjoy your Helvetus strap wherever you are. We ship globally with no boundaries. If
-          there’s a way, we’ll find it. Any questions? Сontact us at
+          Order from anywhere and enjoy your Helvetus strap wherever you are. We ship globally with no boundaries. If
+          there’s a way, we’ll find it.<br /><b>Any questions?</b> Сontact us at
           <a href="mailto:contact@helvetus.com">contact@helvetus.com</a>
         </p>
       </li>
@@ -5702,7 +5701,7 @@ product-gallery {
     async setInfoBlocks() {
       (await l(".crs_shipping_time")).insertAdjacentHTML("afterend", na), t(".crs_info_blocks li p:first-of-type").each((o) => {
         o.on("click", function() {
-          o.elements[0].classList.contains("active") ? (Z(o.elements[0].nextElementSibling), o.elements[0].classList.remove("active"), C("exp_pdp__click_03", "close - " + o.text(), "click", "Dropdown")) : (O(o.elements[0].nextElementSibling), o.elements[0].classList.add("active"), C("exp_pdp__click_03", "open - " + o.text(), "click", "Dropdown"));
+          o.elements[0].classList.contains("active") ? (Z(o.elements[0].nextElementSibling), o.elements[0].classList.remove("active"), C("exp_pdp__click_03", "close - " + o.text(), "click", "Dropdown")) : (K(o.elements[0].nextElementSibling), o.elements[0].classList.add("active"), C("exp_pdp__click_03", "open - " + o.text(), "click", "Dropdown"));
         });
       }), await l(".product-info__description .prose");
       let e = "", n = "", r = "", c = 0;
