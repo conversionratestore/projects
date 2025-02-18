@@ -2667,9 +2667,14 @@ div:has(> .crs-headboard__save) ul {
           (a) => {
             var m, x, f;
             const p = a.target;
-            if (p.closest(".crs-no-mattress") && (s == null || s.addEventListener("click", () => {
-              w("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
-            }), s == null || s.click()), p !== t && !t.contains(p) && (s == null || s.click()), p.closest(".card-addons") && !p.closest("button")) {
+            if (p.closest(".crs-no-mattress")) {
+              s == null || s.addEventListener("click", () => {
+                w("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
+              });
+              const v = document.querySelector(".crs-mattress--hidden .border-btn.no-border");
+              s == null || s.click(), v && v.click();
+            }
+            if (p !== t && !t.contains(p) && (s == null || s.click()), p.closest(".card-addons:not(.crs-no-mattress)") && !p.closest("button")) {
               const v = t.querySelector(".card-button button"), y = (x = (m = p.closest(".card-addons")) == null ? void 0 : m.querySelector(".title-card")) == null ? void 0 : x.textContent;
               w("exp_pdp_imp__popup_option", `${y}`, "click", "Choose Mattress"), v && (v == null || v.click());
             }
