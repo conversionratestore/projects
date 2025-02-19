@@ -2801,7 +2801,6 @@ div:has(> .crs-headboard__save) ul {
     renderSizeItemsOnDialog() {
       m('[data-variant="size"] .variant-switch-products').then(async (i) => {
         var s;
-        await m(".crs-name-dimensional"), await m('[data-type="base-type"]');
         const n = i;
         if (!document.querySelectorAll(".variant-switch-items ul li"))
           return;
@@ -2809,7 +2808,7 @@ div:has(> .crs-headboard__save) ul {
         if (t && t.forEach((r) => {
           r.remove();
         }), document.querySelector('[data-type="headboard"]')) {
-          const d = document.querySelector(".crs-name-headboard .title").textContent, a = (s = this.sizes) == null ? void 0 : s.filter((p) => d == null ? void 0 : d.includes(p.headboard)), l = n.querySelectorAll("ul li");
+          const d = document.querySelector(".crs-name-headboard .title").textContent, a = (s = this.sizes) == null ? void 0 : s.filter((p) => (d == null ? void 0 : d.includes(p.headboard)) || p.headboard.includes(d)), l = n.querySelectorAll("ul li");
           l == null || l.forEach((p) => {
             if (p.querySelector(".crs-item-dimensional"))
               return;
