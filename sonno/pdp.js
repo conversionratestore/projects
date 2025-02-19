@@ -839,6 +839,9 @@ body.is-dialog-open {
   cursor: pointer;
 }
 
+.crs-color__item img {
+  width: 100%;
+}
 .crs-color__item--selected {
   border: 2px solid #3589da;
 }
