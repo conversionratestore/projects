@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const w = (f, i, n, e = "") => {
+  const _ = (f, i, n, e = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: f,
@@ -720,13 +720,13 @@ body.is-dialog-open {
         document.querySelectorAll('[data-button="to-options"]').forEach((e) => {
           e.addEventListener("click", () => {
             const t = document.querySelector(".shopify-product-form");
-            t && (w("exp_pdp_imp__options_sticky", "Choose options", "click", "Sticky section"), t.scrollIntoView({ behavior: "smooth" }));
+            t && (_("exp_pdp_imp__options_sticky", "Choose options", "click", "Sticky section"), t.scrollIntoView({ behavior: "smooth" }));
           });
         });
       }), m('[data-button="add-to-basket"]').then((i) => {
         i.addEventListener("click", () => {
           const e = document.querySelector(".footer-add-cart button");
-          e && (e.click(), w("exp_pdp_imp__add_sticky", "Add to Basket", "click", "Sticky section"));
+          e && (e.click(), _("exp_pdp_imp__add_sticky", "Add to Basket", "click", "Sticky section"));
         });
       });
     }
@@ -1759,15 +1759,19 @@ div:has(> .crs-headboard__save) ul {
   background: #fff;
 }
 
+.crs-mattress-dialog .card-addons:nover {
+  border: inherit;
+}
+
 .crs-mattress-dialog .image-card .absolute {
   display: none;
 }
 
-.crs-mattress-dialog .card-addons.border-tertiary {
+.crs-mattress-dialog .card-addons.crs-addon--active {
   border: 2px solid #3589da;
 }
 
-.crs-mattress-dialog .card-addons.border-tertiary::after {
+.crs-mattress-dialog .card-addons.crs-addon--active::after {
   content: '';
   position: absolute;
   top: 6px;
@@ -2393,13 +2397,13 @@ div:has(> .crs-headboard__save) ul {
             const l = a.target;
             if (l.closest("li")) {
               const c = l.closest("li"), h = d.querySelectorAll(".crs-mattress-item"), u = c.getAttribute("data-value"), v = (p = c.querySelector(".crs-mattress-item__title")) == null ? void 0 : p.textContent, b = (g = c.querySelector(".crs-mattress-item__size")) == null ? void 0 : g.textContent;
-              h.forEach((_) => {
-                _.setAttribute("data-selected", "false");
-              }), c.setAttribute("data-selected", "true"), t.forEach((_) => {
-                _.value === u && (_.selected = !0);
+              h.forEach((y) => {
+                y.setAttribute("data-selected", "false");
+              }), c.setAttribute("data-selected", "true"), t.forEach((y) => {
+                y.value === u && (y.selected = !0);
               });
-              const x = document.querySelector(".crs-mattress-size__chosen"), y = document.querySelector(".crs-mattress-size__size");
-              y && b && (y.innerHTML = "&middot; " + b), x && v && (x.textContent = v), w("exp_pdp_imp__popup_option", `${v}`, "click", "Choose size"), this.closeDialog();
+              const x = document.querySelector(".crs-mattress-size__chosen"), w = document.querySelector(".crs-mattress-size__size");
+              w && b && (w.innerHTML = "&middot; " + b), x && v && (x.textContent = v), _("exp_pdp_imp__popup_option", `${v}`, "click", "Choose size"), this.closeDialog();
             }
           });
         }
@@ -2415,7 +2419,7 @@ div:has(> .crs-headboard__save) ul {
           const d = r.target, a = ((c = (g = (p = d.closest("li")) == null ? void 0 : p.querySelector('[x-text="item.value"]')) == null ? void 0 : g.textContent) == null ? void 0 : c.toLowerCase()) || ((u = (h = d.closest("li")) == null ? void 0 : h.querySelector(".crs-headboard-item__title")) == null ? void 0 : u.textContent), l = (x = (b = (v = d.closest(".crs-variant-dialog")) == null ? void 0 : v.querySelector("h3")) == null ? void 0 : b.textContent) == null ? void 0 : x.toLowerCase();
           (d.closest("li") || d.closest(".crs-item-dimensional")) && (this.renderSizeItemsOnDialog(), setTimeout(() => {
             l != null && l.includes("headboard") || this.closeDialog();
-          }, 500), w("exp_pdp_imp__popup_option", `${a}`, "click", `${l}`));
+          }, 500), _("exp_pdp_imp__popup_option", `${a}`, "click", `${l}`));
         },
         { signal: o.signal }
       )) : (e == null || e.insertAdjacentElement("afterend", n), this.renderSizeDimension()));
@@ -2443,7 +2447,7 @@ div:has(> .crs-headboard__save) ul {
         var e, t;
         this.closeDialog();
         const n = (t = (e = this.dialog) == null ? void 0 : e.querySelector("h3")) == null ? void 0 : t.textContent;
-        w("exp_pdp_imp__popup_close", "Close", "click", `${n}`);
+        _("exp_pdp_imp__popup_close", "Close", "click", `${n}`);
       }), this.dialog.addEventListener("click", (n) => {
         n.target === this.dialog && this.closeDialog();
       });
@@ -2582,7 +2586,7 @@ div:has(> .crs-headboard__save) ul {
           const r = o.nextElementSibling;
           r == null || r.click();
         }
-        this.closeDialog(), w("exp_pdp_imp__save_button", "Save & continue", "click", "Choose Headboard");
+        this.closeDialog(), _("exp_pdp_imp__save_button", "Save & continue", "click", "Choose Headboard");
       });
     }
     changeBaseTypeDialog() {
@@ -2644,7 +2648,7 @@ div:has(> .crs-headboard__save) ul {
         s == null || s.addEventListener(
           "click",
           () => {
-            w("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress "), this.aborters.forEach((c) => {
+            _("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress "), this.aborters.forEach((c) => {
               c.abort();
             });
           },
@@ -2669,19 +2673,21 @@ div:has(> .crs-headboard__save) ul {
             const h = c.target;
             if (h.closest(".crs-no-mattress")) {
               s == null || s.addEventListener("click", () => {
-                w("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
+                _("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
               });
               const x = document.querySelector(".crs-mattress--hidden .border-btn.no-border");
               s == null || s.click(), x && x.click();
             }
             if (h !== t && !t.contains(h) && (s == null || s.click()), h.closest(".card-addons:not(.crs-no-mattress)") && !h.closest("button")) {
-              const x = t.querySelector(".card-button button"), y = (v = (u = h.closest(".card-addons")) == null ? void 0 : u.querySelector(".title-card")) == null ? void 0 : v.textContent;
-              w("exp_pdp_imp__popup_option", `${y}`, "click", "Choose Mattress"), x && (x == null || x.click());
+              const x = h.closest(".card-addons"), w = t.querySelector(".card-button button"), y = (v = (u = h.closest(".card-addons")) == null ? void 0 : u.querySelector(".title-card")) == null ? void 0 : v.textContent;
+              _("exp_pdp_imp__popup_option", `${y}`, "click", "Choose Mattress"), x == null || x.classList.add("crs-addon--active"), w && setTimeout(() => {
+                w == null || w.click();
+              }, 100);
             }
             if (h.closest(".ss-tabs")) {
-              const x = t.querySelector("div:has(> .card-addons)"), y = n.querySelector(".crs-no-mattress");
-              if (y && (y.remove(), x)) {
-                const _ = (
+              const x = t.querySelector("div:has(> .card-addons)"), w = n.querySelector(".crs-no-mattress");
+              if (w && (w.remove(), x)) {
+                const y = (
                   /* HTML */
                   `
                   <div class="card-addons  added cursor-pointer hover:border-tertiary border-2 crs-no-mattress">
@@ -2696,7 +2702,7 @@ div:has(> .crs-headboard__save) ul {
                   </div>
                 `
                 );
-                (b = x.querySelector(".card-addons")) == null || b.insertAdjacentHTML("beforebegin", _);
+                (b = x.querySelector(".card-addons")) == null || b.insertAdjacentHTML("beforebegin", y);
               }
             }
           },
@@ -2767,18 +2773,18 @@ div:has(> .crs-headboard__save) ul {
               const a = d;
               if (a.classList.contains("added") && ((l = a.textContent) != null && l.includes("Mattress"))) {
                 a.classList.add("crs-mattress--hidden");
-                const b = (p = a.querySelector(".title-card")) == null ? void 0 : p.textContent, x = (g = a.querySelector(".price label")) == null ? void 0 : g.textContent, y = (c = a.querySelector(".price span")) == null ? void 0 : c.textContent, _ = document.querySelector("#crs-chosen-mattress");
+                const b = (p = a.querySelector(".title-card")) == null ? void 0 : p.textContent, x = (g = a.querySelector(".price label")) == null ? void 0 : g.textContent, w = (c = a.querySelector(".price span")) == null ? void 0 : c.textContent, y = document.querySelector("#crs-chosen-mattress");
                 (h = document.querySelector(".crs-mattress-price")) == null || h.remove();
                 const Z = (
                   /* HTML */
                   `
                 <div class="crs-mattress-price">
-                  <div class="old">${y == null ? void 0 : y.toLocaleLowerCase()}</div>
+                  <div class="old">${w == null ? void 0 : w.toLocaleLowerCase()}</div>
                   <div class="new">+${x == null ? void 0 : x.toLocaleLowerCase()}</div>
                 </div>
               `
                 );
-                _ && b && (_.textContent = b, _.insertAdjacentHTML("afterend", Z), this.changeMattressDialog());
+                y && b && (y.textContent = b, y.insertAdjacentHTML("afterend", Z), this.changeMattressDialog());
               }
               if ((u = a.textContent) != null && u.includes("Add Mattress & Save")) {
                 a.classList.add("crs-mattress--hidden");
@@ -2994,13 +3000,13 @@ div:has(> .crs-headboard__save) ul {
           const e = n.target;
           if (e.closest("li")) {
             const r = (s = (o = (t = e.closest("li")) == null ? void 0 : t.querySelector(".text-primary")) == null ? void 0 : o.textContent) == null ? void 0 : s.toLowerCase(), d = r === "size" ? "size" : r === "storage" ? "storage" : r === "headboard" ? "headboard" : r === "base type" ? "baseType" : "";
-            this.variantSwitchPopup.openDialog(d), w("exp_pdp_imp__option", `${r}`, "click", "Select Option");
+            this.variantSwitchPopup.openDialog(d), _("exp_pdp_imp__option", `${r}`, "click", "Select Option");
           }
         });
       }), m('[x-text="selectedProduct"]').then((i) => {
         document.querySelectorAll('[x-text="selectedProduct"]').forEach((e) => {
           e.parentElement.addEventListener("click", () => {
-            this.variantColorPopup.openDialog(), w("exp_pdp_imp__option", "color", "click", "Select Option");
+            this.variantColorPopup.openDialog(), _("exp_pdp_imp__option", "color", "click", "Select Option");
           });
         });
       });
