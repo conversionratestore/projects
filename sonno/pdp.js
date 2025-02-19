@@ -1,29 +1,29 @@
 (function() {
   "use strict";
-  const _ = (f, i, n, e = "") => {
+  const _ = (b, i, n, e = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: f,
+      event_name: b,
       event_desc: i,
       event_type: n,
       event_loc: e
-    }), console.log(`Event: ${f} | ${i} | ${n} | ${e}`);
-  }, M = ({ name: f, dev: i }) => {
+    }), console.log(`Event: ${b} | ${i} | ${n} | ${e}`);
+  }, M = ({ name: b, dev: i }) => {
     console.log(
-      `%c EXP: ${f} (DEV: ${i})`,
+      `%c EXP: ${b} (DEV: ${i})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, O = (f) => {
+  }, O = (b) => {
     let i = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", f, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(i), window.clarity("set", b, "variant_1"));
     }, 1e3);
   };
-  function m(f) {
+  function u(b) {
     return new Promise((i) => {
-      if (document.querySelector(f))
-        return i(document.querySelector(f));
+      if (document.querySelector(b))
+        return i(document.querySelector(b));
       const n = new MutationObserver(() => {
-        document.querySelector(f) && (i(document.querySelector(f)), n.disconnect());
+        document.querySelector(b) && (i(document.querySelector(b)), n.disconnect());
       });
       n.observe(document.documentElement, {
         childList: !0,
@@ -331,7 +331,7 @@ body.is-dialog-open {
       this.initStyles(), this.addNewDeliverySection(), this.changePriceElementPosition(), this.changeAboutPaymentPosition(), this.addChosenOption();
     }
     addNewDeliverySection() {
-      m(".footer-add-cart").then((i) => {
+      u(".footer-add-cart").then((i) => {
         var o;
         const n = i, t = (
           /* HTML */
@@ -348,21 +348,21 @@ body.is-dialog-open {
       });
     }
     changePriceElementPosition() {
-      m(".price-pro").then((i) => {
-        m(".crs-delivery").then((n) => {
+      u(".price-pro").then((i) => {
+        u(".crs-delivery").then((n) => {
           const e = i, t = n;
           e && t && t.insertAdjacentElement("afterend", e);
         });
       });
     }
     changeAboutPaymentPosition() {
-      m(".about-payment-details").then((i) => {
+      u(".about-payment-details").then((i) => {
         const n = document.querySelector(".footer-add-cart"), e = i;
         e && n && n.insertAdjacentElement("afterend", e);
       });
     }
     addChosenOption() {
-      m(".variant-switch-items ul").then((i) => {
+      u(".variant-switch-items ul").then((i) => {
         const n = () => {
           document.querySelectorAll(
             '.variant-switch-items ul li div > div:not([x-text="option.name"]):not(.text-primary)'
@@ -658,7 +658,7 @@ body.is-dialog-open {
       this.initStyles(), this.render(), this.fillProductData(), this.eventListeners(), this.showSticky();
     }
     render() {
-      m(".productGalleryLightbox li img").then((i) => {
+      u(".productGalleryLightbox li img").then((i) => {
         var a, l, h, g;
         const n = (a = document.querySelector("section.product-details p.leading-normal ")) == null ? void 0 : a.textContent, e = (l = document.querySelector('td[x-text="calculation.total"]')) == null ? void 0 : l.textContent, t = (h = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : h.textContent, o = (g = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : g.textContent, s = i, r = (
           /* HTML */
@@ -701,7 +701,7 @@ body.is-dialog-open {
       });
     }
     showSticky() {
-      m(".product-details .footer-add-cart button").then((i) => {
+      u(".product-details .footer-add-cart button").then((i) => {
         const n = i;
         n && new IntersectionObserver(
           (t) => {
@@ -716,14 +716,14 @@ body.is-dialog-open {
       });
     }
     eventListeners() {
-      m('[data-button="to-options"]').then((i) => {
+      u('[data-button="to-options"]').then((i) => {
         document.querySelectorAll('[data-button="to-options"]').forEach((e) => {
           e.addEventListener("click", () => {
             const t = document.querySelector(".shopify-product-form");
             t && (_("exp_pdp_imp__options_sticky", "Choose options", "click", "Sticky section"), t.scrollIntoView({ behavior: "smooth" }));
           });
         });
-      }), m('[data-button="add-to-basket"]').then((i) => {
+      }), u('[data-button="add-to-basket"]').then((i) => {
         i.addEventListener("click", () => {
           const e = document.querySelector(".footer-add-cart button");
           e && (e.click(), _("exp_pdp_imp__add_sticky", "Add to Basket", "click", "Sticky section"));
@@ -740,19 +740,19 @@ body.is-dialog-open {
           }
         });
       });
-      m(".productGalleryLightbox").then((t) => {
+      u(".productGalleryLightbox").then((t) => {
         n.observe(t, i);
       });
       const e = new MutationObserver((t) => {
         t.forEach((o) => {
           var r, d, a, l, h, g;
           if (o.target.getAttribute("x-text") === "calculation.total") {
-            const c = (r = document.querySelector("section.price-pro > div")) == null ? void 0 : r.textContent, p = (d = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : d.textContent, u = (a = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : a.textContent, v = (l = this.sticky) == null ? void 0 : l.querySelector(".crs-sticky__product-price .current"), b = (h = this.sticky) == null ? void 0 : h.querySelector(".crs-sticky__product-price .compare"), x = (g = this.sticky) == null ? void 0 : g.querySelector(".crs-sticky__product-price .save");
-            v && c && (v.textContent = c, b && p && x && u && (b.textContent = p, x.textContent = u));
+            const c = (r = document.querySelector("section.price-pro > div")) == null ? void 0 : r.textContent, p = (d = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : d.textContent, m = (a = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : a.textContent, x = (l = this.sticky) == null ? void 0 : l.querySelector(".crs-sticky__product-price .current"), f = (h = this.sticky) == null ? void 0 : h.querySelector(".crs-sticky__product-price .compare"), v = (g = this.sticky) == null ? void 0 : g.querySelector(".crs-sticky__product-price .save");
+            x && c && (x.textContent = c, f && p && v && m && (f.textContent = p, v.textContent = m));
           }
         });
       });
-      m('td[x-text="calculation.total"]').then((t) => {
+      u('td[x-text="calculation.total"]').then((t) => {
         e.observe(t, i);
       });
     }
@@ -897,7 +897,7 @@ body.is-dialog-open {
       n && (this.dialog = n);
     }
     toggleColors() {
-      m('[x-text="getColorName(product)"]').then((i) => {
+      u('[x-text="getColorName(product)"]').then((i) => {
         document.querySelector('[x-text="getColorName(product)]');
         const n = i.closest("ul");
         if (n) {
@@ -920,7 +920,7 @@ body.is-dialog-open {
       });
     }
     eventListeners() {
-      if (m(".crs-color__item").then((i) => {
+      if (u(".crs-color__item").then((i) => {
         const n = document.querySelector("#variant-color-products-dialog-list");
         n && n.addEventListener("click", (e) => {
           var s;
@@ -954,7 +954,7 @@ body.is-dialog-open {
       }
     }
     addMouseDragScroll() {
-      this.device !== k.mobile && m(".crs-colors--desktop ul").then((i) => {
+      this.device !== k.mobile && u(".crs-colors--desktop ul").then((i) => {
         const n = i;
         let e = !1, t, o;
         n.addEventListener("mousedown", (s) => {
@@ -973,7 +973,7 @@ body.is-dialog-open {
       });
     }
     showHiddenColorsOnDesktop() {
-      m(".shopify-product-form .lg\\:hidden:has(strong)").then((i) => {
+      u(".shopify-product-form .lg\\:hidden:has(strong)").then((i) => {
         const n = i;
         document.querySelector(".shopify-product-form .lg\\:hidden:has(strong)"), n && (n.classList.remove("lg:hidden"), n.classList.add("crs-colors--desktop"));
       });
@@ -2315,14 +2315,14 @@ div:has(> .crs-headboard__save) ul {
       n && (this.dialog = n);
     }
     mattressSizeDialog() {
-      m("#choose-mattress-size").then((i) => {
+      u("#choose-mattress-size").then((i) => {
         i.addEventListener("click", () => {
           this.openDialog("mattress");
         });
       });
     }
     createMattressSizeSelect() {
-      m("#variant-mattress").then((i) => {
+      u("#variant-mattress").then((i) => {
         var r, d, a, l;
         const e = (d = (r = i.querySelector("option:checked")) == null ? void 0 : r.textContent) == null ? void 0 : d.trim(), t = (a = this.mattressSize) == null ? void 0 : a.find((h) => h.title === e);
         let o = "";
@@ -2346,18 +2346,18 @@ div:has(> .crs-headboard__save) ul {
             var g;
             if (this.mattressSize && this.mattressSize.length > 0) {
               clearInterval(h);
-              const c = (g = this.mattressSize) == null ? void 0 : g.find((v) => v.title === e);
+              const c = (g = this.mattressSize) == null ? void 0 : g.find((x) => x.title === e);
               let p = "";
               c && (p = `&middot; ${c != null && c.length ? `L: ${c == null ? void 0 : c.length}` : ""} ${c != null && c.width ? `W: ${c == null ? void 0 : c.width}` : ""}`);
-              const u = document.querySelector(".crs-mattress-size__size");
-              u && (u.innerHTML = p);
+              const m = document.querySelector(".crs-mattress-size__size");
+              m && (m.innerHTML = p);
             }
           }, 500);
         }
       });
     }
     renderMattressSizeDialogContent() {
-      m("#variant-mattress").then((i) => {
+      u("#variant-mattress").then((i) => {
         var s;
         const n = i, e = document.querySelector('[data-variant="mattress"]');
         if (!e)
@@ -2369,10 +2369,10 @@ div:has(> .crs-headboard__save) ul {
             `
           <ul class="crs-mattress-list">
             ${Array.from(t).map((a) => {
-              var p, u;
+              var p, m;
               if (!a.value)
                 return "";
-              const l = (p = a.textContent) == null ? void 0 : p.trim(), h = a.value, g = a.selected, c = (u = this.mattressSize) == null ? void 0 : u.find((v) => v.title === l);
+              const l = (p = a.textContent) == null ? void 0 : p.trim(), h = a.value, g = a.selected, c = (m = this.mattressSize) == null ? void 0 : m.find((x) => x.title === l);
               return (
                 /* HTML */
                 `
@@ -2396,14 +2396,14 @@ div:has(> .crs-headboard__save) ul {
             var h, g;
             const l = a.target;
             if (l.closest("li")) {
-              const c = l.closest("li"), p = d.querySelectorAll(".crs-mattress-item"), u = c.getAttribute("data-value"), v = (h = c.querySelector(".crs-mattress-item__title")) == null ? void 0 : h.textContent, b = (g = c.querySelector(".crs-mattress-item__size")) == null ? void 0 : g.textContent;
+              const c = l.closest("li"), p = d.querySelectorAll(".crs-mattress-item"), m = c.getAttribute("data-value"), x = (h = c.querySelector(".crs-mattress-item__title")) == null ? void 0 : h.textContent, f = (g = c.querySelector(".crs-mattress-item__size")) == null ? void 0 : g.textContent;
               p.forEach((y) => {
                 y.setAttribute("data-selected", "false");
               }), c.setAttribute("data-selected", "true"), t.forEach((y) => {
-                y.value === u && (y.selected = !0);
+                y.value === m && (y.selected = !0);
               });
-              const x = document.querySelector(".crs-mattress-size__chosen"), w = document.querySelector(".crs-mattress-size__size");
-              w && b && (w.innerHTML = "&middot; " + b), x && v && (x.textContent = v), _("exp_pdp_imp__popup_option", `${v}`, "click", "Choose size"), this.closeDialog();
+              const v = document.querySelector(".crs-mattress-size__chosen"), w = document.querySelector(".crs-mattress-size__size");
+              w && f && (w.innerHTML = "&middot; " + f), v && x && (v.textContent = x), _("exp_pdp_imp__popup_option", `${x}`, "click", "Choose size"), this.closeDialog();
             }
           });
         }
@@ -2415,8 +2415,8 @@ div:has(> .crs-headboard__save) ul {
       (s = this.aborters) == null || s.push(o), !(!n || !e || !t) && (i ? (t == null || t.insertAdjacentElement("beforeend", n), t.querySelector(".variant-switch-products"), t.addEventListener(
         "click",
         (r) => {
-          var h, g, c, p, u, v, b, x;
-          const d = r.target, a = ((c = (g = (h = d.closest("li")) == null ? void 0 : h.querySelector('[x-text="item.value"]')) == null ? void 0 : g.textContent) == null ? void 0 : c.toLowerCase()) || ((u = (p = d.closest("li")) == null ? void 0 : p.querySelector(".crs-headboard-item__title")) == null ? void 0 : u.textContent), l = (x = (b = (v = d.closest(".crs-variant-dialog")) == null ? void 0 : v.querySelector("h3")) == null ? void 0 : b.textContent) == null ? void 0 : x.toLowerCase();
+          var h, g, c, p, m, x, f, v;
+          const d = r.target, a = ((c = (g = (h = d.closest("li")) == null ? void 0 : h.querySelector('[x-text="item.value"]')) == null ? void 0 : g.textContent) == null ? void 0 : c.toLowerCase()) || ((m = (p = d.closest("li")) == null ? void 0 : p.querySelector(".crs-headboard-item__title")) == null ? void 0 : m.textContent), l = (v = (f = (x = d.closest(".crs-variant-dialog")) == null ? void 0 : x.querySelector("h3")) == null ? void 0 : f.textContent) == null ? void 0 : v.toLowerCase();
           (d.closest("li") || d.closest(".crs-item-dimensional")) && (this.renderSizeItemsOnDialog(), setTimeout(() => {
             l != null && l.includes("headboard") || this.closeDialog();
           }, 500), _("exp_pdp_imp__popup_option", `${a}`, "click", `${l}`));
@@ -2425,17 +2425,17 @@ div:has(> .crs-headboard__save) ul {
       )) : (e == null || e.insertAdjacentElement("afterend", n), this.renderSizeDimension()));
     }
     eventListeners() {
-      if (m('[data-button="size-dimension"]').then((n) => {
+      if (u('[data-button="size-dimension"]').then((n) => {
         n.addEventListener("click", () => {
           const t = document.querySelector('[x-show*="Size"] span');
           t && t.click(), this.closeDialog();
         });
-      }), m('[data-button="storage-dimension"]').then((n) => {
+      }), u('[data-button="storage-dimension"]').then((n) => {
         n.addEventListener("click", () => {
           const t = document.querySelector('[x-show*="Storage"] span');
           t && t.click(), this.closeDialog();
         });
-      }), m('[data-button="basetype"]').then((n) => {
+      }), u('[data-button="basetype"]').then((n) => {
         n.addEventListener("click", () => {
           const t = document.querySelector('[x-show*="Base"] span');
           t && t.click(), this.closeDialog();
@@ -2453,7 +2453,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     changeDimensionDialog() {
-      m('[x-show="slideOverDimension"] .w-screen').then((i) => {
+      u('[x-show="slideOverDimension"] .w-screen').then((i) => {
         document.querySelectorAll('[x-show="slideOverDimension"] .w-screen').forEach((n) => {
           n.insertAdjacentHTML(
             "afterbegin",
@@ -2466,7 +2466,7 @@ div:has(> .crs-headboard__save) ul {
             o == null || o.click(), this.openDialog("size");
           });
         });
-      }), m('[x-show="slideOverOpen"].w-screen').then((i) => {
+      }), u('[x-show="slideOverOpen"].w-screen').then((i) => {
         document.querySelectorAll('[x-show="slideOverOpen"].w-screen').forEach((n) => {
           const e = n.querySelector("h3");
           if ((e == null ? void 0 : e.textContent) === "Storage Dimensions") {
@@ -2485,7 +2485,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     changeOpenDialog() {
-      m('[x-show="slideOverOpen"].w-screen').then(() => {
+      u('[x-show="slideOverOpen"].w-screen').then(() => {
         document.querySelectorAll('[x-show="slideOverOpen"].w-screen').forEach((n) => {
           var e, t;
           if ((t = (e = n.querySelector("h3")) == null ? void 0 : e.textContent) != null && t.includes("Base Type")) {
@@ -2505,7 +2505,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     mockHeadboardDialogContent() {
-      m('[data-variant="headboard"] ul li [x-text="item.value"]').then(() => {
+      u('[data-variant="headboard"] ul li [x-text="item.value"]').then(() => {
         const i = document.querySelector('[data-variant="headboard"]');
         if (!i)
           return;
@@ -2539,7 +2539,7 @@ div:has(> .crs-headboard__save) ul {
             }), s.classList.add("crs-headboard-item--active");
           });
         });
-      }), m("[data-variant='headboard'] div :has(> hr) > ul").then(() => {
+      }), u("[data-variant='headboard'] div :has(> hr) > ul").then(() => {
         const i = document.querySelector('[data-variant="headboard"]');
         if (!i)
           return;
@@ -2590,7 +2590,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     changeBaseTypeDialog() {
-      m('[data-variant="baseType"] ul li svg').then((i) => {
+      u('[data-variant="baseType"] ul li svg').then((i) => {
         document.querySelectorAll('[data-variant="baseType"] ul li').forEach((e) => {
           const t = e.querySelector("div"), o = e == null ? void 0 : e.querySelector("svg"), s = e == null ? void 0 : e.querySelector("small");
           !t || !o || !s || (t.insertAdjacentElement("beforeend", o), t.insertAdjacentElement("beforeend", s));
@@ -2605,7 +2605,7 @@ div:has(> .crs-headboard__save) ul {
           t.classList.add("crs-mattress-dialog"), e.innerHTML = 'Choose Mattress <span style="color: #ED0006">GET 50% Off</span>';
           const c = t.querySelector("div:has(> .card-addons)"), p = n.querySelector(".crs-no-mattress");
           if (p && p.remove(), c) {
-            const u = (
+            const m = (
               /* HTML */
               `
             <div class="card-addons  added cursor-pointer hover:border-tertiary border-2 crs-no-mattress">
@@ -2620,13 +2620,13 @@ div:has(> .crs-headboard__save) ul {
             </div>
           `
             );
-            (l = c.querySelector(".card-addons")) == null || l.insertAdjacentHTML("beforebegin", u);
+            (l = c.querySelector(".card-addons")) == null || l.insertAdjacentHTML("beforebegin", m);
           }
         }
         if ((h = e == null ? void 0 : e.textContent) != null && h.includes("Choose Mattress GET 50% Off")) {
           const c = t.querySelector("div:has(> .card-addons)"), p = n.querySelector(".crs-no-mattress");
           if (p && (p.remove(), c)) {
-            const u = (
+            const m = (
               /* HTML */
               `
               <div class="card-addons  added cursor-pointer hover:border-tertiary border-2 crs-no-mattress">
@@ -2641,7 +2641,7 @@ div:has(> .crs-headboard__save) ul {
               </div>
             `
             );
-            (g = c.querySelector(".card-addons")) == null || g.insertAdjacentHTML("beforebegin", u);
+            (g = c.querySelector(".card-addons")) == null || g.insertAdjacentHTML("beforebegin", m);
           }
         }
         const o = new AbortController(), s = t.querySelector("button.absolute");
@@ -2669,24 +2669,24 @@ div:has(> .crs-headboard__save) ul {
         ), this.aborters.push(r), t == null || t.addEventListener(
           "click",
           (c) => {
-            var u, v, b;
+            var m, x, f;
             const p = c.target;
             if (p.closest(".crs-no-mattress")) {
               s == null || s.addEventListener("click", () => {
                 _("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress ");
               });
-              const x = document.querySelector(".crs-mattress--hidden .border-btn.no-border");
-              s == null || s.click(), x && x.click();
+              const v = document.querySelector(".crs-mattress--hidden .border-btn.no-border");
+              s == null || s.click(), v && v.click();
             }
             if (p !== t && !t.contains(p) && (s == null || s.click()), p.closest(".card-addons:not(.crs-no-mattress)") && !p.closest("button")) {
-              const x = p.closest(".card-addons"), w = t.querySelector(".card-button button"), y = (v = (u = p.closest(".card-addons")) == null ? void 0 : u.querySelector(".title-card")) == null ? void 0 : v.textContent;
-              _("exp_pdp_imp__popup_option", `${y}`, "click", "Choose Mattress"), x == null || x.classList.add("crs-addon--active"), w && setTimeout(() => {
+              const v = p.closest(".card-addons"), w = t.querySelector(".card-button button"), y = (x = (m = p.closest(".card-addons")) == null ? void 0 : m.querySelector(".title-card")) == null ? void 0 : x.textContent;
+              _("exp_pdp_imp__popup_option", `${y}`, "click", "Choose Mattress"), v == null || v.classList.add("crs-addon--active"), w && setTimeout(() => {
                 w == null || w.click();
               }, 100);
             }
             if (p.closest(".ss-tabs")) {
-              const x = t.querySelector("div:has(> .card-addons)"), w = n.querySelector(".crs-no-mattress");
-              if (w && (w.remove(), x)) {
+              const v = t.querySelector("div:has(> .card-addons)"), w = n.querySelector(".crs-no-mattress");
+              if (w && (w.remove(), v)) {
                 const y = (
                   /* HTML */
                   `
@@ -2702,7 +2702,7 @@ div:has(> .crs-headboard__save) ul {
                   </div>
                 `
                 );
-                (b = x.querySelector(".card-addons")) == null || b.insertAdjacentHTML("beforebegin", y);
+                (f = v.querySelector(".card-addons")) == null || f.insertAdjacentHTML("beforebegin", y);
               }
             }
           },
@@ -2713,7 +2713,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     addMattressChoosingOption() {
-      m(".variant-switch-items ul").then(() => {
+      u(".variant-switch-items ul").then(() => {
         const i = document.querySelectorAll(".product-details .lg\\:block .card-addons");
         if (!i)
           return;
@@ -2748,7 +2748,7 @@ div:has(> .crs-headboard__save) ul {
         n == null || n.addEventListener("click", () => {
           this.changeMattressDialog(), document.querySelectorAll(".product-details .lg\\:block .card-addons").forEach((t) => {
             var o, s, r;
-            ((o = t.textContent) != null && o.includes("Add Mattress & Save") || t.querySelector('[x-if="selectedMattress"]')) && ((s = t.querySelector("button")) == null || s.click()), t.querySelector('[x-text*="selectedMattress"]') && ((r = t.querySelector(".card-button button")) == null || r.click(), m(".product-details .lg\\:block .card-addons").then(() => {
+            ((o = t.textContent) != null && o.includes("Add Mattress & Save") || t.querySelector('[x-if="selectedMattress"]')) && ((s = t.querySelector("button")) == null || s.click()), t.querySelector('[x-text*="selectedMattress"]') && ((r = t.querySelector(".card-button button")) == null || r.click(), u(".product-details .lg\\:block .card-addons").then(() => {
               document.querySelectorAll(".product-details .lg\\:block .card-addons").forEach((a) => {
                 var l, h;
                 ((l = a.textContent) != null && l.includes("Add Mattress & Save") || a.querySelector('[x-if="selectedMattress"]')) && ((h = a.querySelector("button")) == null || h.click());
@@ -2759,7 +2759,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     changePositionMattressItemOnDesktop() {
-      m(".product-details .lg\\:block .card-addons").then((i) => {
+      u(".product-details .lg\\:block .card-addons").then((i) => {
         const n = document.querySelector(".product-details .lg\\:block"), e = document.querySelector(".variant-switch-items ul"), t = document.querySelectorAll(".product-details .lg\\:block .card-addons");
         if (!e || !t)
           return;
@@ -2769,27 +2769,27 @@ div:has(> .crs-headboard__save) ul {
         }), new MutationObserver((s) => {
           s.forEach((r) => {
             r.addedNodes.forEach((d) => {
-              var l, h, g, c, p, u, v;
+              var l, h, g, c, p, m, x;
               const a = d;
               if (a.classList.contains("added") && ((l = a.textContent) != null && l.includes("Mattress"))) {
                 a.classList.add("crs-mattress--hidden");
-                const b = (h = a.querySelector(".title-card")) == null ? void 0 : h.textContent, x = (g = a.querySelector(".price label")) == null ? void 0 : g.textContent, w = (c = a.querySelector(".price span")) == null ? void 0 : c.textContent, y = document.querySelector("#crs-chosen-mattress");
+                const f = (h = a.querySelector(".title-card")) == null ? void 0 : h.textContent, v = (g = a.querySelector(".price label")) == null ? void 0 : g.textContent, w = (c = a.querySelector(".price span")) == null ? void 0 : c.textContent, y = document.querySelector("#crs-chosen-mattress");
                 (p = document.querySelector(".crs-mattress-price")) == null || p.remove();
                 const Z = (
                   /* HTML */
                   `
                 <div class="crs-mattress-price">
                   <div class="old">${w == null ? void 0 : w.toLocaleLowerCase()}</div>
-                  <div class="new">+${x == null ? void 0 : x.toLocaleLowerCase()}</div>
+                  <div class="new">+${v == null ? void 0 : v.toLocaleLowerCase()}</div>
                 </div>
               `
                 );
-                y && b && (y.textContent = b, y.insertAdjacentHTML("afterend", Z), this.changeMattressDialog());
+                y && f && (y.textContent = f, y.insertAdjacentHTML("afterend", Z), this.changeMattressDialog());
               }
-              if ((u = a.textContent) != null && u.includes("Add Mattress & Save")) {
+              if ((m = a.textContent) != null && m.includes("Add Mattress & Save")) {
                 a.classList.add("crs-mattress--hidden");
-                const b = document.querySelector("#crs-chosen-mattress");
-                b && (b.textContent = "From £219.99", (v = document.querySelector(".crs-mattress-price")) == null || v.remove(), this.changeMattressDialog());
+                const f = document.querySelector("#crs-chosen-mattress");
+                f && (f.textContent = "From £219.99", (x = document.querySelector(".crs-mattress-price")) == null || x.remove(), this.changeMattressDialog());
               }
             });
           });
@@ -2799,7 +2799,7 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     renderSizeItemsOnDialog() {
-      m('[data-variant="size"] .variant-switch-products').then(async (i) => {
+      u('[data-variant="size"] .variant-switch-products').then(async (i) => {
         var s, r;
         const n = i;
         if (!document.querySelectorAll(".variant-switch-items ul li"))
@@ -2812,17 +2812,17 @@ div:has(> .crs-headboard__save) ul {
             (g) => (a == null ? void 0 : a.includes(g.headboard)) || g.headboard.includes(a)
           ), h = n.querySelectorAll("ul li");
           h == null || h.forEach((g) => {
-            if (g.querySelector(".crs-item-dimensional"))
-              return;
+            var p;
+            (p = g.querySelector(".crs-item-dimensional")) == null || p.remove();
             const c = g.querySelector('[x-text="item.value"]');
-            l == null || l.forEach((p) => {
-              var u;
-              if ((c == null ? void 0 : c.textContent) === p.size) {
-                const v = `${p.dimensions.width ? `W: ${p.dimensions.width}` : ""} ${p.dimensions.length ? `L: ${p.dimensions.length}` : ""} ${p.dimensions.height ? `H: ${p.dimensions.height}` : ""}`;
-                (u = c.parentElement) == null || u.insertAdjacentHTML(
+            l == null || l.forEach((m) => {
+              var x;
+              if ((c == null ? void 0 : c.textContent) === m.size) {
+                const f = `${m.dimensions.width ? `W: ${m.dimensions.width}` : ""} ${m.dimensions.length ? `L: ${m.dimensions.length}` : ""} ${m.dimensions.height ? `H: ${m.dimensions.height}` : ""}`;
+                (x = c.parentElement) == null || x.insertAdjacentHTML(
                   "beforeend",
                   /* HTML */
-                  `<div class="crs-item-dimensional">${v}</div>`
+                  `<div class="crs-item-dimensional">${f}</div>`
                 );
               }
             });
@@ -2830,17 +2830,16 @@ div:has(> .crs-headboard__save) ul {
         } else {
           const d = n.querySelectorAll("ul li");
           d == null || d.forEach((a) => {
-            var h;
-            if (a.querySelector(".crs-item-dimensional"))
-              return;
+            var h, g;
+            (h = a.querySelector(".crs-item-dimensional")) == null || h.remove();
             const l = a.querySelector('[x-text="item.value"]');
-            (h = this.sizes) == null || h.forEach((g, c) => {
-              var u;
-              const p = `${g.dimensions.width ? `W: ${g.dimensions.width}` : ""} ${g.dimensions.length ? `L: ${g.dimensions.length}` : ""} ${g.dimensions.height ? `H: ${g.dimensions.height}` : ""}`;
-              (l == null ? void 0 : l.textContent) === g.size && ((u = l.parentElement) == null || u.insertAdjacentHTML(
+            (g = this.sizes) == null || g.forEach((c, p) => {
+              var x;
+              const m = `${c.dimensions.width ? `W: ${c.dimensions.width}` : ""} ${c.dimensions.length ? `L: ${c.dimensions.length}` : ""} ${c.dimensions.height ? `H: ${c.dimensions.height}` : ""}`;
+              (l == null ? void 0 : l.textContent) === c.size && ((x = l.parentElement) == null || x.insertAdjacentHTML(
                 "beforeend",
                 /* HTML */
-                `<div class="crs-item-dimensional" data-i="${c}">${p}</div>`
+                `<div class="crs-item-dimensional" data-i="${p}">${m}</div>`
               ));
             });
           });
@@ -2848,22 +2847,22 @@ div:has(> .crs-headboard__save) ul {
       });
     }
     renderSizeDimension() {
-      m(".variant-switch-items ul li").then(() => {
+      u(".variant-switch-items ul li").then(() => {
         const i = (t, o) => {
           var h, g;
           const s = t.textContent || "", r = s.replace(/\s*\([^)]*\)/, "").trim(), d = s.match(/\(([^)]+)\)/), a = d ? d[1].trim() : "";
           let l = "";
           if (o === "size") {
             const c = ((h = document.querySelector('[x-html*="headboard"]')) == null ? void 0 : h.textContent) || "", p = (g = this.sizes) == null ? void 0 : g.find(
-              (u) => c.includes(u.headboard) && u.size === r
+              (m) => c.includes(m.headboard) && m.size === r
             );
             if (p) {
-              const u = `&middot; ${p.dimensions.height ? `H: ${p.dimensions.height}` : ""} ${p.dimensions.length ? `L: ${p.dimensions.length}` : ""} ${p.dimensions.width ? `W: ${p.dimensions.width}` : ""}`;
+              const m = `&middot; ${p.dimensions.height ? `H: ${p.dimensions.height}` : ""} ${p.dimensions.length ? `L: ${p.dimensions.length}` : ""} ${p.dimensions.width ? `W: ${p.dimensions.width}` : ""}`;
               l = /* HTML */
               `
               <div class="crs-name-dimensional">
                 <span class="title">${r}</span>
-                <span class="dimension"> ${u} </span>
+                <span class="dimension"> ${m} </span>
                 <span class="price">${a}</span>
               </div>
             `;
@@ -2995,7 +2994,7 @@ div:has(> .crs-headboard__save) ul {
       this.initStyles(), this.eventsListeners();
     }
     eventsListeners() {
-      m(".variant-switch-items").then((i) => {
+      u(".variant-switch-items").then((i) => {
         i.addEventListener("click", (n) => {
           var t, o, s;
           const e = n.target;
@@ -3004,7 +3003,7 @@ div:has(> .crs-headboard__save) ul {
             this.variantSwitchPopup.openDialog(d), _("exp_pdp_imp__option", `${r}`, "click", "Select Option");
           }
         });
-      }), m('[x-text="selectedProduct"]').then((i) => {
+      }), u('[x-text="selectedProduct"]').then((i) => {
         document.querySelectorAll('[x-text="selectedProduct"]').forEach((e) => {
           e.parentElement.addEventListener("click", () => {
             this.variantColorPopup.openDialog(), _("exp_pdp_imp__option", "color", "click", "Select Option");
@@ -3026,7 +3025,7 @@ div:has(> .crs-headboard__save) ul {
       this.init();
     }
     async init() {
-      await m('#MainContent[x-data="product"]') && (new j(), new E(), new z());
+      await u('#MainContent[x-data="product"]') && (new j(), new E(), new z());
     }
   }
   new B();
