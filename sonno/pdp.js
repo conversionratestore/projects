@@ -2726,7 +2726,7 @@ div:has(> .crs-headboard__save) ul {
             }
             if (h !== t && !t.contains(h) && (i == null || i.click()), h.closest("button") && ((w = (f = h.closest("button")) == null ? void 0 : f.textContent) != null && w.includes("See Details"))) {
               const _ = (y = (k = h.closest(".card-addons")) == null ? void 0 : k.querySelector(".title-card")) == null ? void 0 : y.textContent;
-              v("exp_pdp_imp__mattress_det", `${_}`, "click", "Choose Mattress");
+              v("exp_pdp_imp__mattress_det", `${_}`, "click", "Choose Mattress. See Details");
             }
             if (h.closest(".card-addons:not(.crs-no-mattress)") && !h.closest("button")) {
               const _ = h.closest(".card-addons"), S = t.querySelector(".card-button button"), O = (z = (M = h.closest(".card-addons")) == null ? void 0 : M.querySelector(".title-card")) == null ? void 0 : z.textContent;
