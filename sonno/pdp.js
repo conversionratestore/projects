@@ -32,7 +32,7 @@
       });
     });
   }
-  const k = {
+  const C = {
     mobile: "mobile",
     desktop: "desktop"
   }, D = "https://conversionratestore.github.io/projects/sonno", $ = `body:has(dialog[open]),
@@ -325,7 +325,7 @@ body.is-dialog-open {
 `;
   class T {
     constructor() {
-      this.device = window.innerWidth < 768 ? k.mobile : k.desktop, this.init();
+      this.device = window.innerWidth < 768 ? C.mobile : C.desktop, this.init();
     }
     init() {
       this.initStyles(), this.addNewDeliverySection(), this.changePriceElementPosition(), this.changeAboutPaymentPosition(), this.addChosenOption();
@@ -367,8 +367,8 @@ body.is-dialog-open {
           document.querySelectorAll(
             '.variant-switch-items ul li div > div:not([x-text="option.name"]):not(.text-primary)'
           ).forEach((o) => {
-            var i, r;
-            o.classList.contains("text-[#535353]") && o.classList.add("crs-chosen-option"), ((i = o.textContent) != null && i.includes("No Storage") || (r = o.textContent) != null && r.includes("From ")) && o.classList.remove("crs-chosen-option");
+            var i, a;
+            o.classList.contains("text-[#535353]") && o.classList.add("crs-chosen-option"), ((i = o.textContent) != null && i.includes("No Storage") || (a = o.textContent) != null && a.includes("From ")) && o.classList.remove("crs-chosen-option");
           });
         };
         n(), new MutationObserver((t) => {
@@ -412,9 +412,15 @@ body.is-dialog-open {
   }
 }
 
+@media (max-width: 768px) {
+  .crs-body--sticky .kl-teaser-RWKkCe {
+    bottom: 100px !important;
+  }
+}
 .crs-sticky--show {
   display: flex;
 }
+
 .crs-sticky__inner {
   width: 100%;
 }
@@ -660,7 +666,7 @@ body.is-dialog-open {
     render() {
       u(".productGalleryLightbox li img").then((s) => {
         var d, l, p, g;
-        const n = (d = document.querySelector("section.product-details p.leading-normal ")) == null ? void 0 : d.textContent, e = (l = document.querySelector('td[x-text="calculation.total"]')) == null ? void 0 : l.textContent, t = (p = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : p.textContent, o = (g = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : g.textContent, i = s, r = (
+        const n = (d = document.querySelector("section.product-details p.leading-normal ")) == null ? void 0 : d.textContent, e = (l = document.querySelector('td[x-text="calculation.total"]')) == null ? void 0 : l.textContent, t = (p = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : p.textContent, o = (g = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : g.textContent, i = s, a = (
           /* HTML */
           `
         <div class="crs-sticky">
@@ -695,9 +701,9 @@ body.is-dialog-open {
         </div>
       `
         );
-        document.body.insertAdjacentHTML("beforeend", r);
-        const a = document.querySelector(".crs-sticky");
-        a && (this.sticky = a);
+        document.body.insertAdjacentHTML("beforeend", a);
+        const r = document.querySelector(".crs-sticky");
+        r && (this.sticky = r);
       });
     }
     showSticky() {
@@ -706,9 +712,9 @@ body.is-dialog-open {
         n && new IntersectionObserver(
           (t) => {
             t.forEach((o) => {
-              var r, a;
+              var a, r;
               const i = o.boundingClientRect;
-              !o.isIntersecting && i.top < 0 ? (r = this.sticky) == null || r.classList.add("crs-sticky--show") : (a = this.sticky) == null || a.classList.remove("crs-sticky--show");
+              !o.isIntersecting && i.top < 0 ? ((a = this.sticky) == null || a.classList.add("crs-sticky--show"), document.body.classList.add("crs-body--sticky")) : ((r = this.sticky) == null || r.classList.remove("crs-sticky--show"), document.body.classList.remove("crs-body--sticky"));
             });
           },
           { threshold: 0.5 }
@@ -733,10 +739,10 @@ body.is-dialog-open {
     fillProductData() {
       const s = { attributes: !0, childList: !0, subtree: !0 }, n = new MutationObserver((t) => {
         t.forEach((o) => {
-          var r;
+          var a;
           if (o.target.classList.contains("product-img")) {
-            const a = document.querySelector(".productGalleryLightbox li img"), d = (r = this.sticky) == null ? void 0 : r.querySelector(".crs-sticky__product-img");
-            d && (d.setAttribute("src", (a == null ? void 0 : a.getAttribute("src")) || ""), d.setAttribute("alt", (a == null ? void 0 : a.getAttribute("alt")) || ""));
+            const r = document.querySelector(".productGalleryLightbox li img"), d = (a = this.sticky) == null ? void 0 : a.querySelector(".crs-sticky__product-img");
+            d && (d.setAttribute("src", (r == null ? void 0 : r.getAttribute("src")) || ""), d.setAttribute("alt", (r == null ? void 0 : r.getAttribute("alt")) || ""));
           }
         });
       });
@@ -745,9 +751,9 @@ body.is-dialog-open {
       });
       const e = new MutationObserver((t) => {
         t.forEach((o) => {
-          var r, a, d, l, p, g;
+          var a, r, d, l, p, g;
           if (o.target.getAttribute("x-text") === "calculation.total") {
-            const c = (r = document.querySelector("section.price-pro > div")) == null ? void 0 : r.textContent, x = (a = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : a.textContent, m = (d = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : d.textContent, h = (l = this.sticky) == null ? void 0 : l.querySelector(".crs-sticky__product-price .current"), f = (p = this.sticky) == null ? void 0 : p.querySelector(".crs-sticky__product-price .compare"), w = (g = this.sticky) == null ? void 0 : g.querySelector(".crs-sticky__product-price .save");
+            const c = (a = document.querySelector("section.price-pro > div")) == null ? void 0 : a.textContent, x = (r = document.querySelector(".price-pro div:nth-child(2) > div:first-child")) == null ? void 0 : r.textContent, m = (d = document.querySelector(".price-pro div:nth-child(2) > div:last-child")) == null ? void 0 : d.textContent, h = (l = this.sticky) == null ? void 0 : l.querySelector(".crs-sticky__product-price .current"), f = (p = this.sticky) == null ? void 0 : p.querySelector(".crs-sticky__product-price .compare"), w = (g = this.sticky) == null ? void 0 : g.querySelector(".crs-sticky__product-price .save");
             h && c && (h.textContent = c, f && x && w && m && (f.textContent = x, w.textContent = m));
           }
         });
@@ -868,7 +874,7 @@ body.is-dialog-open {
 `;
   class Z {
     constructor() {
-      this.dialog = null, this.device = window.innerWidth < 768 ? k.mobile : k.desktop, this.aborters = [], this.init();
+      this.dialog = null, this.device = window.innerWidth < 768 ? C.mobile : C.desktop, this.aborters = [], this.init();
     }
     init() {
       this.initStyles(), this.render(), this.eventListeners(), this.closeDialog(), this.showHiddenColorsOnDesktop(), this.addMouseDragScroll();
@@ -908,12 +914,12 @@ body.is-dialog-open {
           if (!e)
             return;
           n.querySelectorAll("li").forEach((o) => {
-            const i = o.querySelector("img"), r = o.querySelector("span:last-child"), d = (
+            const i = o.querySelector("img"), a = o.querySelector("span:last-child"), d = (
               /* HTML */
               `
             <li class="crs-color__item ${o.classList.contains("border-tertiary") ? "crs-color__item--selected" : ""}">
-              <img src="${i.src}" alt="${r.textContent}" width="97" height="67" loading="lazy" />
-              <span>${r.textContent}</span>
+              <img src="${i.src}" alt="${a.textContent}" width="97" height="67" loading="lazy" />
+              <span>${a.textContent}</span>
             </li>
           `
             );
@@ -931,14 +937,14 @@ body.is-dialog-open {
         this.aborters.push(e), n.addEventListener(
           "click",
           (t) => {
-            var r;
+            var a;
             const i = t.target.closest(".crs-color__item");
             if (i) {
-              const a = (r = i.querySelector("span")) == null ? void 0 : r.textContent;
-              if (a && v("exp_pdp_imp__popup_option", a, "click", "Choose color"), !a)
+              const r = (a = i.querySelector("span")) == null ? void 0 : a.textContent;
+              if (r && v("exp_pdp_imp__popup_option", r, "click", "Choose color"), !r)
                 return;
               document.querySelectorAll('[x-text="getColorName(product)"]').forEach((l) => {
-                if (l.textContent === a) {
+                if (l.textContent === r) {
                   const p = l.closest("li");
                   if (p) {
                     p.click();
@@ -964,7 +970,7 @@ body.is-dialog-open {
       }
     }
     addMouseDragScroll() {
-      this.device !== k.mobile && u(".crs-colors--desktop ul").then((s) => {
+      this.device !== C.mobile && u(".crs-colors--desktop ul").then((s) => {
         const n = s;
         let e = !1, t, o;
         n.addEventListener("mousedown", (i) => {
@@ -977,8 +983,8 @@ body.is-dialog-open {
           if (!e)
             return;
           i.preventDefault();
-          const a = (i.pageX - n.offsetLeft - t) * 1;
-          n.scrollLeft = o - a;
+          const r = (i.pageX - n.offsetLeft - t) * 1;
+          n.scrollLeft = o - r;
         });
       });
     }
@@ -989,7 +995,7 @@ body.is-dialog-open {
       });
     }
     openDialog() {
-      !this.dialog || this.device === k.mobile || (this.toggleColors(), this.dialog.showModal(), document.body.classList.add("is-dialog-open"), document.body.style.position = "fixed", document.body.style.top = `-${window.scrollY}px`);
+      !this.dialog || this.device === C.mobile || (this.toggleColors(), this.dialog.showModal(), document.body.classList.add("is-dialog-open"), document.body.style.position = "fixed", document.body.style.top = `-${window.scrollY}px`);
     }
     closeDialog() {
       var n;
@@ -1005,7 +1011,7 @@ body.is-dialog-open {
       s.innerHTML = j, document.head.appendChild(s);
     }
   }
-  const O = (
+  const q = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -2233,7 +2239,7 @@ div:has(> .crs-headboard__save) ul {
       title: "Choose Size",
       button: {
         title: "View Dimensions",
-        icon: O
+        icon: q
       }
     },
     mattress: {
@@ -2243,7 +2249,7 @@ div:has(> .crs-headboard__save) ul {
       title: "Choose Storage",
       button: {
         title: "View Dimensions",
-        icon: O
+        icon: q
       }
     },
     headboard: {
@@ -2255,7 +2261,7 @@ div:has(> .crs-headboard__save) ul {
   };
   class V {
     constructor() {
-      this.dialog = null, this.device = window.innerWidth < 768 ? k.mobile : k.desktop, this.sizes = null, this.mattressSize = null, this.aborters = [], this.init();
+      this.dialog = null, this.device = window.innerWidth < 768 ? C.mobile : C.desktop, this.sizes = null, this.mattressSize = null, this.aborters = [], this.init();
     }
     init() {
       this.initStyles(), this.render(), this.getProductData(), this.eventListeners(), this.changeMattressDialog(), this.changeDimensionDialog(), this.changeOpenDialog(), this.changeBaseTypeDialog(), this.changePositionMattressItemOnDesktop(), this.addMattressChoosingOption(), this.renderSizeDimension(), this.mattressSizeDialog(), this.createMattressSizeSelect();
@@ -2272,7 +2278,7 @@ div:has(> .crs-headboard__save) ul {
           const d = JSON.parse(i.variants);
           this.mattressSize = d;
         }
-        const a = JSON.parse(i.information_headboard).map((d) => {
+        const r = JSON.parse(i.information_headboard).map((d) => {
           const l = d.data;
           return {
             size: d.size_by_beds,
@@ -2284,7 +2290,7 @@ div:has(> .crs-headboard__save) ul {
             headboard: d.headboard_type.split("&")[0]
           };
         });
-        this.sizes = a;
+        this.sizes = r;
       } catch (s) {
         console.error("Помилка розбору JSON:", s);
       }
@@ -2333,8 +2339,8 @@ div:has(> .crs-headboard__save) ul {
     }
     createMattressSizeSelect() {
       u("#variant-mattress").then((s) => {
-        var r, a, d, l;
-        const e = (a = (r = s.querySelector("option:checked")) == null ? void 0 : r.textContent) == null ? void 0 : a.trim(), t = (d = this.mattressSize) == null ? void 0 : d.find((p) => p.title === e);
+        var a, r, d, l;
+        const e = (r = (a = s.querySelector("option:checked")) == null ? void 0 : a.textContent) == null ? void 0 : r.trim(), t = (d = this.mattressSize) == null ? void 0 : d.find((p) => p.title === e);
         let o = "";
         t && (o = `&middot; ${t != null && t.length ? `L: ${t == null ? void 0 : t.length}` : ""} ${t != null && t.width ? `W: ${t == null ? void 0 : t.width}` : ""}`);
         const i = (
@@ -2374,7 +2380,7 @@ div:has(> .crs-headboard__save) ul {
           return;
         const t = n.querySelectorAll("option"), o = e.querySelector("#crs-variant-dialog-content");
         if ((i = document.querySelector(".crs-mattress-list")) == null || i.remove(), o) {
-          const r = (
+          const a = (
             /* HTML */
             `
           <ul class="crs-mattress-list">
@@ -2400,20 +2406,20 @@ div:has(> .crs-headboard__save) ul {
           </ul>
         `
           );
-          o.innerHTML = r;
-          const a = o.querySelector(".crs-mattress-list");
-          a == null || a.addEventListener("click", (d) => {
+          o.innerHTML = a;
+          const r = o.querySelector(".crs-mattress-list");
+          r == null || r.addEventListener("click", (d) => {
             var p, g;
             const l = d.target;
             if (l.closest("li")) {
-              const c = l.closest("li"), x = a.querySelectorAll(".crs-mattress-item"), m = c.getAttribute("data-value"), h = (p = c.querySelector(".crs-mattress-item__title")) == null ? void 0 : p.textContent, f = (g = c.querySelector(".crs-mattress-item__size")) == null ? void 0 : g.textContent;
+              const c = l.closest("li"), x = r.querySelectorAll(".crs-mattress-item"), m = c.getAttribute("data-value"), h = (p = c.querySelector(".crs-mattress-item__title")) == null ? void 0 : p.textContent, f = (g = c.querySelector(".crs-mattress-item__size")) == null ? void 0 : g.textContent;
               x.forEach((y) => {
                 y.setAttribute("data-selected", "false");
               }), c.setAttribute("data-selected", "true"), t.forEach((y) => {
                 y.value === m && (y.selected = !0);
               });
-              const w = document.querySelector(".crs-mattress-size__chosen"), C = document.querySelector(".crs-mattress-size__size");
-              C && f && (C.innerHTML = "&middot; " + f), w && h && (w.textContent = h), v("exp_pdp_imp__popup_option", `${h}`, "click", "Choose size"), this.closeDialog();
+              const w = document.querySelector(".crs-mattress-size__chosen"), k = document.querySelector(".crs-mattress-size__size");
+              k && f && (k.innerHTML = "&middot; " + f), w && h && (w.textContent = h), v("exp_pdp_imp__popup_option", `${h}`, "click", "Choose size"), this.closeDialog();
             }
           });
         }
@@ -2424,10 +2430,10 @@ div:has(> .crs-headboard__save) ul {
       const n = document.querySelector(".variant-switch-products"), e = document.querySelector(".variant-switch-items"), t = document.querySelector("#crs-variant-dialog-content"), o = new AbortController();
       (i = this.aborters) == null || i.push(o), !(!n || !e || !t) && (s ? (t == null || t.insertAdjacentElement("beforeend", n), t.querySelector(".variant-switch-products"), t.addEventListener(
         "click",
-        (r) => {
+        (a) => {
           var p, g, c, x, m, h, f, w;
-          const a = r.target, d = ((c = (g = (p = a.closest("li")) == null ? void 0 : p.querySelector('[x-text="item.value"]')) == null ? void 0 : g.textContent) == null ? void 0 : c.toLowerCase()) || ((m = (x = a.closest("li")) == null ? void 0 : x.querySelector('[x-text="base.title"]')) == null ? void 0 : m.textContent), l = (w = (f = (h = a.closest(".crs-variant-dialog")) == null ? void 0 : h.querySelector("h3")) == null ? void 0 : f.textContent) == null ? void 0 : w.toLowerCase();
-          a.closest('[data-variant="headboard"]') || (a.closest("li") || a.closest(".crs-item-dimensional")) && !a.closest(".crs-headboard-item") && (this.renderSizeItemsOnDialog(), setTimeout(() => {
+          const r = a.target, d = ((c = (g = (p = r.closest("li")) == null ? void 0 : p.querySelector('[x-text="item.value"]')) == null ? void 0 : g.textContent) == null ? void 0 : c.toLowerCase()) || ((m = (x = r.closest("li")) == null ? void 0 : x.querySelector('[x-text="base.title"]')) == null ? void 0 : m.textContent), l = (w = (f = (h = r.closest(".crs-variant-dialog")) == null ? void 0 : h.querySelector("h3")) == null ? void 0 : f.textContent) == null ? void 0 : w.toLowerCase();
+          r.closest('[data-variant="headboard"]') || (r.closest("li") || r.closest(".crs-item-dimensional")) && !r.closest(".crs-headboard-item") && (this.renderSizeItemsOnDialog(), setTimeout(() => {
             l != null && l.includes("headboard") || this.closeDialog();
           }, 500), d && v("exp_pdp_imp__popup_option", `${d}`, "click", `${l}`));
         },
@@ -2480,11 +2486,11 @@ div:has(> .crs-headboard__save) ul {
             const o = n.querySelector("button.absolute");
             o == null || o.click(), v("exp_pdp_imp__popup_return", "Return", "click", "Divan Dimensions"), this.openDialog("size");
           }), n.addEventListener("click", (o) => {
-            var r;
+            var a;
             const i = o.target;
             if (i.closest("a")) {
-              const a = (r = i.closest("a")) == null ? void 0 : r.textContent;
-              a && v("exp_pdp_imp__popup_option", a, "click", "Divan Dimensions");
+              const r = (a = i.closest("a")) == null ? void 0 : a.textContent;
+              r && v("exp_pdp_imp__popup_option", r, "click", "Divan Dimensions");
             }
             i.closest("button.absolute") && v("exp_pdp_imp__popup_close", "Close", "click", "Divan Dimensions");
           });
@@ -2503,13 +2509,13 @@ div:has(> .crs-headboard__save) ul {
               const i = n.querySelector("button.absolute");
               i == null || i.click(), v("exp_pdp_imp__popup_return", "Return", "click", "Storage Dimensions"), this.openDialog("storage");
             }), n.addEventListener("click", (i) => {
-              var a;
-              const r = i.target;
-              if (r.closest("a")) {
-                const d = (a = r.closest("a")) == null ? void 0 : a.textContent;
+              var r;
+              const a = i.target;
+              if (a.closest("a")) {
+                const d = (r = a.closest("a")) == null ? void 0 : r.textContent;
                 d && v("exp_pdp_imp__popup_option", d, "click", "Storage Dimensions");
               }
-              r.closest("button.absolute") && v("exp_pdp_imp__popup_close", "Close", "click", "Storage Dimensions");
+              a.closest("button.absolute") && v("exp_pdp_imp__popup_close", "Close", "click", "Storage Dimensions");
             });
           }
         });
@@ -2533,10 +2539,10 @@ div:has(> .crs-headboard__save) ul {
               /* HTML */
               ' <button class="crs-open__back" data-button="open-back"></button> '
             );
-            const r = o.querySelector('[data-button="open-back"]');
-            r == null || r.addEventListener("click", () => {
-              const a = o.querySelector("button.absolute");
-              a == null || a.click(), v("exp_pdp_imp__popup_return", "Return", "click", "Base Type"), this.openDialog("baseType");
+            const a = o.querySelector('[data-button="open-back"]');
+            a == null || a.addEventListener("click", () => {
+              const r = o.querySelector("button.absolute");
+              r == null || r.click(), v("exp_pdp_imp__popup_return", "Return", "click", "Base Type"), this.openDialog("baseType");
             });
           }
         });
@@ -2551,18 +2557,18 @@ div:has(> .crs-headboard__save) ul {
         if (!n)
           return;
         n.querySelector(".crs-headboard-item") && n.querySelectorAll(".crs-headboard-item").forEach((i) => {
-          var r;
-          return (r = i.closest("li")) == null ? void 0 : r.remove();
+          var a;
+          return (a = i.closest("li")) == null ? void 0 : a.remove();
         });
         const t = n == null ? void 0 : n.querySelectorAll("li");
         t == null || t.forEach((i) => {
           var g, c, x;
-          const r = (g = i.querySelector("svg")) == null ? void 0 : g.cloneNode(!0), a = (c = i.querySelector('[x-text="item.value"]')) == null ? void 0 : c.textContent, d = (x = i.querySelector('[x-text="item.value"] + div')) == null ? void 0 : x.textContent, p = (
+          const a = (g = i.querySelector("svg")) == null ? void 0 : g.cloneNode(!0), r = (c = i.querySelector('[x-text="item.value"]')) == null ? void 0 : c.textContent, d = (x = i.querySelector('[x-text="item.value"] + div')) == null ? void 0 : x.textContent, p = (
             /* HTML */
             `<li>
           <div class="crs-headboard-item ${i.querySelector(".border-tertiary") ? "crs-headboard-item--active" : ""}">
-            <div class="crs-headboard-item__image">${r.outerHTML}</div>
-            <div class="crs-headboard-item__title">${a}</div>
+            <div class="crs-headboard-item__image">${a.outerHTML}</div>
+            <div class="crs-headboard-item__title">${r}</div>
             <div class="crs-headboard-item__price">${d}</div>
           </div>
         </li>`
@@ -2572,12 +2578,14 @@ div:has(> .crs-headboard__save) ul {
         const o = n == null ? void 0 : n.querySelectorAll(".crs-headboard-item");
         o == null || o.forEach((i) => {
           i.addEventListener("click", () => {
-            var a;
-            o == null || o.forEach((d) => {
-              d.classList.remove("crs-headboard-item--active");
+            var d, l;
+            o == null || o.forEach((p) => {
+              p.classList.remove("crs-headboard-item--active");
             }), i.classList.add("crs-headboard-item--active");
-            const r = (a = i.querySelector(".crs-headboard-item__title")) == null ? void 0 : a.textContent;
-            v("exp_pdp_imp__popup_option", `${r}`, "click", "Choose Headboard");
+            const a = (d = i.querySelector(".crs-headboard-item__title")) == null ? void 0 : d.textContent;
+            v("exp_pdp_imp__popup_option", `${a}`, "click", "Choose Headboard");
+            const r = (l = i.closest("li")) == null ? void 0 : l.nextElementSibling;
+            r == null || r.click();
           });
         });
       }), u("[data-variant='headboard'] div :has(> hr) > ul").then(() => {
@@ -2588,12 +2596,12 @@ div:has(> .crs-headboard__save) ul {
         if (!n)
           return;
         const e = n.querySelectorAll("li");
-        (n == null ? void 0 : n.querySelector(".crs-headboard-btn")) && document.querySelectorAll(".crs-headboard-btn").forEach((i) => i.remove()), e.forEach((i, r) => {
+        (n == null ? void 0 : n.querySelector(".crs-headboard-btn")) && document.querySelectorAll(".crs-headboard-btn").forEach((i) => i.remove()), e.forEach((i, a) => {
           var p;
-          const a = (p = i.querySelector('[x-text="button.name"]')) == null ? void 0 : p.textContent, l = (
+          const r = (p = i.querySelector('[x-text="button.name"]')) == null ? void 0 : p.textContent, l = (
             /* HTML */
             `
-          <button class="crs-headboard-btn ${i.querySelector(".border-tertiary") ? "crs-headboard-btn--active" : ""}">${a}</button>
+          <button class="crs-headboard-btn ${i.querySelector(".border-tertiary") ? "crs-headboard-btn--active" : ""}">${r}</button>
         `
           );
           i.insertAdjacentHTML("beforebegin", l), i.style.display = "none";
@@ -2601,11 +2609,13 @@ div:has(> .crs-headboard__save) ul {
         const o = n == null ? void 0 : n.querySelectorAll(".crs-headboard-btn");
         o.forEach((i) => {
           i == null || i.addEventListener("click", () => {
-            o == null || o.forEach((a) => {
-              a.classList.remove("crs-headboard-btn--active");
+            o == null || o.forEach((d) => {
+              d.classList.remove("crs-headboard-btn--active");
             });
-            const r = i.textContent;
-            v("exp_pdp_imp__popup_option", `${r}`, "click", "Choose Headboard"), i.classList.add("crs-headboard-btn--active");
+            const a = i.textContent;
+            v("exp_pdp_imp__popup_option", `${a}`, "click", "Choose Headboard"), i.classList.add("crs-headboard-btn--active");
+            const r = i.nextElementSibling;
+            r == null || r.click();
           });
         });
       });
@@ -2619,16 +2629,6 @@ div:has(> .crs-headboard__save) ul {
         return;
       const e = document.createElement("button");
       e.textContent = "Save & Continue", e.classList.add("crs-headboard__save"), n.insertAdjacentElement("afterend", e), e.addEventListener("click", () => {
-        var i;
-        const t = document.querySelector(".crs-headboard-item--active"), o = document.querySelector(".crs-headboard-btn--active");
-        if (t) {
-          const r = (i = t.closest("li")) == null ? void 0 : i.nextElementSibling;
-          r == null || r.click();
-        }
-        if (o) {
-          const r = o.nextElementSibling;
-          r == null || r.click();
-        }
         this.closeDialog(), v("exp_pdp_imp__save_button", "Save & continue", "click", "Choose Headboard");
       });
     }
@@ -2690,11 +2690,11 @@ div:has(> .crs-headboard__save) ul {
           }
         }
         const o = new AbortController(), i = t.querySelector("button.absolute");
-        let r = !1;
+        let a = !1;
         i == null || i.addEventListener(
           "click",
           (m) => {
-            r || v("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress "), this.aborters.forEach((h) => {
+            a || v("exp_pdp_imp__popup_close", "Close", "click", "Choose Mattress "), this.aborters.forEach((h) => {
               h.abort();
             });
           },
@@ -2702,37 +2702,37 @@ div:has(> .crs-headboard__save) ul {
             signal: o.signal
           }
         ), this.aborters.push(o);
-        const a = new AbortController();
-        this.aborters.includes(a) || window.addEventListener(
+        const r = new AbortController();
+        this.aborters.includes(r) || window.addEventListener(
           "click",
           (m) => {
             const h = m.target;
             h !== t && !t.contains(h) && h.matches(".absolute.inset-0.overflow-hidden") && h.contains(t) && (i == null || i.click());
           },
           {
-            signal: a.signal
+            signal: r.signal
           }
-        ), this.aborters.push(a);
+        ), this.aborters.push(r);
         const d = new AbortController();
         this.aborters.push(d), t == null || t.addEventListener(
           "click",
           (m) => {
-            var f, w, C, y, M, z, E;
+            var f, w, k, y, M, z, E;
             const h = m.target;
             if (h.closest(".crs-no-mattress")) {
-              o.abort(), r = !0, v("exp_pdp_imp__popup_option", "No Mattress", "click", "Choose Mattress");
+              o.abort(), a = !0, v("exp_pdp_imp__popup_option", "No Mattress", "click", "Choose Mattress");
               const _ = document.querySelector(".crs-mattress--hidden .border-btn.no-border");
               setTimeout(() => {
                 i == null || i.click();
               }, 100), _ && _.click();
             }
             if (h !== t && !t.contains(h) && (i == null || i.click()), h.closest("button") && ((w = (f = h.closest("button")) == null ? void 0 : f.textContent) != null && w.includes("See Details"))) {
-              const _ = (y = (C = h.closest(".card-addons")) == null ? void 0 : C.querySelector(".title-card")) == null ? void 0 : y.textContent;
+              const _ = (y = (k = h.closest(".card-addons")) == null ? void 0 : k.querySelector(".title-card")) == null ? void 0 : y.textContent;
               v("exp_pdp_imp__mattress_det", `${_}`, "click", "Choose Mattress");
             }
             if (h.closest(".card-addons:not(.crs-no-mattress)") && !h.closest("button")) {
-              const _ = h.closest(".card-addons"), S = t.querySelector(".card-button button"), q = (z = (M = h.closest(".card-addons")) == null ? void 0 : M.querySelector(".title-card")) == null ? void 0 : z.textContent;
-              v("exp_pdp_imp__popup_option", `${q}`, "click", "Choose Mattress"), _ == null || _.classList.add("crs-addon--active"), S && setTimeout(() => {
+              const _ = h.closest(".card-addons"), S = t.querySelector(".card-button button"), O = (z = (M = h.closest(".card-addons")) == null ? void 0 : M.querySelector(".title-card")) == null ? void 0 : z.textContent;
+              v("exp_pdp_imp__popup_option", `${O}`, "click", "Choose Mattress"), _ == null || _.classList.add("crs-addon--active"), S && setTimeout(() => {
                 S == null || S.click(), this.aborters.forEach((W) => {
                   W.abort();
                 });
@@ -2741,7 +2741,7 @@ div:has(> .crs-headboard__save) ul {
             if (h.closest(".ss-tabs")) {
               const _ = t.querySelector("div:has(> .card-addons)"), S = n.querySelector(".crs-no-mattress");
               if (S && (S.remove(), _)) {
-                const q = (
+                const O = (
                   /* HTML */
                   `
                   <div class="card-addons  added cursor-pointer hover:border-tertiary border-2 crs-no-mattress">
@@ -2756,7 +2756,7 @@ div:has(> .crs-headboard__save) ul {
                   </div>
                 `
                 );
-                (E = _.querySelector(".card-addons")) == null || E.insertAdjacentHTML("beforebegin", q);
+                (E = _.querySelector(".card-addons")) == null || E.insertAdjacentHTML("beforebegin", O);
               }
             }
           },
@@ -2776,8 +2776,8 @@ div:has(> .crs-headboard__save) ul {
           if (!((o = e == null ? void 0 : e.textContent) != null && o.includes("Add Mattress & Save")) && !e.querySelector('[x-if="selectedMattress"]')) {
             if (document.querySelector(".variant-switch-items ul .crs-mattress"))
               return;
-            const r = document.querySelector(".variant-switch-items ul");
-            r == null || r.insertAdjacentHTML(
+            const a = document.querySelector(".variant-switch-items ul");
+            a == null || a.insertAdjacentHTML(
               "beforeend",
               /* HTML */
               `<li
@@ -2801,8 +2801,8 @@ div:has(> .crs-headboard__save) ul {
         const n = document.querySelector(".variant-switch-items ul .crs-mattress");
         n == null || n.addEventListener("click", () => {
           this.changeMattressDialog(), document.querySelectorAll(".product-details .lg\\:block .card-addons").forEach((t) => {
-            var o, i, r;
-            ((o = t.textContent) != null && o.includes("Add Mattress & Save") || t.querySelector('[x-if="selectedMattress"]')) && ((i = t.querySelector("button")) == null || i.click()), t.querySelector('[x-text*="selectedMattress"]') && ((r = t.querySelector(".card-button button")) == null || r.click(), u(".product-details .lg\\:block .card-addons").then(() => {
+            var o, i, a;
+            ((o = t.textContent) != null && o.includes("Add Mattress & Save") || t.querySelector('[x-if="selectedMattress"]')) && ((i = t.querySelector("button")) == null || i.click()), t.querySelector('[x-text*="selectedMattress"]') && ((a = t.querySelector(".card-button button")) == null || a.click(), u(".product-details .lg\\:block .card-addons").then(() => {
               document.querySelectorAll(".product-details .lg\\:block .card-addons").forEach((d) => {
                 var l, p;
                 ((l = d.textContent) != null && l.includes("Add Mattress & Save") || d.querySelector('[x-if="selectedMattress"]')) && ((p = d.querySelector("button")) == null || p.click());
@@ -2817,23 +2817,23 @@ div:has(> .crs-headboard__save) ul {
         const n = document.querySelector(".product-details .lg\\:block"), e = document.querySelector(".variant-switch-items ul"), t = document.querySelectorAll(".product-details .lg\\:block .card-addons");
         if (!e || !t)
           return;
-        t.forEach((i, r) => {
-          var a;
-          ((a = i == null ? void 0 : i.textContent) != null && a.includes("Add Mattress & Save") || i.querySelector('[x-if="selectedMattress"]')) && t[r].classList.add("crs-mattress--hidden");
+        t.forEach((i, a) => {
+          var r;
+          ((r = i == null ? void 0 : i.textContent) != null && r.includes("Add Mattress & Save") || i.querySelector('[x-if="selectedMattress"]')) && t[a].classList.add("crs-mattress--hidden");
         }), new MutationObserver((i) => {
-          i.forEach((r) => {
-            r.addedNodes.forEach((a) => {
+          i.forEach((a) => {
+            a.addedNodes.forEach((r) => {
               var l, p, g, c, x, m, h;
-              const d = a;
+              const d = r;
               if (d.classList.contains("added") && ((l = d.textContent) != null && l.includes("Mattress"))) {
                 d.classList.add("crs-mattress--hidden");
-                const f = (p = d.querySelector(".title-card")) == null ? void 0 : p.textContent, w = (g = d.querySelector(".price label")) == null ? void 0 : g.textContent, C = (c = d.querySelector(".price span")) == null ? void 0 : c.textContent, y = document.querySelector("#crs-chosen-mattress");
+                const f = (p = d.querySelector(".title-card")) == null ? void 0 : p.textContent, w = (g = d.querySelector(".price label")) == null ? void 0 : g.textContent, k = (c = d.querySelector(".price span")) == null ? void 0 : c.textContent, y = document.querySelector("#crs-chosen-mattress");
                 (x = document.querySelector(".crs-mattress-price")) == null || x.remove();
                 const M = (
                   /* HTML */
                   `
                 <div class="crs-mattress-price">
-                  <div class="old">${C == null ? void 0 : C.toLocaleLowerCase()}</div>
+                  <div class="old">${k == null ? void 0 : k.toLocaleLowerCase()}</div>
                   <div class="new">+${w == null ? void 0 : w.toLocaleLowerCase()}</div>
                 </div>
               `
@@ -2854,15 +2854,15 @@ div:has(> .crs-headboard__save) ul {
     }
     renderSizeItemsOnDialog() {
       u('[data-variant="size"] .variant-switch-products').then(async (s) => {
-        var i, r;
+        var i, a;
         const n = s;
         if (!document.querySelectorAll(".variant-switch-items ul li"))
           return;
         const t = document.querySelectorAll(".crs-item-dimensional");
-        if (t && t.forEach((a) => {
-          a.remove();
+        if (t && t.forEach((r) => {
+          r.remove();
         }), document.querySelector('[data-type="headboard"]')) {
-          const d = (i = document.querySelector(".crs-name-headboard .title").textContent) == null ? void 0 : i.split("&")[0].trim(), l = (r = this.sizes) == null ? void 0 : r.filter(
+          const d = (i = document.querySelector(".crs-name-headboard .title").textContent) == null ? void 0 : i.split("&")[0].trim(), l = (a = this.sizes) == null ? void 0 : a.filter(
             (g) => (d == null ? void 0 : d.includes(g.headboard)) || g.headboard.includes(d)
           ), p = n.querySelectorAll("ul li");
           p == null || p.forEach((g) => {
@@ -2882,8 +2882,8 @@ div:has(> .crs-headboard__save) ul {
             });
           });
         } else {
-          const a = n.querySelectorAll("ul li");
-          a == null || a.forEach((d) => {
+          const r = n.querySelectorAll("ul li");
+          r == null || r.forEach((d) => {
             var p, g;
             (p = d.querySelector(".crs-item-dimensional")) == null || p.remove();
             const l = d.querySelector('[x-text="item.value"]');
@@ -2904,18 +2904,18 @@ div:has(> .crs-headboard__save) ul {
       u(".variant-switch-items ul li").then(() => {
         const s = (t, o) => {
           var p, g;
-          const i = t.textContent || "", r = i.replace(/\s*\([^)]*\)/, "").trim(), a = i.match(/\(([^)]+)\)/), d = a ? a[1].trim() : "";
+          const i = t.textContent || "", a = i.replace(/\s*\([^)]*\)/, "").trim(), r = i.match(/\(([^)]+)\)/), d = r ? r[1].trim() : "";
           let l = "";
           if (o === "size") {
             const c = ((p = document.querySelector('[x-html*="headboard"]')) == null ? void 0 : p.textContent) || "", x = (g = this.sizes) == null ? void 0 : g.find(
-              (m) => c.includes(m.headboard) && m.size === r
+              (m) => c.includes(m.headboard) && m.size === a
             );
             if (x) {
               const m = `&middot; ${x.dimensions.height ? `H: ${x.dimensions.height}` : ""} ${x.dimensions.length ? `L: ${x.dimensions.length}` : ""} ${x.dimensions.width ? `W: ${x.dimensions.width}` : ""}`;
               l = /* HTML */
               `
               <div class="crs-name-dimensional">
-                <span class="title">${r}</span>
+                <span class="title">${a}</span>
                 <span class="dimension"> ${m} </span>
                 <span class="price">${d}</span>
               </div>
@@ -2925,19 +2925,19 @@ div:has(> .crs-headboard__save) ul {
             o === "storage" ? l = /* HTML */
             `
             <div class="crs-name-storage">
-              <span class="title">${r}</span>
+              <span class="title">${a}</span>
               <span class="price">${d}</span>
             </div>
           ` : o === "headboard" ? l = /* HTML */
             `
             <div class="crs-name-headboard">
-              <span class="title">${r}</span>
+              <span class="title">${a}</span>
               <span class="price">${d}</span>
             </div>
           ` : o === "base type" && (l = /* HTML */
             `
             <div class="crs-name-base">
-              <span class="title">${r}</span>
+              <span class="title">${a}</span>
               <span class="price">${d}</span>
             </div>
           `);
@@ -2950,15 +2950,15 @@ div:has(> .crs-headboard__save) ul {
             const i = o.querySelector("div.text-primary");
             if (!i)
               return;
-            const r = ((l = i.textContent) == null ? void 0 : l.toLowerCase()) || "", a = i.nextElementSibling;
-            if (!a)
+            const a = ((l = i.textContent) == null ? void 0 : l.toLowerCase()) || "", r = i.nextElementSibling;
+            if (!r)
               return;
             let d = null;
-            if (r.includes("size") ? d = "size" : r.includes("storage") ? d = "storage" : r.includes("headboard") ? d = "headboard" : r.includes("base type") && (d = "base type"), i.dataset.type = (d == null ? void 0 : d.replace(" ", "-")) || "", d) {
-              const p = () => s(a, d);
-              p(), a.getAttribute("data-observed") || (new MutationObserver(() => {
-                a.innerHTML.includes('class="title"') || p();
-              }).observe(a, { childList: !0, subtree: !0 }), a.setAttribute("data-observed", "true"));
+            if (a.includes("size") ? d = "size" : a.includes("storage") ? d = "storage" : a.includes("headboard") ? d = "headboard" : a.includes("base type") && (d = "base type"), i.dataset.type = (d == null ? void 0 : d.replace(" ", "-")) || "", d) {
+              const p = () => s(r, d);
+              p(), r.getAttribute("data-observed") || (new MutationObserver(() => {
+                r.innerHTML.includes('class="title"') || p();
+              }).observe(r, { childList: !0, subtree: !0 }), r.setAttribute("data-observed", "true"));
             }
           });
         }, e = setInterval(() => {
@@ -3053,8 +3053,8 @@ div:has(> .crs-headboard__save) ul {
           var t, o, i;
           const e = n.target;
           if (e.closest("li")) {
-            const r = (i = (o = (t = e.closest("li")) == null ? void 0 : t.querySelector(".text-primary")) == null ? void 0 : o.textContent) == null ? void 0 : i.toLowerCase(), a = r === "size" ? "size" : r === "storage" ? "storage" : r === "headboard" ? "headboard" : r === "base type" ? "baseType" : "";
-            this.variantSwitchPopup.openDialog(a), v("exp_pdp_imp__option", `${r}`, "click", "Select Option");
+            const a = (i = (o = (t = e.closest("li")) == null ? void 0 : t.querySelector(".text-primary")) == null ? void 0 : o.textContent) == null ? void 0 : i.toLowerCase(), r = a === "size" ? "size" : a === "storage" ? "storage" : a === "headboard" ? "headboard" : a === "base type" ? "baseType" : "";
+            this.variantSwitchPopup.openDialog(r), v("exp_pdp_imp__option", `${a}`, "click", "Select Option");
           }
         });
       }), u('[x-text="selectedProduct"]').then((s) => {
