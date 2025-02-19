@@ -22,7 +22,6 @@
 #trust-badge-content-div,
 product-recommendations.block,
 .product-info__separator,
-#mbcBundleItemsWidget,
 .footer__block--text,
 .product-info__description {
   display: none !important;
