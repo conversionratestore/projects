@@ -412,11 +412,10 @@ body.is-dialog-open {
   }
 }
 
-@media (max-width: 768px) {
-  .crs-body--sticky .kl-teaser-RWKkCe {
-    bottom: 100px !important;
-  }
+.crs-body--sticky .kl-teaser-RWKkCe {
+  bottom: 100px !important;
 }
+
 .crs-sticky--show {
   display: flex;
 }
@@ -599,7 +598,6 @@ body.is-dialog-open {
 .crs-sticky__cta .crs-sticky__action-btn {
   display: none;
 }
-
 
 @media (min-width: 768px) {
   .crs-sticky__cta {
