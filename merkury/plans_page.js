@@ -1,6 +1,10 @@
 (function() {
   "use strict";
-  const d = `.body-bg,
+  const d = `#root {
+  display: none;
+}
+
+.body-bg,
 .main-layout {
   position: unset;
 }
