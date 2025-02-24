@@ -867,6 +867,10 @@ body.is-dialog-open {
     width: 97px;
     height: 102px;
   }
+
+  .crs-colors--desktop ul li img {
+    height: 57px;
+  }
 }
 `;
   class I {
@@ -963,6 +967,12 @@ body.is-dialog-open {
           this.closeDialog(), v("exp_pdp_imp__popup_close", "Close", "click", "Choose color");
         }), this.dialog.addEventListener("click", (n) => {
           n.target === this.dialog && (this.closeDialog(), v("exp_pdp_imp__popup_close", "Close", "click", "Choose color"));
+        }), this.dialog.addEventListener("cancel", (n) => {
+          n.preventDefault(), this.closeDialog();
+        }), this.dialog.addEventListener("close", () => {
+          document.ontouchmove = function(n) {
+            return !0;
+          };
         });
       }
     }
@@ -1177,15 +1187,17 @@ body.is-dialog-open {
   margin-top: 14px;
 }
 
-.crs-variant-dialog__content .max-h-\\[360px\\] {
-  max-height: 75dvh;
-}
 
 .crs-variant-dialog .variant-switch-products {
   margin-top: 14px;
   padding: 0;
 }
 
+.crs-variant-dialog__content .max-h-\\[360px\\] {
+  max-height: 75dvh;
+  margin-right: -5px;
+  padding-right: 5px;
+}
 @media (min-width: 768px) {
   .crs-variant-dialog .variant-switch-products {
     height: 100%;
@@ -2470,6 +2482,12 @@ div:has(> .crs-headboard__save) ul {
           const o = (t = (e = this.dialog) == null ? void 0 : e.querySelector("h3")) == null ? void 0 : t.textContent;
           v("exp_pdp_imp__popup_close", "Close", "click", `${o}`);
         }
+      }), this.dialog.addEventListener("cancel", (n) => {
+        n.preventDefault(), this.closeDialog();
+      }), this.dialog.addEventListener("close", () => {
+        document.ontouchmove = function(n) {
+          return !0;
+        };
       });
     }
     changeDimensionDialog() {
@@ -2988,7 +3006,7 @@ div:has(> .crs-headboard__save) ul {
     }
     closeDialog() {
       var i;
-      (i = this.dialog) == null || i.classList.add("closing"), document.body.style.top, setTimeout(() => {
+      (i = this.dialog) == null || i.classList.add("closing"), setTimeout(() => {
         var n, e;
         (n = this.dialog) == null || n.close(), (e = this.dialog) == null || e.classList.remove("closing"), this.toggleSwitchProducts(!1), document.body.classList.remove("is-dialog-open"), document.ontouchmove = function(t) {
           return !0;
