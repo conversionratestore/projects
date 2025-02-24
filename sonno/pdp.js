@@ -951,8 +951,7 @@ body.is-dialog-open {
                     h.click();
                     const g = document.querySelector(".crs-color__item--selected");
                     g == null || g.classList.remove("crs-color__item--selected"), s.classList.add("crs-color__item--selected"), setTimeout(() => {
-                      var d;
-                      (d = this.dialog) == null || d.close();
+                      this.closeDialog();
                     }, 100);
                   }
                 }
