@@ -2026,7 +2026,7 @@ div:has(> .crs-headboard__save) ul {
 :is(.crs-name-dimensional, .crs-name-storage, .crs-name-headboard, .crs-name-base) .price {
   color: #1e3851;
   text-align: right;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 24px;
 }
