@@ -13,6 +13,10 @@
       `%c EXP: ${d} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
+  }, b = (d) => {
+    let n = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", d, "variant_1"));
+    }, 1e3);
   };
   function c(d) {
     return new Promise((n) => {
@@ -57,7 +61,7 @@
     i.forEach((r) => {
       o.observe(r);
     });
-  }, b = `body:has(> dialog[open]) {
+  }, f = `body:has(> dialog[open]) {
   overflow: hidden;
 }
 
@@ -286,7 +290,7 @@
   line-height: 24px;
 }
 `;
-  class f {
+  class x {
     constructor() {
       this.init();
     }
@@ -410,10 +414,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.textContent = b, document.head.append(n);
+      n.textContent = f, document.head.append(n);
     }
   }
-  const u = "http://conversionratestore.github.io/projects/drgolly/removing_barriers_on_pdp/", x = `.crs-header-bundle {
+  const u = "http://conversionratestore.github.io/projects/drgolly/removing_barriers_on_pdp/", v = `.crs-header-bundle {
   margin-top: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -639,9 +643,9 @@
   }
 }
 `;
-  class v {
+  class w {
     constructor() {
-      this.init(), this.popup = new f();
+      this.init(), this.popup = new x();
     }
     init() {
       this.addStyles(), this.addHeaderBundle(), this.eventListeners();
@@ -723,10 +727,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.innerHTML = x, document.head.append(n);
+      n.innerHTML = v, document.head.append(n);
     }
   }
-  const w = `.crs-bundle-section .crs-bundle-section-inner {
+  const y = `.crs-bundle-section .crs-bundle-section-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
@@ -994,7 +998,7 @@
   line-height: 24px;
 }
 `;
-  class y {
+  class _ {
     constructor() {
       this.init();
     }
@@ -1166,10 +1170,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.textContent = w, document.head.appendChild(n);
+      n.textContent = y, document.head.appendChild(n);
     }
   }
-  const _ = [
+  const k = [
     {
       id: 1,
       user: "Kate C",
@@ -1188,7 +1192,7 @@
       comment: "Our bub is just four weeks now - we loved Dr Golly’s book for the first four weeks, and so far we’re finding the modules for this next stage super helpful. It’s also very...",
       date: "3 days ago"
     }
-  ], k = `.crs-comments-section {
+  ], C = `.crs-comments-section {
   margin-bottom: 44px;
 }
 
@@ -1352,7 +1356,7 @@
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"><path d="M17.1616 4.55322L9.26312 12.7563L17.1616 21.0063C17.3491 21.1626 17.4428 21.3306 17.4428 21.5103C17.4428 21.6899 17.3491 21.8735 17.1616 22.061C17.0053 22.2642 16.8373 22.3657 16.6577 22.3657C16.478 22.3657 16.2944 22.2642 16.1069 22.061L7.41156 13.2954C7.25531 13.1235 7.17719 12.9517 7.17719 12.7798C7.17719 12.6079 7.25531 12.4204 7.41156 12.2173L16.1069 3.45166C16.2944 3.24854 16.478 3.14697 16.6577 3.14697C16.8373 3.14697 17.0053 3.24854 17.1616 3.45166C17.3491 3.62354 17.4428 3.80322 17.4428 3.99072C17.4428 4.17822 17.3491 4.36572 17.1616 4.55322Z" fill="%230E1311"/></svg>');
 }
 `;
-  class C {
+  class L {
     constructor() {
       this.init();
     }
@@ -1369,7 +1373,7 @@
         <div class="crs-comments-container">
           <div class="crs-comments">
             <div class="comments-wrap">
-              ${_.map((t) => (
+              ${k.map((t) => (
           /* HTML */
           `
                     <div class="crs-comment" id="comment-${t.id}">
@@ -1417,11 +1421,11 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.innerHTML = k, document.head.append(n);
+      n.innerHTML = C, document.head.append(n);
     }
   }
-  const L = "";
-  class S {
+  const S = "";
+  class z {
     constructor() {
       this.init();
     }
@@ -1446,10 +1450,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.textContent = L, document.head.appendChild(n);
+      n.textContent = S, document.head.appendChild(n);
     }
   }
-  const z = `.crs-compare-section h2 {
+  const B = `.crs-compare-section h2 {
   padding: 0 !important;
   color: #095d66 !important;
   text-align: center;
@@ -1672,7 +1676,7 @@
   cursor: pointer;
 }
 `;
-  class B {
+  class A {
     constructor() {
       this.init();
     }
@@ -1780,10 +1784,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.innerHTML = z, document.head.append(n);
+      n.innerHTML = B, document.head.append(n);
     }
   }
-  const A = `.crs-course-help #crs-container-help {
+  const M = `.crs-course-help #crs-container-help {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
@@ -2179,7 +2183,7 @@
   }
 }
 `;
-  class M {
+  class $ {
     constructor() {
       this.init();
     }
@@ -2377,7 +2381,7 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.innerHTML = A, document.head.append(n);
+      n.innerHTML = M, document.head.append(n);
     }
   }
   const g = {
@@ -2387,7 +2391,7 @@
     "8-12 months": "/toddler-sleep-program/pre-toddler-8-12-months/",
     "1-2 years": "/toddler-sleep-program/1-2-years/",
     "2-5 years": "/toddler-sleep-program/pre-school-2-5-years/"
-  }, $ = `.crs-different-section {
+  }, j = `.crs-different-section {
   position: relative;
 }
 
@@ -2528,7 +2532,7 @@
   }
 }
 `;
-  class j {
+  class P {
     constructor() {
       this.init();
     }
@@ -2678,10 +2682,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.textContent = $, document.head.append(n);
+      n.textContent = j, document.head.append(n);
     }
   }
-  const P = {
+  const E = {
     "4-16 weeks": [
       "How to settle and calm a baby",
       "Feeding and breastfeeding tips",
@@ -2689,7 +2693,7 @@
       "Parental alignment and self-care advice",
       "Routines start at 6 weeks when your baby reaches 5-6kg"
     ]
-  }, E = {
+  }, q = {
     chevronDown: (
       /* HTML */
       `<svg
@@ -2708,7 +2712,7 @@
     />
   </svg>`
     )
-  }, q = (
+  }, T = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -2759,7 +2763,7 @@
     </div>
   </div>
 </div>`
-  ), T = (
+  ), R = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -2778,7 +2782,7 @@
     </clipPath>
   </defs>
 </svg>`
-  ), R = `dialog.crs-popup {
+  ), D = `dialog.crs-popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -3018,7 +3022,7 @@ dialog.crs-popup .et_pb_section  + .et_pb_section  {
   }
 }
 `;
-  class D {
+  class H {
     constructor() {
       this.popup = null, this.init();
     }
@@ -3031,9 +3035,9 @@ dialog.crs-popup .et_pb_section  + .et_pb_section  {
         `
       <dialog class="crs-popup">
         <div class="crs-popup__wrap">
-          <button class="crs-popup__close">${T}</button>
+          <button class="crs-popup__close">${R}</button>
 
-          <div class="crs-popup__content">${q}</div>
+          <div class="crs-popup__content">${T}</div>
         </div>
       </dialog>
     `
@@ -3055,10 +3059,10 @@ dialog.crs-popup .et_pb_section  + .et_pb_section  {
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = R, document.head.appendChild(n);
+      n.innerHTML = D, document.head.appendChild(n);
     }
   }
-  const H = `.product__title h1 {
+  const I = `.product__title h1 {
   font-size: 30px;
   font-weight: 700;
   line-height: 44.7px;
@@ -3204,9 +3208,9 @@ body.product-template-default
   display: block !important;
 }
 `;
-  class I {
+  class W {
     constructor() {
-      this.init(), this.refundPopup = new D();
+      this.init(), this.refundPopup = new H();
     }
     init() {
       this.addStyles(), this.changeTitle(), this.addImageBadge(), this.changeDescriptionList(), this.addGuaranteeBadges(), this.addMorePaymentOptions(), this.addEventListeners();
@@ -3256,10 +3260,10 @@ body.product-template-default
       const t = await c(
         ".text__product-custom-description  ul"
       ), o = (a = Object.entries(g).find(
-        ([p, O]) => n.includes(O)
+        ([p, F]) => n.includes(F)
       )) == null ? void 0 : a[0];
       if (!o) return;
-      const s = P[o];
+      const s = E[o];
       if (!s) return;
       const r = (
         /* HTML */
@@ -3312,7 +3316,7 @@ body.product-template-default
         ` <div type="button" class="crs-payment-options">
       <button data-button="more-payment-options">
         <div class="text">More Payment Options</div>
-        <div class="icon">${E.chevronDown}</div>
+        <div class="icon">${q.chevronDown}</div>
       </button>
     </div>`
       );
@@ -3338,10 +3342,10 @@ body.product-template-default
     }
     addStyles() {
       const n = document.createElement("style");
-      n.innerHTML = H, document.head.appendChild(n);
+      n.innerHTML = I, document.head.appendChild(n);
     }
   }
-  const W = `.crs-sticky {
+  const G = `.crs-sticky {
   display: none;
   position: fixed;
   left: 0;
@@ -3435,7 +3439,7 @@ body.is-crs-sticky .grecaptcha-badge {
     min-width: 100%;
   }
 }`;
-  class G {
+  class Z {
     constructor() {
       this.init();
     }
@@ -3504,14 +3508,14 @@ body.is-crs-sticky .grecaptcha-badge {
     }
     addStyles() {
       const n = document.createElement("style");
-      n.textContent = W, document.head.appendChild(n);
+      n.textContent = G, document.head.appendChild(n);
     }
   }
   m({
     name: "Removing user barriers on product pages",
     dev: "OS"
-  });
-  class Z {
+  }), b("exp_pdp_imp");
+  class O {
     constructor() {
       this.init();
     }
@@ -3519,8 +3523,8 @@ body.is-crs-sticky .grecaptcha-badge {
       const n = window.location.pathname;
       Object.entries(g).some(
         ([i, o]) => n.includes(o)
-      ) && (new I(), new v(), new C(), new M(), new B(), new j(), new S(), new y(), new G());
+      ) && (new W(), new w(), new L(), new $(), new A(), new P(), new z(), new _(), new Z());
     }
   }
-  new Z();
+  new O();
 })();
