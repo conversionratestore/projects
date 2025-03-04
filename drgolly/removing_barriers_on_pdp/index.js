@@ -1,29 +1,29 @@
 (function() {
   "use strict";
-  const l = (d, n, e, t = "") => {
+  const l = (s, n, e, t = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: d,
+      event_name: s,
       event_desc: n,
       event_type: e,
       event_loc: t
-    }), console.log(`Event: ${d} | ${n} | ${e} | ${t}`);
-  }, m = ({ name: d, dev: n }) => {
+    }), console.log(`Event: ${s} | ${n} | ${e} | ${t}`);
+  }, b = ({ name: s, dev: n }) => {
     console.log(
-      `%c EXP: ${d} (DEV: ${n})`,
+      `%c EXP: ${s} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, b = (d) => {
+  }, f = (s) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", d, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", s, "variant_1"));
     }, 1e3);
   };
-  function c(d) {
+  function c(s) {
     return new Promise((n) => {
-      if (document.querySelector(d))
-        return n(document.querySelector(d));
+      if (document.querySelector(s))
+        return n(document.querySelector(s));
       const e = new MutationObserver(() => {
-        document.querySelector(d) && (n(document.querySelector(d)), e.disconnect());
+        document.querySelector(s) && (n(document.querySelector(s)), e.disconnect());
       });
       e.observe(document.documentElement, {
         childList: !0,
@@ -32,43 +32,43 @@
       });
     });
   }
-  const h = (d, n, e, t) => {
+  const g = (s, n, e, t) => {
     let i = [];
-    if (typeof d == "string")
-      i = document.querySelectorAll(d);
-    else if (d instanceof Element)
-      i = [d];
+    if (typeof s == "string")
+      i = document.querySelectorAll(s);
+    else if (s instanceof Element)
+      i = [s];
     else {
-      console.error("Invalid target type:", d);
+      console.error("Invalid target type:", s);
       return;
     }
     let o = new IntersectionObserver(
-      (r) => {
-        r.forEach((a) => {
-          a.isIntersecting && (o.unobserve(a.target), setTimeout(function() {
-            s.observe(a.target);
+      (a) => {
+        a.forEach((d) => {
+          d.isIntersecting && (o.unobserve(d.target), setTimeout(function() {
+            r.observe(d.target);
           }, 1e3));
         });
       },
       {
         threshold: 0.2
       }
-    ), s = new IntersectionObserver((r) => {
-      r.forEach((a) => {
-        a.isIntersecting ? (l(n || `view_element_${a.target.id}`, e || "Element visibility", "view", t || a.target.id), o.unobserve(a.target)) : o.observe(a.target), s.unobserve(a.target);
+    ), r = new IntersectionObserver((a) => {
+      a.forEach((d) => {
+        d.isIntersecting ? (l(n || `view_element_${d.target.id}`, e || "Element visibility", "view", t || d.target.id), o.unobserve(d.target)) : o.observe(d.target), r.unobserve(d.target);
       });
     });
-    i.forEach((r) => {
-      o.observe(r);
+    i.forEach((a) => {
+      o.observe(a);
     });
-  }, f = `body:has(> dialog[open]) {
+  }, x = `body:has(> dialog[open]) {
   overflow: hidden;
 }
 
 .bundle-popup {
   padding: 24px 12px;
   border: none;
-  background-color: #dcfaf8;
+  background-color: #c3e6e4;
 }
 
 @media (min-width: 981px) {
@@ -181,7 +181,7 @@
 }
 
 .bundle-header .full {
-  grid-column: 1 / -1;
+  grid-column: 2 / -1;
 }
 .bundle-header .title span {
   display: inline-flex;
@@ -283,6 +283,12 @@
   cursor: pointer;
 }
 
+@media (hover: hover) {
+  .popup-footer .buy-btn:hover {
+    background: rgba(10, 105, 116, 0.9);
+  }
+}
+
 .popup-footer :is(.current-price, .dot) {
   color: #f0d28b;
   font-size: 17px;
@@ -290,7 +296,7 @@
   line-height: 24px;
 }
 `;
-  class x {
+  class v {
     constructor() {
       this.init();
     }
@@ -307,7 +313,11 @@
           <div class="popup-header">
             <div class="badge">0-5 Years</div>
             <h3>Bundle includes:</h3>
-            <button class="close-btn" data-button="bundle-popup-close"></button>
+            <button
+              type="button"
+              class="close-btn"
+              data-button="bundle-popup-close"
+            ></button>
           </div>
           <div class="popup-body">
             <div class="bundle-container">
@@ -348,7 +358,10 @@
                 <div class="new-price">$36.00</div>
               </div>
               <div class="bundle-header">
-                <div class="full"><span>2x Program Supplements:</span></div>
+                <div></div>
+                <div class="title full">
+                  <span>2x Program Supplements:</span>
+                </div>
               </div>
               <div class="bundle-item">
                 <div class="check"></div>
@@ -414,10 +427,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.textContent = f, document.head.append(n);
+      n.textContent = x, document.head.append(n);
     }
   }
-  const u = "http://conversionratestore.github.io/projects/drgolly/removing_barriers_on_pdp/", v = `.crs-header-bundle {
+  const u = "http://conversionratestore.github.io/projects/drgolly/removing_barriers_on_pdp/", w = `.crs-header-bundle {
   margin-top: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -433,6 +446,11 @@
   .crs-header-bundle {
     grid-template-columns: 1fr;
     row-gap: 0;
+    margin-left: -25px;
+    margin-right: -25px;
+    width: calc(100% + 50px);
+    padding: 24px 20px;
+    border-radius: 0;
   }
 }
 .crs-header-bundle .header {
@@ -513,7 +531,9 @@
 .crs-header-bundle .bg {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: calc(100% + 16px);
+  height: 100%;
   margin-right: -16px;
 }
 
@@ -526,13 +546,16 @@
 .crs-header-bundle .bg img {
   width: 120%;
   max-width: 120%;
+  max-height: 264px;
   object-position: 50px 0;
+  object-fit: contain;
 }
 
 @media (max-width: 980px) {
   .crs-header-bundle .bg img {
     width: 100%;
-    object-position: 0 0;
+    max-height: 342px;
+    object-position: center;
   }
 }
 
@@ -608,6 +631,13 @@
   font-weight: 700;
   line-height: 24px;
   cursor: pointer;
+  transition: background 0.3s;
+}
+
+@media (hover: hover) {
+  .crs-header-bundle .footer .buy-btn:hover {
+    background: rgba(10, 105, 116, 0.9);
+  }
 }
 
 .crs-header-bundle .footer :is(.current-price, .dot) {
@@ -643,9 +673,9 @@
   }
 }
 `;
-  class w {
+  class y {
     constructor() {
-      this.init(), this.popup = new x();
+      this.init(), this.popup = new v();
     }
     init() {
       this.addStyles(), this.addHeaderBundle(), this.eventListeners();
@@ -676,8 +706,8 @@
           <div class="actions">
             <div class="buy-action">
               <div class="save-price">
-                <div class="saved-price">$636.36</div>
-                <div class="discount">-60%</div>
+                <div class="saved-price">$700.00</div>
+                <div class="discount">-64%</div>
               </div>
               <a
                 href="https://drgolly.com/sleep-bundle-deal/"
@@ -685,7 +715,7 @@
                 data-button="bundle-buy"
               >
                 <span>Buy Now</span><span class="dot">•</span
-                ><span class="current-price">$227.27</span>
+                ><span class="current-price">$250.00</span>
               </a>
             </div>
             <button
@@ -727,10 +757,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.innerHTML = v, document.head.append(n);
+      n.innerHTML = w, document.head.append(n);
     }
   }
-  const y = `.crs-bundle-section .crs-bundle-section-inner {
+  const _ = `.crs-bundle-section .crs-bundle-section-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
@@ -900,7 +930,6 @@
 }
 
 .crs-bundle-section .bundle-includes .details-title {
-
   margin-bottom: 16px;
   color: #095d66;
   font-family: Raleway;
@@ -916,12 +945,9 @@
     text-align: center;
     font-size: 24px;
     font-weight: 700;
-    line-height: 44px; 
+    line-height: 44px;
   }
 }
-
-
-
 
 .crs-bundle-section .actions {
   margin-top: 32px;
@@ -930,10 +956,7 @@
   gap: 12px;
 }
 
-
-
-
-.crs-bundle-section .actions--mob  {
+.crs-bundle-section .actions--mob {
   margin-top: 16px;
 }
 
@@ -948,7 +971,6 @@
   justify-items: center;
   width: 100%;
 }
-
 
 .crs-bundle-section .save-price {
   display: flex;
@@ -988,7 +1010,14 @@
   font-size: 17px;
   font-weight: 700;
   line-height: 24px;
+  transition: background 0.3s;
   cursor: pointer;
+}
+
+@media (hover: hover) {
+  .crs-bundle-section .buy-btn:hover {
+    background: rgb(9, 93, 102, 0.9);
+  }
 }
 
 .crs-bundle-section :is(.current-price, .dot) {
@@ -998,7 +1027,7 @@
   line-height: 24px;
 }
 `;
-  class _ {
+  class k {
     constructor() {
       this.init();
     }
@@ -1007,9 +1036,9 @@
     }
     findAndTransferBundleSection() {
       const n = document.querySelectorAll(".et_pb_section"), e = Array.from(n).find((i) => {
-        var s;
+        var r;
         const o = i.querySelector("h2");
-        return o && ((s = o.textContent) == null ? void 0 : s.includes("Bundle & Save"));
+        return o && ((r = o.textContent) == null ? void 0 : r.includes("Bundle & Save"));
       });
       if (!e)
         return;
@@ -1144,12 +1173,12 @@
       e && (e.innerHTML = n);
     }
     eventListeners() {
-      h(
+      g(
         "#crs-bundle-section",
         "exp_pdp_imp__view_06",
         "Bundle & Save 2",
         "Bundle & Save 2"
-      ), h(
+      ), g(
         "#crs-bundle-section .bundle-includes",
         "exp_pdp_imp__view_07",
         "Bundle includes 2",
@@ -1170,10 +1199,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.textContent = y, document.head.appendChild(n);
+      n.textContent = _, document.head.appendChild(n);
     }
   }
-  const k = [
+  const C = [
     {
       id: 1,
       user: "Kate C",
@@ -1192,7 +1221,7 @@
       comment: "Our bub is just four weeks now - we loved Dr Golly’s book for the first four weeks, and so far we’re finding the modules for this next stage super helpful. It’s also very...",
       date: "3 days ago"
     }
-  ], C = `.crs-comments-section {
+  ], L = `.crs-comments-section {
   margin-bottom: 44px;
 }
 
@@ -1356,7 +1385,7 @@
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"><path d="M17.1616 4.55322L9.26312 12.7563L17.1616 21.0063C17.3491 21.1626 17.4428 21.3306 17.4428 21.5103C17.4428 21.6899 17.3491 21.8735 17.1616 22.061C17.0053 22.2642 16.8373 22.3657 16.6577 22.3657C16.478 22.3657 16.2944 22.2642 16.1069 22.061L7.41156 13.2954C7.25531 13.1235 7.17719 12.9517 7.17719 12.7798C7.17719 12.6079 7.25531 12.4204 7.41156 12.2173L16.1069 3.45166C16.2944 3.24854 16.478 3.14697 16.6577 3.14697C16.8373 3.14697 17.0053 3.24854 17.1616 3.45166C17.3491 3.62354 17.4428 3.80322 17.4428 3.99072C17.4428 4.17822 17.3491 4.36572 17.1616 4.55322Z" fill="%230E1311"/></svg>');
 }
 `;
-  class L {
+  class S {
     constructor() {
       this.init();
     }
@@ -1373,7 +1402,7 @@
         <div class="crs-comments-container">
           <div class="crs-comments">
             <div class="comments-wrap">
-              ${k.map((t) => (
+              ${C.map((t) => (
           /* HTML */
           `
                     <div class="crs-comment" id="comment-${t.id}">
@@ -1392,8 +1421,8 @@
             </div>
           </div>
           <div class="actions">
-            <button data-button="comment-back" disabled></button>
-            <button data-button="comment-next"></button>
+            <button type="button" data-button="comment-back" disabled></button>
+            <button type="button" data-button="comment-next"></button>
           </div>
         </div>
       </div>
@@ -1409,28 +1438,43 @@
         '[data-button="comment-next"]'
       ), t = document.querySelector(
         '[data-button="comment-back"]'
-      ), i = document.querySelector(".comments-wrap"), s = document.querySelectorAll(".crs-comment").length, r = document.querySelector(".crs-comment"), a = (r == null ? void 0 : r.offsetWidth) || 0;
+      ), i = document.querySelector(".comments-wrap"), r = document.querySelectorAll(".crs-comment").length, a = document.querySelector(".crs-comment"), d = (a == null ? void 0 : a.offsetWidth) || 0;
       e == null || e.addEventListener("click", () => {
-        n < s - 1 && (n++, i.scrollLeft = n * a, n === s - 1 ? e.disabled = !0 : t.disabled = !1);
+        n < r - 1 && (n++, i.scrollLeft = n * d, n === r - 1 ? e.disabled = !0 : t.disabled = !1);
       }), t == null || t.addEventListener("click", () => {
-        n > 0 && (n--, i.scrollLeft = n * a, n === 0 ? t.disabled = !0 : e.disabled = !1);
+        n > 0 && (n--, i.scrollLeft = n * d, n === 0 ? t.disabled = !0 : e.disabled = !1);
       }), i == null || i.addEventListener("scroll", () => {
-        const p = Math.round(i.scrollLeft / a);
-        p !== n && (n = p, n === 0 ? (t.disabled = !0, e.disabled = !1) : t.disabled = !1, n === s - 1 ? (e.disabled = !0, t.disabled = !1) : e.disabled = !1);
+        const p = Math.round(i.scrollLeft / d);
+        p !== n && (n = p, n === 0 ? (t.disabled = !0, e.disabled = !1) : t.disabled = !1, n === r - 1 ? (e.disabled = !0, t.disabled = !1) : e.disabled = !1);
       });
     }
     addStyles() {
       const n = document.createElement("style");
-      n.innerHTML = C, document.head.append(n);
+      n.innerHTML = L, document.head.append(n);
     }
   }
-  const S = "";
-  class z {
+  const z = `.crs-comments-section  h2 {
+  padding-bottom: 80px !important;
+  color: #095d66 !important;
+  text-align: center !important;
+  font-family: Raleway !important;
+  font-size: 30px !important;
+  font-weight: 600 !important;
+  line-height: 40px !important; 
+  text-transform: capitalize !important;
+}
+
+@media (max-width: 980px) {
+  .crs-comments-section  h2 {
+    padding-bottom: 36px !important;
+  }
+}`;
+  class A {
     constructor() {
       this.init();
     }
     init() {
-      this.addStyles(), this.findTargetSection(), this.render(), this.findCommentsSection();
+      this.addStyles(), this.findTargetSection(), this.findCommentsSection(), this.addTitle();
     }
     findTargetSection() {
       const n = document.querySelectorAll(".et_pb_section"), e = Array.from(n).find(
@@ -1446,11 +1490,18 @@
       });
       e && (e.classList.add("crs-featured-section"), e.setAttribute("id", "crs-featured-section"));
     }
-    render() {
+    async addTitle() {
+      const e = (await c(
+        "#crs-comments-section"
+      )).querySelector(".et_pb_row");
+      if (e) {
+        const t = document.createElement("h2");
+        t.textContent = "Why Parents Trust Dr. Golly", e.insertAdjacentElement("afterbegin", t);
+      }
     }
     addStyles() {
       const n = document.createElement("style");
-      n.textContent = S, document.head.appendChild(n);
+      n.textContent = z, document.head.appendChild(n);
     }
   }
   const B = `.crs-compare-section h2 {
@@ -1675,8 +1726,15 @@
   line-height: 28.05px;
   cursor: pointer;
 }
+
+
+@media (hover: hover) {
+  .compare-block .footer > .buy button:hover {
+    background: rgba(10, 105, 116, 0.9);
+  }
+}
 `;
-  class A {
+  class M {
     constructor() {
       this.init();
     }
@@ -1729,7 +1787,7 @@
               <div class="name">Accessible 24/7?</div>
               <div class="checked--golly"></div>
               <div class="unchecked"></div>
-              <div class="unchecked"></div>
+              <div class="checked"></div>
             </div>
             <div class="row">
               <div class="name">
@@ -1758,7 +1816,7 @@
                 <div class="product-name" >
                   ${(t = document.querySelector("h1")) == null ? void 0 : t.textContent}
                 </div>
-                <button data-button="compare-buy">Buy now</button>
+                <button type="button" data-button="compare-buy">Buy now</button>
               </div>
             </div>
           </div>
@@ -1779,7 +1837,7 @@
             ".single_add_to_cart_button"
           );
           t == null || t.click(), l("exp_pdp_imp__button_08", "Buy now", "click", "Dr.Golly vs other baby sleep products");
-        }), h(".crs-compare-section", "exp_pdp_imp__view_04", "Dr.Golly vs other baby sleep products", "Dr.Golly vs other baby sleep products");
+        }), g(".crs-compare-section", "exp_pdp_imp__view_04", "Dr.Golly vs other baby sleep products", "Dr.Golly vs other baby sleep products");
       });
     }
     addStyles() {
@@ -1787,12 +1845,25 @@
       n.innerHTML = B, document.head.append(n);
     }
   }
-  const M = `.crs-course-help #crs-container-help {
+  const h = (s) => {
+    var i;
+    if (!s || s.length === 0) return s;
+    console.log("formatPrice");
+    const n = (i = s.match(/^[^\d]+/)) == null ? void 0 : i[0];
+    if (!n) return s;
+    const t = parseFloat(s.replace(n, "")).toFixed(2);
+    return `${n}${t}`;
+  }, P = `.crs-course-help #crs-container-help {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
   column-gap: 92px;
   row-gap: 36px;
+  margin-bottom: 28px !important;
+}
+
+#et-boc .crs-course-help #crs-container-help {
+  padding-bottom: 0 !important;
 }
 
 @media (max-width: 980px) {
@@ -1800,6 +1871,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
     row-gap: 36px;
+    margin-bottom: 0 !important;
   }
 }
 
@@ -1911,6 +1983,7 @@
 }
 
 .crs-video-section {
+  position: relative;
   border-radius: 24px;
   background: #f1fafa;
   padding: 32px 52px;
@@ -1966,16 +2039,62 @@
   cursor: pointer;
 }
 
+.crs-video-section .video-cover {
+  position: relative;
+}
+
+.crs-video-section .badge {
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  padding: 4px 12px;
+  transform: translateX(-50%);
+  border-radius: 1111px;
+  background: #fff;
+  color: #095d66;
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 28px;
+  white-space: nowrap;
+}
+
+@media (min-width: 981px) {
+  .crs-video-section .video-cover::after {
+    position: absolute;
+    left: 19px;
+    bottom: 44px;
+    content: '';
+    width: 32px;
+    height: 79px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="79" fill="none"><g clip-path="url(%23a)"><path fill="%23095D66" fill-rule="evenodd" d="M16.59 72.108c-3.364 1.137-6.993-1.545-10.133 1.781.886.388 1.457.72 1.996.835 6.36 1.106 12.72 2.211 19.09 3.17 1.038.158 2.556.085 3.178-.558 1.067-1.183.06-2.352-.9-3.36-2.96-3.162-5.85-6.367-8.832-9.565-1.469 2.125-1.469 2.125 2.674 8.154C10.778 68.84 4.721 55.401 10.886 43.8c1.105.686 2.196 1.428 3.352 2.038 3.32 1.82 6.835 2.582 10.6 1.733 2.807-.627 4.863-2.145 5.535-4.993.688-2.905-.78-5.038-2.942-6.817-4.742-3.79-10.442-3.67-15.102.299-.577.475-1.23.9-2.02 1.497-4.363-6.327-6.554-13.152-5.551-20.59C6.248 5.462 15.81 2.448 23.888 3.414c1.017.123 1.989.414 3.57.778-1.482-2.077-3.252-2.522-4.966-2.951C15.711-.427 7.69 2.879 3.973 8.81 1.577 12.606.56 16.74.865 21.2c.467 6.544 2.375 12.633 6.276 17.997.399.527.762 1.074 1.227 1.798-2.494 5.509-4.17 11.207-2.566 17.425 1.577 6.09 6.38 9.657 10.787 13.688Zm-3.774-31.6c3.604-5.06 8.94-6.059 12.868-2.366.949.824 1.688 2.431 1.653 3.681-.043 1.728-1.67 2.431-3.325 2.677-4.346.664-7.89-.886-11.196-3.991Z" clip-rule="evenodd"/></g><defs><clipPath id="a"><path fill="%23fff" d="M0 .24h31.909v78H0z"/></clipPath></defs></svg>');
+  }
+}
 @media (max-width: 980px) {
   .crs-video-section :is(.video-cover, .video-iframe, iframe) {
     height: 236px;
   }
 }
 .crs-video-section .rating {
+  position: relative;
   margin-top: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 980px) {
+  .crs-video-section .rating::before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 20px;
+    height: 49px;
+    background-repeat: no-repeat;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="49" fill="none"><g clip-path="url(%23a)"><path fill="%23095D66" fill-rule="evenodd" d="M10.398 45.101c-2.108.713-4.383-.968-6.35 1.117.554.242.912.451 1.25.523 3.987.693 7.973 1.386 11.966 1.987.65.099 1.602.053 1.992-.35.668-.741.037-1.474-.564-2.106-1.856-1.982-3.668-3.99-5.537-5.995-.92 1.332-.92 1.332 1.677 5.11C6.755 43.054 2.959 34.63 6.823 27.359c.693.43 1.377.895 2.101 1.278 2.082 1.14 4.284 1.618 6.644 1.086 1.76-.393 3.048-1.345 3.47-3.13.43-1.82-.49-3.157-1.845-4.272-2.972-2.376-6.544-2.3-9.466.187-.361.298-.77.564-1.266.938-2.734-3.965-4.107-8.243-3.48-12.905.936-7.211 6.93-9.1 11.992-8.495.637.077 1.246.26 2.237.488-.929-1.302-2.038-1.58-3.113-1.85C9.847-.363 4.82 1.71 2.49 5.427.99 7.807.351 10.398.542 13.194c.293 4.1 1.489 7.917 3.934 11.28.25.33.477.672.77 1.127-1.564 3.452-2.615 7.024-1.61 10.92.99 3.818 4 6.054 6.762 8.58ZM8.033 25.296c2.26-3.173 5.603-3.799 8.065-1.484.595.516 1.058 1.524 1.036 2.307-.027 1.083-1.047 1.524-2.084 1.678-2.724.416-4.945-.555-7.017-2.502Z" clip-rule="evenodd"/></g><defs><clipPath id="a"><path fill="%23fff" d="M0 .056h20v48.889H0z"/></clipPath></defs></svg>');
+  }
 }
 
 .crs-video-section .rating .ruk_rating_snippet {
@@ -2011,6 +2130,13 @@
   line-height: 28.05px;
   cursor: pointer;
 }
+
+@media (hover: hover) {
+  .crs-video-section .buy-now button {
+    background: rgba(10, 105, 116, 0.9);
+  }
+}
+
 .crs-video-section .title {
   margin-top: 12px;
   color: #095d66;
@@ -2040,14 +2166,26 @@
   }
 }
 
-.crs-result__container 
+.crs-result {
+  padding-top: 64px;
+  border-top: 1px solid #dcfaf8;
+  box-shadow: inner 0px -1px 0px 0px #b5e0dd;
+}
+
+@media (max-width: 980px) {
+  .crs-result {
+    padding-top: 36px;
+  }
+}
+
 .crs-result h2 {
-  color: #095d66;
-  text-align: center;
-  font-family: Raleway;
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 40px;
+  padding: 0 !important;
+  color: #095d66 !important;
+  text-align: center !important;
+  font-family: Raleway !important;
+  font-size: 30px !important;
+  font-weight: 600 !important;
+  line-height: 40px !important;
   text-transform: capitalize;
 }
 
@@ -2090,7 +2228,7 @@
 @media (max-width: 980px) {
   .crs-result .timeline::after {
     top: 50%;
-    left: 81px;
+    left: 79px;
     transform: translate(0, -50%);
     width: 5px;
     height: 74%;
@@ -2126,7 +2264,7 @@
 
 @media (max-width: 980px) {
   .crs-result .breakpoint .date {
-    margin-right: 12px;
+    margin-right: 6px;
   }
 }
 
@@ -2149,6 +2287,22 @@
   .crs-result .breakpoint .point {
     margin-top: 0;
     margin-right: 16px;
+  }
+
+  .crs-result .breakpoint:not(:last-child) .point {
+    margin-left: 4px;
+  }
+
+  .crs-result .breakpoint:last-child .point {
+    width: 28px;
+    height: 28px;
+    background-position: center;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="21" height="22" fill="none"><mask id="a" width="21" height="21" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:luminance"><path fill="%23fff" d="M21 .445H0v20h21v-20Z"/></mask><g fill="%2352A7A7" mask="url(%23a)"><path d="M19.945 10.446c0 5.514-4.474 10-9.973 10-5.5 0-9.972-4.486-9.972-10s4.473-10 9.972-10c2.143 0 4.173.666 5.89 1.93l-1.126 1.256a8.18 8.18 0 0 0-4.764-1.508c-4.575 0-8.297 3.735-8.297 8.322 0 4.588 3.722 8.32 8.297 8.32 4.575 0 8.299-3.732 8.299-8.32 0-.49-.042-.974-.126-1.447L19.5 7.486c.296.954.445 1.948.445 2.96Z"/><path d="m20.68 3.594-1.155 1.292-.937 1.048-.552.618-.233.259v.003l-.057.062-1.154 1.29-5.281 5.91c-.367.412-.88.621-1.397.621-.435 0-.872-.15-1.224-.454L4.9 10.947a1.262 1.262 0 0 1-.126-1.776 1.254 1.254 0 0 1 1.771-.128l3.316 2.881 4.863-5.442 1.594-1.781.783-.878.553-.618 1.155-1.293a1.252 1.252 0 0 1 1.774-.098c.516.464.559 1.26.097 1.779Z"/></g></svg>');
+    background-color: #fff;
+    border-radius: 0;
+  }
+  .crs-result .breakpoint:last-child .point:after {
+    display: none;
   }
 }
 .crs-result .breakpoint .point::after {
@@ -2202,9 +2356,9 @@
         `
           );
           const i = document.querySelector("#crs-container-help");
-          n.querySelectorAll(".et_pb_row").forEach((s) => {
-            var r;
-            (r = s == null ? void 0 : s.textContent) != null && r.includes("Will this course help?") && (s.classList.remove("et_pb_row", "et_pb_row_3_tb_body"), s.classList.add("title-block"), i == null || i.insertAdjacentElement("afterbegin", s)), s.querySelector("h4") && (s.classList.add("empowered"), s.classList.remove("et_pb_row", "et_pb_row_4_tb_body"), i == null || i.insertAdjacentElement("beforeend", s));
+          n.querySelectorAll(".et_pb_row").forEach((r) => {
+            var a;
+            (a = r == null ? void 0 : r.textContent) != null && a.includes("Will this course help?") && (r.classList.remove("et_pb_row", "et_pb_row_3_tb_body"), r.classList.add("title-block"), i == null || i.insertAdjacentElement("afterbegin", r)), r.querySelector("h4") && (r.classList.add("empowered"), r.classList.remove("et_pb_row", "et_pb_row_4_tb_body"), i == null || i.insertAdjacentElement("beforeend", r));
           }), i == null || i.insertAdjacentHTML(
             "beforeend",
             /* HTML */
@@ -2294,26 +2448,28 @@
             <div
               class="video-cover"
               style="background-image: url('${u}/img/video_cover.webp');"
-            ></div>
+            >
+              <div class="badge">watch 2 min video</div>
+            </div>
             <div class="video-iframe" style="display: none;"></div>
           </div>
         </div>
         <div class="rating"></div>
         <div class="title">${n}</div>
         <div class="buy-now">
-          <button data-button="buy-now">
-            <span>Buy Now</span><span class="dot">•</span
-            ><span>${e}</span>
+          <button type="button" data-button="buy-now">
+            <span>Buy now</span><span class="dot">•</span
+            ><span>${h(e || "")}</span>
           </button>
         </div>
         <div class="description">Less than the cost of a sleepless night!</div>
       </div>
     `
       );
-      c("#crs-video-section").then((s) => {
-        s.insertAdjacentHTML("beforeend", t);
-        const r = document.querySelector(".ruk_rating_snippet"), a = r == null ? void 0 : r.cloneNode(!0), p = document.querySelector(".crs-video-section .rating");
-        p == null || p.appendChild(a);
+      c("#crs-video-section").then((r) => {
+        r.insertAdjacentHTML("beforeend", t);
+        const a = document.querySelector(".ruk_rating_snippet"), d = a == null ? void 0 : a.cloneNode(!0), p = document.querySelector(".crs-video-section .rating");
+        p == null || p.appendChild(d);
       });
     }
     eventListeners() {
@@ -2326,7 +2482,7 @@
           e.remove();
           const o = document.createElement("iframe");
           o.src = "https://www.youtube.com/embed/E7u4TtxZLd8?autoplay=1", o.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", o.allowFullscreen = !0, i.appendChild(o), i.style.display = "block";
-        }), h(
+        }), g(
           ".crs-video-section",
           "exp_pdp_imp__view_02",
           "2 min video",
@@ -2339,7 +2495,12 @@
           );
           e == null || e.click(), l("exp_pdp_imp__button_07", "Buy now", "click", "2 min video");
         });
-      }), h(".crs-result", "exp_pdp_imp__view_03", "When will I see results from the program?", "When will I see results from the program?");
+      }), g(
+        ".crs-result",
+        "exp_pdp_imp__view_03",
+        "When will I see results from the program?",
+        "When will I see results from the program?"
+      );
     }
     resultBlock() {
       const n = (
@@ -2381,10 +2542,10 @@
     }
     addStyles() {
       const n = document.createElement("style");
-      n.innerHTML = M, document.head.append(n);
+      n.innerHTML = P, document.head.append(n);
     }
   }
-  const g = {
+  const m = {
     "0-4 weeks": "/baby-sleep-program/newborns-0-4-weeks/",
     "4-16 weeks": "/baby-sleep-program/little-baby-4-16-weeks/",
     "4-8 months": "/baby-sleep-program/big-baby-4-8-months/",
@@ -2531,8 +2692,16 @@
     line-height: 26.46px;
   }
 }
+
+/* .crs-featured-section#crs-featured-section :is(.et_pb_image_9_tb_body) {
+  mix-blend-mode: luminosity !important;
+  backface-visibility: hidden !important;
+  -webkit-filter: grayscale(0%) !important;
+  filter: grayscale(0%) !important;
+  opacity: 1 !important;
+} */
 `;
-  class P {
+  class E {
     constructor() {
       this.init();
     }
@@ -2545,7 +2714,7 @@
         const i = t.querySelector("h2");
         return i && ((o = i.textContent) == null ? void 0 : o.includes("What’s covered in"));
       });
-      e && (e.classList.add("crs-different-section"), e.setAttribute("id", "crs-different-section"), h(
+      e && (e.classList.add("crs-different-section"), e.setAttribute("id", "crs-different-section"), g(
         "#crs-different-section",
         "exp_pdp_imp__view_05",
         "What Makes Dr. Golly Different?",
@@ -2554,9 +2723,9 @@
     }
     findAndPassFeaturedSection() {
       const n = document.querySelectorAll(".et_pb_section"), e = Array.from(n).find((i) => {
-        var s;
+        var r;
         const o = i.querySelector(".et_pb_text_inner p");
-        return o && ((s = o.textContent) == null ? void 0 : s.includes("As featured in"));
+        return o && ((r = o.textContent) == null ? void 0 : r.includes("As featured in"));
       });
       if (!e)
         return;
@@ -2685,13 +2854,38 @@
       n.textContent = j, document.head.append(n);
     }
   }
-  const E = {
+  const T = {
     "4-16 weeks": [
       "How to settle and calm a baby",
       "Feeding and breastfeeding tips",
+      "Active winding/burping technique",
       "Sleep foundation strategies",
       "Parental alignment and self-care advice",
       "Routines start at 6 weeks when your baby reaches 5-6kg"
+    ],
+    "4-8 months": [
+      "Avoiding a 4 month sleep regressions",
+      "Introducing solids & managing allergens",
+      "Early morning waking, linking sleep cycles",
+      "Dropping night feeds",
+      "Multiple routines and settling techniques to suit your family",
+      "Aim is to be sleeping 7pm-7am by 6 months"
+    ],
+    "1-2 years": [
+      "Protecting 12 hours overnight sleep 7pm to 7am",
+      "Multiple routines and settling options to suit your family",
+      "Dropping from 2 to 1 daytime nap",
+      "Parental well being and alignment",
+      "Nutrition including transition to cows or alternate milk",
+      "Troubleshoot common problems like: early morning waking, nap/bedtime refusal"
+    ],
+    "2-5 years": [
+      "Protecting 12 hours overnight sleep 7pm-7am",
+      "Dropping day naps",
+      "Transitioning to a big bed",
+      "C.A.L.M. Tactics to improve bedtime",
+      "Night lights and sleep trainer clocks",
+      "Nightmares and night terrors"
     ]
   }, q = {
     chevronDown: (
@@ -2712,7 +2906,7 @@
     />
   </svg>`
     )
-  }, T = (
+  }, R = (
     /* HTML */
     `<div class="et_builder_inner_content et_pb_gutters3">
   <div class="et_pb_section et_pb_section_0 section__header-standard et_pb_with_background et_section_regular">
@@ -2763,7 +2957,7 @@
     </div>
   </div>
 </div>`
-  ), R = (
+  ), D = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -2782,7 +2976,7 @@
     </clipPath>
   </defs>
 </svg>`
-  ), D = `dialog.crs-popup {
+  ), H = `dialog.crs-popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -3022,7 +3216,7 @@ dialog.crs-popup .et_pb_section  + .et_pb_section  {
   }
 }
 `;
-  class H {
+  class I {
     constructor() {
       this.popup = null, this.init();
     }
@@ -3035,9 +3229,8 @@ dialog.crs-popup .et_pb_section  + .et_pb_section  {
         `
       <dialog class="crs-popup">
         <div class="crs-popup__wrap">
-          <button class="crs-popup__close">${R}</button>
-
-          <div class="crs-popup__content">${T}</div>
+          <button type="button" class="crs-popup__close">${D}</button>
+          <div class="crs-popup__content">${R}</div>
         </div>
       </dialog>
     `
@@ -3059,19 +3252,23 @@ dialog.crs-popup .et_pb_section  + .et_pb_section  {
     }
     initStyles() {
       const n = document.createElement("style");
-      n.innerHTML = D, document.head.appendChild(n);
+      n.innerHTML = H, document.head.appendChild(n);
     }
   }
-  const I = `.product__title h1 {
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 44.7px;
-  letter-spacing: -0.45px;
+  const W = `.product__title h1 {
+  font-size: 30px !important;
+  font-weight: 700 !important;
+  line-height: 44.7px !important;
+  letter-spacing: -0.45px !important;
 }
 
 .product__title h1 span {
   display: block;
   color: #095d66;
+}
+
+.et-db #et-boc .et-l .et_pb_wc_price_0_tb_body .price {
+  font-family: Raleway;
 }
 
 @media (max-width: 767px) {
@@ -3184,7 +3381,6 @@ form.cart .single_add_to_cart_button {
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #3c3c3b;
   text-align: center;
   font-family: Montserrat;
@@ -3198,6 +3394,7 @@ form.cart .single_add_to_cart_button {
   display: flex;
   align-items: center;
   gap: 12px;
+  width: max-content;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -3208,12 +3405,12 @@ body.product-template-default
   display: block !important;
 }
 `;
-  class W {
+  class Z {
     constructor() {
-      this.init(), this.refundPopup = new H();
+      this.init(), this.refundPopup = new I();
     }
     init() {
-      this.addStyles(), this.changeTitle(), this.addImageBadge(), this.changeDescriptionList(), this.addGuaranteeBadges(), this.addMorePaymentOptions(), this.addEventListeners();
+      this.addStyles(), this.changeTitle(), this.addImageBadge(), this.changeDescriptionList(), this.addGuaranteeBadges(), this.addMorePaymentOptions(), this.addEventListeners(), this.formatPrice();
     }
     async changeTitle() {
       const n = await c(".product__title h1");
@@ -3252,24 +3449,24 @@ body.product-template-default
       )).insertAdjacentHTML("beforeend", n);
     }
     async changeDescriptionList() {
-      var a;
+      var d;
       const n = window.location.pathname, e = await c(
         ".et_pb_wc_description_0_tb_body p"
       );
       e.innerHTML = "What’s included in this program:";
       const t = await c(
         ".text__product-custom-description  ul"
-      ), o = (a = Object.entries(g).find(
-        ([p, F]) => n.includes(F)
-      )) == null ? void 0 : a[0];
+      ), o = (d = Object.entries(m).find(
+        ([p, N]) => n.includes(N)
+      )) == null ? void 0 : d[0];
       if (!o) return;
-      const s = E[o];
-      if (!s) return;
-      const r = (
+      const r = T[o];
+      if (!r) return;
+      const a = (
         /* HTML */
-        `${s.map((p) => `<li>${p}</li>`).join("")}`
+        `${r.map((p) => `<li>${p}</li>`).join("")}`
       );
-      t.innerHTML = r;
+      t.innerHTML = a;
     }
     async addGuaranteeBadges() {
       const n = (
@@ -3287,7 +3484,9 @@ body.product-template-default
           </div>
           <div class="text">
             Try it risk-free for 30 days. No results? Get a
-            <button data-button="refund-popup">full refund!</button>
+            <button type="button" data-button="refund-popup">
+              full refund!
+            </button>
           </div>
         </div>
         <div class="guarantee-badge">
@@ -3313,8 +3512,8 @@ body.product-template-default
     async addMorePaymentOptions() {
       const n = (
         /* HTML */
-        ` <div type="button" class="crs-payment-options">
-      <button data-button="more-payment-options">
+        ` <div class="crs-payment-options">
+      <button type="button" data-button="more-payment-options">
         <div class="text">More Payment Options</div>
         <div class="icon">${q.chevronDown}</div>
       </button>
@@ -3331,7 +3530,12 @@ body.product-template-default
           const t = document.querySelector(
             ".single_add_to_cart_button"
           );
-          t == null || t.click(), l("exp_pdp_imp__button_02", "More Payment Options", "click", "Product info");
+          t == null || t.click(), l(
+            "exp_pdp_imp__button_02",
+            "More Payment Options",
+            "click",
+            "Product info"
+          );
         });
       }), c('[data-button="refund-popup"]').then((n) => {
         const e = n;
@@ -3340,9 +3544,19 @@ body.product-template-default
         });
       });
     }
+    async formatPrice() {
+      const n = await c(
+        ".price .woocommerce-Price-amount bdi"
+      );
+      if (n) {
+        const e = n.textContent;
+        if (!e) return;
+        n.textContent = h(e);
+      }
+    }
     addStyles() {
       const n = document.createElement("style");
-      n.innerHTML = I, document.head.appendChild(n);
+      n.innerHTML = W, document.head.appendChild(n);
     }
   }
   const G = `.crs-sticky {
@@ -3439,7 +3653,7 @@ body.is-crs-sticky .grecaptcha-badge {
     min-width: 100%;
   }
 }`;
-  class Z {
+  class F {
     constructor() {
       this.init();
     }
@@ -3447,16 +3661,16 @@ body.is-crs-sticky .grecaptcha-badge {
       this.addStyles(), this.render(), this.eventListeners(), this.showStickyBlock();
     }
     render() {
-      var s, r;
-      const n = (s = document.querySelector("h1")) == null ? void 0 : s.textContent, e = (r = document.querySelector(
+      var r, a;
+      const n = (r = document.querySelector("h1")) == null ? void 0 : r.textContent, e = (a = document.querySelector(
         ".woocommerce-Price-amount.amount"
-      )) == null ? void 0 : r.textContent;
+      )) == null ? void 0 : a.textContent;
       if (!n || !e) return;
       let t;
       const i = n.split(":");
       if (i.length > 1) {
-        const a = i[0], p = i.slice(1).join(":").trim();
-        t = `${a}: <span>${p}</span>`;
+        const d = i[0], p = i.slice(1).join(":").trim();
+        t = `${d}: <span>${p}</span>`;
       }
       const o = (
         /* HTML */
@@ -3466,8 +3680,8 @@ body.is-crs-sticky .grecaptcha-badge {
           <div class="title">${t}</div>
           <div class="buy">
             <button type="button" data-button="sticky-buy">
-              <span>Buy Now</span><span class="dot">•</span
-              ><span>${e}</span>
+              <span>Buy now</span><span class="dot">•</span
+              ><span>${h(e)}</span>
             </button>
           </div>
         </div>
@@ -3496,34 +3710,34 @@ body.is-crs-sticky .grecaptcha-badge {
         // viewport
         threshold: 0,
         rootMargin: "0px 0px -50% 0px"
-      }, i = (s) => {
-        s.forEach((r) => {
-          r.isIntersecting ? document.body.classList.add("is-crs-sticky") : !r.isIntersecting && r.boundingClientRect.top > 0 && document.body.classList.remove("is-crs-sticky");
+      }, i = (r) => {
+        r.forEach((a) => {
+          a.isIntersecting ? document.body.classList.add("is-crs-sticky") : !a.isIntersecting && a.boundingClientRect.top > 0 && document.body.classList.remove("is-crs-sticky");
         });
       }, o = new IntersectionObserver(
         i,
         t
       );
-      e.forEach((s) => o.observe(s));
+      e.forEach((r) => o.observe(r));
     }
     addStyles() {
       const n = document.createElement("style");
       n.textContent = G, document.head.appendChild(n);
     }
   }
-  m({
+  b({
     name: "Removing user barriers on product pages",
     dev: "OS"
-  }), b("exp_pdp_imp");
+  }), f("exp_pdp_imp");
   class O {
     constructor() {
       this.init();
     }
     init() {
       const n = window.location.pathname;
-      Object.entries(g).some(
+      Object.entries(m).some(
         ([i, o]) => n.includes(o)
-      ) && (new W(), new w(), new L(), new $(), new A(), new P(), new z(), new _(), new Z());
+      ) && (new Z(), new y(), new S(), new $(), new M(), new E(), new A(), new k(), new F());
     }
   }
   new O();
