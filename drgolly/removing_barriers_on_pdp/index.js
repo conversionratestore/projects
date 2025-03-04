@@ -74,10 +74,22 @@
 @media (min-width: 981px) {
   .bundle-popup {
     width: min(535px, 100%);
+ 
     padding: 24px;
     border-radius: 32px;
   }
 }
+
+@media (max-width: 768px) {
+  .bundle-popup {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+  }
+}
+
+
 
 .bundle-popup .close-btn {
   position: absolute;
@@ -1855,7 +1867,7 @@
     return `${n}${t}`;
   }, P = `.crs-course-help #crs-container-help {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 524px;
   grid-template-rows: auto 1fr;
   column-gap: 92px;
   row-gap: 36px;
@@ -2495,12 +2507,7 @@
           );
           e == null || e.click(), l("exp_pdp_imp__button_07", "Buy now", "click", "2 min video");
         });
-      }), g(
-        ".crs-result",
-        "exp_pdp_imp__view_03",
-        "When will I see results from the program?",
-        "When will I see results from the program?"
-      );
+      });
     }
     resultBlock() {
       const n = (
@@ -2538,7 +2545,12 @@
       </div>
     </div>`
       ), e = document.querySelector("#crs-course-help");
-      e == null || e.insertAdjacentHTML("beforeend", n);
+      e == null || e.insertAdjacentHTML("beforeend", n), g(
+        ".crs-result",
+        "exp_pdp_imp__view_03",
+        "When will I see results from the program?",
+        "When will I see results from the program?"
+      );
     }
     addStyles() {
       const n = document.createElement("style");
@@ -3394,10 +3406,15 @@ form.cart .single_add_to_cart_button {
   display: flex;
   align-items: center;
   gap: 12px;
+  color: #3c3c3b;
   width: max-content;
   border: none;
   background: transparent;
   cursor: pointer;
+}
+
+.crs-payment-options button .text {
+  color: #3c3c3b;
 }
 
 body.product-template-default
