@@ -85,6 +85,7 @@
     width: 100%;
     max-width: 100%;
     max-height: 100%;
+    height: 100%;
     margin: 0;
   }
 }
@@ -110,6 +111,15 @@
   content: '';
   position: absolute;
   inset: -8px;
+}
+
+
+@media (max-width: 768px) {
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 }
 
 .bundle-popup .badge {
@@ -247,6 +257,13 @@
   height: 14px;
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M16.7134 2.4982L15.5579 3.79113L14.6218 4.8389L14.0693 5.45681L13.8365 5.7154V5.71875L13.7795 5.78088L12.6259 7.07045L7.3444 12.9809C6.97769 13.3924 6.46362 13.6022 5.94781 13.6022C5.51249 13.6022 5.07543 13.4511 4.72376 13.1472L0.932648 9.85277C0.408519 9.39602 0.353263 8.60177 0.807058 8.07627C1.26085 7.55068 2.05457 7.49359 2.5787 7.9486L5.89426 10.83L10.757 5.38797L12.3512 3.60642L13.1348 2.72825L13.6875 2.11033L14.8429 0.817404C15.305 0.298555 16.0988 0.254896 16.6162 0.720013C17.132 1.18345 17.1754 1.97935 16.7134 2.4982Z" fill="%2352A7A7"/></svg>');
   background-repeat: no-repeat;
+}
+
+
+@media (max-width: 768px) {
+  .popup-footer {
+    margin-top: auto;
+  }
 }
 
 .popup-footer .buy-action {
