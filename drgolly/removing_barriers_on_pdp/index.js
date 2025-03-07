@@ -32,7 +32,7 @@
       });
     });
   }
-  const g = (s, n, e, t) => {
+  const h = (s, n, e, t) => {
     let i = [];
     if (typeof s == "string")
       i = document.querySelectorAll(s);
@@ -1204,12 +1204,12 @@
       e && (e.innerHTML = n);
     }
     eventListeners() {
-      g(
+      h(
         "#crs-bundle-section",
         "exp_pdp_imp__view_06",
         "Bundle & Save 2",
         "Bundle & Save 2"
-      ), g(
+      ), h(
         "#crs-bundle-section .bundle-includes",
         "exp_pdp_imp__view_07",
         "Bundle includes 2",
@@ -1868,7 +1868,7 @@
             ".single_add_to_cart_button"
           );
           t == null || t.click(), l("exp_pdp_imp__button_08", "Buy now", "click", "Dr.Golly vs other baby sleep products");
-        }), g(".crs-compare-section", "exp_pdp_imp__view_04", "Dr.Golly vs other baby sleep products", "Dr.Golly vs other baby sleep products");
+        }), h(".crs-compare-section", "exp_pdp_imp__view_04", "Dr.Golly vs other baby sleep products", "Dr.Golly vs other baby sleep products");
       });
     }
     addStyles() {
@@ -1876,7 +1876,7 @@
       n.innerHTML = B, document.head.append(n);
     }
   }
-  const h = (s) => {
+  const g = (s) => {
     var i;
     if (!s || s.length === 0) return s;
     console.log("formatPrice");
@@ -2490,7 +2490,7 @@
         <div class="buy-now">
           <button type="button" data-button="buy-now">
             <span>Buy now</span><span class="dot">•</span
-            ><span>${h(e || "")}</span>
+            ><span>${g(e || "")}</span>
           </button>
         </div>
         <div class="description">Less than the cost of a sleepless night!</div>
@@ -2512,8 +2512,8 @@
           );
           e.remove();
           const o = document.createElement("iframe");
-          o.src = "https://www.youtube.com/embed/E7u4TtxZLd8?autoplay=1", o.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", o.allowFullscreen = !0, i.appendChild(o), i.style.display = "block";
-        }), g(
+          o.src = "https://player.vimeo.com/video/1063365081?autoplay=1", o.allow = "autoplay", o.allowFullscreen = !0, i.appendChild(o), i.style.display = "block";
+        }), h(
           ".crs-video-section",
           "exp_pdp_imp__view_02",
           "2 min video",
@@ -2564,7 +2564,7 @@
       </div>
     </div>`
       ), e = document.querySelector("#crs-course-help");
-      e == null || e.insertAdjacentHTML("beforeend", n), g(
+      e == null || e.insertAdjacentHTML("beforeend", n), h(
         ".crs-result",
         "exp_pdp_imp__view_03",
         "When will I see results from the program?",
@@ -2745,7 +2745,7 @@
         const i = t.querySelector("h2");
         return i && ((o = i.textContent) == null ? void 0 : o.includes("What’s covered in"));
       });
-      e && (e.classList.add("crs-different-section"), e.setAttribute("id", "crs-different-section"), g(
+      e && (e.classList.add("crs-different-section"), e.setAttribute("id", "crs-different-section"), h(
         "#crs-different-section",
         "exp_pdp_imp__view_05",
         "What Makes Dr. Golly Different?",
@@ -3587,7 +3587,7 @@ body.product-template-default
       if (n) {
         const e = n.textContent;
         if (!e) return;
-        n.textContent = h(e);
+        n.textContent = g(e);
       }
     }
     addStyles() {
@@ -3717,7 +3717,7 @@ body.is-crs-sticky .grecaptcha-badge {
           <div class="buy">
             <button type="button" data-button="sticky-buy">
               <span>Buy now</span><span class="dot">•</span
-              ><span>${h(e)}</span>
+              ><span>${g(e)}</span>
             </button>
           </div>
         </div>
