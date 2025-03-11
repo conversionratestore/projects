@@ -1,6 +1,6 @@
-var N = function() {
+var Z = function() {
   "use strict";
-  const p = (i, e, t, n = "") => {
+  const l = (i, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
@@ -8,7 +8,7 @@ var N = function() {
       event_type: t,
       event_loc: n
     }), console.log(`Event: ${i} | ${e} | ${t} | ${n}`);
-  }, S = ({ name: i, dev: e }) => {
+  }, E = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
@@ -17,13 +17,13 @@ var N = function() {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", i, "variant_1"));
     }, 1e3);
-  }, E = (i, e, t, n) => {
-    let o = [];
-    o = document.querySelectorAll(i);
-    let s = new IntersectionObserver(
+  }, A = (i, e, t, n) => {
+    let s = [];
+    s = document.querySelectorAll(i);
+    let o = new IntersectionObserver(
       (d) => {
         d.forEach((r) => {
-          r.isIntersecting && (s.unobserve(r.target), setTimeout(function() {
+          r.isIntersecting && (o.unobserve(r.target), setTimeout(function() {
             a.observe(r.target);
           }, 1e3));
         });
@@ -33,13 +33,13 @@ var N = function() {
       }
     ), a = new IntersectionObserver((d) => {
       d.forEach((r) => {
-        r.isIntersecting ? (p(e, t, "view", n), s.unobserve(r.target)) : s.observe(r.target), a.unobserve(r.target);
+        r.isIntersecting ? (l(e, t, "view", n), o.unobserve(r.target)) : o.observe(r.target), a.unobserve(r.target);
       });
     });
-    o.forEach((d) => {
-      s.observe(d);
+    s.forEach((d) => {
+      o.observe(d);
     });
-  }, A = "https://api.sunvalue.com/api/address?zip=", I = "https://api.sunvalue.com/api/geo";
+  }, I = "https://api.sunvalue.com/api/address?zip=", C = "https://api.sunvalue.com/api/geo";
   async function h(i, e = "GET", t = null) {
     try {
       const n = {
@@ -49,15 +49,15 @@ var N = function() {
         }
       };
       t && (n.body = JSON.stringify(t));
-      const o = await fetch(i, n);
-      if (!o.ok)
-        throw new Error(`HTTP error! status: ${o.status}`);
-      return await o.json();
+      const s = await fetch(i, n);
+      if (!s.ok)
+        throw new Error(`HTTP error! status: ${s.status}`);
+      return await s.json();
     } catch (n) {
       throw console.error("Fetch error:", n), n;
     }
   }
-  const C = async (i) => await h(A + i), _ = async () => await h(I), L = (
+  const _ = async (i) => await h(I + i), L = async () => await h(C), z = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -78,21 +78,21 @@ var N = function() {
     d="M10.084 4.563A3.715 3.715 0 0 0 6.37 8.271a3.715 3.715 0 0 0 7.427 0 3.715 3.715 0 0 0-3.713-3.708Zm0 5.924a2.221 2.221 0 0 1-2.22-2.216 2.221 2.221 0 0 1 4.44 0 2.221 2.221 0 0 1-2.22 2.216Z"
   />
 </svg>`
-  ), z = (i) => {
+  ), k = (i) => {
     Array.from(document.scripts).filter((t) => t.src.includes(i)).forEach((t) => {
       var n;
       return (n = t.parentNode) == null ? void 0 : n.removeChild(t);
     });
-  }, k = () => {
+  }, B = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
-  }, B = (i) => new Promise((e, t) => {
-    if (i.split(".").pop(), Array.from(document.scripts).map((s) => s.src.toLowerCase()).includes(i.toLowerCase()))
+  }, M = (i) => new Promise((e, t) => {
+    if (i.split(".").pop(), Array.from(document.scripts).map((o) => o.src.toLowerCase()).includes(i.toLowerCase()))
       return console.log(`Script ${i} already downloaded!`), e("");
-    const o = document.createElement("script");
-    o.src = i, o.onload = e, o.onerror = t, document.head.appendChild(o);
+    const s = document.createElement("script");
+    s.src = i, s.onload = e, s.onerror = t, document.head.appendChild(s);
   }), y = `.os-note {
   margin-inline: auto;
   width: max-content;
@@ -231,8 +231,8 @@ var N = function() {
     line-height: 22px;
   }
 }
-`, v = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjbzGiQga-NP-KNnEuJmBWuEdNlZynK0&libraries=places&language=en", u = "entered_address", l = "entered_zipcode";
-  class M {
+`, v = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjbzGiQga-NP-KNnEuJmBWuEdNlZynK0&libraries=places&language=en", p = "entered_address", u = "entered_zipcode", x = "Ensure the address is accurate, including the street name and street number.";
+  class G {
     constructor({ container: e, position: t }) {
       this.position = t || "beforeend", this.container = e, this.init();
     }
@@ -242,9 +242,9 @@ var N = function() {
     async getGeolocation() {
       const e = document.getElementById("current-location");
       if (!e) return;
-      const t = await _(), n = t.postal;
+      const t = await L(), n = t.postal;
       t.regionName && (e.innerHTML = /* HTML */
-      `<span>${L}</span
+      `<span>${z}</span
         ><span class="text" data-zipcode="${n}"
           >${t.regionName}</span
         >`);
@@ -297,7 +297,7 @@ var N = function() {
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-address") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, e), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${y}</style>`), E(
+      !this.container || document.querySelector("#estimate-custom-address") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, e), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${y}</style>`), A(
         "#estimate-custom-address",
         "exp_address_view",
         "View Screen",
@@ -312,7 +312,7 @@ var N = function() {
         const n = document.getElementById("os-address-error");
         n && (n.textContent = "");
       }), e.addEventListener("change", () => {
-        p(
+        l(
           "exp_address_input",
           "Input",
           "input",
@@ -322,42 +322,47 @@ var N = function() {
       const t = document.querySelector("#os-addresssaving");
       t && (t.addEventListener("click", (n) => {
         var g;
-        const o = n.target, s = document.getElementById(
+        const s = n.target, o = document.getElementById(
           "os-googleautoaddress"
         ), a = document.getElementById(
           "estimate-custom-address"
         ), d = document.getElementById(
           "zip"
-        ), r = document.getElementById("calculateYourSavings"), f = (o == null ? void 0 : o.dataset.disabled) === "true";
-        if (p(
+        ), r = document.getElementById("calculateYourSavings"), f = (s == null ? void 0 : s.dataset.disabled) === "true";
+        if (l(
           "exp_address_continue",
           "Check eligibility",
           "click",
           "Step 1 - Check if you are eligible by entering your Location"
-        ), !s) return;
-        const m = s.value;
+        ), !o) return;
+        const m = o.value;
         if (m && !f) {
-          a.classList.add("os-hide"), console.log("zicode", sessionStorage.getItem(l));
-          const c = sessionStorage.getItem(l) || ((g = document.querySelector("[data-zipcode]")) == null ? void 0 : g.textContent), T = sessionStorage.getItem(u);
+          a.classList.add("os-hide");
+          const c = sessionStorage.getItem(u) || ((g = document.querySelector("[data-zipcode]")) == null ? void 0 : g.textContent), N = sessionStorage.getItem(p);
           if (!c) {
-            const x = document.getElementById("os-address-error");
-            x && (x.textContent = "Please enter a valid zip code");
+            const S = document.getElementById("os-address-error");
+            S && (S.textContent = x);
             return;
           }
-          this.validateZipCode(+c), this.validateAddress(T), d.value = c, r == null || r.click(), k(), p("exp_address_success", "Validation Success", "success", "Step 1 - Check if you are eligible by entering your Location"), z(v), window != null && window.google && (window.google = null);
+          this.validateZipCode(+c), this.validateAddress(N), d.value = c, r == null || r.click(), B(), l(
+            "exp_address_success",
+            "Validation Success",
+            "success",
+            "Step 1 - Check if you are eligible by entering your Location"
+          ), k(v);
         } else if (!m) {
           const c = document.getElementById("os-address-error");
           c && (c.textContent = "Please enter your address");
         }
       }), e.addEventListener("change", async (n) => {
-        if (sessionStorage.removeItem(u), sessionStorage.removeItem(l), !e.dataset.selectedFromAutocomplete && e.value.trim())
+        if (sessionStorage.removeItem(p), sessionStorage.removeItem(u), !e.dataset.selectedFromAutocomplete && e.value.trim())
           try {
-            const o = await this.processManuallyEnteredAddress(
+            const s = await this.processManuallyEnteredAddress(
               e.value
-            ), s = o.zipCode, a = o.formattedAddress;
-            this.validateZipCode(s), this.validateAddress(a), sessionStorage.setItem(u, a), sessionStorage.setItem(l, s);
-          } catch (o) {
-            console.error("Error processing manually entered address:", o);
+            ), o = s.zipCode, a = s.formattedAddress;
+            this.validateZipCode(o), this.validateAddress(a), sessionStorage.setItem(p, a), sessionStorage.setItem(u, o);
+          } catch (s) {
+            console.error("Error processing manually entered address:", s);
           }
       }));
     }
@@ -368,7 +373,7 @@ var N = function() {
       t && (t.dataset.disabled = String(!e));
     }
     initAutocomplete() {
-      window.googleMapsScriptLoaded ? this.initializeAutocomplete() : B(v).then(() => {
+      window.googleMapsScriptLoaded ? this.initializeAutocomplete() : M(v).then(() => {
         window.googleMapsScriptLoaded = !0, this.initializeAutocomplete();
       }).catch(
         (e) => console.error("Error loading Google Maps Places API:", e)
@@ -376,16 +381,16 @@ var N = function() {
     }
     async processManuallyEnteredAddress(e) {
       const t = new google.maps.Geocoder();
-      return new Promise((n, o) => {
-        t.geocode({ address: e }, (s, a) => {
+      return new Promise((n, s) => {
+        t.geocode({ address: e }, (o, a) => {
           var d;
-          if (a === google.maps.GeocoderStatus.OK && (s != null && s[0])) {
-            const r = s[0].address_components, f = s[0].formatted_address, m = (d = r.find(
+          if (a === google.maps.GeocoderStatus.OK && (o != null && o[0])) {
+            const r = o[0].address_components, f = o[0].formatted_address, m = (d = r.find(
               (g) => g.types.includes("postal_code")
             )) == null ? void 0 : d.long_name;
             n({ addressComponents: r, formattedAddress: f, zipCode: m });
           } else
-            o("Geocoding failed due to: " + a);
+            s("Geocoding failed due to: " + a);
         });
       });
     }
@@ -399,16 +404,16 @@ var N = function() {
         componentRestrictions: { country: "US" }
       });
       t.addListener("place_changed", () => {
-        const n = t.getPlace(), o = n.address_components, s = n.formatted_address, a = o.find(
+        const n = t.getPlace(), s = n.address_components, o = n.formatted_address, a = s.find(
           (r) => r.types.includes("postal_code")
         ), d = a == null ? void 0 : a.long_name;
-        d || this.setContinueButtonState(!1), this.validateZipCode(d), this.validateAddress(s), sessionStorage.setItem(u, s), sessionStorage.setItem(l, d);
+        d || this.setContinueButtonState(!1), this.validateZipCode(d), this.validateAddress(o), sessionStorage.setItem(p, o), sessionStorage.setItem(u, d);
       });
     }
     async validateZipCode(e) {
-      const t = document.getElementById("os-address-error"), n = await C(e);
+      const t = document.getElementById("os-address-error"), n = await _(e);
       if (!(n != null && n.city)) {
-        t && (t.textContent = "Please enter a valid zip code"), this.setContinueButtonState(!1);
+        t && (t.textContent = x), this.setContinueButtonState(!1);
         return;
       }
     }
@@ -423,7 +428,7 @@ var N = function() {
       e.innerHTML = y, document.head.appendChild(e);
     }
   }
-  const G = `#estimate-zip, #estimate-map {
+  const O = `#estimate-zip, #estimate-map {
   display: none;
 }
 
@@ -431,7 +436,7 @@ var N = function() {
 [data-current-slide="3"] :is( #slider-block, #next-block) {
   display: none;
 }`;
-  class P {
+  class T {
     constructor() {
       this.init();
     }
@@ -440,34 +445,34 @@ var N = function() {
     }
     addNewStyles() {
       const e = document.querySelectorAll(".swiper-slide");
-      new M({
+      new G({
         container: e[0],
         position: "beforeend"
       });
     }
     observeSlides() {
-      const e = document.querySelector(".swiper-container"), t = e == null ? void 0 : e.swiper, n = document.getElementById("solarForm"), o = document.querySelector(
+      const e = document.querySelector(".swiper-container"), t = e == null ? void 0 : e.swiper, n = document.getElementById("solarForm"), s = document.querySelector(
         "#slider-block .nextSlide"
-      ), s = document.querySelector(
+      ), o = document.querySelector(
         "#slider-block .prevSlide"
       );
       !t || !n || (n.dataset.currentSlide = "0", t == null || t.on("transitionEnd", () => {
         const a = t.realIndex;
         if (n.dataset.currentSlide = a.toString(), a === 3) {
           if (n.dataset.addressEntered === "true") {
-            s == null || s.click(), n.dataset.addressEntered = "false";
+            o == null || o.click(), n.dataset.addressEntered = "false";
             return;
           }
-          o == null || o.click(), n.dataset.addressEntered = "true";
+          s == null || s.click(), n.dataset.addressEntered = "true";
         }
       }));
     }
     addStyles() {
       const e = document.createElement("style");
-      e.innerHTML = G, document.head.appendChild(e);
+      e.innerHTML = O, document.head.appendChild(e);
     }
   }
-  b("address_zip"), S({
+  b("address_zip"), E({
     dev: "OS",
     name: "Address + Zip merge V2"
   });
@@ -476,7 +481,7 @@ var N = function() {
       this.init();
     }
     init() {
-      new P();
+      new T();
     }
   }
   return new w(), {
