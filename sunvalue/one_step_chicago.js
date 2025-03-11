@@ -340,7 +340,7 @@
           if (!s) return;
           s.checked = !s.checked;
           const x = (d = o.querySelector("span")) == null ? void 0 : d.textContent;
-          s.checked && r("ext_city", `Choose option - ${x}`, "click", "Step - Choose the information you want to get");
+          s.checked && r("ext_city_option", `Choose option - ${x}`, "click", "Step - Choose the information you want to get");
         });
       });
     }
