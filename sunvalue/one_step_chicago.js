@@ -320,7 +320,7 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-email") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${p}</style>`));
+      !this.container || document.querySelector("#estimate-custom-slide") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${p}</style>`));
     }
     handle() {
       const n = document.querySelectorAll(
@@ -339,8 +339,8 @@
           const s = o.querySelector("input");
           if (!s) return;
           s.checked = !s.checked;
-          const u = (d = o.querySelector("span")) == null ? void 0 : d.textContent;
-          s.checked && r("ext_city", `Choose option - ${u}`, "click", "Step - Choose the information you want to get");
+          const x = (d = o.querySelector("span")) == null ? void 0 : d.textContent;
+          s.checked && r("ext_city", `Choose option - ${x}`, "click", "Step - Choose the information you want to get");
         });
       });
     }
@@ -443,11 +443,12 @@
     dev: "OS",
     name: "One step before email"
   });
-  class x {
+  class u {
     constructor() {
       this.init();
     }
     init() {
+      if (document.querySelector("#estimate-custom-slide")) return;
       this.addStyles(), this.hideEmailSlide(), this.addCustomNavsButton();
       const n = document.querySelectorAll(".swiper-slide");
       new m({ container: n[5], position: "beforeend" }), this.observeSlides(), this.handleBackButton();
@@ -492,5 +493,5 @@
       document.head.insertAdjacentHTML("beforeend", `<style>${f}</style>`);
     }
   }
-  new x();
+  new u();
 })();
