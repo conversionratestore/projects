@@ -1,11 +1,19 @@
 (function() {
   "use strict";
-  const l = ({ name: a, dev: n }) => {
+  const r = (a, n, e, t = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: a,
+      event_desc: n,
+      event_type: e,
+      event_loc: t
+    }), console.log(`Event: ${a} | ${n} | ${e} | ${t}`);
+  }, c = ({ name: a, dev: n }) => {
     console.log(
       `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, d = `.os-note {
+  }, p = `.os-note {
   width: 551px;
   max-width: 100%;
   margin: 0 auto;
@@ -251,7 +259,7 @@
   }
 }
 `;
-  class r {
+  class m {
     constructor({ container: n, position: e }) {
       this.position = e || "beforeend", this.container = n, this.init();
     }
@@ -303,7 +311,7 @@
               </label>
             </li>
             <li>
-              <button type="button" class="os-next" data-button="email-slide">
+              <button type="button" class="btn default os-next" data-button="email-slide">
                 Next
               </button>
             </li>
@@ -312,21 +320,32 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-email") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${d}</style>`));
+      !this.container || document.querySelector("#estimate-custom-email") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${p}</style>`));
     }
     handle() {
       const n = document.querySelectorAll(
         ".os-next, .os-nextSlide"
       ), e = document.querySelector(".os-prevSlide"), t = document.getElementById("solarForm");
-      t && n && n.forEach((s) => {
-        s.addEventListener("click", () => {
-          const o = document.getElementById("estimate-email"), i = document.getElementById("estimate-custom-slide");
-          o == null || o.classList.remove("os-hide"), i == null || i.classList.add("os-hide"), t.dataset.slideName = "email", e == null || e.classList.remove("os-hide"), window.scrollTo(0, 0);
+      if (!t || !n) return;
+      n.forEach((o) => {
+        o.addEventListener("click", () => {
+          const i = document.getElementById("estimate-email"), s = document.getElementById("estimate-custom-slide");
+          i == null || i.classList.remove("os-hide"), s == null || s.classList.add("os-hide"), t.dataset.slideName = "email", e == null || e.classList.remove("os-hide"), window.scrollTo(0, 0), r("exp_city_next", "Next Screen", "click", "Step - Choose the information you want to get");
+        });
+      }), document.querySelectorAll(".estimate-custom-slide label").forEach((o) => {
+        o.addEventListener("click", (i) => {
+          var d;
+          i.preventDefault();
+          const s = o.querySelector("input");
+          if (!s) return;
+          s.checked = !s.checked;
+          const u = (d = o.querySelector("span")) == null ? void 0 : d.textContent;
+          s.checked && r("ext_city", `Choose option - ${u}`, "click", "Step - Choose the information you want to get");
         });
       });
     }
   }
-  const c = `.os-hide {
+  const f = `.os-hide {
   display: none !important;
 }
 
@@ -334,13 +353,13 @@
   display: flex;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 981px) {
   br.mobile {
     display: none;
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 980px) {
   br.desktop {
     display: none;
   }
@@ -420,18 +439,18 @@
   background-size: 20px;
 }
 `;
-  l({
+  c({
     dev: "OS",
     name: "One step before email"
   });
-  class p {
+  class x {
     constructor() {
       this.init();
     }
     init() {
       this.addStyles(), this.hideEmailSlide(), this.addCustomNavsButton();
       const n = document.querySelectorAll(".swiper-slide");
-      new r({ container: n[5], position: "beforeend" }), this.observeSlides(), this.handleBackButton();
+      new m({ container: n[5], position: "beforeend" }), this.observeSlides(), this.handleBackButton();
     }
     hideEmailSlide() {
       const n = document.getElementById("estimate-email");
@@ -440,8 +459,8 @@
     observeSlides() {
       const n = document.querySelector(".swiper-container"), e = n == null ? void 0 : n.swiper, t = document.getElementById("solarForm");
       !e || !t || (t.dataset.currentSlide = "0", e == null || e.on("transitionEnd", () => {
-        const s = e.realIndex;
-        t.dataset.currentSlide = s.toString();
+        const l = e.realIndex;
+        t.dataset.currentSlide = l.toString(), l === 5 && r("exp_city_view", "View Screen", "view", "Step - Choose the information you want to get");
       }));
     }
     addCustomNavsButton() {
@@ -470,8 +489,8 @@
       });
     }
     addStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${c}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${f}</style>`);
     }
   }
-  new p();
+  new x();
 })();
