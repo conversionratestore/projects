@@ -1,6 +1,6 @@
-var Z = function() {
+var P = function() {
   "use strict";
-  const p = (r, e, t, n = "") => {
+  const l = (r, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: r,
@@ -8,39 +8,39 @@ var Z = function() {
       event_type: t,
       event_loc: n
     }), console.log(`Event: ${r} | ${e} | ${t} | ${n}`);
-  }, b = ({ name: r, dev: e }) => {
+  }, S = ({ name: r, dev: e }) => {
     console.log(
       `%c EXP: ${r} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, E = (r) => {
+  }, b = (r) => {
     let e = setInterval(function() {
       typeof window.clarity == "function" && (clearInterval(e), window.clarity("set", r, "variant_1"));
     }, 1e3);
-  }, A = (r, e, t, n) => {
+  }, E = (r, e, t, n) => {
     let s = [];
     s = document.querySelectorAll(r);
     let o = new IntersectionObserver(
-      (d) => {
-        d.forEach((a) => {
-          a.isIntersecting && (o.unobserve(a.target), setTimeout(function() {
-            i.observe(a.target);
+      (a) => {
+        a.forEach((d) => {
+          d.isIntersecting && (o.unobserve(d.target), setTimeout(function() {
+            i.observe(d.target);
           }, 1e3));
         });
       },
       {
         threshold: 0.2
       }
-    ), i = new IntersectionObserver((d) => {
-      d.forEach((a) => {
-        a.isIntersecting ? (p(e, t, "view", n), o.unobserve(a.target)) : o.observe(a.target), i.unobserve(a.target);
+    ), i = new IntersectionObserver((a) => {
+      a.forEach((d) => {
+        d.isIntersecting ? (l(e, t, "view", n), o.unobserve(d.target)) : o.observe(d.target), i.unobserve(d.target);
       });
     });
-    s.forEach((d) => {
-      o.observe(d);
+    s.forEach((a) => {
+      o.observe(a);
     });
-  }, I = "https://api.sunvalue.com/api/address?zip=", C = "https://api.sunvalue.com/api/geo";
-  async function h(r, e = "GET", t = null) {
+  }, A = "https://api.sunvalue.com/api/address?zip=", I = "https://api.sunvalue.com/api/geo";
+  async function f(r, e = "GET", t = null) {
     try {
       const n = {
         method: e,
@@ -57,7 +57,7 @@ var Z = function() {
       throw console.error("Fetch error:", n), n;
     }
   }
-  const _ = async (r) => await h(I + r), L = async () => await h(C), k = (
+  const C = async (r) => await f(A + r), _ = async () => await f(I), L = (
     /* HTML */
     `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -78,22 +78,22 @@ var Z = function() {
     d="M10.084 4.563A3.715 3.715 0 0 0 6.37 8.271a3.715 3.715 0 0 0 7.427 0 3.715 3.715 0 0 0-3.713-3.708Zm0 5.924a2.221 2.221 0 0 1-2.22-2.216 2.221 2.221 0 0 1 4.44 0 2.221 2.221 0 0 1-2.22 2.216Z"
   />
 </svg>`
-  ), z = (r) => {
+  ), k = (r) => {
     Array.from(document.scripts).filter((t) => t.src.includes(r)).forEach((t) => {
       var n;
       return (n = t.parentNode) == null ? void 0 : n.removeChild(t);
     });
-  }, M = () => {
+  }, z = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
-  }, B = (r) => new Promise((e, t) => {
+  }, M = (r) => new Promise((e, t) => {
     if (r.split(".").pop(), Array.from(document.scripts).map((o) => o.src.toLowerCase()).includes(r.toLowerCase()))
       return console.log(`Script ${r} already downloaded!`), e("");
     const s = document.createElement("script");
     s.src = r, s.onload = e, s.onerror = t, document.head.appendChild(s);
-  }), y = `.os-note-address {
+  }), h = `.os-note-address {
   margin-inline: auto;
   width: max-content;
   max-width: 100%;
@@ -231,8 +231,8 @@ var Z = function() {
     line-height: 22px;
   }
 }
-`, v = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjbzGiQga-NP-KNnEuJmBWuEdNlZynK0&libraries=places&language=en", u = "entered_address", m = "entered_zipcode", x = "Ensure the address is accurate, including the street name and street number.";
-  class T {
+`, y = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjbzGiQga-NP-KNnEuJmBWuEdNlZynK0&libraries=places&language=en", p = "entered_address", u = "entered_zipcode", v = "Ensure the address is accurate, including the street name and street number.";
+  class B {
     constructor({ container: e, position: t }) {
       this.position = t || "beforeend", this.container = e, this.init();
     }
@@ -242,9 +242,9 @@ var Z = function() {
     async getGeolocation() {
       const e = document.getElementById("current-location");
       if (!e) return;
-      const t = await L(), n = t.postal;
+      const t = await _(), n = t.postal;
       t.regionName && (e.innerHTML = /* HTML */
-      `<span>${k}</span
+      `<span>${L}</span
         ><span class="text" data-zipcode="${n}"
           >${t.regionName}</span
         >`);
@@ -297,7 +297,7 @@ var Z = function() {
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-address") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, e), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${y}</style>`), A(
+      !this.container || document.querySelector("#estimate-custom-address") || ((t = this.container) == null || t.insertAdjacentHTML(this.position, e), this.initAutocomplete(), document.head.insertAdjacentHTML("beforeend", `<style>${h}</style>`), E(
         "#estimate-custom-address",
         "exp_address_view",
         "View Screen",
@@ -312,7 +312,7 @@ var Z = function() {
         const n = document.getElementById("os-address-error");
         n && (n.textContent = "");
       }), e.addEventListener("change", () => {
-        p(
+        l(
           "exp_address_input",
           "Input",
           "input",
@@ -321,47 +321,48 @@ var Z = function() {
       }));
       const t = document.querySelector("#os-addresssaving");
       t && (t.addEventListener("click", async (n) => {
-        var f;
+        var g;
         const s = n.target, o = document.getElementById(
           "os-googleautoaddress"
-        ), i = document.getElementById(
+        );
+        document.getElementById(
           "estimate-custom-address"
-        ), d = document.getElementById(
+        );
+        const i = document.getElementById(
           "zip"
         ), a = document.getElementById("calculateYourSavings");
-        let l = (s == null ? void 0 : s.dataset.disabled) === "true";
-        if (p(
+        let d = (s == null ? void 0 : s.dataset.disabled) === "true";
+        if (l(
           "exp_address_continue",
           "Check eligibility",
           "click",
           "Step 1 - Check if you are eligible by entering your Location"
         ), !o) return;
-        const g = o.value;
-        if (g && !l) {
-          i.classList.add("os-hide");
-          const c = sessionStorage.getItem(m) || ((f = document.querySelector("[data-zipcode]")) == null ? void 0 : f.textContent), N = sessionStorage.getItem(u);
+        const m = o.value;
+        if (m && !d) {
+          const c = sessionStorage.getItem(u) || ((g = document.querySelector("[data-zipcode]")) == null ? void 0 : g.textContent), O = sessionStorage.getItem(p);
           if (!c) {
-            const S = document.getElementById("os-address-error");
-            S && (S.textContent = x);
+            const w = document.getElementById("os-address-error");
+            w && (w.textContent = v);
             return;
           }
-          this.validateZipCode(+c), this.validateAddress(N), M(), l = (s == null ? void 0 : s.dataset.disabled) === "true", l || (d.value = c, a == null || a.click(), p(
+          this.validateZipCode(+c), this.validateAddress(O), z(), d = (s == null ? void 0 : s.dataset.disabled) === "true", d || (i.value = c, a == null || a.click(), l(
             "exp_address_success",
             "Validation Success",
             "success",
             "Step 1 - Check if you are eligible by entering your Location"
-          )), z(v);
-        } else if (!g) {
+          )), k(y);
+        } else if (!m) {
           const c = document.getElementById("os-address-error");
           c && (c.textContent = "Please enter your address");
         }
       }), e.addEventListener("change", async (n) => {
-        if (sessionStorage.removeItem(u), sessionStorage.removeItem(m), !e.dataset.selectedFromAutocomplete && e.value.trim())
+        if (sessionStorage.removeItem(p), sessionStorage.removeItem(u), !e.dataset.selectedFromAutocomplete && e.value.trim())
           try {
             const s = await this.processManuallyEnteredAddress(
               e.value
             ), o = s.zipCode, i = s.formattedAddress;
-            this.validateZipCode(o), this.validateAddress(i), sessionStorage.setItem(u, i), sessionStorage.setItem(m, o);
+            this.validateZipCode(o), this.validateAddress(i), sessionStorage.setItem(p, i), sessionStorage.setItem(u, o);
           } catch (s) {
             console.error("Error processing manually entered address:", s);
           }
@@ -374,7 +375,7 @@ var Z = function() {
       t && (t.dataset.disabled = String(!e));
     }
     initAutocomplete() {
-      window.googleMapsScriptLoaded ? this.initializeAutocomplete() : B(v).then(() => {
+      window.googleMapsScriptLoaded ? this.initializeAutocomplete() : M(y).then(() => {
         window.googleMapsScriptLoaded = !0, this.initializeAutocomplete();
       }).catch(
         (e) => console.error("Error loading Google Maps Places API:", e)
@@ -384,12 +385,12 @@ var Z = function() {
       const t = new google.maps.Geocoder();
       return new Promise((n, s) => {
         t.geocode({ address: e }, (o, i) => {
-          var d;
+          var a;
           if (i === google.maps.GeocoderStatus.OK && (o != null && o[0])) {
-            const a = o[0].address_components, l = o[0].formatted_address, g = (d = a.find(
-              (f) => f.types.includes("postal_code")
-            )) == null ? void 0 : d.long_name;
-            n({ addressComponents: a, formattedAddress: l, zipCode: g });
+            const d = o[0].address_components, m = o[0].formatted_address, g = (a = d.find(
+              (c) => c.types.includes("postal_code")
+            )) == null ? void 0 : a.long_name;
+            n({ addressComponents: d, formattedAddress: m, zipCode: g });
           } else
             s("Geocoding failed due to: " + i);
         });
@@ -406,15 +407,15 @@ var Z = function() {
       });
       t.addListener("place_changed", () => {
         const n = t.getPlace(), s = n.address_components, o = n.formatted_address, i = s.find(
-          (a) => a.types.includes("postal_code")
-        ), d = i == null ? void 0 : i.long_name;
-        d || this.setContinueButtonState(!1), this.validateZipCode(d), this.validateAddress(o), sessionStorage.setItem(u, o), sessionStorage.setItem(m, d);
+          (d) => d.types.includes("postal_code")
+        ), a = i == null ? void 0 : i.long_name;
+        a || this.setContinueButtonState(!1), this.validateZipCode(a), this.validateAddress(o), sessionStorage.setItem(p, o), sessionStorage.setItem(u, a);
       });
     }
     async validateZipCode(e) {
-      const t = document.getElementById("os-address-error"), n = await _(e);
+      const t = document.getElementById("os-address-error"), n = await C(e);
       if (!(n != null && n.city)) {
-        t && (t.textContent = x), this.setContinueButtonState(!1);
+        t && (t.textContent = v), this.setContinueButtonState(!1);
         return;
       }
     }
@@ -426,10 +427,10 @@ var Z = function() {
     }
     addStyles() {
       const e = document.createElement("style");
-      e.innerHTML = y, document.head.appendChild(e);
+      e.innerHTML = h, document.head.appendChild(e);
     }
   }
-  const G = `#estimate-zip {
+  const T = `#estimate-zip {
   display: none;
 }
 
@@ -437,7 +438,7 @@ var Z = function() {
 [data-current-slide="3"] :is( #slider-block, #next-block), #estimate-map {
   visibility: hidden;
 }`;
-  class O {
+  class G {
     constructor() {
       this.init();
     }
@@ -446,7 +447,7 @@ var Z = function() {
     }
     addNewStyles() {
       const e = document.querySelectorAll(".swiper-slide");
-      new T({
+      new B({
         container: e[0],
         position: "beforeend"
       });
@@ -473,8 +474,8 @@ var Z = function() {
       if (!t) return;
       new MutationObserver((o) => {
         o.forEach((i) => {
-          var d;
-          (i.type === "childList" || i.type === "characterData") && ((d = t.textContent) != null && d.trim()) && e && (e.value = e.value.trim() + " " + Math.floor(Math.random() * 100) + 1, n == null || n.click());
+          var a;
+          (i.type === "childList" || i.type === "characterData") && ((a = t.textContent) != null && a.trim()) && e && (e.value = e.value.trim() + " " + Math.floor(Math.random() * 100) + 1, n == null || n.click());
         });
       }).observe(t, {
         childList: !0,
@@ -484,22 +485,22 @@ var Z = function() {
     }
     addStyles() {
       const e = document.createElement("style");
-      e.innerHTML = G, document.head.appendChild(e);
+      e.innerHTML = T, document.head.appendChild(e);
     }
   }
-  E("address_zip"), b({
+  b("address_zip"), S({
     dev: "OS",
     name: "Address + Zip merge V2"
   });
-  class w {
+  class x {
     constructor() {
       this.init();
     }
     init() {
-      new O();
+      new G();
     }
   }
-  return new w(), {
-    LaunchExperiment: w
+  return new x(), {
+    LaunchExperiment: x
   };
 }();
