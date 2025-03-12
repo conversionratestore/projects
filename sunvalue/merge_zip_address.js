@@ -93,7 +93,7 @@ var Z = function() {
       return console.log(`Script ${r} already downloaded!`), e("");
     const s = document.createElement("script");
     s.src = r, s.onload = e, s.onerror = t, document.head.appendChild(s);
-  }), y = `.os-note {
+  }), y = `.os-note-address {
   margin-inline: auto;
   width: max-content;
   max-width: 100%;
@@ -110,7 +110,7 @@ var Z = function() {
   line-height: 24px;
 }
 
-.os-note span {
+.os-note-address span {
   color: #98f465;
 }
 
@@ -197,7 +197,7 @@ var Z = function() {
 }
 
 @media (max-width: 768px) {
-  .os-note {
+  .os-note-address {
     font-size: 16px;
     padding: 10px 12px;
   }
