@@ -258,7 +258,7 @@ var Z = function() {
       id="estimate-custom-address"
     >
       <div class="container text-center">
-        <div class="os-note">
+        <div class="os-note-address">
           ✅ <span>6</span> Government Incentives Available in
           <span>New York</span>
         </div>
