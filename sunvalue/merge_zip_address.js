@@ -441,8 +441,8 @@ var Z = function() {
     constructor() {
       this.init();
     }
-    init() {
-      this.addNewStyles(), this.addStyles(), this.observeSlides(), this.observerAddressError();
+    async init() {
+      await this.observeSlides(), this.addNewStyles(), this.addStyles(), this.observerAddressError();
     }
     addNewStyles() {
       const e = document.querySelectorAll(".swiper-slide");
@@ -451,10 +451,8 @@ var Z = function() {
         position: "beforeend"
       });
     }
-    observeSlides() {
-      const e = document.querySelector(".swiper-container"), t = e == null ? void 0 : e.swiper, n = document.getElementById("solarForm"), s = document.querySelector(
-        "#slider-block .nextSlide"
-      ), o = document.querySelector(
+    async observeSlides() {
+      const e = document.querySelector(".swiper-container"), t = e == null ? void 0 : e.swiper, n = document.getElementById("solarForm"), s = document.querySelector(".nextSlide"), o = document.querySelector(
         "#slider-block .prevSlide"
       );
       !t || !n || (n.dataset.currentSlide = "0", t == null || t.on("transitionEnd", () => {
@@ -464,7 +462,7 @@ var Z = function() {
             o == null || o.click(), n.dataset.addressEntered = "false";
             return;
           }
-          s == null || s.click(), n.dataset.addressEntered = "true";
+          console.log("next", s), console.log("slideIndex", i), s == null || s.click(), n.dataset.addressEntered = "true";
         }
       }));
     }
