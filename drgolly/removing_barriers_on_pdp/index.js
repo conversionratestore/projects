@@ -1795,14 +1795,14 @@
               <div class="header-cell"><div>Free Resources</div></div>
             </div>
             <div class="row">
-              <div class="name">Is it led by a pediatric expert?</div>
+              <div class="name">Is it led by a pediatric expert</div>
               <div class="checked--golly"></div>
               <div class="checked"></div>
               <div class="unchecked"></div>
             </div>
             <div class="row">
               <div class="name">
-                Provides actionable, step-by-step guidance?
+                Provides actionable, step-by-step guidance
               </div>
               <div class="checked--golly"></div>
               <div class="checked"></div>
@@ -1822,7 +1822,7 @@
             </div>
             <div class="row">
               <div class="name">
-                Trust-building guarantees (e.g., money-back)?
+                Trust-building guarantees (e.g., money-back)
               </div>
               <div class="checked--golly"></div>
               <div class="unchecked"></div>
@@ -1830,7 +1830,7 @@
             </div>
             <div class="row">
               <div class="name">
-                Includes comprehensive resources (e.g., videos, PDFs)?
+                Includes comprehensive resources (e.g., videos, PDFs)
               </div>
               <div class="checked--golly"></div>
               <div class="unchecked"></div>
