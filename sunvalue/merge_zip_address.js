@@ -254,7 +254,7 @@ var Z = function() {
       const e = (
         /* HTML */
         `<div
-      class="v-center estimate-custom-address os-hide"
+      class="v-center estimate-custom-address"
       id="estimate-custom-address"
     >
       <div class="container text-center">
