@@ -1,6 +1,6 @@
 var Z = function() {
   "use strict";
-  const l = (i, e, t, n = "") => {
+  const p = (i, e, t, n = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
       event_name: i,
@@ -33,7 +33,7 @@ var Z = function() {
       }
     ), a = new IntersectionObserver((d) => {
       d.forEach((r) => {
-        r.isIntersecting ? (l(e, t, "view", n), o.unobserve(r.target)) : o.observe(r.target), a.unobserve(r.target);
+        r.isIntersecting ? (p(e, t, "view", n), o.unobserve(r.target)) : o.observe(r.target), a.unobserve(r.target);
       });
     });
     s.forEach((d) => {
@@ -231,7 +231,7 @@ var Z = function() {
     line-height: 22px;
   }
 }
-`, v = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjbzGiQga-NP-KNnEuJmBWuEdNlZynK0&libraries=places&language=en", p = "entered_address", u = "entered_zipcode", x = "Ensure the address is accurate, including the street name and street number.";
+`, v = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjbzGiQga-NP-KNnEuJmBWuEdNlZynK0&libraries=places&language=en", u = "entered_address", m = "entered_zipcode", x = "Ensure the address is accurate, including the street name and street number.";
   class G {
     constructor({ container: e, position: t }) {
       this.position = t || "beforeend", this.container = e, this.init();
@@ -312,7 +312,7 @@ var Z = function() {
         const n = document.getElementById("os-address-error");
         n && (n.textContent = "");
       }), e.addEventListener("change", () => {
-        l(
+        p(
           "exp_address_input",
           "Input",
           "input",
@@ -320,47 +320,48 @@ var Z = function() {
         );
       }));
       const t = document.querySelector("#os-addresssaving");
-      t && (t.addEventListener("click", (n) => {
-        var g;
+      t && (t.addEventListener("click", async (n) => {
+        var f;
         const s = n.target, o = document.getElementById(
           "os-googleautoaddress"
         ), a = document.getElementById(
           "estimate-custom-address"
         ), d = document.getElementById(
           "zip"
-        ), r = document.getElementById("calculateYourSavings"), f = (s == null ? void 0 : s.dataset.disabled) === "true";
-        if (l(
+        ), r = document.getElementById("calculateYourSavings");
+        let l = (s == null ? void 0 : s.dataset.disabled) === "true";
+        if (p(
           "exp_address_continue",
           "Check eligibility",
           "click",
           "Step 1 - Check if you are eligible by entering your Location"
         ), !o) return;
-        const m = o.value;
-        if (m && !f) {
+        const g = o.value;
+        if (g && !l) {
           a.classList.add("os-hide");
-          const c = sessionStorage.getItem(u) || ((g = document.querySelector("[data-zipcode]")) == null ? void 0 : g.textContent), N = sessionStorage.getItem(p);
+          const c = sessionStorage.getItem(m) || ((f = document.querySelector("[data-zipcode]")) == null ? void 0 : f.textContent), N = sessionStorage.getItem(u);
           if (!c) {
             const S = document.getElementById("os-address-error");
             S && (S.textContent = x);
             return;
           }
-          this.validateZipCode(+c), this.validateAddress(N), d.value = c, r == null || r.click(), B(), l(
+          this.validateZipCode(+c), this.validateAddress(N), B(), l = (s == null ? void 0 : s.dataset.disabled) === "true", l || (d.value = c, r == null || r.click(), p(
             "exp_address_success",
             "Validation Success",
             "success",
             "Step 1 - Check if you are eligible by entering your Location"
-          ), k(v);
-        } else if (!m) {
+          )), k(v);
+        } else if (!g) {
           const c = document.getElementById("os-address-error");
           c && (c.textContent = "Please enter your address");
         }
       }), e.addEventListener("change", async (n) => {
-        if (sessionStorage.removeItem(p), sessionStorage.removeItem(u), !e.dataset.selectedFromAutocomplete && e.value.trim())
+        if (sessionStorage.removeItem(u), sessionStorage.removeItem(m), !e.dataset.selectedFromAutocomplete && e.value.trim())
           try {
             const s = await this.processManuallyEnteredAddress(
               e.value
             ), o = s.zipCode, a = s.formattedAddress;
-            this.validateZipCode(o), this.validateAddress(a), sessionStorage.setItem(p, a), sessionStorage.setItem(u, o);
+            this.validateZipCode(o), this.validateAddress(a), sessionStorage.setItem(u, a), sessionStorage.setItem(m, o);
           } catch (s) {
             console.error("Error processing manually entered address:", s);
           }
@@ -385,10 +386,10 @@ var Z = function() {
         t.geocode({ address: e }, (o, a) => {
           var d;
           if (a === google.maps.GeocoderStatus.OK && (o != null && o[0])) {
-            const r = o[0].address_components, f = o[0].formatted_address, m = (d = r.find(
-              (g) => g.types.includes("postal_code")
+            const r = o[0].address_components, l = o[0].formatted_address, g = (d = r.find(
+              (f) => f.types.includes("postal_code")
             )) == null ? void 0 : d.long_name;
-            n({ addressComponents: r, formattedAddress: f, zipCode: m });
+            n({ addressComponents: r, formattedAddress: l, zipCode: g });
           } else
             s("Geocoding failed due to: " + a);
         });
@@ -407,7 +408,7 @@ var Z = function() {
         const n = t.getPlace(), s = n.address_components, o = n.formatted_address, a = s.find(
           (r) => r.types.includes("postal_code")
         ), d = a == null ? void 0 : a.long_name;
-        d || this.setContinueButtonState(!1), this.validateZipCode(d), this.validateAddress(o), sessionStorage.setItem(p, o), sessionStorage.setItem(u, d);
+        d || this.setContinueButtonState(!1), this.validateZipCode(d), this.validateAddress(o), sessionStorage.setItem(u, o), sessionStorage.setItem(m, d);
       });
     }
     async validateZipCode(e) {
