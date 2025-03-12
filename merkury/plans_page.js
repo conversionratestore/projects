@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const d = `#root {
+  const u = `#root {
   display: none;
 }
 
@@ -107,6 +107,9 @@
   border-radius: 40px;
   background: #37766e;
   margin-bottom: 8px;
+}
+.crs_footer button.disabled {
+  background: #d3d3d3;
 }
 .crs_footer p {
   text-align: center;
@@ -228,6 +231,10 @@
   font-weight: 600;
   color: #333;
   line-height: 24px;
+  display: none;
+}
+.crs_plans_v1 .plans .price.active {
+  display: block;
 }
 .crs_plans_v1 .plans .save {
   width: 100%;
@@ -503,120 +510,120 @@
   line-height: 20px;
   color: #5c687c;
   margin: 4px 0 0;
-}/*# sourceMappingURL=style.css.map */`, l = (a) => new Promise((n) => {
-    const e = document.querySelector(a);
-    e && n(e);
+}/*# sourceMappingURL=style.css.map */`, p = (i) => new Promise((e) => {
+    const n = document.querySelector(i);
+    n && e(n);
     const s = new MutationObserver(() => {
-      const r = document.querySelector(a);
-      r && (n(r), s.disconnect());
+      const o = document.querySelector(i);
+      o && (e(o), s.disconnect());
     });
     s.observe(document.documentElement, {
       childList: !0,
       subtree: !0
     });
-  }), g = ({ name: a, dev: n }) => {
+  }), f = ({ name: i, dev: e }) => {
     console.log(
-      `%c EXP: ${a} (DEV: ${n})`,
+      `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  class p {
-    constructor(n) {
-      this.elements = n instanceof p ? n.elements : typeof n == "string" ? Array.from(document.querySelectorAll(n)) : n instanceof Element ? [n] : Array.isArray(n) ? n : Array.from(n);
+  class c {
+    constructor(e) {
+      this.elements = e instanceof c ? e.elements : typeof e == "string" ? Array.from(document.querySelectorAll(e)) : e instanceof Element ? [e] : Array.isArray(e) ? e : Array.from(e);
     }
-    on(n, e, s) {
-      return typeof e == "function" && (s = e, e = ""), this.elements.forEach(function(r) {
-        r.addEventListener(n, function(o) {
-          var c;
-          if (e !== "") {
-            let f = (c = o.target) == null ? void 0 : c.closest(e);
-            f && (s == null || s.call(f, o));
+    on(e, n, s) {
+      return typeof n == "function" && (s = n, n = ""), this.elements.forEach((o) => {
+        o.addEventListener(e, function(r) {
+          var l;
+          if (n !== "") {
+            let d = (l = r.target) == null ? void 0 : l.closest(n);
+            d && (s == null || s.call(d, r));
           } else
-            s == null || s.call(r, o);
+            s == null || s.call(o, r);
         });
       }), this;
     }
-    addClass(n) {
-      return this.elements.forEach(function(e) {
-        e.classList.add(n);
+    addClass(e) {
+      return this.elements.forEach(function(n) {
+        n.classList.add(e);
       }), this;
     }
-    removeClass(n) {
-      return this.elements.forEach(function(e) {
-        e.classList.remove(n);
+    removeClass(e) {
+      return this.elements.forEach(function(n) {
+        n.classList.remove(e);
       }), this;
     }
-    toggleClass(n) {
-      return this.elements.forEach(function(e) {
-        e.classList.toggle(n);
+    toggleClass(e) {
+      return this.elements.forEach(function(n) {
+        n.classList.toggle(e);
       }), this;
     }
-    each(n) {
-      for (let e of this.elements)
-        n(new p(e), this.elements.indexOf(e));
+    each(e) {
+      for (let n of this.elements)
+        e(new c(n), this.elements.indexOf(n));
       return this;
     }
-    style(n, e) {
-      const s = n.split("-").map((r, o) => o === 0 ? r : r.charAt(0).toUpperCase() + r.slice(1)).join("");
-      return this.elements.forEach(function(r) {
-        r.style[s] = e;
+    style(e, n) {
+      const s = e.split("-").map((o, r) => r === 0 ? o : o.charAt(0).toUpperCase() + o.slice(1)).join("");
+      return this.elements.forEach(function(o) {
+        o.style[s] = n;
       }), this;
     }
-    find(n) {
-      const e = this.elements.map((s) => Array.from(s.querySelectorAll(n)));
-      return new p(e.flat());
+    find(e) {
+      const n = this.elements.map((s) => Array.from(s.querySelectorAll(e)));
+      return new c(n.flat());
     }
-    attr(n, e) {
-      return e ? (this.elements.forEach(function(s) {
-        s.setAttribute(n, e);
-      }), this) : this.elements[0].getAttribute(n);
+    attr(e, n) {
+      return n ? (this.elements.forEach(function(s) {
+        s.setAttribute(e, n);
+      }), this) : this.elements[0].getAttribute(e);
     }
-    text(n) {
-      return n ? (this.elements.forEach(function(e) {
-        e.textContent = n;
+    text(e) {
+      return e ? (this.elements.forEach(function(n) {
+        n.textContent = e;
       }), this) : this.elements[0].textContent || "";
     }
-    html(n) {
-      return n ? (this.elements.forEach(function(e) {
-        e.innerHTML = n;
+    html(e) {
+      return e ? (this.elements.forEach(function(n) {
+        n.innerHTML = e;
       }), this) : this.elements[0].innerHTML;
     }
   }
-  const t = (a) => new p(a), u = (a, n) => {
-    a.style.transition = "height 500ms", a.style.height = "0", setTimeout(() => {
-      a.style.display = "none";
+  const t = (i) => new c(i), g = (i, e) => {
+    i.style.transition = "height 500ms", i.style.height = "0", setTimeout(() => {
+      i.style.display = "none";
     }, 500);
-  }, x = (a, n) => {
-    a.style.transition = "height 500ms", a.style.overflow = "hidden", a.style.display = "block", a.style.height = "auto";
-    const s = a.clientHeight;
-    a.style.height = "0", setTimeout(() => {
-      a.style.height = s + "px";
+  }, h = (i, e) => {
+    i.style.transition = "height 500ms", i.style.overflow = "hidden", i.style.display = "block", i.style.height = "auto";
+    const s = i.clientHeight;
+    i.style.height = "0", setTimeout(() => {
+      i.style.height = s + "px";
     }, 0);
-  }, i = "https://conversionratestore.github.io/projects/merkury/img", h = (
+  }, a = "https://conversionratestore.github.io/projects/merkury/img", m = (
     /* HTML */
     `
   <div class="crs_header">
-    <img src="${i}/head-img.png" alt="head img" />
+    <img src="${a}/head-img.png" alt="head img" />
     <h1>Choose your plan and start your 30-day free trial</h1>
     <ul>
       <li>
         <p>
-          <img src="${i}/msg.svg" alt="message" />
+          <img src="${a}/msg.svg" alt="message" />
           <b>Capture every moment that matters</b>
         </p>
         <p>Capture and review key events with up to 30-days video history</p>
       </li>
       <li>
         <p>
-          <img src="${i}/vide.svg" alt="video" />
-          <b>Always On. Always Watching.</b>
+          <img src="${a}/vide.svg" alt="video" />
+          <b>Real-time alerts, smarter security</b>
         </p>
         <p>Be the first to know with AI-powered detection and smart notifications for motion, people, and pets.</p>
       </li>
     </ul>
   </div>
 `
-  ), m = (
+  ), y = (
     /* HTML */
     `
   <div class="crs_plans_v1">
@@ -628,74 +635,77 @@
     <ul class="plans" data-active="yearly">
       <li>
         <p class="title">Basic</p>
-        <p class="old_price">$4.99/mon</p>
-        <p class="price">$2.99/mo</p>
+        <p class="old_price">$3.99/mo</p>
+        <p class="price yearly active">$3.33/mo</p>
+        <p class="price monthly">$3.99/mo</p>
         <p class="save">Save 20%</p>
       </li>
       <li class="active">
         <p class="title">Plus</p>
-        <p class="old_price">$5.99/mon</p>
-        <p class="price">$4.99/mo</p>
+        <p class="old_price">$5.99/mo</p>
+        <p class="price yearly active">$5.00/mo</p>
+        <p class="price monthly">$5.99/mo</p>
         <p class="save">Save 20%</p>
       </li>
       <li>
         <p class="title">
-          <img src="${i}/fire.svg" alt="fire" />
+          <img src="${a}/fire.svg" alt="fire" />
           Premium
         </p>
-        <p class="old_price">$12.99/mon</p>
-        <p class="price">$10.69/mo</p>
+        <p class="old_price">$12.99/mo</p>
+        <p class="price yearly active">$10.83/mo</p>
+        <p class="price monthly">$12.99/mo</p>
         <p class="save">Save 20%</p>
       </li>
     </ul>
     <div class="features" data-plan="plus">
       <ul class="plan_features">
-        <li>
-          <img src="${i}/camera.svg" alt="camera" />
+        <li data-popup="cameras">
+          <img src="${a}/camera.svg" alt="camera" />
           <p>Support up to: <b>2 cameras</b></p>
         </li>
-        <li>
-          <img src="${i}/video-file.svg" alt="video-file" />
+        <li data-popup="storage">
+          <img src="${a}/video-file.svg" alt="video-file" />
           <p>Store video history <b>for 14 days</b></p>
         </li>
-        <li>
-          <img src="${i}/load.svg" alt="download" />
+        <li data-popup="download">
+          <img src="${a}/load.svg" alt="download" />
           <p>Download and share recordings</p>
         </li>
-        <li class="plus">
-          <img src="${i}/detect.svg" alt="detect" />
+        <li class="plus" data-popup="detect">
+          <img src="${a}/detect.svg" alt="detect" />
           <p>Person/pet/vehicle detection</p>
         </li>
-        <li class="plus">
-          <img src="${i}/notify.svg" alt="notify" />
+        <li class="plus" data-popup="notify">
+          <img src="${a}/notify.svg" alt="notify" />
           <p>Enhanced notifications</p>
         </li>
-        <li class="premium">
-          <img src="${i}/help.svg" alt="help" />
+        <li class="premium" data-popup="help">
+          <img src="${a}/help.svg" alt="help" />
           <p>Send help</p>
         </li>
       </ul>
       <div class="basic_features">
-        <p>Available on free plans</p>
+        <p>Available in free and paid plans</p>
         <ul>
-          <li>
-            <img src="${i}/motion.svg" alt="motion" />
+          <li data-popup="motion">
+            <img src="${a}/motion.svg" alt="motion" />
             <p>Motion notifications</p>
           </li>
-          <li>
-            <img src="${i}/zones.svg" alt="zones" />
+          <li data-popup="zones">
+            <img src="${a}/zones.svg" alt="zones" />
             <p>Active motion zones</p>
           </li>
-          <li>
-            <img src="${i}/stream.svg" alt="stream" />
+          <li data-popup="stream">
+            <img src="${a}/stream.svg" alt="stream" />
             <p>Live stream</p>
           </li>
-          <li>
-            <img src="${i}/talk.svg" alt="talk" />
+          <li data-popup="talk">
+            <img src="${a}/talk.svg" alt="talk" />
             <p>Two way talk</p>
           </li>
-          <li>
-            <img src="${i}/schedules.svg" alt="schedules" />
+          <li data-popup="schedules">
+            <img src="${a}/schedules.svg" alt="schedules" />
             <p>Rules and schedules</p>
           </li>
         </ul>
@@ -704,26 +714,28 @@
     </div>
   </div>
 `
-  ), b = (
+  ), x = (
     /* HTML */
     `
   <div class="crs_reviews">
     <div class="top">
-      <img src="${i}/left-l.svg" alt="l" />
+      <img src="${a}/left-l.svg" alt="l" />
       <p>
-        <img src="${i}/stars.svg" alt="satrs" />
-        <span><b>Rated 4.85</b> from <b>285</b> reviews</span>
+        <img src="${a}/stars.svg" alt="satrs" />
+        <span><b>Rated 4.75</b> from <b>19,750</b> reviews</span>
       </p>
-      <img src="${i}/right-l.svg" alt="r" />
+      <img src="${a}/right-l.svg" alt="r" />
     </div>
     <div class="review">
       <div>
-        <img src="${i}/user.svg" alt="user" />
-        <img src="${i}/quotes.svg" alt="quotes" />
+        <img src="${a}/user.svg" alt="user" />
+        <img src="${a}/quotes.svg" alt="quotes" />
       </div>
       <p>
-        A smart house makes life so easy! I can control lights, temperature, and security from my phone. Automation
-        saves time, and energy-efficient features are great.
+        Having a home security system gives me real peace of mind! With the subscription, I can check live footage
+        anytime, store important video clips, and get instant alerts when motion is detected. It’s easy to use, and
+        knowing I can always look back at recordings makes me feel safer. Whether I’m watching over my pets, keeping an
+        eye on my home while traveling, or making sure my family is protected, this service is totally worth it!
       </p>
     </div>
   </div>
@@ -745,14 +757,14 @@
       <li>
         <span></span>
         <p>
-          <b>Day 30</b><br />Love what you see? 29 December your subscription will continue seamlessly for uninterrupted
-          safety. Cancel anytime.
+          <b>Day 30</b><br />Love what you see? Your subscription will continue seamlessly for uninterrupted safety.
+          Cancel anytime.
         </p>
       </li>
     </ul>
   </div>
 `
-  ), y = (
+  ), b = (
     /* HTML */
     `
   <div class="crs_footer">
@@ -762,81 +774,163 @@
 `
   ), _ = (
     /* HTML */
+    ' <div class="crs_popup"></div> '
+  ), w = (i) => (
+    /* HTML */
     `
-  <div class="crs_popup">
     <div class="indicator"></div>
     <div class="title">
-      <img src="${i}/video-file.svg" alt="video-file" />
-      <p>Store video history <b>for 14 days</b></p>
+      <img src="${a}/${i.img}" alt="video-file" />
+      <p>${i.title}</p>
     </div>
     <ul>
       <li>
         <p>
-          <img src="${i}/load.svg" alt="load" />
-          <b>Download and share recordings</b>
+          <b>${i.subTitle}</b>
         </p>
-        <p>Video history for quick reviews. Download and share recordings anytime.</p>
+        <p>${i.text}</p>
       </li>
     </ul>
-  </div>
-`
-  );
-  g({ name: "Exp - Plans Page", dev: "YK" });
-  class w {
+  `
+  ), k = {
+    cameras: {
+      img: "camera.svg",
+      title: "Support up to <b><span></span> Cameras</b>",
+      subTitle: "Total Coverage, One App",
+      text: "Manage all your cameras from one place, keeping every angle of your home secure without the hassle."
+    },
+    storage: {
+      img: "video-file.svg",
+      title: "Store video history for <b><span></span> days</b>",
+      subTitle: "Never Miss a Moment",
+      text: "Access a full <span></span> days of past recordings to review key events, keep an eye on your home, and have proof when you need it most"
+    },
+    download: {
+      img: "load.svg",
+      title: "Download and share recordings",
+      subTitle: "Save & Share Instantly",
+      text: " Easily download clips and share them with family, neighbors, or authorities to stay informed and protected."
+    },
+    detect: {
+      img: "detect.svg",
+      title: "Person/pet/vehicle detection",
+      subTitle: "Get Alerts That Matter to You",
+      text: "Customize your notifications to focus on what's important. Choose to receive alerts for people, pets, or vehicles—so you're only notified about the activity that matters most to you. Stay informed without unnecessary distractions."
+    },
+    notify: {
+      img: "notify.svg",
+      title: "Enhanced Notifications with Previews",
+      subTitle: "See Before You Tap",
+      text: "Get a snapshot and video preview in your alerts, so you know what's happening at a glance—without opening the app."
+    },
+    help: {
+      img: "help.svg",
+      title: "Send help. Quick Emergency Assistance",
+      subTitle: "Help, Just a Tap Away",
+      text: "Instantly request police, fire, or medical assistance for ultimate peace of mind, no matter where you are."
+    },
+    motion: {
+      img: "motion.svg",
+      title: "Motion Notifications",
+      subTitle: "Stay Alert, Instantly",
+      text: "Get real-time alerts whenever motion is detected, so you never miss a moment that matters. Whether it's a visitor at your door or unexpected movement while you're away, instant notifications keep you informed and in control."
+    },
+    zones: {
+      img: "zones.svg",
+      title: "Active Motion Zones",
+      subTitle: "Focus on What Matters",
+      text: "Customize your motion detection zones to reduce unnecessary alerts. Highlight areas that need monitoring—like your front door or driveway—while ignoring others, so you only get notified about what truly matters."
+    },
+    stream: {
+      img: "stream.svg",
+      title: "Live Stream",
+      subTitle: "Check In Anytime, Anywhere",
+      text: "See what's happening at home in real time with a high-quality live stream. Whether you're at work or on vacation, stay connected and ensure everything is safe with just a tap."
+    },
+    talk: {
+      img: "talk.svg",
+      title: "Two-way Talk",
+      subTitle: "Hear and Be Heard",
+      text: "Communicate directly through your camera with built-in two-way talk. Greet guests, give instructions to delivery drivers, or even deter unwanted visitors—no matter where you are."
+    },
+    schedules: {
+      img: "schedules.svg",
+      title: "Rules and Schedules",
+      subTitle: "Automate for Peace of Mind",
+      text: "Set custom rules and schedules to match your routine. Turn motion detection on or off at specific times or create automations that fit your schedule for a smarter, hassle-free experience."
+    }
+  };
+  f({ name: "Exp - Plans Page", dev: "YK" });
+  class C {
     constructor() {
-      this.init();
+      this._selection = !1, this.init();
     }
     async init() {
       this.observer(), this.render();
     }
     async render() {
       var s;
-      await l("#root");
-      const n = t("body").elements[0];
-      n.insertAdjacentHTML("afterbegin", `<style class="crs_style">${d}</style>`), (s = n.querySelector("#root")) == null || s.insertAdjacentHTML("afterend", '<div id="crs_plans_page"></div>'), await l("#crs_plans_page");
-      const e = t("#crs_plans_page").elements[0];
-      e.insertAdjacentHTML("beforeend", h), e.insertAdjacentHTML("beforeend", m), e.insertAdjacentHTML("beforeend", b), e.insertAdjacentHTML("beforeend", v), e.insertAdjacentHTML("beforeend", y), e.insertAdjacentHTML("beforeend", _), e.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), this.addEvents(), l(".MuiTab-wrapper").then(() => {
-        t(".MuiTab-wrapper").elements[1].click(), t(".dash-carousel .jss39").elements[0].click();
+      await p("#root");
+      const e = t("body").elements[0];
+      e.insertAdjacentHTML("afterbegin", `<style class="crs_style">${u}</style>`), (s = e.querySelector("#root")) == null || s.insertAdjacentHTML("afterend", '<div id="crs_plans_page"></div>'), await p("#crs_plans_page");
+      const n = t("#crs_plans_page").elements[0];
+      n.insertAdjacentHTML("beforeend", m), n.insertAdjacentHTML("beforeend", y), n.insertAdjacentHTML("beforeend", x), n.insertAdjacentHTML("beforeend", v), n.insertAdjacentHTML("beforeend", b), n.insertAdjacentHTML("beforeend", _), n.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), this.addEvents(), p(".MuiTab-wrapper").then(() => {
+        t(".MuiTab-wrapper").elements[1].click(), this.selectPlan("plus");
       });
     }
     addEvents() {
-      t(".crs_tabs span").on("click", (n) => {
-        const e = n.target, s = e.getAttribute("data-type");
-        t(".crs_tabs span").removeClass("active"), e.classList.add("active"), t(".crs_tabs").attr("data-active", s || ""), t(".plans").attr("data-active", s || ""), t(".MuiTab-wrapper").elements[s === "monthly" ? 0 : 1].click();
-      }), t(".plans li").on("click", (n) => {
-        var r, o;
-        const e = n.target.closest("li");
-        t(".plans li").removeClass("active"), e.classList.add("active");
-        const s = ((o = (r = e.querySelector(".title")) == null ? void 0 : r.textContent) == null ? void 0 : o.toLowerCase()) || "";
+      t(".crs_tabs span").on("click", (e) => {
+        const n = e.target, s = n.getAttribute("data-type");
+        t(".crs_tabs span").removeClass("active"), n.classList.add("active"), t(".crs_tabs").attr("data-active", s || ""), t(".plans").attr("data-active", s || ""), s === "monthly" ? (t(".price.active").removeClass("active"), t(".price.monthly").addClass("active")) : (t(".price.active").removeClass("active"), t(".price.yearly").addClass("active")), t(".MuiTab-wrapper").elements[s === "monthly" ? 0 : 1].click(), this.selectPlan(t(".plans li.active .title").text().toLowerCase().trim());
+      }), t(".plans li").on("click", (e) => {
+        var o, r;
+        if (this.selection) return;
+        const n = e.target.closest("li");
+        t(".plans li").removeClass("active"), n.classList.add("active");
+        const s = ((r = (o = n.querySelector(".title")) == null ? void 0 : o.textContent) == null ? void 0 : r.toLowerCase().trim()) || "";
         t(".features").attr("data-plan", s), t(".features > ul li:first-of-type b").text(
           s === "basic" ? "1 camera" : s === "plus" ? "2 cameras" : "10 cameras"
         ), t(".features > ul li:nth-of-type(2) b").text(
           s === "basic" ? " for 2 days" : s === "plus" ? "for 14 days" : "for 30 days"
         ), this.selectPlan(s);
       }), t(".see_all").on("click", () => {
-        t(".see_all").text().includes("+") ? (x(t(".basic_features").elements[0]), t(".see_all").text("- hide all features")) : (u(t(".basic_features").elements[0]), t(".see_all").text("+ see all features"));
-      }), t(".features li").on("click", (n) => {
-        t(".dark_bg").addClass("active"), t(".crs_popup").addClass("active");
-      }), t(".dark_bg, .crs_popup .indicator").on("click", (n) => {
+        t(".see_all").text().includes("+") ? (h(t(".basic_features").elements[0]), t(".see_all").text("- hide all features")) : (g(t(".basic_features").elements[0]), t(".see_all").text("+ see all features"));
+      }), t(".features li").on("click", (e) => {
+        var r;
+        const n = ((r = e.target.closest("li")) == null ? void 0 : r.getAttribute("data-popup")) || "cameras";
+        t(".crs_popup").html(w(k[n]));
+        const s = t(".features").attr("data-plan") || "basic";
+        let o = 0;
+        n === "cameras" && (o = s === "basic" ? 1 : s === "plus" ? 2 : 10), n === "storage" && (o = s === "basic" ? 2 : s === "plus" ? 14 : 30), t(".crs_popup p span").each((l, d) => {
+          l.text(o.toString());
+        }), t(".dark_bg").addClass("active"), t(".crs_popup").addClass("active");
+      }), t(".dark_bg, .crs_popup .indicator").on("click", (e) => {
         t(".dark_bg").removeClass("active"), t(".crs_popup").removeClass("active");
       }), t(".crs_footer button").on("click", () => {
-        t(".MuiCardActions-root button").elements[0].click(), t("#geeni-next-btn").elements[0] && t("#geeni-next-btn").elements[0].click();
+        this.selection || (t(".MuiCardActions-root button").elements[0].click(), t("#geeni-next-btn").elements[0] && t("#geeni-next-btn").elements[0].click());
       });
     }
-    async selectPlan(n) {
-      var s, r, o;
-      console.log("selectPlan", n), await l('button[aria-label="Next"]');
-      let e = ((s = t(".MuiCardContent-root>p").elements[0].textContent) == null ? void 0 : s.toLowerCase().trim()) || "";
-      for (; e !== n.trim(); )
-        t('button[aria-label="Next"]').elements[0].click(), await l(".MuiCardContent-root>p"), await new Promise((c) => setTimeout(c, 700)), e = ((o = (r = t(".MuiCardContent-root>p").elements[0]) == null ? void 0 : r.textContent) == null ? void 0 : o.toLowerCase().trim()) || "", console.log(e);
+    async selectPlan(e) {
+      var s, o, r, l;
+      await p('button[aria-label="Next"]');
+      let n = ((o = (s = t(".MuiCardContent-root>p").elements[0]) == null ? void 0 : s.textContent) == null ? void 0 : o.toLowerCase().trim()) || "";
+      for (; n !== e.trim(); )
+        this.selection = !0, t('button[aria-label="Next"]').elements[0].click(), await p(".MuiCardContent-root>p"), await new Promise((d) => setTimeout(d, 700)), n = ((l = (r = t(".MuiCardContent-root>p").elements[0]) == null ? void 0 : r.textContent) == null ? void 0 : l.toLowerCase().trim()) || "";
+      this.selection = !1;
     }
     observer() {
-      const n = new MutationObserver(() => {
-        window.location.pathname === "/plans" ? t(".crs_style").elements[0] || (console.log("plans page"), n.disconnect(), t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${d}</style>`), t("#crs_plans_page").style("display", "block")) : t(".crs_style").elements[0] && (console.log("not plans page"), n.disconnect(), t("#crs_plans_page").style("display", "none"), t(".crs_style").elements[0].remove()), n.observe(document.body, { childList: !0, subtree: !0 });
+      const e = new MutationObserver(() => {
+        window.location.pathname === "/plans" ? t(".crs_style").elements[0] || (console.log("plans page"), e.disconnect(), t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${u}</style>`), t("#crs_plans_page").style("display", "block")) : t(".crs_style").elements[0] && (console.log("not plans page"), e.disconnect(), t("#crs_plans_page").style("display", "none"), t(".crs_style").elements[0].remove()), e.observe(document.body, { childList: !0, subtree: !0 });
       });
-      n.observe(document.body, { childList: !0, subtree: !0 });
+      e.observe(document.body, { childList: !0, subtree: !0 });
+    }
+    set selection(e) {
+      this._selection = e, e ? t(".crs_footer button").addClass("disabled") : t(".crs_footer button").removeClass("disabled");
+    }
+    get selection() {
+      return this._selection;
     }
   }
-  window.innerWidth < 768 && new w();
+  window.innerWidth < 768 && new C();
 })();
 //# sourceMappingURL=index.js.map
