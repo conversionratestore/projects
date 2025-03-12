@@ -1815,7 +1815,7 @@
               <div class="unchecked"></div>
             </div>
             <div class="row">
-              <div class="name">Accessible 24/7?</div>
+              <div class="name">Accessible 24/7</div>
               <div class="checked--golly"></div>
               <div class="unchecked"></div>
               <div class="checked"></div>
