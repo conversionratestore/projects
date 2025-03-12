@@ -462,7 +462,7 @@ var Z = function() {
             o == null || o.click(), n.dataset.addressEntered = "false";
             return;
           }
-          console.log("next", s), console.log("slideIndex", i), s == null || s.click(), n.dataset.addressEntered = "true";
+          s == null || s.click(), n.dataset.addressEntered = "true";
         }
       }));
     }
