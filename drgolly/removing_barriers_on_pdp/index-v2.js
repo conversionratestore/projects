@@ -32,7 +32,7 @@
       });
     });
   }
-  const h = (s, n, e, t) => {
+  const m = (s, n, e, t) => {
     let i = [];
     if (typeof s == "string")
       i = document.querySelectorAll(s);
@@ -1155,12 +1155,12 @@
       e && (e.innerHTML = n);
     }
     eventListeners() {
-      h(
+      m(
         "#crs-bundle-section",
         "exp_pdp_imp__view_06",
         "Bundle & Save 2",
         "Bundle & Save 2"
-      ), h(
+      ), m(
         "#crs-bundle-section .bundle-includes",
         "exp_pdp_imp__view_07",
         "Bundle includes 2",
@@ -1819,7 +1819,7 @@
             ".single_add_to_cart_button"
           );
           t == null || t.click(), l("exp_pdp_imp__button_08", "Buy now", "click", "Dr.Golly vs other baby sleep products");
-        }), h(".crs-compare-section", "exp_pdp_imp__view_04", "Dr.Golly vs other baby sleep products", "Dr.Golly vs other baby sleep products");
+        }), m(".crs-compare-section", "exp_pdp_imp__view_04", "Dr.Golly vs other baby sleep products", "Dr.Golly vs other baby sleep products");
       });
     }
     addStyles() {
@@ -1827,7 +1827,7 @@
       n.innerHTML = B, document.head.append(n);
     }
   }
-  const u = (s) => {
+  const h = (s) => {
     var i;
     if (!s || s.length === 0) return s;
     const n = (i = s.match(/^[^\d]+/)) == null ? void 0 : i[0];
@@ -2441,7 +2441,7 @@
         <div class="buy-now">
           <button type="button" data-button="buy-now">
             <span>Buy now</span><span class="dot">•</span
-            ><span>${u(e || "")}</span>
+            ><span>${h(e || "")}</span>
           </button>
         </div>
         <div class="description">Less than the cost of a sleepless night!</div>
@@ -2464,7 +2464,7 @@
           e.remove();
           const o = document.createElement("iframe");
           o.src = "https://player.vimeo.com/video/1063365081?autoplay=1", o.allow = "autoplay", o.allowFullscreen = !0, i.appendChild(o), i.style.display = "block";
-        }), h(
+        }), m(
           ".crs-video-section",
           "exp_pdp_imp__view_02",
           "2 min video",
@@ -2515,7 +2515,7 @@
       </div>
     </div>`
       ), e = document.querySelector("#crs-course-help");
-      e == null || e.insertAdjacentHTML("beforeend", n), h(
+      e == null || e.insertAdjacentHTML("beforeend", n), m(
         ".crs-result",
         "exp_pdp_imp__view_03",
         "When will I see results from the program?",
@@ -2527,7 +2527,7 @@
       n.innerHTML = P, document.head.append(n);
     }
   }
-  const m = {
+  const u = {
     "0-4 weeks": "/baby-sleep-program/newborns-0-4-weeks/",
     "4-16 weeks": "/baby-sleep-program/little-baby-4-16-weeks/",
     "4-8 months": "/baby-sleep-program/big-baby-4-8-months/",
@@ -2696,7 +2696,7 @@
         const i = t.querySelector("h2");
         return i && ((o = i.textContent) == null ? void 0 : o.includes("What’s covered in"));
       });
-      e && (e.classList.add("crs-different-section"), e.setAttribute("id", "crs-different-section"), h(
+      e && (e.classList.add("crs-different-section"), e.setAttribute("id", "crs-different-section"), m(
         "#crs-different-section",
         "exp_pdp_imp__view_05",
         "What Makes Dr. Golly Different?",
@@ -3259,14 +3259,45 @@ dialog.crs-popup .et_pb_section  + .et_pb_section  {
   }
 }
 
-body.et-db #page-container #et-boc .et-l .et_pb_section .et_pb_wc_add_to_cart_0_tb_body button.single_add_to_cart_button {
-  background-color: #095D66 !important;
-  border-color: #095D66 !important;
+.et_pb_wc_description_0_tb_body p {
+  color: #3c3c3b !important;
+  font-family: Raleway;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 24px !important; /* 150% */
 }
 
-body.et-db #page-container #et-boc .et-l .et_pb_section .et_pb_wc_add_to_cart_0_tb_body button.single_add_to_cart_button:hover {
-  background-color:  rgba(10, 105, 116, 0.9) !important;
-  border-color: #095D66 !important;
+@media (max-width: 767px) {
+  .et_pb_wc_description_0_tb_body {
+    margin-bottom: 12px !important;
+  }
+  .et_pb_wc_description_0_tb_body p {
+    color: #3c3c3b;
+    font-size: 18px !important;
+    line-height: 28px !important ; /* 155.556% */
+  }
+}
+
+body.et-db
+  #page-container
+  #et-boc
+  .et-l
+  .et_pb_section
+  .et_pb_wc_add_to_cart_0_tb_body
+  button.single_add_to_cart_button {
+  background-color: #095d66 !important;
+  border-color: #095d66 !important;
+}
+
+body.et-db
+  #page-container
+  #et-boc
+  .et-l
+  .et_pb_section
+  .et_pb_wc_add_to_cart_0_tb_body
+  button.single_add_to_cart_button:hover {
+  background-color: rgba(10, 105, 116, 0.9) !important;
+  border-color: #095d66 !important;
   color: #fff !important;
 }
 
@@ -3454,7 +3485,7 @@ body.product-template-default
       );
       const e = await c(
         ".text__product-custom-description  ul"
-      ), i = (a = Object.entries(m).find(
+      ), i = (a = Object.entries(u).find(
         ([d, p]) => n.includes(p)
       )) == null ? void 0 : a[0];
       if (!i) return;
@@ -3549,7 +3580,7 @@ body.product-template-default
       if (n) {
         const e = n.textContent;
         if (!e) return;
-        n.textContent = u(e);
+        n.textContent = h(e);
       }
     }
     addStyles() {
@@ -3693,7 +3724,7 @@ body.is-crs-sticky .grecaptcha-badge {
           <div class="buy">
             <button type="button" data-button="sticky-buy">
               <span>Buy now</span><span class="dot">•</span
-              ><span>${u(e)}</span>
+              ><span>${h(e)}</span>
             </button>
           </div>
         </div>
@@ -3747,7 +3778,7 @@ body.is-crs-sticky .grecaptcha-badge {
     }
     init() {
       const n = window.location.pathname;
-      Object.entries(m).some(
+      Object.entries(u).some(
         ([i, o]) => n.includes(o)
       ) && (new Z(), new y(), new S(), new $(), new M(), new E(), new A(), new k(), new F());
     }
