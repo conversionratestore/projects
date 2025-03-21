@@ -2218,14 +2218,14 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
     )).join("")}
     </ul>
   `
-  ), O = `.usp-banner-item a[href="/pages/customer-review"] {
+  ), O = `.usp-banner-item a[href='/pages/customer-review'] {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 22.5px;
 }
-.usp-banner-item a[href="/pages/customer-review"] span {
+.usp-banner-item a[href='/pages/customer-review'] span {
   text-decoration: underline;
 }
 
@@ -2236,6 +2236,10 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   #clerk1 > div {
     margin: 32px 0 20px !important;
   }
+}
+
+.free_delivery p span {
+  margin-left: 5px;
 }
 
 @media (max-width: 768px) {
@@ -2278,7 +2282,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   }
 }
 .breadcrumbs li a {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
@@ -2313,9 +2317,9 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .breadcrumbs .breadcrumb-separator::before {
   position: absolute;
-  content: "/";
+  content: '/';
   color: #003068;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -2384,7 +2388,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
     text-align: center;
     cursor: pointer;
   }
-  #ProductSection-product-template .slider_block .slider_arrow[aria-disabled=true] {
+  #ProductSection-product-template .slider_block .slider_arrow[aria-disabled='true'] {
     opacity: 0.4;
   }
   #ProductSection-product-template .slider_block .slider_arrow.prev_btn svg {
@@ -2409,7 +2413,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
     z-index: 1;
     display: flex;
   }
-  #ProductSection-product-template .slider_block .slider_arrow[aria-disabled=true] {
+  #ProductSection-product-template .slider_block .slider_arrow[aria-disabled='true'] {
     opacity: 0.4;
   }
   #ProductSection-product-template .slider_block .slider_arrow.prev_btn {
@@ -2494,38 +2498,72 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   display: block !important;
 }
 @media (min-width: 768px) {
-  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails {
+  .product-template__container
+    > .product-section
+    .product-image-section
+    div[data-thumbnail-slider].old_slider
+    .product-single__thumbnails {
     margin: 10px 0;
   }
-  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-slider-track {
+  .product-template__container
+    > .product-section
+    .product-image-section
+    div[data-thumbnail-slider].old_slider
+    .product-single__thumbnails-slider-track {
     gap: 20px 10px;
     justify-content: center;
   }
-  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium {
+  .product-template__container
+    > .product-section
+    .product-image-section
+    div[data-thumbnail-slider].old_slider
+    .product-single__thumbnails-item--medium {
     flex: 0 0 15.19%;
     padding: 0;
   }
 }
 @media (min-width: 768px) and (max-width: 1200px) {
-  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium {
+  .product-template__container
+    > .product-section
+    .product-image-section
+    div[data-thumbnail-slider].old_slider
+    .product-single__thumbnails-item--medium {
     flex: 0 0 18%;
   }
 }
 @media (min-width: 768px) and (max-width: 970px) {
-  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium {
+  .product-template__container
+    > .product-section
+    .product-image-section
+    div[data-thumbnail-slider].old_slider
+    .product-single__thumbnails-item--medium {
     flex: 0 0 23%;
   }
 }
 @media (min-width: 768px) {
-  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium .product-single__thumbnail {
+  .product-template__container
+    > .product-section
+    .product-image-section
+    div[data-thumbnail-slider].old_slider
+    .product-single__thumbnails-item--medium
+    .product-single__thumbnail {
     margin: 0;
   }
-  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .product-single__thumbnails-item--medium .product-single__thumbnail-image {
+  .product-template__container
+    > .product-section
+    .product-image-section
+    div[data-thumbnail-slider].old_slider
+    .product-single__thumbnails-item--medium
+    .product-single__thumbnail-image {
     padding: 0;
   }
 }
 @media (max-width: 768px) {
-  .product-template__container > .product-section .product-image-section div[data-thumbnail-slider].old_slider .thumbnails-wrapper {
+  .product-template__container
+    > .product-section
+    .product-image-section
+    div[data-thumbnail-slider].old_slider
+    .thumbnails-wrapper {
     margin: 0 0 20px;
   }
 }
@@ -2561,7 +2599,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .product-template__container > .product-section .detail_page_padding .hide-below-large .product-page-vendor {
   color: #a0a0a0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -2569,7 +2607,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .product-template__container > .product-section .detail_page_padding .hide-below-large .product-single__title {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 28px;
   font-weight: 600;
   line-height: 36px;
@@ -2578,7 +2616,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .product-template__container > .product-section .detail_page_padding .product-page-sku {
   position: initial !important;
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -2614,7 +2652,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   flex-wrap: wrap;
   position: relative;
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -2629,12 +2667,12 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .product-template__container > .product-section .detail_page_padding .product-page-sku > div p::before {
   position: absolute;
-  content: "";
+  content: '';
   left: 0;
   top: -5px;
   width: 30px;
   height: 24px;
-  background: url("https://conversionratestore.github.io/projects/roofing4us/img/delivery_truck_icon.svg") no-repeat;
+  background: url('https://conversionratestore.github.io/projects/roofing4us/img/delivery_truck_icon.svg') no-repeat;
   background-size: cover;
 }
 @media (max-width: 768px) {
@@ -2650,7 +2688,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   border: 1px solid #ebeced;
   background: #8097b3;
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
@@ -2678,7 +2716,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .product-template__container > .product-section .product-atc-section .product__price .price__regular {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 24px;
   font-weight: 700;
   line-height: 32px;
@@ -2703,7 +2741,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .product-template__container > .product-section .product-atc-section .product-form .product-form__item label {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -2716,7 +2754,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   padding-bottom: 12px;
   padding-left: 19px;
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -2729,77 +2767,226 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .product-template__container > .product-section .product-atc-section .product-form .product-form__item input {
   min-height: 46px;
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__item .cart__qty.quantity-box {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__item
+  .cart__qty.quantity-box {
   align-items: center;
   margin-top: 10px;
 }
 @media (max-width: 768px) {
-  .product-template__container > .product-section .product-atc-section .product-form .product-form__item .cart__qty.quantity-box {
+  .product-template__container
+    > .product-section
+    .product-atc-section
+    .product-form
+    .product-form__item
+    .cart__qty.quantity-box {
     margin-top: 24px;
   }
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__item .cart__qty.quantity-box .cart-qtyplus,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__item .cart__qty.quantity-box .cart-qtyminus {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__item
+  .cart__qty.quantity-box
+  .cart-qtyplus,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__item
+  .cart__qty.quantity-box
+  .cart-qtyminus {
   height: 46px;
 }
 .product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group {
   gap: 16px;
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group:nth-of-type(1) {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group:nth-of-type(1) {
   margin-right: 32px;
 }
 @media (max-width: 768px) {
-  .product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group:nth-of-type(1) {
+  .product-template__container
+    > .product-section
+    .product-atc-section
+    .product-form
+    .product-form__controls-group:nth-of-type(1) {
     width: 100%;
     gap: 16px;
     margin: 0;
   }
-  .product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group:nth-of-type(1).label_parent {
+  .product-template__container
+    > .product-section
+    .product-atc-section
+    .product-form
+    .product-form__controls-group:nth-of-type(1).label_parent {
     width: auto;
   }
-  .product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group:nth-of-type(1) > div {
+  .product-template__container
+    > .product-section
+    .product-atc-section
+    .product-form
+    .product-form__controls-group:nth-of-type(1)
+    > div {
     width: calc((100% - 16px) / 2);
     flex: 1;
   }
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_color,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_length,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness_first,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_size {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_color,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_length,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_thickness_first,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_thickness,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_size {
   max-width: 129px;
   min-width: 129px;
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_color select,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_length select,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness_first select,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness select,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_size select {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_color
+  select,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_length
+  select,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_thickness_first
+  select,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_thickness
+  select,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_size
+  select {
   width: 100%;
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_color:last-child,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_length:last-child,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness_first:last-child,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness:last-child,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_size:last-child {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_color:last-child,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_length:last-child,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_thickness_first:last-child,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_thickness:last-child,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_size:last-child {
   max-width: 100%;
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness_first,
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_color_first {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_thickness_first,
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_color_first {
   min-width: 243px;
 }
 @media (max-width: 768px) {
-  .product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness_first,
-  .product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_color_first {
+  .product-template__container
+    > .product-section
+    .product-atc-section
+    .product-form
+    .product-form__controls-group
+    .label_thickness_first,
+  .product-template__container
+    > .product-section
+    .product-atc-section
+    .product-form
+    .product-form__controls-group
+    .label_color_first {
     min-width: 202px;
     max-width: 202px !important;
   }
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group
+  .label_thickness {
   min-width: 209px;
 }
 @media (max-width: 768px) {
-  .product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group .label_thickness {
+  .product-template__container
+    > .product-section
+    .product-atc-section
+    .product-form
+    .product-form__controls-group
+    .label_thickness {
     min-width: initial;
   }
 }
@@ -2808,11 +2995,20 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
     gap: 14px;
   }
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group--submit {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group--submit {
   margin-top: 16px;
   width: 100%;
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group--submit .product-form__item--submit {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group--submit
+  .product-form__item--submit {
   display: flex;
   gap: 16px 20px;
   flex-wrap: wrap;
@@ -2820,11 +3016,22 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   padding: 0;
 }
 @media (max-width: 768px) {
-  .product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group--submit .product-form__item--submit {
+  .product-template__container
+    > .product-section
+    .product-atc-section
+    .product-form
+    .product-form__controls-group--submit
+    .product-form__item--submit {
     gap: 0;
   }
 }
-.product-template__container > .product-section .product-atc-section .product-form .product-form__controls-group--submit .product-form__item--submit > div {
+.product-template__container
+  > .product-section
+  .product-atc-section
+  .product-form
+  .product-form__controls-group--submit
+  .product-form__item--submit
+  > div {
   margin: 0 !important;
 }
 
@@ -2846,7 +3053,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .description-related-products > h3 {
   color: #101010;
   text-align: left;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -2876,7 +3083,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .description-related-products > a .desc-pp-section > div > h3 {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: 22px;
@@ -2885,7 +3092,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .description-related-products > a .desc-pp-section > div > p {
   color: #101010 !important;
-  font-family: "Poppins", sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   font-size: 12px !important;
   font-weight: 400 !important;
   line-height: 20px !important;
@@ -2907,7 +3114,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   width: -moz-max-content;
   width: max-content;
   color: #003068;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: 22px;
@@ -3017,7 +3224,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .anchor_menu .anchor_menu_list .anchor_menu_item .anchor_menu_link span {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
@@ -3048,7 +3255,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .key_selling_points_block .key_selling_points_list .key_selling_points_item h3 {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 700;
   line-height: 20px;
@@ -3056,7 +3263,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .key_selling_points_block .key_selling_points_list .key_selling_points_item p {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: 400;
   line-height: 19px;
@@ -3097,7 +3304,8 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
     top: 20px;
     left: 16px;
     z-index: 2;
-    background: linear-gradient(90deg, rgba(19, 163, 96, 0.12) 45%, rgba(19, 163, 96, 0) 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.9) 42%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(90deg, rgba(19, 163, 96, 0.12) 45%, rgba(19, 163, 96, 0) 100%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.9) 42%, rgba(255, 255, 255, 0) 100%);
     margin: 0;
   }
 }
@@ -3108,7 +3316,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .bought_so_far_block p {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -3146,7 +3354,8 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   width: 25px;
   height: 25px;
 }
-.in_stock_block .in_stock_icon:before, .in_stock_block .in_stock_icon:after {
+.in_stock_block .in_stock_icon:before,
+.in_stock_block .in_stock_icon:after {
   width: 9px;
   height: 9px;
   background: #13a360;
@@ -3154,7 +3363,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   position: absolute;
   left: 0;
   top: 0;
-  content: "";
+  content: '';
   margin: 8px;
 }
 .in_stock_block .in_stock_icon:before {
@@ -3171,7 +3380,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .in_stock_block p {
   color: #13a360;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -3207,7 +3416,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   min-height: 44px;
   max-height: 44px;
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -3217,7 +3426,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .product-single__meta.callforprice_meta .call_F_P_tag2.cfp_note {
   margin: 0 0 -32px !important;
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -3269,7 +3478,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .new_product_sales_points_block .new_product_sales_points_list .new_product_sales_points_item p {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -3329,7 +3538,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .one_review_block .info_wrapper .info_descr {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
@@ -3350,7 +3559,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .one_review_block .info_wrapper .name_stars_wrapper .name_stars_container .name_review {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: 22px;
@@ -3368,7 +3577,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .one_review_block .info_wrapper .name_stars_wrapper .name_stars_container .stars_summary span {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 22.5px;
@@ -3383,7 +3592,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .one_review_block .info_wrapper .all_reviews_link {
   color: #003068;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: 22px;
@@ -3409,7 +3618,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .product_details_block {
@@ -3450,7 +3659,11 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   padding: 16px 0;
   cursor: pointer;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_link span {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_link
+  span {
   width: 14px;
   height: 14px;
   flex-shrink: 0;
@@ -3458,7 +3671,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_link p {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -3475,61 +3688,127 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   border-bottom: 1px solid hsla(0, 0%, 6%, 0.2);
   padding-bottom: 16px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div p {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  p {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
   margin: 0;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .bullet_wrapper {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  > .bullet_wrapper {
   display: flex;
   flex-direction: column;
   gap: 7px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .bullet_wrapper ul {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  > .bullet_wrapper
+  ul {
   padding-left: 25px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .bullet_wrapper ul li {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  > .bullet_wrapper
+  ul
+  li {
   list-style: disc;
   font-size: 12px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .bullet_wrapper .txt_wrapper {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  > .bullet_wrapper
+  .txt_wrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .bullet_wrapper .underline_txt {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  > .bullet_wrapper
+  .underline_txt {
   text-decoration: underline;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .table_wrapper table {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .table_wrapper
+  table {
   margin: 0;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .table_wrapper table thead th {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .table_wrapper
+  table
+  thead
+  th {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 600;
   line-height: 20px;
   padding: 15.6px 14px;
   border: 1px solid #cfcfcf;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .table_wrapper table tbody td {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .table_wrapper
+  table
+  tbody
+  td {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
   padding: 15.6px 14px;
   border: 1px solid #cfcfcf;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .note_txt {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  > .note_txt {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -3537,53 +3816,134 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   background: #f7f7f7;
   padding: 8px 12px;
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .note_txt svg {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  > .note_txt
+  svg {
   width: 25px;
   height: 25px;
   flex: 0 0 25px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent {
   display: block !important;
   border: none !important;
   padding: 0 !important;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent p,
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent a,
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent td,
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent li,
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent > div {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  p,
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  a,
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  td,
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  li,
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  > div {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .rate_list {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  .rate_list {
   text-transform: initial;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .general-delivery-info {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  .general-delivery-info {
   margin-top: 15px;
   text-transform: initial;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .general-delivery-info a {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  .general-delivery-info
+  a {
   display: inline-block;
   color: #e0162b;
   font-weight: 600;
   text-transform: capitalize;
   margin: 5px 0 10px;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent h4 + ul + p {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  h4
+  + ul
+  + p {
   display: none;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent table {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  table {
   margin: 0;
 }
-.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .ElementsWidget-prefix .u-textCenter--all {
+.product_details_block
+  .product_details_accordion
+  .product_details_accordion_block
+  .product_details_accordion_lists
+  > div
+  .tabcontent
+  .ElementsWidget-prefix
+  .u-textCenter--all {
   margin: 0 auto !important;
 }
 
@@ -3618,7 +3978,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .reviews_block .new_container > h2 {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 28px;
   font-weight: 600;
   line-height: 36px;
@@ -3653,7 +4013,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .faq_block .new_container > h2 {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 28px;
   font-weight: 600;
   line-height: 36px;
@@ -3705,7 +4065,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .faq_block .new_container .faq_accordion .faq_accordion_block .faq_accordion_link p {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -3732,7 +4092,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .faq_block .new_container .faq_accordion .faq_accordion_block .faq_accordion_lists > div p {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -3766,7 +4126,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .comparison_table_block .comparison_table_main_title {
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 28px;
   font-weight: 600;
   line-height: 52px;
@@ -3809,7 +4169,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .comparison_table_block .custom_table .is_active::before {
   position: absolute;
-  content: "";
+  content: '';
   right: -2px;
   top: -5%;
   height: 110%;
@@ -3840,7 +4200,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .comparison_table_block .custom_table .table_cell h3 {
   color: #101010;
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 20px;
   font-weight: 600;
   line-height: 32px;
@@ -3858,7 +4218,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   max-width: 186px;
   height: auto;
   -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 @media (max-width: 768px) {
   .comparison_table_block .custom_table .table_cell h3 img {
@@ -3868,7 +4228,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .comparison_table_block .custom_table .table_cell p {
   color: #2b4632;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 28px;
@@ -3971,7 +4331,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .sticky_block .sticky_product_info .sticky_product_title {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 22px;
   font-weight: 600;
   line-height: 30px;
@@ -3979,7 +4339,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 }
 .sticky_block .sticky_product_info .sticky_product_price {
   color: #101010;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 22px;
   font-weight: 600;
   line-height: 30px;
@@ -4011,7 +4371,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
   border: 1px solid #e0162b;
   background: #e0162b;
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -4044,13 +4404,14 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 .sticky_block form .btns_wrapper_payment {
   width: 100%;
 }
-.sticky_block form .btns_wrapper_payment > *:not([data-shopify=payment-button]) {
+.sticky_block form .btns_wrapper_payment > *:not([data-shopify='payment-button']) {
   display: none !important;
 }
 
 .fancybox__container {
   z-index: 1111111111111111 !important;
-}/*# sourceMappingURL=main.css.map */`, V = window.innerWidth < 768 ? "mobile" : "desktop";
+} /*# sourceMappingURL=main.css.map */
+`, V = window.innerWidth < 768 ? "mobile" : "desktop";
   class j {
     constructor(n) {
       this.device = n, this.observer = null, this.pathName = this.findTranslationKey(window.location.pathname), this.init();
