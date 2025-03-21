@@ -4131,14 +4131,14 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
     renderTooltipBlock() {
       l(".free_delivery p").then((n) => {
         f(".free_delivery p").forEach((i) => {
-          var o, c;
-          if (!r(".tooltip_zone")) {
-            console.log((o = i.textContent) == null ? void 0 : o.trim(), "сontainerElement.textContent");
-            const d = this.extractWorkingDays(((c = i.textContent) == null ? void 0 : c.trim()) || "");
-            console.log(d, "workingDays"), i.insertAdjacentHTML(
+          var o, c, d;
+          if (!r(".tooltip_zone") && ((o = i.textContent) != null && o.includes("Estimated"))) {
+            console.log((c = i.textContent) == null ? void 0 : c.trim(), "сontainerElement.textContent");
+            const p = this.extractWorkingDays(((d = i.textContent) == null ? void 0 : d.trim()) || "");
+            console.log(p, "workingDays"), i.insertAdjacentHTML(
               "beforeend",
               D(
-                `While the estimated delivery time is <span>${d}</span>, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`
+                "After placing your order, we'll contact you with a more precise shipping eta. In some cases, we may even be able to ship sooner! If the eta provided does not work for you, we’ll work with you to adjust it. Additionally, you’re free to cancel your order anytime before dispatch."
               )
             );
           }
@@ -4274,7 +4274,11 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
     }
     replaceInformationToProductDetailsBlock() {
       l(".product_details_block").then(() => {
-        l(".product_details_block .new_technical_specs .product_details_accordion_lists > div").then(() => {
+        r(".productDescription .description-note") && this.moveElement(
+          "#productDescription .description-note",
+          ".product_details_block .new_description .product_details_accordion_lists > div",
+          "afterbegin"
+        ), l(".product_details_block .new_technical_specs .product_details_accordion_lists > div").then(() => {
           this.moveElement(
             "#productSpecs",
             ".product_details_block .new_technical_specs .product_details_accordion_lists > div",
