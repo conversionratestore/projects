@@ -1,19 +1,23 @@
 (function() {
   "use strict";
-  const r = (a, n, e, t = "") => {
+  const r = (s, n, e, o = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: a,
+      event_name: s,
       event_desc: n,
       event_type: e,
-      event_loc: t
-    }), console.log(`Event: ${a} | ${n} | ${e} | ${t}`);
-  }, c = ({ name: a, dev: n }) => {
+      event_loc: o
+    }), console.log(`Event: ${s} | ${n} | ${e} | ${o}`);
+  }, c = ({ name: s, dev: n }) => {
     console.log(
-      `%c EXP: ${a} (DEV: ${n})`,
+      `%c EXP: ${s} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = `.os-note {
+  }, p = (s) => {
+    let n = setInterval(function() {
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", s, "variant_1"));
+    }, 1e3);
+  }, m = `.os-note {
   width: 551px;
   max-width: 100%;
   margin: 0 auto;
@@ -259,7 +263,7 @@
   }
 }
 `;
-  class m {
+  class f {
     constructor({ container: n, position: e }) {
       this.position = e || "beforeend", this.container = n, this.init();
     }
@@ -320,32 +324,32 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-slide") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${p}</style>`));
+      !this.container || document.querySelector("#estimate-custom-slide") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${m}</style>`));
     }
     handle() {
       const n = document.querySelectorAll(
         ".os-next, .os-nextSlide"
-      ), e = document.querySelector(".os-prevSlide"), t = document.getElementById("solarForm");
-      if (!t || !n) return;
-      n.forEach((o) => {
-        o.addEventListener("click", () => {
-          const i = document.getElementById("estimate-email"), s = document.getElementById("estimate-custom-slide");
-          i == null || i.classList.remove("os-hide"), s == null || s.classList.add("os-hide"), t.dataset.slideName = "email", e == null || e.classList.remove("os-hide"), window.scrollTo(0, 0), r("exp_city_next", "Next Screen", "click", "Step - Choose the information you want to get");
+      ), e = document.querySelector(".os-prevSlide"), o = document.getElementById("solarForm");
+      if (!o || !n) return;
+      n.forEach((t) => {
+        t.addEventListener("click", () => {
+          const i = document.getElementById("estimate-email"), l = document.getElementById("estimate-custom-slide");
+          i == null || i.classList.remove("os-hide"), l == null || l.classList.add("os-hide"), o.dataset.slideName = "email", e == null || e.classList.remove("os-hide"), window.scrollTo(0, 0), r("exp_city_next", "Next Screen", "click", "Step - Choose the information you want to get");
         });
-      }), document.querySelectorAll(".estimate-custom-slide label").forEach((o) => {
-        o.addEventListener("click", (i) => {
+      }), document.querySelectorAll(".estimate-custom-slide label").forEach((t) => {
+        t.addEventListener("click", (i) => {
           var d;
           i.preventDefault();
-          const s = o.querySelector("input");
-          if (!s) return;
-          s.checked = !s.checked;
-          const x = (d = o.querySelector("span")) == null ? void 0 : d.textContent;
-          s.checked && r("ext_city_option", `Choose option - ${x}`, "click", "Step - Choose the information you want to get");
+          const l = t.querySelector("input");
+          if (!l) return;
+          l.checked = !l.checked;
+          const h = (d = t.querySelector("span")) == null ? void 0 : d.textContent;
+          l.checked && r("ext_city_option", `Choose option - ${h}`, "click", "Step - Choose the information you want to get");
         });
       });
     }
   }
-  const f = `.os-hide {
+  const u = `.os-hide {
   display: none !important;
 }
 
@@ -441,9 +445,9 @@
 `;
   c({
     dev: "OS",
-    name: "One step before email"
-  });
-  class u {
+    name: "One step before email (NY)"
+  }), p("exp_plus_one_step");
+  class x {
     constructor() {
       this.init();
     }
@@ -451,18 +455,33 @@
       if (document.querySelector("#estimate-custom-slide")) return;
       this.addStyles(), this.hideEmailSlide(), this.addCustomNavsButton();
       const n = document.querySelectorAll(".swiper-slide");
-      new m({ container: n[5], position: "beforeend" }), this.observeSlides(), this.handleBackButton();
+      new f({ container: n[5], position: "beforeend" }), this.observeSlides(), this.handleBackButton();
     }
     hideEmailSlide() {
       const n = document.getElementById("estimate-email");
       n && n.classList.add("os-hide");
     }
     observeSlides() {
-      const n = document.querySelector(".swiper-container"), e = n == null ? void 0 : n.swiper, t = document.getElementById("solarForm");
-      !e || !t || (t.dataset.currentSlide = "0", e == null || e.on("transitionEnd", () => {
-        const l = e.realIndex;
-        t.dataset.currentSlide = l.toString(), l === 5 && r("exp_city_view", "View Screen", "view", "Step - Choose the information you want to get");
-      }));
+      const n = document.querySelector(".swiper-container"), e = n == null ? void 0 : n.swiper, o = document.getElementById("solarForm"), a = document.querySelector(".prevSlide");
+      if (!e || !o) return;
+      o.dataset.currentSlide = "0";
+      const t = (i) => {
+        r(
+          "exp_city_back",
+          "View Screen",
+          "click",
+          "Back to previous screen"
+        );
+      };
+      e == null || e.on("transitionEnd", () => {
+        const i = e.realIndex;
+        o.dataset.currentSlide = i.toString(), i === 5 ? (r(
+          "exp_city_view",
+          "View Screen",
+          "view",
+          "Step - Choose the information you want to get"
+        ), a == null || a.addEventListener("click", t)) : a == null || a.removeEventListener("click", t);
+      });
     }
     addCustomNavsButton() {
       const n = (
@@ -477,21 +496,21 @@
     handleBackButton() {
       const n = document.querySelector("#slider-block .os-prevSlide");
       n && n.addEventListener("click", (e) => {
-        const t = document.getElementById("solarForm");
-        if (!t) return;
-        if (t.dataset.currentSlide === "5") {
-          const o = document.getElementById("estimate-email");
-          if (!(o != null && o.classList.contains("os-hide"))) {
-            t.dataset.slideName = "", n.classList.add("os-hide");
+        const o = document.getElementById("solarForm");
+        if (!o) return;
+        if (o.dataset.currentSlide === "5") {
+          const t = document.getElementById("estimate-email");
+          if (!(t != null && t.classList.contains("os-hide"))) {
+            o.dataset.slideName = "", n.classList.add("os-hide");
             const i = document.getElementById("estimate-custom-slide");
-            o == null || o.classList.add("os-hide"), i == null || i.classList.remove("os-hide");
+            t == null || t.classList.add("os-hide"), i == null || i.classList.remove("os-hide");
           }
         }
       });
     }
     addStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${f}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${u}</style>`);
     }
   }
-  new u();
+  new x();
 })();
