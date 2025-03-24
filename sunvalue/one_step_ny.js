@@ -468,7 +468,7 @@
       const t = (i) => {
         r(
           "exp_city_back",
-          "View Screen",
+          "Previous Screen",
           "click",
           "Back to previous screen"
         );
