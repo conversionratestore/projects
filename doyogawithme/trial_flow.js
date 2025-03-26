@@ -891,7 +891,7 @@
   </div>
 `
   ), V = () => {
-    const r = window.drupalSettings.dywm_commerce_currencies.plans_pricing, n = window.drupalSettings.dywm_commerce_currencies.current_currency, t = r[0].prices[n], i = r[1].prices[n], a = i.match(/[^\d.,]/g).join(""), p = a + (parseFloat(i.replace(/[^\d.]/g, "")) / 12).toFixed(2), o = a + (parseFloat(t.replace(/[^\d.]/g, "")) * 12 - parseFloat(i.replace(/[^\d.]/g, "")));
+    const r = window.drupalSettings.dywm_commerce_currencies.plans_pricing, n = window.drupalSettings.dywm_commerce_currencies.current_currency, t = r[0].prices[n], i = r[1].prices[n], a = i.match(/[^\d.,]/g).join(""), p = a + (parseFloat(i.replace(/[^\d.]/g, "")) / 12).toFixed(2), o = a + (parseFloat(t.replace(/[^\d.]/g, "")) * 12 - parseFloat(i.replace(/[^\d.]/g, ""))).toFixed(2);
     return (
       /* HTML */
       `
@@ -1075,7 +1075,7 @@
     async checkout() {
       const n = await l(".order-total-line-value");
       if (!n.innerText.includes("$0.00") && !n.innerText.includes("€0.00")) return;
-      const t = window.drupalSettings.dywm_commerce_currencies.plans_pricing, i = window.drupalSettings.dywm_commerce_currencies.current_currency, a = t[1].prices[i], p = t[0].prices[i], o = a.match(/[^\d.,]/g).join(""), d = o + (parseFloat(a.replace(/[^\d.]/g, "")) / 12).toFixed(2), u = o + (parseFloat(p.replace(/[^\d.]/g, "")) * 12 - parseFloat(a.replace(/[^\d.]/g, "")));
+      const t = window.drupalSettings.dywm_commerce_currencies.plans_pricing, i = window.drupalSettings.dywm_commerce_currencies.current_currency, a = t[1].prices[i], p = t[0].prices[i], o = a.match(/[^\d.,]/g).join(""), d = o + (parseFloat(a.replace(/[^\d.]/g, "")) / 12).toFixed(2), u = o + (parseFloat(p.replace(/[^\d.]/g, "")) * 12 - parseFloat(a.replace(/[^\d.]/g, ""))).toFixed(2);
       l("div.sfc-orderSummaryItemPrice__price").then((h) => {
         var L;
         const f = (L = e(".views-field-title .tablesaw-cell-content").elements[0].textContent) != null && L.includes("Monthly") ? "monthly" : "yearly";
