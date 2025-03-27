@@ -1,23 +1,41 @@
 (function() {
   "use strict";
-  const r = (s, n, e, o = "") => {
+  const r = (a, n, e, t = "") => {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push({
       event: "event-to-ga4",
-      event_name: s,
+      event_name: a,
       event_desc: n,
       event_type: e,
-      event_loc: o
-    }), console.log(`Event: ${s} | ${n} | ${e} | ${o}`);
-  }, c = ({ name: s, dev: n }) => {
+      event_loc: t
+    }), console.log(`Event: ${a} | ${n} | ${e} | ${t}`);
+  }, p = ({ name: a, dev: n }) => {
     console.log(
-      `%c EXP: ${s} (DEV: ${n})`,
+      `%c EXP: ${a} (DEV: ${n})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
-  }, p = (s) => {
+  }, m = (a) => {
     let n = setInterval(function() {
-      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", s, "variant_1"));
+      typeof window.clarity == "function" && (clearInterval(n), window.clarity("set", a, "variant_1"));
     }, 1e3);
-  }, m = `.os-note {
+  };
+  async function u(a, n = "GET", e = null) {
+    try {
+      const t = {
+        method: n,
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      e && (t.body = JSON.stringify(e));
+      const s = await fetch(a, t);
+      if (!s.ok)
+        throw new Error(`HTTP error! status: ${s.status}`);
+      return await s.json();
+    } catch (t) {
+      console.error("Fetch error:", t);
+    }
+  }
+  const f = async () => await u("https://ipapi.co/json/"), h = `.os-note {
   width: 551px;
   max-width: 100%;
   margin: 0 auto;
@@ -61,7 +79,7 @@
   line-height: 24px; /* 133.333% */
 }
 
-.os-note__bottom span {
+.os-note__bottom .highlight {
   color: #00c105;
 }
 
@@ -220,7 +238,7 @@
     line-height: 24px;
   }
 
-  .os-note__bottom span {
+  .os-note__bottom .highlight {
     color: #98f465;
   }
 
@@ -262,13 +280,25 @@
     line-height: 24px;
   }
 }
-`;
-  class f {
+`, d = {
+    "New York": "6",
+    Massachusetts: "6",
+    // Boston
+    Illinois: "7"
+    // Chicago
+  };
+  class x {
     constructor({ container: n, position: e }) {
       this.position = e || "beforeend", this.container = n, this.init();
     }
     init() {
-      this.render(), this.handle();
+      this.render(), this.handle(), this.changeCopyByLocation();
+    }
+    async changeCopyByLocation() {
+      const n = await f(), e = document.getElementById("incentives-amount");
+      if (!e) return;
+      const t = n.region;
+      d[t] && (e.textContent = d[t]);
     }
     render() {
       var e;
@@ -283,7 +313,7 @@
           <div class="os-note__top">✅ Congrats!</div>
           <div class="os-note__bottom">
             Your household <br class="mobile" />
-            <span>may qualify for 2 </span> out of 6 incentives
+            <span class="highlight">may qualify for 2 </span> out of <span id="incentives-amount">6</span> incentives
           </div>
         </div>
         <div class="os-title">Choose the information you want to get</div>
@@ -315,7 +345,11 @@
               </label>
             </li>
             <li>
-              <button type="button" class="btn default os-next" data-button="email-slide">
+              <button
+                type="button"
+                class="btn default os-next"
+                data-button="email-slide"
+              >
                 Next
               </button>
             </li>
@@ -324,32 +358,42 @@
       </div>
     </div>`
       );
-      !this.container || document.querySelector("#estimate-custom-slide") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${m}</style>`));
+      !this.container || document.querySelector("#estimate-custom-slide") || ((e = this.container) == null || e.insertAdjacentHTML(this.position, n), document.head.insertAdjacentHTML("beforeend", `<style>${h}</style>`));
     }
     handle() {
       const n = document.querySelectorAll(
         ".os-next, .os-nextSlide"
-      ), e = document.querySelector(".os-prevSlide"), o = document.getElementById("solarForm");
-      if (!o || !n) return;
-      n.forEach((t) => {
-        t.addEventListener("click", () => {
+      ), e = document.querySelector(".os-prevSlide"), t = document.getElementById("solarForm");
+      if (!t || !n) return;
+      n.forEach((o) => {
+        o.addEventListener("click", () => {
           const i = document.getElementById("estimate-email"), l = document.getElementById("estimate-custom-slide");
-          i == null || i.classList.remove("os-hide"), l == null || l.classList.add("os-hide"), o.dataset.slideName = "email", e == null || e.classList.remove("os-hide"), window.scrollTo(0, 0), r("exp_city_next", "Next Screen", "click", "Step - Choose the information you want to get");
+          i == null || i.classList.remove("os-hide"), l == null || l.classList.add("os-hide"), t.dataset.slideName = "email", e == null || e.classList.remove("os-hide"), window.scrollTo(0, 0), r(
+            "exp_city_next",
+            "Next Screen",
+            "click",
+            "Step - Choose the information you want to get"
+          );
         });
-      }), document.querySelectorAll(".estimate-custom-slide label").forEach((t) => {
-        t.addEventListener("click", (i) => {
-          var d;
+      }), document.querySelectorAll(".estimate-custom-slide label").forEach((o) => {
+        o.addEventListener("click", (i) => {
+          var c;
           i.preventDefault();
-          const l = t.querySelector("input");
+          const l = o.querySelector("input");
           if (!l) return;
           l.checked = !l.checked;
-          const h = (d = t.querySelector("span")) == null ? void 0 : d.textContent;
-          l.checked && r("ext_city_option", `Choose option - ${h}`, "click", "Step - Choose the information you want to get");
+          const y = (c = o.querySelector("span")) == null ? void 0 : c.textContent;
+          l.checked && r(
+            "ext_city_option",
+            `Choose option - ${y}`,
+            "click",
+            "Step - Choose the information you want to get"
+          );
         });
       });
     }
   }
-  const u = `.os-hide {
+  const g = `.os-hide {
   display: none !important;
 }
 
@@ -443,11 +487,11 @@
   background-size: 20px;
 }
 `;
-  c({
+  p({
     dev: "OS",
-    name: "One step before email (NY)"
-  }), p("exp_plus_one_step");
-  class x {
+    name: "One step before email (New York)"
+  }), m("exp_plus_one_step_new_york");
+  class b {
     constructor() {
       this.init();
     }
@@ -455,17 +499,17 @@
       if (document.querySelector("#estimate-custom-slide")) return;
       this.addStyles(), this.hideEmailSlide(), this.addCustomNavsButton();
       const n = document.querySelectorAll(".swiper-slide");
-      new f({ container: n[5], position: "beforeend" }), this.observeSlides(), this.handleBackButton();
+      new x({ container: n[5], position: "beforeend" }), this.observeSlides(), this.handleBackButton();
     }
     hideEmailSlide() {
       const n = document.getElementById("estimate-email");
       n && n.classList.add("os-hide");
     }
     observeSlides() {
-      const n = document.querySelector(".swiper-container"), e = n == null ? void 0 : n.swiper, o = document.getElementById("solarForm"), a = document.querySelector(".prevSlide");
-      if (!e || !o) return;
-      o.dataset.currentSlide = "0";
-      const t = (i) => {
+      const n = document.querySelector(".swiper-container"), e = n == null ? void 0 : n.swiper, t = document.getElementById("solarForm"), s = document.querySelector(".prevSlide");
+      if (!e || !t) return;
+      t.dataset.currentSlide = "0";
+      const o = (i) => {
         r(
           "exp_city_back",
           "Previous Screen",
@@ -475,12 +519,12 @@
       };
       e == null || e.on("transitionEnd", () => {
         const i = e.realIndex;
-        o.dataset.currentSlide = i.toString(), i === 5 ? (r(
+        t.dataset.currentSlide = i.toString(), i === 5 ? (r(
           "exp_city_view",
           "View Screen",
           "view",
           "Step - Choose the information you want to get"
-        ), a == null || a.addEventListener("click", t)) : a == null || a.removeEventListener("click", t);
+        ), s == null || s.addEventListener("click", o)) : s == null || s.removeEventListener("click", o);
       });
     }
     addCustomNavsButton() {
@@ -496,21 +540,21 @@
     handleBackButton() {
       const n = document.querySelector("#slider-block .os-prevSlide");
       n && n.addEventListener("click", (e) => {
-        const o = document.getElementById("solarForm");
-        if (!o) return;
-        if (o.dataset.currentSlide === "5") {
-          const t = document.getElementById("estimate-email");
-          if (!(t != null && t.classList.contains("os-hide"))) {
-            o.dataset.slideName = "", n.classList.add("os-hide");
+        const t = document.getElementById("solarForm");
+        if (!t) return;
+        if (t.dataset.currentSlide === "5") {
+          const o = document.getElementById("estimate-email");
+          if (!(o != null && o.classList.contains("os-hide"))) {
+            t.dataset.slideName = "", n.classList.add("os-hide");
             const i = document.getElementById("estimate-custom-slide");
-            t == null || t.classList.add("os-hide"), i == null || i.classList.remove("os-hide");
+            o == null || o.classList.add("os-hide"), i == null || i.classList.remove("os-hide");
           }
         }
       });
     }
     addStyles() {
-      document.head.insertAdjacentHTML("beforeend", `<style>${u}</style>`);
+      document.head.insertAdjacentHTML("beforeend", `<style>${g}</style>`);
     }
   }
-  new x();
+  new b();
 })();
