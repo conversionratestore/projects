@@ -115,6 +115,7 @@
   box-shadow: 0px 0px 0px 3px #e2e2e2, 0px 2px 12px 0px rgba(0, 0, 0, 0.06);
   cursor: pointer;
   transition: all 0.3s;
+  
 }
 
 .estimate-custom-slide .form-list li label input {
@@ -145,6 +146,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  text-align: left;
 }
 .estimate-custom-slide .form-list li label:has(input:checked) .checkbox {
   display: flex;
@@ -204,7 +206,9 @@
   text-transform: uppercase;
   cursor: pointer;
 }
-
+.estimate-custom-slide .os-next {
+  max-width: 100%;
+}
 @media (max-width: 768px) {
   [data-current-slide='5']:not([data-slide-name='email']) .wrapper .container {
     padding: 0 16px;
@@ -427,6 +431,7 @@
 }
 .os-nextSlide {
   display: none;
+  padding: 17px 30px;
   border: none;
   border-radius: 5px;
   background: #83be63;
