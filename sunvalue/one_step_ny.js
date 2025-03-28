@@ -412,6 +412,9 @@
     display: none;
   }
 }
+[data-current-slide="5"] .swiper-wrapper:has(#estimate-email.os-hide) {
+  height: auto !important;
+}
 
 [data-current-slide='5']:not([data-slide-name='email'])
   #slider-block
