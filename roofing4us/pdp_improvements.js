@@ -508,7 +508,7 @@
       comparisonTable: {
         mainTitle: "Why Buy From Roofing4US?",
         myTitle: "Other Brands",
-        competitorsTitle: `<img src="${a}roofing4us_logo_new.png" alt="logo Roofing4US">`,
+        competitorsTitle: `<img src="${a}logo-original.png" alt="logo Roofing4US">`,
         benefits: [
           {
             benefitName: "Wide selection of quality <br/> products",
@@ -680,7 +680,7 @@
       comparisonTable: {
         mainTitle: "Why Buy From Roofing4US?",
         myTitle: "Other Brands",
-        competitorsTitle: `<img src="${a}roofing4us_logo_new.png" alt="logo Roofing4US">`,
+        competitorsTitle: `<img src="${a}logo-original.png" alt="logo Roofing4US">`,
         benefits: [
           {
             benefitName: "Wide selection of quality <br/> products",
@@ -852,7 +852,7 @@
       comparisonTable: {
         mainTitle: "Why Buy From Roofing4US?",
         myTitle: "Other Brands",
-        competitorsTitle: `<img src="${a}roofing4us_logo_new.png" alt="logo Roofing4US">`,
+        competitorsTitle: `<img src="${a}logo-original.png" alt="logo Roofing4US">`,
         benefits: [
           {
             benefitName: "Wide selection of quality <br/> products",
@@ -1006,7 +1006,7 @@
       comparisonTable: {
         mainTitle: "Why Buy From Roofing4US?",
         myTitle: "Other Brands",
-        competitorsTitle: `<img src="${a}roofing4us_logo_new.png" alt="logo Roofing4US">`,
+        competitorsTitle: `<img src="${a}logo-original.png" alt="logo Roofing4US">`,
         benefits: [
           {
             benefitName: "Wide selection of quality <br/> products",
@@ -1158,7 +1158,7 @@
       comparisonTable: {
         mainTitle: "Why Buy From Roofing4US?",
         myTitle: "Other Brands",
-        competitorsTitle: `<img src="${a}roofing4us_logo_new.png" alt="logo Roofing4US">`,
+        competitorsTitle: `<img src="${a}logo-original.png" alt="logo Roofing4US">`,
         benefits: [
           {
             benefitName: "Wide selection of quality <br/> products",
@@ -1375,7 +1375,7 @@ Overall, the TPO Plus Roof Membranes are a great choice for any roofing project.
       comparisonTable: {
         mainTitle: "Why Buy From Roofing4US?",
         myTitle: "Other Brands",
-        competitorsTitle: `<img src="${a}roofing4us_logo_new.png" alt="logo Roofing4US">`,
+        competitorsTitle: `<img src="${a}logo-original.png" alt="logo Roofing4US">`,
         benefits: [
           {
             benefitName: "Wide selection of quality <br/> products",
@@ -1624,7 +1624,7 @@ Overall, the TPO Plus Roof Membranes are a great choice for any roofing project.
       comparisonTable: {
         mainTitle: "Why Buy From Roofing4US?",
         myTitle: "Other Brands",
-        competitorsTitle: `<img src="${a}roofing4us_logo_new.png" alt="logo Roofing4US">`,
+        competitorsTitle: `<img src="${a}logo-original.png" alt="logo Roofing4US">`,
         benefits: [
           {
             benefitName: "Wide selection of quality <br/> products",
@@ -1840,7 +1840,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       comparisonTable: {
         mainTitle: "Why Buy From Roofing4US?",
         myTitle: "Other Brands",
-        competitorsTitle: `<img src="${a}roofing4us_logo_new.png" alt="logo Roofing4US">`,
+        competitorsTitle: `<img src="${a}logo-original.png" alt="logo Roofing4US">`,
         benefits: [
           {
             benefitName: "Wide selection of quality <br/> products",
@@ -2240,6 +2240,7 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
 
 .free_delivery p span {
   margin-left: 5px;
+  margin-right: 5px;
 }
 
 @media (max-width: 768px) {
