@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  const u = `#root {
+  const f = `#root {
   display: none;
 }
 
@@ -510,7 +510,15 @@
   line-height: 20px;
   color: #5c687c;
   margin: 4px 0 0;
-}/*# sourceMappingURL=style.css.map */`, p = (i) => new Promise((e) => {
+}/*# sourceMappingURL=style.css.map */`, p = (i, e, n, s = "") => {
+    window.dataLayer = window.dataLayer || [], window.dataLayer.push({
+      event: "event-to-ga4",
+      event_name: i,
+      event_desc: e,
+      event_type: n,
+      event_loc: s
+    }), h(`Event: ${i} | ${e} | ${n} | ${s}`, "success");
+  }, c = (i) => new Promise((e) => {
     const n = document.querySelector(i);
     n && e(n);
     const s = new MutationObserver(() => {
@@ -521,23 +529,23 @@
       childList: !0,
       subtree: !0
     });
-  }), f = ({ name: i, dev: e }) => {
+  }), g = ({ name: i, dev: e }) => {
     console.log(
       `%c EXP: ${i} (DEV: ${e})`,
       "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;"
     );
   };
-  class c {
+  class d {
     constructor(e) {
-      this.elements = e instanceof c ? e.elements : typeof e == "string" ? Array.from(document.querySelectorAll(e)) : e instanceof Element ? [e] : Array.isArray(e) ? e : Array.from(e);
+      this.elements = e instanceof d ? e.elements : typeof e == "string" ? Array.from(document.querySelectorAll(e)) : e instanceof Element ? [e] : Array.isArray(e) ? e : Array.from(e);
     }
     on(e, n, s) {
       return typeof n == "function" && (s = n, n = ""), this.elements.forEach((o) => {
         o.addEventListener(e, function(r) {
           var l;
           if (n !== "") {
-            let d = (l = r.target) == null ? void 0 : l.closest(n);
-            d && (s == null || s.call(d, r));
+            let u = (l = r.target) == null ? void 0 : l.closest(n);
+            u && (s == null || s.call(u, r));
           } else
             s == null || s.call(o, r);
         });
@@ -560,7 +568,7 @@
     }
     each(e) {
       for (let n of this.elements)
-        e(new c(n), this.elements.indexOf(n));
+        e(new d(n), this.elements.indexOf(n));
       return this;
     }
     style(e, n) {
@@ -571,7 +579,7 @@
     }
     find(e) {
       const n = this.elements.map((s) => Array.from(s.querySelectorAll(e)));
-      return new c(n.flat());
+      return new d(n.flat());
     }
     attr(e, n) {
       return n ? (this.elements.forEach(function(s) {
@@ -589,17 +597,34 @@
       }), this) : this.elements[0].innerHTML;
     }
   }
-  const t = (i) => new c(i), g = (i, e) => {
+  const t = (i) => new d(i), h = (i, e = "info") => {
+    let n;
+    switch (e) {
+      case "info":
+        n = "color: #3498db;";
+        break;
+      case "warn":
+        n = "color: #f39c12;";
+        break;
+      case "error":
+        n = "color: #e74c3c;";
+        break;
+      case "success":
+        n = "color: #2ecc71;";
+        break;
+    }
+    console.log(`%c>>> ${i}`, `${n} font-size: 16px; font-weight: 600`);
+  }, m = (i, e) => {
     i.style.transition = "height 500ms", i.style.height = "0", setTimeout(() => {
       i.style.display = "none";
     }, 500);
-  }, h = (i, e) => {
+  }, y = (i, e) => {
     i.style.transition = "height 500ms", i.style.overflow = "hidden", i.style.display = "block", i.style.height = "auto";
     const s = i.clientHeight;
     i.style.height = "0", setTimeout(() => {
       i.style.height = s + "px";
     }, 0);
-  }, a = "https://conversionratestore.github.io/projects/merkury/img", m = (
+  }, a = "https://conversionratestore.github.io/projects/merkury/img", x = (
     /* HTML */
     `
   <div class="crs_header">
@@ -623,7 +648,7 @@
     </ul>
   </div>
 `
-  ), y = (
+  ), v = (
     /* HTML */
     `
   <div class="crs_plans_v1">
@@ -714,7 +739,7 @@
     </div>
   </div>
 `
-  ), x = (
+  ), b = (
     /* HTML */
     `
   <div class="crs_reviews">
@@ -740,7 +765,7 @@
     </div>
   </div>
 `
-  ), v = (
+  ), _ = (
     /* HTML */
     `
   <div class="crs_trial">
@@ -764,18 +789,18 @@
     </ul>
   </div>
 `
-  ), b = (
+  ), w = (
     /* HTML */
     `
   <div class="crs_footer">
-    <button>Start 30-day free trial</button>
+    <button class="disabled">Start 30-day free trial</button>
     <p>2 taps to start, super easy to cancel</p>
   </div>
 `
-  ), _ = (
+  ), k = (
     /* HTML */
     ' <div class="crs_popup"></div> '
-  ), w = (i) => (
+  ), C = (i) => (
     /* HTML */
     `
     <div class="indicator"></div>
@@ -792,7 +817,7 @@
       </li>
     </ul>
   `
-  ), k = {
+  ), $ = {
     cameras: {
       img: "camera.svg",
       title: "Support up to <b><span></span> Cameras</b>",
@@ -860,8 +885,8 @@
       text: "Set custom rules and schedules to match your routine. Turn motion detection on or off at specific times or create automations that fit your schedule for a smarter, hassle-free experience."
     }
   };
-  f({ name: "Exp - Plans Page", dev: "YK" });
-  class C {
+  g({ name: "Exp - Plans Page", dev: "YK" });
+  class z {
     constructor() {
       this._selection = !1, this.init();
     }
@@ -870,18 +895,18 @@
     }
     async render() {
       var s;
-      await p("#root");
+      await c("#root");
       const e = t("body").elements[0];
-      e.insertAdjacentHTML("afterbegin", `<style class="crs_style">${u}</style>`), (s = e.querySelector("#root")) == null || s.insertAdjacentHTML("afterend", '<div id="crs_plans_page"></div>'), await p("#crs_plans_page");
+      e.insertAdjacentHTML("afterbegin", `<style class="crs_style">${f}</style>`), (s = e.querySelector("#root")) == null || s.insertAdjacentHTML("afterend", '<div id="crs_plans_page"></div>'), await c("#crs_plans_page");
       const n = t("#crs_plans_page").elements[0];
-      n.insertAdjacentHTML("beforeend", m), n.insertAdjacentHTML("beforeend", y), n.insertAdjacentHTML("beforeend", x), n.insertAdjacentHTML("beforeend", v), n.insertAdjacentHTML("beforeend", b), n.insertAdjacentHTML("beforeend", _), n.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), this.addEvents(), p(".MuiTab-wrapper").then(() => {
+      n.insertAdjacentHTML("beforeend", x), n.insertAdjacentHTML("beforeend", v), n.insertAdjacentHTML("beforeend", b), n.insertAdjacentHTML("beforeend", _), n.insertAdjacentHTML("beforeend", w), n.insertAdjacentHTML("beforeend", k), n.insertAdjacentHTML("beforeend", '<div class="dark_bg"></div>'), this.addEvents(), c(".MuiTab-wrapper").then(() => {
         t(".MuiTab-wrapper").elements[1].click(), this.selectPlan("plus");
       });
     }
     addEvents() {
       t(".crs_tabs span").on("click", (e) => {
         const n = e.target, s = n.getAttribute("data-type");
-        t(".crs_tabs span").removeClass("active"), n.classList.add("active"), t(".crs_tabs").attr("data-active", s || ""), t(".plans").attr("data-active", s || ""), s === "monthly" ? (t(".price.active").removeClass("active"), t(".price.monthly").addClass("active")) : (t(".price.active").removeClass("active"), t(".price.yearly").addClass("active")), t(".MuiTab-wrapper").elements[s === "monthly" ? 0 : 1].click(), this.selectPlan(t(".plans li.active .title").text().toLowerCase().trim());
+        t(".crs_tabs span").removeClass("active"), n.classList.add("active"), t(".crs_tabs").attr("data-active", s || ""), t(".plans").attr("data-active", s || ""), s === "monthly" ? (t(".price.active").removeClass("active"), t(".price.monthly").addClass("active")) : (t(".price.active").removeClass("active"), t(".price.yearly").addClass("active")), p("exp_plans_click_01", s || "", "click", "Choose your perfect plan toogle"), t(".MuiTab-wrapper").elements[s === "monthly" ? 0 : 1].click(), this.selectPlan(t(".plans li.active .title").text().toLowerCase().trim());
       }), t(".plans li").on("click", (e) => {
         var o, r;
         if (this.selection) return;
@@ -892,35 +917,35 @@
           s === "basic" ? "1 camera" : s === "plus" ? "2 cameras" : "10 cameras"
         ), t(".features > ul li:nth-of-type(2) b").text(
           s === "basic" ? " for 2 days" : s === "plus" ? "for 14 days" : "for 30 days"
-        ), this.selectPlan(s);
+        ), p("exp_plans_click_02", s, "click", "Choose your perfect plan"), this.selectPlan(s);
       }), t(".see_all").on("click", () => {
-        t(".see_all").text().includes("+") ? (h(t(".basic_features").elements[0]), t(".see_all").text("- hide all features")) : (g(t(".basic_features").elements[0]), t(".see_all").text("+ see all features"));
+        p("exp_plans_click_04", t(".see_all").text(), "click", "Choose your perfect plan"), t(".see_all").text().includes("+") ? (y(t(".basic_features").elements[0]), t(".see_all").text("- hide all features")) : (m(t(".basic_features").elements[0]), t(".see_all").text("+ see all features"));
       }), t(".features li").on("click", (e) => {
         var r;
         const n = ((r = e.target.closest("li")) == null ? void 0 : r.getAttribute("data-popup")) || "cameras";
-        t(".crs_popup").html(w(k[n]));
+        t(".crs_popup").html(C($[n]));
         const s = t(".features").attr("data-plan") || "basic";
         let o = 0;
-        n === "cameras" && (o = s === "basic" ? 1 : s === "plus" ? 2 : 10), n === "storage" && (o = s === "basic" ? 2 : s === "plus" ? 14 : 30), t(".crs_popup p span").each((l, d) => {
+        n === "cameras" && (o = s === "basic" ? 1 : s === "plus" ? 2 : 10), n === "storage" && (o = s === "basic" ? 2 : s === "plus" ? 14 : 30), t(".crs_popup p span").each((l, u) => {
           l.text(o.toString());
-        }), t(".dark_bg").addClass("active"), t(".crs_popup").addClass("active");
+        }), p("exp_plans_click_03", n, "click", "Choose your perfect plan"), t(".dark_bg").addClass("active"), t(".crs_popup").addClass("active");
       }), t(".dark_bg, .crs_popup .indicator").on("click", (e) => {
         t(".dark_bg").removeClass("active"), t(".crs_popup").removeClass("active");
       }), t(".crs_footer button").on("click", () => {
-        this.selection || (t(".MuiCardActions-root button").elements[0].click(), t("#geeni-next-btn").elements[0] && t("#geeni-next-btn").elements[0].click());
+        this.selection || (t(".MuiCardActions-root button").elements[0].click(), t("#geeni-next-btn").elements[0] && t("#geeni-next-btn").elements[0].click(), p("exp_plans_click_05", "Start 30 days free trial", "click", "Choose your perfect plan"));
       });
     }
     async selectPlan(e) {
       var s, o, r, l;
-      await p('button[aria-label="Next"]');
+      await c('button[aria-label="Next"]');
       let n = ((o = (s = t(".MuiCardContent-root>p").elements[0]) == null ? void 0 : s.textContent) == null ? void 0 : o.toLowerCase().trim()) || "";
       for (; n !== e.trim(); )
-        this.selection = !0, t('button[aria-label="Next"]').elements[0].click(), await p(".MuiCardContent-root>p"), await new Promise((d) => setTimeout(d, 700)), n = ((l = (r = t(".MuiCardContent-root>p").elements[0]) == null ? void 0 : r.textContent) == null ? void 0 : l.toLowerCase().trim()) || "";
+        this.selection = !0, t('button[aria-label="Next"]').elements[0].click(), await c(".MuiCardContent-root>p"), await new Promise((u) => setTimeout(u, 700)), n = ((l = (r = t(".MuiCardContent-root>p").elements[0]) == null ? void 0 : r.textContent) == null ? void 0 : l.toLowerCase().trim()) || "";
       this.selection = !1;
     }
     observer() {
       const e = new MutationObserver(() => {
-        window.location.pathname === "/plans" ? t(".crs_style").elements[0] || (console.log("plans page"), e.disconnect(), t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${u}</style>`), t("#crs_plans_page").style("display", "block")) : t(".crs_style").elements[0] && (console.log("not plans page"), e.disconnect(), t("#crs_plans_page").style("display", "none"), t(".crs_style").elements[0].remove()), e.observe(document.body, { childList: !0, subtree: !0 });
+        window.location.pathname === "/plans" ? t(".crs_style").elements[0] || (console.log("plans page"), e.disconnect(), t("body").elements[0].insertAdjacentHTML("afterbegin", `<style class="crs_style">${f}</style>`), t("#crs_plans_page").style("display", "block")) : t(".crs_style").elements[0] && (console.log("not plans page"), e.disconnect(), t("#crs_plans_page").style("display", "none"), t(".crs_style").elements[0].remove()), e.observe(document.body, { childList: !0, subtree: !0 });
       });
       e.observe(document.body, { childList: !0, subtree: !0 });
     }
@@ -931,6 +956,6 @@
       return this._selection;
     }
   }
-  window.innerWidth < 768 && new C();
+  window.innerWidth < 768 && new z();
 })();
 //# sourceMappingURL=index.js.map
